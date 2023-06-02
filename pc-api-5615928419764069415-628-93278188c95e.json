@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pc-api-5615928419764069415-628",
+  "private_key_id": "93278188c95e9d858e54d2f8fc378abd20d2f3fb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC8c/LJbyPZrOMk\nYIFoa3oHlPcAokZUQQuSW2C0KXl7Gz434FvJYu/yv3LT95QfkV3hb+zl6yudCkXD\nF8AlYCaRFQOdXzADJRKS6G36SXfeg1vwFqVkpNKNgNgqUhx3B2USvR4QSNDamnmM\nY5GkNLx4cR3OImTbyWuyqpzi4DK1IyHq5HOBhdXs34J7Hn6cYXU39TT7HFM1Q/1g\n8i56DX5oen+lQIpwogNjIfGs0TPt5h1snX4aMEMRoaqJUVN7Tmo1UWbDciM/CXly\ntZjuFw7o5EM1kutDirnnFmydUbsbZgE9FceGv4RzOIY9jipq8gqy83NWN3nLkuBI\nYk3TrLS9AgMBAAECggEAARXtUMlCrHY0dpXV8QQB5DZj7n10CJGGXEqJkrtUopR5\nDFZCMrV1J4TmuuXHrrkS6iG2Fh3/qcXKU8uL4eGjrAn+5xXXDDf9gY10VfDwT2Ua\nbyMZdh+EwgFukJHZoNSEIDJ10G2Aj7dvmoYxUgzNICfnEZqwa4648txmQnojRXIp\nKvThVfny1lFD7GE4d3Tw4uZj79j2yD+nXXkbhVpRfiZTjPUD17QFgLJT0sSpYwFI\nnHaAbpRjeozDfiTnZufZXg2htbTY5/mPutdWIvkTNlYSeA22VR7YBgjiAyoCVcF9\nNMzZMPvT2vTcRVmFWlHigpb0VecEA8y5fkwpJyWNUQKBgQD4VPbqF+54g0RgH0dv\ncWFEw6xHC5rb8KKnWKKQP4Y/SdTMJhtqdv3SOsCs3jliKEo3EU955rhIiruubTSe\nU9/dcgjM5PeOSX7MFr0N08rYWUcVZB38FlRNbmhfs43xfjPFdofSKoCgNop0ynPG\n4XULPS8Jf3OinHl7yNGgwIFerQKBgQDCRaW8XSjVJXWtiHXUFzryjcuq4lEiXe5j\nRS9hbxW+NYTIBOGF3+ZMZz/LEKVX4UszQCPPmLjuQxBm91RySo3tnxwlSRB90orG\nlMfobkRbk0CNk37GifPpFCdbTGhI11K889hy2MIASRPkwkWLnc3v+9fJ6jDCMA4+\nRl5L1izAUQKBgBk6eIM7vyxbGZ0yUE2QFTOpNV1aXnctsTiTFqDU80yGsamzzWE5\niXvMIDrvsKC6Ox/xEEPwHpSwE3Ua/xd+qeWTajV2pXe9G7acMMSw2ZC1MTWJIEq1\n8gaTyuK+GROJoLTU3+OIEd007UgEMVLpILztkFPEsPi6MNVUh4dvRzVZAoGAf3xz\nAYRk6lLVwZYeNJs1/LweXjp8IcBgUtaw/BCIxTSbuSKy2EaQ+6x5yYlX566Zyb0a\ngv3mxbxOxDMkQIg6USgrsTAcWWVT2nMCKL5Lr4iXQRD8jc8zt82Y8inW+Y4L5qFi\ndiNWVBegrWrrdm6NGSI8fm1np9cfUbCd6shWv7ECgYBRiDjTlVdTM9F63fJAjfs9\nU9BrL8x4a0yXQMn3ycfGNjKS11brFxjZsd7yAYXbRN2oiiN2HkA/PgmmHe/xGk4L\nPI/pjAEC4TpsD+/xIVWkZzbQvGiUPkTz5CqQ9sGPIlPsOova3SvfQ5BvUFFAfsmn\nxSJbVrGyVjBl3ceCtOJEiw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "zeal-zoft-velai@pc-api-5615928419764069415-628.iam.gserviceaccount.com",
+  "client_id": "102115653639023850115",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/zeal-zoft-velai%40pc-api-5615928419764069415-628.iam.gserviceaccount.com"
+}

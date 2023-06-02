@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Velai",
+    "slug": "Velai",
+    "version": "1.0.15",
+    "orientation": "portrait",
+    "icon": "./assets/adaptive-icon.png",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends.",
+          "cameraPermission": "Allow Velai to access your camera"
+        }
+      ]
+    ],
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/vell.png",
+      "backgroundColor": "#133841"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.zealzoft.velai",
+      "versionCode": 16,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/loggo.png",
+        "backgroundImage": "./assets/iconbg.png"
+      },
+      "permissions": ["android.permission.RECORD_AUDIO"]
+    },
+    "web": {
+      "favicon": "./assets/adaptive-icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "787e2292-4f68-447f-b726-284450e81e93"
+      }
+    }
+  }
+}
