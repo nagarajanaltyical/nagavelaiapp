@@ -52,6 +52,9 @@ import Top3 from "../components/Topcontainer3";
 import { LinearGradient } from "expo-linear-gradient";
 import Shorttermmainlist from "../components/Shorttermmaincategory";
 import Longtermmainlist from "../components/Longtermmaincategory";
+import Userjobseekerprofile from "../Pages/Userjobseekerprofile";
+import EduInfo from "../Pages/Educationprofile";
+import Workexperience from "../Pages/Workexperience";
 
 const { height, width } = Dimensions.get("window");
 
@@ -1419,6 +1422,139 @@ function RentalposterMealsScreenTabs() {
           name={t("Notification")}
           component={RentalposterMealsPastScreen}
         /> */}
+      </MealsTabs.Navigator>
+    </View>
+  );
+}
+
+function Basicinfo() {
+  return <Userjobseekerprofile />;
+}
+
+function Educationinfo() {
+  return <EduInfo />;
+}
+function Experienceinfo() {
+  return <Workexperience />;
+}
+export function JobseekerProfilttopnav() {
+  const { t, language, setlanguage } = useContext(LocalizationContext);
+
+  return (
+    <View style={{ flex: 1, width: "100%" }}>
+      {/* <LinearGradient
+      colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+    style={{ flex: 1, width: "100%", justifyContent: "center" }}
+    > */}
+      <MealsTabs.Navigator
+        // animationEnabled={false}
+        // screenOptions={{
+        //   tabBarGap: 1,
+
+        //   tabBarActiveTintColor: "#fff",
+        //   tabBarInactiveTintColor: "#333",
+        //   tabBarPressColor: "transparent",
+        //   tabBarLabelStyle: {
+        //     fontSize: 14,
+        //     fontWeight: "700",
+        //     marginTop: -5,
+        //     paddingTop: 0,
+        //   },
+
+        //   // showIcon: true,
+        //   // pressColor: "#e9eef0",
+        //   // tabStyle: {
+        //   //   borderRadius: 10,
+        //   //   justifyContent: "center",
+        //   //   alignContent: "center",
+        //   //   marginVertical: -10,
+        //   // },
+        //   tabBarIndicatorStyle: {
+        //     backgroundColor: "#1F4C5B",
+        //     height: "100%",
+        //     borderRadius: 15,
+        //     // marginBottom: 8,
+        //     width: "50%",
+        //   },
+        //   // tabBarBounces: true,
+        //   // swipeEnabled: true,
+        //   tabBarStyle: {
+        //     marginVertical: 10,
+        //     backgroundColor: "#fff",
+        //     alignContent: "center",
+        //     margin: 35,
+        //     borderRadius: 15,
+        //     height: 40,
+        //     // width: 320,
+        //   },
+        //   // labelStyle: { fontSize: 14 },
+        // }}
+        // style={{
+        //   flex: 1,
+        //   width: "100%",
+        //   justifyContent: "center",
+        //   // backgroundColor: "#eefbff",
+        // }}
+        animationEnabled={false}
+        screenOptions={{
+          tabBarActiveTintColor: "#1E5966",
+          tabBarInactiveTintColor: "#707070",
+          tabBarPressColor: "#eefbff",
+          tabBarLabelStyle: {
+            fontSize: 15,
+            fontWeight: "500",
+            // backgroundColor: "#1F4C5B",
+            justifyContent: "center",
+            alignItems: "center",
+            // height: 30,
+            // height: 40,
+            // paddingTop: 9,
+            // marginTop: -5,
+          },
+
+          // showIcon: true,
+          // pressColor: "#e9eef0",
+          // tabStyle: {
+          //   borderRadius: 10,
+          //   justifyContent: "center",
+          //   alignContent: "center",
+          //   marginVertical: -10,
+          // },
+          tabBarIndicatorStyle: {
+            backgroundColor: "#1E5966",
+            // height: "10%",
+            // borderRadius: 10,
+            // marginBottom: 8,
+          },
+          // tabBarBounces: true,
+          swipeEnabled: false,
+          // tabBarItemStyle: { backgroundColor: "red" },
+          tabBarStyle: {
+            shadowColor: "transparent",
+            // marginVertical: 13,
+            // marginTop: "5%",
+            borderColor: "#d9d9d9",
+            borderBottomWidth: 0.5,
+            backgroundColor: "#eefbff",
+            // alignContent: "center",
+            // margin: 35,
+            // marginHorizontal: "15%",
+            // borderRadius: 10,
+            // height: 40,
+            // width: 320,
+          },
+          // labelStyle: { fontSize: 14 },
+        }}
+        style={{
+          flex: 1,
+          width: "100%",
+          justifyContent: "center",
+          backgroundColor: "#eefbff",
+        }}
+      >
+        <MealsTabs.Screen name={"Personal"} component={Basicinfo} />
+        <MealsTabs.Screen name={"Education"} component={Educationinfo} />
+        <MealsTabs.Screen name={"Experience"} component={Experienceinfo} />
       </MealsTabs.Navigator>
     </View>
   );
