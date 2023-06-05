@@ -86,20 +86,29 @@ function CustomHeaderBackImage({ navigation }) {
   return (
     <View
       style={{
-        width: "32%",
-        // backgroundColor: "red",
+        width: "35%",
         flexDirection: "row",
         // backgroundColor: "red",
-        alignItems: "center",
+        alignItems: "flex-end",
         paddingLeft: "5%",
         // marginLeft: "10%",
       }}
     >
       <Image
         resizeMode="contain"
-        style={{ height: 24, width: 22 }}
+        style={{ height: 24, width: 24, marginRight: 3, marginTop: 3 }}
         source={require("../images/home.png")}
       />
+      <Text
+        style={{
+          fontSize: 11,
+          fontWeight: "600",
+          textDecorationLine: "underline",
+          color: "#333",
+        }}
+      >
+        HOME
+      </Text>
     </View>
   );
 }

@@ -17,7 +17,7 @@ export default translations = {
     Job2: "JOB",
 
     GET_A: "GET A",
-    POST_A: "POST A",
+    POST_A: "POST A ",
 
     Seeker: "SEEKER",
     provider: "PROVIDER",

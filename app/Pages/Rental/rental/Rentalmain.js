@@ -56,7 +56,23 @@ const listTab = [
     ),
   },
   {
-    status: "Home Appliances",
+    status: (
+      <View
+        style={{
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ fontSize: 9, fontWeight: "400", color: "#1e5966" }}>
+          Home
+        </Text>
+        <Text style={{ fontSize: 9, fontWeight: "400", color: "#1e5966" }}>
+          Appliances
+        </Text>
+      </View>
+    ),
     icon: (
       <Image
         resizeMode="contain"
@@ -144,7 +160,23 @@ const data = [
   },
   {
     name: <Maincategory />,
-    status: "Home Appliances",
+    status: (
+      <View
+        style={{
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ fontSize: 9, fontWeight: "400", color: "#1e5966" }}>
+          Home
+        </Text>
+        <Text style={{ fontSize: 9, fontWeight: "400", color: "#1e5966" }}>
+          Appliances
+        </Text>
+      </View>
+    ),
   },
   {
     name: <Maincategory />,
@@ -270,13 +302,13 @@ const styles = StyleSheet.create({
   },
   listTab: {
     borderColor: "#d9d9d9",
-    borderWidth: 1,
+    // borderWidth: 1,
     height: "90%",
     width: 80,
     marginTop: 10,
     // marginHorizontal: "2%",
     // paddingVertical: "5%",
-    backgroundColor: "#FFF",
+    backgroundColor: "#eefbff",
     flexDirection: "column",
     // justifyContent: "space-evenly",
     // justifyContent: "center",
@@ -325,11 +357,19 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   btnTabActive: {
-    backgroundColor: "#d5f4fe",
+    backgroundColor: "#fff",
+    marginRight: 10,
     // marginTop: "5%",
     height: "100%",
     // width: "100%",
-    // paddingTop: "35%",
+    // paddingTop: "35%",  shadowColor: "#846437",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 10,
+    shadowRadius: 10.62,
+    elevation: 10,
 
     borderTopRightRadius: 16,
     borderBottomRightRadius: 16,

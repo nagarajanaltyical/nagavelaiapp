@@ -17,7 +17,7 @@ export default function SelectCategoryform({ route }) {
   return (
     <View style={styles.container}>
       <Top />
-      <View
+      {/* <View
         style={{
           backgroundColor: "#fff1f1",
           flex: 1,
@@ -232,7 +232,7 @@ export default function SelectCategoryform({ route }) {
             </Text>
           </LinearGradient>
         </Pressable>
-      </View>
+      </View> */}
     </View>
   );
 }
