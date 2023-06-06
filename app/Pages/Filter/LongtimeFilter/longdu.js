@@ -11,9 +11,9 @@ export default function Duration1() {
   const { state2, dispatch2 } = useContext(L_FILTER);
 
   const [items, setItems] = useState([
-    { label: "1-15 Days", value: "1-15 Days" },
-    { label: "11-30 Days", value: "11-30 Days" },
-    { label: "2-6 Months", value: "2-6 Months" },
+    { label: "1 - 15 Days", value: "1 - 15 Days" },
+    { label: "11 - 30 Days", value: "11 - 30 Days" },
+    { label: "2 - 6 Months", value: "2-6 Months" },
     { label: "7-12 Months", value: "7-12 Months" },
     { label: "Permanent", value: "Permanent" },
   ]);

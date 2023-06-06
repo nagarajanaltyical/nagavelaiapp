@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Modal,
   Alert,
+  Pressable,
   Image,
   TouchableHighlight,
 } from "react-native";
@@ -19,7 +20,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { useContext } from "react";
 import { LocalizationContext } from "../../App";
 import Checkbox from "expo-checkbox";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FontAwesome } from "@expo/vector-icons";
@@ -28,6 +29,7 @@ import { useForm, Controller } from "react-hook-form";
 import { ScrollView } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import LottieViewloadingmodal from "../components/Loadinmodal";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 
 //short term form
 const schema = yup.object().shape({
@@ -74,6 +76,25 @@ const schema = yup.object().shape({
 });
 
 const ShortTermForms = ({ navigation: { goBack } }) => {
+  const [opens, setisopen] = useState(false);
+  const [date, setDate] = useState(new Date());
+
+  const showDatepicker = () => {
+    setisopen(true);
+    showMode("date");
+  };
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setDate(currentDate);
+  };
+  const showMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange,
+      mode: currentMode,
+    });
+  };
+
   const [genderOpen, setGenderOpen] = useState(false);
   const [genderValue, setGenderValue] = useState(null);
   const { t, language, setlanguage } = useContext(LocalizationContext);
@@ -394,6 +415,19 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
   // } = useForm({
   //   resolver: yupResolver(schema),
   // });
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const CustomDropdownItem = ({ label }) => {
+    // Customize the label text here
+    const customizedLabel = `Custom: ${label}`;
+
+    return (
+      <View>
+        <Text>{customizedLabel}</Text>
+      </View>
+    );
+  };
+
   return (
     <View style={{ backgroundColor: "#eefbff", height: "100%" }}>
       {/* <View
@@ -455,6 +489,48 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
               }}
             >
               {errors.job_title.message}
+            </Text>
+          )}
+        </View>
+        <View>
+          <Controller
+            name="Openings"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={{
+                  borderColor: "#D9D9D9",
+                  backgroundColor: "#FFF",
+                  borderRadius: 10,
+                  borderWidth: 0.5,
+                  fontSize: 13,
+                  height: 50,
+                  marginHorizontal: 10,
+                  paddingStart: 10,
+                  marginBottom: 15,
+                }}
+                selectionColor={"#5188E3"}
+                placeholder="Type Job Title"
+                multiline={true}
+                numberOfLines={50}
+                onChangeText={onChange}
+                value={value}
+                keyboardType="numeric"
+              />
+            )}
+          />
+          {errors.Openings && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                marginTop: "-4%",
+                marginLeft: "5%",
+                marginBottom: "4%",
+              }}
+            >
+              {errors.Openings.message} - vacancy
             </Text>
           )}
         </View>
@@ -631,35 +707,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
             />
           )}
         />
-        <Controller
-          name="job_description"
-          defaultValue=""
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={{
-                borderColor: "#D9D9D9",
-                backgroundColor: "#FFF",
-                borderRadius: 10,
-                borderWidth: 0.5,
-                fontSize: 13,
-                height: 50,
-                paddingVertical: 10,
-                marginHorizontal: 10,
-                paddingStart: 10,
-                marginBottom: 15,
-                height: 200,
-                textAlignVertical: "top",
-              }}
-              selectionColor={"#5188E3"}
-              placeholder={t("Job_Description")}
-              multiline={true}
-              numberOfLines={50}
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
+
         {/* {errors.job_description && (
           <Text style={{ color: "red", marginLeft: 20 }}>
             {errors.job_description.message}
@@ -712,6 +760,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
+
         <View>
           <Controller
             name="Openings"
@@ -788,6 +837,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
               </Text>
             )}
           </View>
+
           <View>
             <Controller
               name="per"
@@ -835,9 +885,23 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
               </Text>
             )}
           </View>
-          <View></View>
         </View>
-        <Text
+        <View style={{ height: 40 }}>
+          <Pressable onPress={showDatepicker}>
+            <FontAwesome5
+              name="calendar-alt"
+              size={24}
+              color="#333"
+              // style={{
+              //   position: "absolute",
+              //   right: 40,
+              //   bottom: 23,
+              // }}
+            />
+          </Pressable>
+          <Text>Expire Date</Text>
+        </View>
+        {/* <Text
           style={{
             marginLeft: "4%",
             // marginHorizontal: 10,
@@ -847,8 +911,8 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
           }}
         >
           {t("Add_Image")}
-        </Text>
-        <TouchableOpacity
+        </Text> */}
+        {/* <TouchableOpacity
           onPress={() => {
             setModalVisible(true);
           }}
@@ -932,8 +996,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
               {ActivityIndicators ? (
                 <View>
                   <LottieViewloadingmodal />
-                  {/* <Text>Loading. please wait</Text>
-                  <ActivityIndicator size="large" /> */}
+             
                 </View>
               ) : (
                 <>
@@ -1016,7 +1079,37 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
               )}
             </View>
           </View>
-        </Modal>
+        </Modal> */}
+
+        <Controller
+          name="job_description"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={{
+                borderColor: "#D9D9D9",
+                backgroundColor: "#FFF",
+                borderRadius: 10,
+                borderWidth: 0.5,
+                fontSize: 13,
+                height: 50,
+                paddingVertical: 10,
+                marginHorizontal: 10,
+                paddingStart: 10,
+                marginBottom: 15,
+                height: 200,
+                textAlignVertical: "top",
+              }}
+              selectionColor={"#5188E3"}
+              placeholder={t("Job_Description")}
+              multiline={true}
+              numberOfLines={50}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
         <Text
           // style={{ paddingLeft: 20, marginBottom: 10 }}
           style={{

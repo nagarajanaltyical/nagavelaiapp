@@ -109,7 +109,7 @@ const Items = ({
   Id,
   navigation,
 }) => (
-  <View style={{ flex: 1, marginBottom: 20, marginTop: 10 }}>
+  <View style={{ flex: 1, marginBottom: 5, marginTop: 10 }}>
     <TouchableWithoutFeedback
       onPress={() => {
         navigation.navigate("jobseekerswipe", {
@@ -148,10 +148,11 @@ const Items = ({
         >
           <Text
             style={{
+              // backgroundColor: "red",
               color: "#333",
               fontSize: 18,
               fontWeight: "500",
-              width: 130,
+              width: "80%",
               marginTop: 10,
               marginLeft: 10,
             }}
@@ -173,7 +174,8 @@ const Items = ({
             alignItems: "center",
           }}
         > */}
-          <LinearGradient
+
+          {/* <LinearGradient
             colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
             style={{
               borderRadius: 10,
@@ -190,33 +192,22 @@ const Items = ({
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             useAngle={45}
-          >
-            {/* <View
+          > */}
+          {/* <View
               style={{
                 borderTopWidth: 20,
                 backgroundColor: "red",
                 borderColor: "red",
               }}
             > */}
-            {/* <Octicons name="dot-fill" size={20} color="#fff" /> */}
+          {/* <Octicons name="dot-fill" size={20} color="#fff" /> */}
 
-            <Text
-              style={{
-                fontSize: 14,
-                color: "#FFF",
-                fontWeight: "400",
-                textAlign: "center",
-              }}
-            >
-              {short == "True" ? "Short" : "Long"}
-            </Text>
-            {/* </View> */}
-            {/* </View> */}
-          </LinearGradient>
+          {/* </View> */}
+          {/* </View> */}
+          {/* </LinearGradient> */}
           <View
             style={{
               marginTop: 10,
-              marginRight: "20%",
               marginLeft: "3%",
             }}
           >
@@ -299,9 +290,10 @@ const Items = ({
                 size={20}
                 color="#333"
               /> */}
+
               <Image
                 // resizeMode="contain"
-                source={require("../images/history.png")}
+                source={require("../images/mappin.png")}
                 style={{ width: 19, height: 19 }}
               />
               <Text
@@ -314,7 +306,7 @@ const Items = ({
                   fontWeight: "400",
                 }}
               >
-                {short == "True" ? time : work}
+                {loc.split(",")[0]} | {Dis} km
               </Text>
             </View>
           </View>
@@ -336,24 +328,26 @@ const Items = ({
             >
               <Image
                 // resizeMode="contain"
-                source={require("../images/mappin.png")}
-                style={{ width: 18, height: 18 }}
+                source={require("../images/history.png")}
+                style={{ width: 19, height: 23 }}
               />
               {/* <Entypo name="location-pin" size={20} color="#333" /> */}
               <Text
                 style={{
+                  // backgroundColor: "red",
                   // marginTop: 3,
                   color: "#535353",
                   fontSize: 13,
                   marginLeft: 10,
+                  width: "70%",
                   fontSize: 14,
                   fontWeight: "400",
                 }}
               >
-                {loc.split(",")[0]}
+                {short == "True" ? time : work}
               </Text>
             </View>
-            <View
+            {/* <View
               style={{
                 // backgroundColor: "red",
                 alignContent: "center",
@@ -363,13 +357,13 @@ const Items = ({
                 marginBottom: 10,
                 width: "80%",
               }}
-            >
-              {/* <MaterialCommunityIcons
+            > */}
+            {/* <MaterialCommunityIcons
                 name="map-marker-distance"
                 size={20}
                 color="#333"
               /> */}
-              <Image
+            {/* <Image
                 // resizeMode="contain"
                 source={require("../images/distance.png")}
                 style={{ width: 20, height: 20 }}
@@ -386,8 +380,30 @@ const Items = ({
               >
                 {Dis} km
               </Text>
-            </View>
+            </View> */}
           </View>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignContent: "center",
+
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 14,
+              textDecorationLine: "underline",
+              color: "#56909d",
+              fontWeight: "600",
+              ontFamily: "Roboto",
+              textAlign: "center",
+            }}
+          >
+            {short == "True" ? "Short Term" : "Long Term"}
+          </Text>
         </View>
       </View>
     </TouchableWithoutFeedback>

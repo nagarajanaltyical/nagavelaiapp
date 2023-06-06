@@ -180,24 +180,7 @@ export default function Shorttimefilter({ navigation: { goBack } }) {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "5%",
-          marginBottom: "5%",
-        }}
-      >
-        <Text
-          style={{
-            fontWeight: "500",
-            fontSize: 22,
-            color: "#333",
-          }}
-        >
-          Short Term Filter
-        </Text>
-      </View>
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
+          marginTop: 19,
           borderRadius: 10,
         }}
       >
@@ -225,7 +208,7 @@ export default function Shorttimefilter({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -246,7 +229,7 @@ export default function Shorttimefilter({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -267,7 +250,7 @@ export default function Shorttimefilter({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -288,7 +271,7 @@ export default function Shorttimefilter({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -309,7 +292,7 @@ export default function Shorttimefilter({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >

@@ -1136,6 +1136,28 @@ export default function ShorttimeSwiperCard({ route }) {
                 </Text>
               </View> */}
             </View>
+            <View
+              style={{
+                justifyContent: "flex-start",
+                alignItems: "center",
+                flexDirection: "row",
+                width: "100%",
+                marginVertical: "2%",
+                marginLeft: "6%",
+              }}
+            >
+              <Text
+                style={{
+                  color: "#ff0000",
+                  fontWeight: "600",
+                  fontSize: 14,
+                  // textDecorationLine: "underline",
+                  fontFamily: "Roboto",
+                }}
+              >
+                Job Expire : 26-5-2033
+              </Text>
+            </View>
             {/* <View style={{ marginTop: "5%" }}>
               {data[index].pic === null ? (
                 <Image
@@ -1241,6 +1263,7 @@ export default function ShorttimeSwiperCard({ route }) {
                   />
                 )}
               </View>
+
               {/* </View> */}
 
               <View
@@ -1321,13 +1344,14 @@ export default function ShorttimeSwiperCard({ route }) {
               </View> */}
               <View
                 key={data[index].id}
-                style={{
-                  marginTop: "3%",
-                  // backgroundColor: "green",
-                  // borderRadius: 10,
-                  // marginHorizontal: 9,
-                  // width: 150,
-                }}
+                style={
+                  {
+                    // backgroundColor: "green",
+                    // borderRadius: 10,
+                    // marginHorizontal: 9,
+                    // width: 150,
+                  }
+                }
               >
                 {/* <View
                   style={{

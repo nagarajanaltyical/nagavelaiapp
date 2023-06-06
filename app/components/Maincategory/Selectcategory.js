@@ -652,7 +652,9 @@ export default function SelectCategory({ route }) {
                           // color: "#fff",
                           color: "#fff",
                           fontSize: 10,
-                          // fontFamily: "Roboto-BoldItalic",
+                          fontWeight: "600",
+                          fontFamily: "Roboto",
+                          fontStyle: "italic", // fontFamily: "Roboto-BoldItalic",
                         }}
                       >
                         100+ Jobs
@@ -691,6 +693,8 @@ export default function SelectCategory({ route }) {
                       color: "#fff",
                       marginTop: 10,
                       fontWeight: "700",
+                      fontFamily: "Roboto",
+
                       // fontFamily: "Roboto-Regular",
 
                       // shadowColor: "#846437",
@@ -807,6 +811,8 @@ export default function SelectCategory({ route }) {
                           // color: "#fff",
                           color: "#fff",
                           fontSize: 10,
+                          fontFamily: "Roboto",
+                          fontStyle: "italic",
                           // fontFamily: "Roboto-BoldItalic",
                         }}
                       >
@@ -843,6 +849,8 @@ export default function SelectCategory({ route }) {
                       color: "#fff",
                       marginTop: 10,
                       fontWeight: "700",
+                      fontFamily: "Roboto",
+
                       // fontFamily: "Roboto-Regular",
                       textAlign: "center",
                     }}
@@ -1118,6 +1126,8 @@ export default function SelectCategory({ route }) {
                       color: "#fff",
                       // fontWeight: "500",
                       fontWeight: "700",
+                      fontFamily: "Roboto",
+
                       // fontFamily: "Roboto-Regular",
                     }}
                   >
@@ -1129,6 +1139,8 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       fontWeight: "700",
+                      fontFamily: "Roboto",
+
                       // fontFamily: "Roboto-Regular",
                     }}
                   >
@@ -1215,7 +1227,7 @@ export default function SelectCategory({ route }) {
                     resizeMode="contain"
                     source={require("../Maincategory/Categoryimage/deal.png")}
                     style={{
-                      width: 70,
+                      width: 50,
                       height: 70,
                     }}
                   />
@@ -1223,6 +1235,8 @@ export default function SelectCategory({ route }) {
                     style={{
                       fontSize: 11,
                       color: "#fff",
+                      fontFamily: "Roboto",
+
                       fontWeight: "700",
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1234,6 +1248,8 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       fontWeight: "700",
+                      fontFamily: "Roboto",
+
                       // fontFamily: "Roboto-Regular",
                     }}
                   >
@@ -1323,6 +1339,8 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       fontWeight: "700",
+                      fontFamily: "Roboto",
+
                       // fontFamily: "Roboto-Regular",
                     }}
                   >
@@ -1333,6 +1351,8 @@ export default function SelectCategory({ route }) {
                     style={{
                       fontSize: 11,
                       color: "#fff",
+                      fontFamily: "Roboto",
+
                       fontWeight: "700",
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1557,7 +1577,7 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       textTransform: "uppercase",
-
+                      fontFamily: "Roboto",
                       fontWeight: "700",
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1652,6 +1672,7 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       fontWeight: "700",
+                      fontFamily: "Roboto",
                       textTransform: "uppercase",
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1743,6 +1764,7 @@ export default function SelectCategory({ route }) {
                       fontSize: 13,
                       color: "#333",
                       fontWeight: "700",
+                      fontFamily: "Roboto",
                       // fontFamily: "RobotoBoldItalic-4e0x",
                       textAlign: "center",
                     }}

@@ -71,6 +71,17 @@ const listTab = [
     ),
   },
   {
+    status: "Experience",
+
+    icon: (
+      <Image
+        resizeMode="contain"
+        style={{ height: 22, width: 22 }}
+        source={require("../../images/Imagefilter/Experience.png")}
+      />
+    ),
+  },
+  {
     status: "Work Space",
     icon: (
       <Image
@@ -121,6 +132,7 @@ const listTab = [
       />
     ),
   },
+
   // {
   //   status: "Posted by",
   //   icon: (
@@ -152,6 +164,12 @@ const data = [
     status: "Duration",
   },
   {
+    name: <Experiance />,
+
+    text: "work",
+    status: "Experience",
+  },
+  {
     name: <Workmode />,
     text: "Here we give you information on how to contact us for business discussions and possible collaborations.",
     status: "Work Space",
@@ -177,6 +195,7 @@ const data = [
     text: "work",
     status: "Company",
   },
+
   // {
   //   name: <Post />,
   //   text: "Here we give you information on how to contact us for business discussions and possible collaborations.",
@@ -211,24 +230,7 @@ export default function New({ navigation: { goBack } }) {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "5%",
-          marginBottom: "5%",
-        }}
-      >
-        <Text
-          style={{
-            fontWeight: "500",
-            fontSize: 22,
-            color: "#333",
-          }}
-        >
-          Long Term Filter
-        </Text>
-      </View>
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
+          marginTop: 19,
           borderRadius: 10,
         }}
       >
@@ -249,7 +251,7 @@ export default function New({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -270,7 +272,7 @@ export default function New({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -291,7 +293,7 @@ export default function New({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -327,7 +329,7 @@ export default function New({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -348,7 +350,7 @@ export default function New({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -369,7 +371,7 @@ export default function New({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -391,7 +393,7 @@ export default function New({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -415,7 +417,7 @@ export default function New({ navigation: { goBack } }) {
                 <Text
                   style={{
                     color: "#333",
-                    fontSize: 15,
+                    fontSize: 12,
                     textTransform: "capitalize",
                   }}
                 >
@@ -593,10 +595,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   listTab: {
-    marginTop: 30,
+    marginTop: 10,
     borderColor: "#d9d9d9",
     borderWidth: 1,
-    height: "82%",
+    height: "95%",
     width: "20%",
     // paddingVertical: "5%",
     backgroundColor: "#FFF",

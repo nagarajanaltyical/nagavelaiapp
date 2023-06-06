@@ -1607,7 +1607,7 @@ export default function BottomTAb({ route }) {
           },
 
           tabBarActiveTintColor: "#56909d",
-          tabBarInactiveTintColor: "#333",
+          tabBarInactiveTintColor: "#56909d",
           headerShown: false,
           tabBarPosition: "bottom",
           tabBarHideOnKeyboard: true,
@@ -1965,7 +1965,8 @@ export function JobProviderBottomTAb({ route }) {
           );
         },
         tabBarActiveTintColor: "#56909d",
-        tabBarInactiveTintColor: "#333",
+        tabBarInactiveTintColor: "#56909d",
+
         headerShown: false,
         tabBarPosition: "bottom",
         // tabBarAllowFontScaling: 20,
@@ -2070,7 +2071,7 @@ export function Rentalseekerbottomtab({ route }) {
           );
         },
         tabBarActiveTintColor: "#56909d",
-        tabBarInactiveTintColor: "#333",
+        tabBarInactiveTintColor: "#56909d",
         headerShown: false,
         tabBarPosition: "bottom",
         // tabBarAllowFontScaling: 20,
@@ -2174,7 +2175,7 @@ export function Rentalproviderbottomtab({ route, navigation }) {
           );
         },
         tabBarActiveTintColor: "#56909d",
-        tabBarInactiveTintColor: "#333",
+        tabBarInactiveTintColor: "#56909d",
         headerShown: false,
         tabBarPosition: "bottom",
         // tabBarAllowFontScaling: 20,

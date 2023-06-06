@@ -1897,7 +1897,7 @@ function Root({ navigation }) {
           component={Shorttimefilter}
           options={{
             headerTintColor: "#333",
-            title: "",
+            title: "Short Term Filter",
             headerShadowVisible: false,
 
             headerRight: (props) => (
@@ -1949,13 +1949,17 @@ function Root({ navigation }) {
             headerStyle: {
               backgroundColor: "#fff",
             },
+            headerTitleStyle: {
+              fontSize: 16,
+              color: "#333",
+            },
           }}
         />
         <Stack.Screen
           name="Longtimefilter"
           component={New}
           options={{
-            title: "",
+            title: "Long Term Filter",
 
             headerRight: (props) => (
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -1997,6 +2001,10 @@ function Root({ navigation }) {
             ),
             headerStyle: {
               backgroundColor: "#fff",
+            },
+            headerTitleStyle: {
+              fontSize: 16,
+              color: "#333",
             },
           }}
         />

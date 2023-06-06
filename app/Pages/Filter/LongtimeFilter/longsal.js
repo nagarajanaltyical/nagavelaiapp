@@ -16,13 +16,13 @@ export default function LongSalery() {
   //   const { state1, dispatch1 } = useContext(S_FILTER);
   const [items, setItems] = useState([
     {
-      label: "0-1 LPA",
+      label: "0 - 1 LPA",
 
-      value: "0-1 LPA",
+      value: "0 - 1 LPA",
     },
-    { label: "1-5 LPA", value: "1-5 LPA" },
-    { label: "5-10 LPA", value: "5-10 LPA" },
-    { label: "Above 10 LPA", value: "Above 10 LPA" },
+    { label: "1 - 5 LPA", value: "1 - 5 LPA" },
+    { label: "5 - 10 LPA", value: "5 - 10 LPA" },
+    { label: "10+ LPA", value: "10+ LPA" },
   ]);
 
   return (

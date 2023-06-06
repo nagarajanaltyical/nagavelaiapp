@@ -13,13 +13,13 @@ export default function Salery() {
   const { state1, dispatch1 } = useContext(S_FILTER);
   const [items, setItems] = useState([
     {
-      label: "0-1 LPA",
+      label: "Hourly payment",
 
-      value: "0-1 LPA",
+      value: "Hourly payment",
     },
-    { label: "1-5 LPA", value: "1-5 LPA" },
-    { label: "5-10 LPA", value: "5-10 LPA" },
-    { label: "Daily Payment", value: "Daily Payment" },
+    { label: "Daily payment", value: "Daily payment" },
+    { label: "Weekly payment", value: "Weekly payment" },
+    { label: "Monthly Payment", value: "Monthly Payment" },
   ]);
 
   return (

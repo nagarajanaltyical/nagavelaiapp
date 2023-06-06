@@ -720,10 +720,11 @@ export default function LongtimeSwiperCard({ route }) {
             >
               <Text
                 style={{
+                  // backgroundColor: "red",
                   color: "#333",
                   fontWeight: "500",
                   textTransform: "capitalize",
-                  width: "85%",
+                  width: "95%",
 
                   fontSize: 20,
                   textAlign: "left",
@@ -731,7 +732,7 @@ export default function LongtimeSwiperCard({ route }) {
               >
                 {data[index].job_title}
               </Text>
-              <Text
+              {/* <Text
                 style={{
                   marginLeft: "2%",
                   fontSize: 13,
@@ -744,7 +745,7 @@ export default function LongtimeSwiperCard({ route }) {
                 }}
               >
                 {data[index].Openings} 1 Opening
-              </Text>
+              </Text> */}
               {/* <Text style={{ color: "#333" }}>
                 <SimpleLineIcons
                   name="location-pin"
@@ -791,7 +792,7 @@ export default function LongtimeSwiperCard({ route }) {
                   {data[index].Salary} {data[index].per}
                 </Text>
               </View>
-              <View
+              {/* <View
                 style={{
                   justifyContent: "flex-start",
                   flexDirection: "row",
@@ -804,18 +805,18 @@ export default function LongtimeSwiperCard({ route }) {
                   width: "87%",
                   alignItems: "center",
                 }}
-              >
-                {/* <MaterialCommunityIcons
+              > */}
+              {/* <MaterialCommunityIcons
                       name="timer-sand"
                       size={22}
                       color="#333"
                     /> */}
-                <Image
+              {/* <Image
                   // resizeMode="contain"
                   source={require("../images/history.png")}
                   style={{ width: 19, height: 23 }}
-                />
-                <Text
+                /> */}
+              {/* <Text
                   style={{
                     marginLeft: "5%",
                     fontSize: 14,
@@ -826,10 +827,9 @@ export default function LongtimeSwiperCard({ route }) {
 
                     fontWeight: "400",
                   }}
-                >
-                  {data[index].Duration}
-                </Text>
-              </View>
+                > */}
+              {/* </Text> */}
+              {/* </View> */}
               <View
                 style={{
                   justifyContent: "flex-start",
@@ -901,78 +901,7 @@ export default function LongtimeSwiperCard({ route }) {
                   {/* {data[index].location} | {data[index].distance} km */}
                 </Text>
               </View>
-              <View
-                style={{
-                  justifyContent: "flex-start",
-                  flexDirection: "row",
-                  marginLeft: "5%",
-                  marginVertical: "2%",
-                  // marginBottom: 10,
-                  // width: 150,
-                  // backgroundColor: "red",
-                  // marginHorizontal: 14,
-                  width: "87%",
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  // resizeMode="contain"
-                  source={require("../images/mappin.png")}
-                  style={{ width: 19, height: 19 }}
-                />
-                {/* <Ionicons name="location-outline" size={22} color="#333" /> */}
-                <Text
-                  style={{
-                    marginLeft: "5%",
-                    fontSize: 14,
-                    textAlign: "left",
-                    lineHeight: 18,
 
-                    textTransform: "capitalize",
-                    fontWeight: "400",
-                    color: "#535353",
-                  }}
-                >
-                  workspace
-                  {/* {data[index].location} | {data[index].distance} km */}
-                </Text>
-              </View>
-              <View
-                style={{
-                  justifyContent: "flex-start",
-                  flexDirection: "row",
-                  marginLeft: "5%",
-                  marginVertical: "2%",
-                  // marginBottom: 10,
-                  // width: 150,
-                  // backgroundColor: "red",
-                  // marginHorizontal: 14,
-                  width: "87%",
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  // resizeMode="contain"
-                  source={require("../images/mappin.png")}
-                  style={{ width: 19, height: 19 }}
-                />
-                {/* <Ionicons name="location-outline" size={22} color="#333" /> */}
-                <Text
-                  style={{
-                    marginLeft: "5%",
-                    fontSize: 14,
-                    textAlign: "left",
-                    lineHeight: 18,
-
-                    textTransform: "capitalize",
-                    fontWeight: "400",
-                    color: "#535353",
-                  }}
-                >
-                  Job type
-                  {/* {data[index].location} | {data[index].distance} km */}
-                </Text>
-              </View>
               <View
                 style={{
                   justifyContent: "flex-start",
@@ -1008,6 +937,139 @@ export default function LongtimeSwiperCard({ route }) {
                   {data[index].location} | {data[index].distance} km
                 </Text>
               </View>
+
+              <View
+                style={{
+                  justifyContent: "flex-start",
+                  flexDirection: "row",
+                  marginLeft: "5%",
+                  marginVertical: "2%",
+                  // marginBottom: 10,
+                  // width: 150,
+                  // backgroundColor: "red",
+                  // marginHorizontal: 14,
+                  width: "87%",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  // resizeMode="contain"
+                  source={require("../images/link.png")}
+                  style={{ width: 16, height: 16 }}
+                />
+                {/* <Ionicons name="location-outline" size={22} color="#333" /> */}
+                <Text
+                  style={{
+                    marginLeft: "5%",
+                    fontSize: 14,
+                    textDecorationLine: "underline",
+
+                    fontWeight: "400",
+                    color: "blue",
+                  }}
+                >
+                  www.zealzoft.com
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{
+                justifyContent: "flex-start",
+                alignItems: "center",
+                flexDirection: "row",
+                width: "100%",
+                marginLeft: "6%",
+
+                marginVertical: 15,
+              }}
+            >
+              <Text
+                style={{
+                  // marginTop: 3,
+                  color: "#56909D",
+                  fontSize: 14,
+
+                  marginHorizontal: 2,
+
+                  fontWeight: "400",
+                }}
+              >
+                work from home
+              </Text>
+
+              <Text
+                style={{
+                  // marginTop: 3,
+
+                  color: "#56909D",
+                  fontSize: 14,
+                  marginHorizontal: 2,
+
+                  fontWeight: "400",
+                }}
+              >
+                |
+              </Text>
+              <Text
+                style={{
+                  // marginTop: 3,
+
+                  color: "#56909D",
+                  fontSize: 14,
+                  marginHorizontal: 2,
+
+                  fontWeight: "400",
+                }}
+              >
+                Permanent
+              </Text>
+              <Text
+                style={{
+                  // marginTop: 3,
+
+                  color: "#56909D",
+                  fontSize: 14,
+                  marginHorizontal: 2,
+
+                  fontWeight: "400",
+                }}
+              >
+                |
+              </Text>
+              <Text
+                style={{
+                  // marginTop: 3,
+
+                  color: "#56909D",
+                  fontSize: 14,
+                  marginHorizontal: 2,
+                  width: 80,
+                  fontWeight: "400",
+                }}
+              >
+                2 Openings
+              </Text>
+            </View>
+            <View
+              style={{
+                justifyContent: "flex-start",
+                alignItems: "center",
+                flexDirection: "row",
+                width: "100%",
+                marginLeft: "6%",
+              }}
+            >
+              <Text
+                style={{
+                  color: "#ff0000",
+                  fontWeight: "600",
+                  fontSize: 14,
+                  // textDecorationLine: "underline",
+                  fontFamily: "Roboto",
+                }}
+              >
+                Job Expire : 26-5-2033
+              </Text>
             </View>
 
             {/* <View
@@ -1238,6 +1300,7 @@ export default function LongtimeSwiperCard({ route }) {
                 </Text>
               </View>
             </View>
+
             <View style={{}}>
               {/* <View
                 style={{
@@ -1264,13 +1327,15 @@ export default function LongtimeSwiperCard({ route }) {
               </View> */}
               <View
                 key={data[index].id}
-                style={{
-                  marginTop: "3%",
-                  // backgroundColor: "green",
-                  // borderRadius: 10,
-                  // marginHorizontal: 9,
-                  // width: 150,
-                }}
+                style={
+                  {
+                    // marginTop: "3%",
+                    // backgroundColor: "green",
+                    // borderRadius: 10,
+                    // marginHorizontal: 9,
+                    // width: 150,
+                  }
+                }
               >
                 {/* <View
                   style={{
@@ -1281,7 +1346,73 @@ export default function LongtimeSwiperCard({ route }) {
                     // marginLeft: 20,
                   }}
                 > */}
-
+                <View
+                  style={{
+                    // backgroundColor: "red",
+                    // position: "absolute",
+                    alignContent: "center",
+                    marginTop: "5%",
+                    // marginHorizontal: 10,
+                    marginLeft: "3%",
+                    width: "90%",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      textTransform: "capitalize",
+                      // width: "22%",
+                      // backgroundColor: "blue",
+                      fontWeight: "500",
+                      color: "#333",
+                    }}
+                  >
+                    Required Skills
+                    {/* {t("Job_Description")} */}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    borderColor: "#d9d9d9",
+                    borderWidth: 1,
+                    // marginBottom: 10,
+                    marginHorizontal: 9,
+                    marginTop: "3%",
+                    borderRadius: 10,
+                  }}
+                >
+                  <View
+                    style={{
+                      justifyContent: "flex-start",
+                      flexDirection: "row",
+                      // marginBottom: 10,
+                      // width: 150,
+                      // backgroundColor: "red",
+                      marginLeft: "5%",
+                      marginTop: "3%",
+                      marginBottom: "5%",
+                      marginVertical: "2%",
+                      width: "90%",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        textAlign: "left",
+                        lineHeight: 20,
+                        fontWeight: "400",
+                        // textTransform: "",
+                        color: "#535353",
+                      }}
+                    >
+                      {data[index].job_description == ""
+                        ? ""
+                        : data[index].job_description[0].toUpperCase() +
+                          data[index].job_description.slice(1)}
+                    </Text>
+                  </View>
+                </View>
                 <View
                   style={{
                     // backgroundColor: "red",
@@ -1474,7 +1605,6 @@ export default function LongtimeSwiperCard({ route }) {
                     </TouchableOpacity>
                   </View>
                 </View>
-
                 <View
                   style={{
                     // backgroundColor: "red",
@@ -1655,7 +1785,6 @@ export default function LongtimeSwiperCard({ route }) {
                     </Text>
                   </TouchableOpacity>
                 </View>
-
                 {/* <Text style={[styles.text]}>{data[index].des}</Text> */}
               </View>
               {/* </LinearGradient> */}
