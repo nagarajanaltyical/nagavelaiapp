@@ -96,7 +96,7 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
     { label: "Kitchen Tools", value: "Kitchen Tools" },
     { label: "Makeup", value: "Makeup" },
     { label: "Cloths", value: "Cloths" },
-    { label: "PG&Space", value: "PG&Space" },
+    { label: "PG & Space", value: "PG & Space" },
 
     { label: "Furnitures", value: "Furnitures" },
     { label: "Hospital", value: "Hospital" },
@@ -595,8 +595,8 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  searchable={true}
-                  searchPlaceholder="Set duration here..."
+                  // searchable={true}
+                  // searchPlaceholder="Set duration here..."
                   onOpen={onCompanyOpen}
                   onChangeValue={onChange}
                 />
@@ -676,8 +676,8 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  searchable={true}
-                  searchPlaceholder="Set duration here..."
+                  // searchable={true}
+                  // searchPlaceholder="Set duration here..."
                   onOpen={ondurationOpen}
                   onChangeValue={onChange}
                 />
@@ -719,10 +719,10 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
                 placeholderStyle={[styles.placeholderStyles]}
                 containerStyle={{ zIndex: 50 }}
                 loading={loading}
-                listMode="SCROLLVIEW"
+                listMode="MODAL"
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Set duration here..."
+                searchPlaceholder="Search Country Here..."
                 onOpen={ondurationOpen}
                 onChangeValue={(onCountryChange(countryvalue), onChange)}
               />
@@ -771,10 +771,10 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
                     placeholderStyle={[styles.placeholderStyles]}
                     containerStyle={{ zIndex: 50, width: 155 }}
                     loading={loading}
-                    listMode="SCROLLVIEW"
+                    listMode="MODAL"
                     activityIndicatorColor="#5188E3"
                     searchable={true}
-                    searchPlaceholder="Set duration here..."
+                    searchPlaceholder="Search District Here..."
                     onOpen={ondurationOpen}
                     onChangeValue={(onstateChange(companyValue), onChange)}
                   />
@@ -823,7 +823,7 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   containerStyle={{ zIndex: 50, width: 150 }}
-                  searchPlaceholder="Search title here..."
+                  searchPlaceholder="Search State Here..."
                   onOpen={onCompanyOpen}
                   onChangeValue={(onCityChange(cityvalue), onChange)}
                   zIndex={1000}
@@ -931,11 +931,11 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
             marginLeft: "4%",
             // marginHorizontal: 10,
             color: "#333",
-            fontSize: 17,
+            fontSize: 15,
             fontWeight: "500",
           }}
         >
-          {t("Add_Image")}
+          {t("Add_Product_Image")}
         </Text>
         <TouchableOpacity
           onPress={() => {

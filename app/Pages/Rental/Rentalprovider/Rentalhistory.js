@@ -70,7 +70,7 @@ const Item = ({ product_name, date, pic }) => {
   };
   const result = returndate(date);
   return (
-    <View style={{ flex: 1, marginBottom: 12, marginTop: 10 }}>
+    <View style={{ flex: 1, marginBottom: 5, marginTop: 10 }}>
       <View
         style={{
           backgroundColor: "#fff",
@@ -340,7 +340,7 @@ function Rentalproducthistory({ navigation }) {
                   <EvilIcons name="search" size={22} color="#707070" />
                   <TextInput
                     underlineColorAndroid="transparent"
-                    placeholder={t("search_by_job_tit")}
+                    placeholder={t("search_by_product_title")}
                     onChangeText={handleSearch}
                     value={searchQuery}
                     style={{

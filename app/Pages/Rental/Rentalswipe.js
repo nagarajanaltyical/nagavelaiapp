@@ -582,7 +582,11 @@ export default function RentalSwiperCard({ route }) {
                       color="#ff0000"
                     />
                   ) : (
-                    <Ionicons name="ios-heart-outline" size={22} color="#333" />
+                    <Ionicons
+                      name="ios-heart-outline"
+                      size={22}
+                      color="#56909d"
+                    />
                   )}
 
                   {/* <AntDesign name="hearto" size={34} color="black" /> */}
@@ -594,7 +598,7 @@ export default function RentalSwiperCard({ route }) {
                   <Ionicons
                     name="ios-chatbox-ellipses-outline"
                     size={22}
-                    color="#333"
+                    color="#56909d"
                   />
                 </TouchableOpacity>
                 <View style={{ paddingHorizontal: "4%" }}>
@@ -609,7 +613,7 @@ export default function RentalSwiperCard({ route }) {
                     <MaterialCommunityIcons
                       name="share-all-outline"
                       size={22}
-                      color="#333"
+                      color="#56909d"
                     />
                   </TouchableOpacity>
                 </View>
@@ -737,18 +741,18 @@ export default function RentalSwiperCard({ route }) {
                 <View
                   style={{
                     width: "90%",
-                    paddingLeft: 20,
+                    paddingLeft: 10,
+                    justifyContent: "center",
                     // backgroundColor: "red",
                     flexDirection: "column",
                   }}
                 >
                   <Text
                     style={{
-                      color: "#333",
+                      color: "#56909d",
                       fontSize: 18,
                       width: "90%",
                       fontWeight: "500",
-                      marginBottom: "1%",
                       textTransform: "capitalize",
                       // textAlign: "left",
                       justifyContent: "center",
@@ -759,8 +763,8 @@ export default function RentalSwiperCard({ route }) {
                   </Text>
                   <Text
                     style={{
-                      color: "#535353",
-                      fontSize: 15,
+                      color: "#56909d",
+                      fontSize: 13,
                       fontWeight: "400",
                       textTransform: "capitalize",
                       // textAlign: "left",
@@ -786,7 +790,7 @@ export default function RentalSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       marginBottom: "2%",
@@ -825,7 +829,7 @@ export default function RentalSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       // backgroundColor: "blue",
@@ -889,7 +893,7 @@ export default function RentalSwiperCard({ route }) {
                           fontWeight: "400",
                         }}
                       >
-                        {data[index].product_fees}/
+                        {data[index].product_fees}{" "}
                         {data[index].product_fees_hour}
                       </Text>
                     </View>
@@ -915,7 +919,7 @@ export default function RentalSwiperCard({ route }) {
                       <Image
                         // resizeMode="contain"
                         source={require("../../images/history.png")}
-                        style={{ width: 19, height: 19 }}
+                        style={{ width: 19, height: 23 }}
                       />
                       <Text
                         style={{
@@ -931,7 +935,7 @@ export default function RentalSwiperCard({ route }) {
                       >
                         {console.log("hiii dude")}
                         {console.log(data[index].Duration)}
-                        {data[index].Duration}/ {data[index].Duration2}
+                        {data[index].Duration} {data[index].Duration2}
                       </Text>
                     </View>
                     <View
@@ -951,7 +955,7 @@ export default function RentalSwiperCard({ route }) {
                       <Image
                         // resizeMode="contain"
                         source={require("../../images/mappin.png")}
-                        style={{ width: 18, height: 18 }}
+                        style={{ width: 19, height: 19 }}
                       />
                       {/* <Ionicons name="location-outline" size={22} color="#333" /> */}
                       <Text
@@ -1025,7 +1029,7 @@ export default function RentalSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       // backgroundColor: "blue",
@@ -1088,7 +1092,7 @@ export default function RentalSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       // backgroundColor: "blue",
@@ -1281,7 +1285,7 @@ export default function RentalSwiperCard({ route }) {
                     </LinearGradient> */}
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: "500",
                     }}
                   >
@@ -1333,7 +1337,7 @@ export default function RentalSwiperCard({ route }) {
                   >
                     <Text
                       style={{
-                        fontSize: 18,
+                        fontSize: 16,
                         textTransform: "capitalize",
                         // width: "22%",
                         // backgroundColor: "blue",

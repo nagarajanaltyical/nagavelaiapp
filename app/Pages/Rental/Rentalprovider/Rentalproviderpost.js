@@ -167,7 +167,7 @@ export default function Rentalproviderpost({ navigation, route }) {
       <View
         style={{
           flex: 1,
-          marginBottom: 20,
+          marginBottom: 10,
           marginTop: 10,
         }}
       >

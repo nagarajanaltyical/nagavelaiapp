@@ -529,7 +529,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                   <MaterialCommunityIcons
                     name="share-all-outline"
                     size={22}
-                    color="#333"
+                    color="#56909d"
                   />
                 </View>
                 {/* <MaterialCommunityIcons
@@ -658,14 +658,16 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                 <View
                   style={{
                     width: "90%",
-                    paddingLeft: 30,
+                    paddingLeft: 10,
+                    justifyContent: "center",
+
                     // backgroundColor: "red",
                     flexDirection: "column",
                   }}
                 >
                   <Text
                     style={{
-                      color: "#333",
+                      color: "#56909d",
                       fontSize: 18,
                       width: "90%",
                       fontWeight: "500",
@@ -681,7 +683,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                   </Text>
                   <Text
                     style={{
-                      color: "#535353",
+                      color: "#56909d",
                       fontSize: 15,
                       fontWeight: "400",
                       textTransform: "capitalize",
@@ -708,7 +710,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       marginBottom: "2%",
@@ -750,7 +752,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       // backgroundColor: "blue",
@@ -814,7 +816,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                           fontWeight: "400",
                         }}
                       >
-                        {data[index].product_fees}/
+                        {data[index].product_fees}{" "}
                         {data[index].product_fees_hour}
                       </Text>
                     </View>
@@ -840,7 +842,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                       <Image
                         // resizeMode="contain"
                         source={require("../../images/history.png")}
-                        style={{ width: 19, height: 19 }}
+                        style={{ width: 19, height: 23 }}
                       />
                       <Text
                         style={{
@@ -856,7 +858,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                       >
                         {console.log("hiii dude")}
                         {console.log(data[index].Duration)}
-                        {data[index].Duration}/ {data[index].Duration2}
+                        {data[index].Duration} {data[index].Duration2}
                       </Text>
                     </View>
                     <View
@@ -950,7 +952,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       // backgroundColor: "blue",
@@ -1013,7 +1015,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       // backgroundColor: "blue",
@@ -1204,7 +1206,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                     </LinearGradient> */}
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: "500",
                     }}
                   >
@@ -1255,7 +1257,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                   >
                     <Text
                       style={{
-                        fontSize: 18,
+                        fontSize: 16,
                         textTransform: "capitalize",
                         // width: "22%",
                         // backgroundColor: "blue",

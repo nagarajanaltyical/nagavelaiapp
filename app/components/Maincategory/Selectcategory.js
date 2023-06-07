@@ -1397,7 +1397,7 @@ export default function SelectCategory({ route }) {
                 <CarouselItem2 item={item} index={index} />
               )}
               height={55}
-              width={Math.round(width) - 30}
+              width={Math.round(width) - 22}
               style={{
                 backgroundColor: "#eefbff",
                 borderRadius: 15,
@@ -1811,7 +1811,7 @@ export default function SelectCategory({ route }) {
                 <CarouselItem item={item} index={index} />
               )}
               height={200}
-              width={Math.round(width) - 30}
+              width={Math.round(width) - 22}
               style={{ backgroundColor: "#fff", borderRadius: 15 }}
               inactiveSlideScale={2}
               autoplayInterval={5000}
