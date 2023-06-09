@@ -287,6 +287,25 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
     { label: "Hybrid", value: "Hybrid" },
     { label: "Temporary", value: "Temporary" },
   ]);
+  //jobtype
+  const [jobtypeopen, setjobtypeopen] = useState(false);
+  const [jobtypevalue, setjobtypevalue] = useState(false);
+  const [jobtype, setjobtype] = useState([
+    { label: "Full Time", value: "Full Time" },
+    { label: "Internship", value: "Internship" },
+    { label: "Part Time", value: "Part Time" },
+  ]);
+  const [jobtypeopen1, setjobtypeopen1] = useState(false);
+  const [jobtypevalue1, setjobtypevalue1] = useState(false);
+  const [jobtype1, setjobtype1] = useState([
+    { label: "Fresher", value: "Fresher" },
+    { label: "0 - 6 Months", value: "0 - 6 Months" },
+    { label: "7 - 12 Months", value: "7 - 12 Months" },
+    { label: "1 - 5 Years", value: "1 - 5 Years" },
+    { label: "5 - 10 Years", value: "5 - 10 Years" },
+    { label: "10+ Years", value: "10+ Years" },
+  ]);
+  //du
   //duration
   const [durationopen, setdurationopen] = useState(false);
   const [durationvalue, setdurationvalue] = useState(false);
@@ -628,6 +647,51 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
+        <Controller
+          name="workspace"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <View style={styles.dropdownCompany}>
+              <DropDownPicker
+                style={styles.dropdown}
+                open={jobtypeopen}
+                value={jobtypevalue} //companyValue
+                items={jobtype}
+                setOpen={setjobtypeopen}
+                setValue={setjobtypevalue}
+                setItems={setjobtype}
+                placeholder="Job Type"
+                dropDownContainerStyle={{
+                  position: "relative", // to fix scroll issue ... it is by default 'absolute'
+                  top: 0, //to fix gap between label box and container
+                }}
+                placeholderStyle={styles.placeholderStyles}
+                containerStyle={{ zIndex: 50 }}
+                loading={loading}
+                listMode="SCROLLVIEW"
+                activityIndicatorColor="#5188E3"
+                // searchable={true}
+                // searchPlaceholder="Set duration here..."
+                onOpen={onCompanyOpen}
+                onChangeValue={onChange}
+              />
+            </View>
+          )}
+        />
+        {errors.jobtype && (
+          <Text
+            style={{
+              fontSize: 10,
+              color: "red",
+              marginTop: "-4%",
+              marginLeft: "5%",
+              marginBottom: "2%",
+            }}
+          >
+            {errors.jobtype.message}
+          </Text>
+        )}
         <View>
           <Controller
             name="company"
@@ -704,7 +768,29 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
-
+        <Controller
+          name="position"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={[styles.input]}
+              selectionColor={"#5188E3"}
+              placeholder="Account  Manager Designation"
+              //   keyboardType="number-pad"
+              multiline
+              // maxLength={}
+              numberOfLines={4}
+              onChangeText={onChange}
+              value={
+                value
+                // phonenumber == ""
+                //   ? value
+                //   : phonenumber.replace(/^(\+91)(\d{10})$/, "$1 $2")
+              }
+            />
+          )}
+        />
         <View style={styles.dropdownCompany}>
           <Controller
             name="country"
@@ -857,6 +943,53 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             )}
           </View>
         </View>
+
+        <Controller
+          name="workspace"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <View style={styles.dropdownCompany}>
+              <DropDownPicker
+                style={styles.dropdown}
+                open={jobtypeopen1}
+                value={jobtypevalue1} //companyValue
+                items={jobtype1}
+                setOpen={setjobtypeopen1}
+                setValue={setjobtypevalue1}
+                setItems={setjobtype1}
+                placeholder="Experience"
+                arrowIconStyle={{ Color: "red" }}
+                dropDownContainerStyle={{
+                  position: "relative", // to fix scroll issue ... it is by default 'absolute'
+                  top: 0, //to fix gap between label box and container
+                }}
+                placeholderStyle={styles.placeholderStyles}
+                containerStyle={{ zIndex: 50 }}
+                loading={loading}
+                listMode="SCROLLVIEW"
+                activityIndicatorColor="#5188E3"
+                // searchable={true}
+                // searchPlaceholder="Set duration here..."
+                onOpen={onCompanyOpen}
+                onChangeValue={onChange}
+              />
+            </View>
+          )}
+        />
+        {errors.jobtype && (
+          <Text
+            style={{
+              fontSize: 10,
+              color: "red",
+              marginTop: "-4%",
+              marginLeft: "5%",
+              marginBottom: "2%",
+            }}
+          >
+            {errors.jobtype.message}
+          </Text>
+        )}
         <View>
           <Controller
             name="Duration"
@@ -1040,6 +1173,47 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             />
           )}
         />
+        <View>
+          <Text>expire date</Text>
+        </View>
+        <Controller
+          name="job_description"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={[
+                styles.input,
+                { height: 50, textAlignVertical: "top", paddingTop: 10 },
+              ]}
+              selectionColor={"#5188E3"}
+              placeholder="Company Website Link"
+              multiline={true}
+              numberOfLines={50}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+        <Controller
+          name="job_description"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={[
+                styles.input,
+                { height: 200, textAlignVertical: "top", paddingTop: 10 },
+              ]}
+              selectionColor={"#5188E3"}
+              placeholder="Required Skills"
+              multiline={true}
+              numberOfLines={50}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
         <Controller
           name="job_description"
           defaultValue=""
@@ -1087,7 +1261,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             {errors.mobile_number.message}
           </Text>
         )} */}
-        <Controller
+        {/* <Controller
           name="email"
           defaultValue=""
           control={control}
@@ -1115,7 +1289,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
           >
             {errors.email.message}
           </Text>
-        )}
+        )} */}
         <Text
           // style={{ paddingLeft: 20, marginBottom: 10 }}
           style={{
@@ -1140,7 +1314,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             {t("Allow_candidates_to_call")}
           </Text>
         </View>
-        <Text
+        {/* <Text
           style={{
             marginLeft: "4%",
             // marginHorizontal: 10,
@@ -1150,8 +1324,8 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
           }}
         >
           {t("Add_Image")}
-        </Text>
-        <TouchableOpacity
+        </Text> */}
+        {/* <TouchableOpacity
           onPress={() => {
             setModalVisible(!modalVisible);
           }}
@@ -1233,8 +1407,6 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             >
               {ActivityIndicators ? (
                 <View>
-                  {/* <Text>Loading. please wait</Text>
-                  <ActivityIndicator size="large" /> */}
                   <LottieViewloadingmodal />
                 </View>
               ) : (
@@ -1319,7 +1491,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
               )}
             </View>
           </View>
-        </Modal>
+        </Modal> */}
         <Text
           style={{
             marginLeft: "4%",
@@ -1329,7 +1501,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             fontWeight: "500",
           }}
         >
-          Company Profile
+          Company Logo
         </Text>
         <TouchableOpacity
           onPress={() => {

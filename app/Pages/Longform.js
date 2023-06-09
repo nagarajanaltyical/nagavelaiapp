@@ -34,46 +34,45 @@ import LottieViewloadingmodal from "../components/Loadinmodal";
 const schema = yup.object().shape({
   job_title: yup
     .string()
-    .required("Job title cant be empty")
-    .typeError("Job title  cannot be null"),
+    .required("Job Title is Required")
+    .typeError("Job Title is Required"),
   workspace: yup
     .string()
-    .required("Workspace is required")
-    .typeError("Workspace cannot be null"),
+    .required("Workspace is Required")
+    .typeError("Workspace is Required"),
+  jobtype: yup
+    .string()
+    .required("Job Type is Required")
+    .typeError("Job Type is Required"),
   // location: yup.string().required("location of the job is required"),
   country: yup
     .string()
-    .required("Country cant be empty")
-    .typeError("Country  cannot be null"),
+    .required("Country is Required")
+    .typeError("Country is Required"),
   state: yup
     .string()
-    .required("State cant be empty")
-    .typeError("State  cannot be null"),
+    .required("State is Required")
+    .typeError("State is Required"),
   District: yup
     .string()
-    .required("District cant be empty")
-    .typeError("District  cannot be null"),
+    .required("District is Required")
+    .typeError("District is Required"),
   Duration: yup
     .string()
-    .typeError("Duration cannot be null")
-    .required("Duration is required"),
+    .typeError("Duration is Required")
+    .required("Duration is Required"),
   per: yup
     .string()
-    .required("Salary details can't be empty")
+    .required("Salary Detail is Required")
 
-    .typeError("Job title  cannot be null"),
+    .typeError("Salary Detail is Required"),
   Openings: yup
     .string()
-    .required("Openings can't be empty")
+    .required("Openings is Required")
 
-    .typeError("openings cannot be null"),
-  Openings: yup
-    .string()
-    .required("openings can't be empty")
+    .typeError("Openings is Required"),
 
-    .typeError("openings cannot be null"),
-
-  Salary: yup.string().required("Please enter the salary Details"),
+  Salary: yup.string().required("Salary is Required"),
   // mobile_number: yup.string().required("Mobile number is required"),
   email: yup.string().required("Email id is required"),
 });
@@ -188,10 +187,29 @@ const Sign = ({ navigation: { goBack } }) => {
   const [workspaceopen, setworkspaceopen] = useState(false);
   const [workspacevalue, setworkspacevalue] = useState(false);
   const [workspace, setworkspace] = useState([
-    { label: "Work from office", value: "Work from office" },
-    { label: "Permanent Remote / WFH", value: "Permanent Remote / WFH" },
+    { label: "Work From Office", value: "Work From Office" },
+    { label: "Remote", value: "Remote" },
     { label: "Hybrid", value: "Hybrid" },
-    { label: "Temporary", value: "Temporary" },
+    { label: "Onsite", value: "Onsite" },
+  ]);
+  //jobtype
+  const [jobtypeopen, setjobtypeopen] = useState(false);
+  const [jobtypevalue, setjobtypevalue] = useState(false);
+  const [jobtype, setjobtype] = useState([
+    { label: "Full Time", value: "Full Time" },
+    { label: "Internship", value: "Internship" },
+    { label: "Part Time", value: "Part Time" },
+  ]);
+
+  const [jobtypeopen1, setjobtypeopen1] = useState(false);
+  const [jobtypevalue1, setjobtypevalue1] = useState(false);
+  const [jobtype1, setjobtype1] = useState([
+    { label: "Fresher", value: "Fresher" },
+    { label: "0 - 6 Months", value: "0 - 6 Months" },
+    { label: "7 - 12 Months", value: "7 - 12 Months" },
+    { label: "1 - 5 Years", value: "1 - 5 Years" },
+    { label: "5 - 10 Years", value: "5 - 10 Years" },
+    { label: "10+ Years", value: "10+ Years" },
   ]);
   //duration
   const [durationopen, setdurationopen] = useState(false);
@@ -226,6 +244,7 @@ const Sign = ({ navigation: { goBack } }) => {
   const [hour, sethour] = useState([
     { label: "Per Month", value: "Per Month" },
     { label: "LPA", value: "LPA" },
+    { label: "Not Disclosed", value: "Not Disclosed" },
   ]);
 
   //to get the job title
@@ -462,7 +481,7 @@ const Sign = ({ navigation: { goBack } }) => {
                   loading={loading}
                   activityIndicatorColor="#5188E3"
                   searchable={true}
-                  searchPlaceholder="Search title here..."
+                  searchPlaceholder="Search Title"
                   onOpen={onCompanyOpen}
                   onChangeValue={onChange}
                   zIndex={1000}
@@ -506,13 +525,14 @@ const Sign = ({ navigation: { goBack } }) => {
                     position: "relative", // to fix scroll issue ... it is by default 'absolute'
                     top: 0, //to fix gap between label box and container
                   }}
+                  dropdownIconColor="red"
                   placeholderStyle={styles.placeholderStyles}
                   containerStyle={{ zIndex: 50 }}
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  searchable={true}
-                  searchPlaceholder="Set duration here..."
+                  // searchable={true}
+                  // searchPlaceholder="Set duration here..."
                   onOpen={onCompanyOpen}
                   onChangeValue={onChange}
                 />
@@ -530,6 +550,54 @@ const Sign = ({ navigation: { goBack } }) => {
               }}
             >
               {errors.workspace.message}
+            </Text>
+          )}
+        </View>
+        <View>
+          {/*workspace*/}
+          <Controller
+            name="workspace"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <View style={styles.dropdownCompany}>
+                <DropDownPicker
+                  style={styles.dropdown}
+                  open={jobtypeopen}
+                  value={jobtypevalue} //companyValue
+                  items={jobtype}
+                  setOpen={setjobtypeopen}
+                  setValue={setjobtypevalue}
+                  setItems={setjobtype}
+                  placeholder="Job Type"
+                  dropDownContainerStyle={{
+                    position: "relative", // to fix scroll issue ... it is by default 'absolute'
+                    top: 0, //to fix gap between label box and container
+                  }}
+                  placeholderStyle={styles.placeholderStyles}
+                  containerStyle={{ zIndex: 50 }}
+                  loading={loading}
+                  listMode="SCROLLVIEW"
+                  activityIndicatorColor="#5188E3"
+                  // searchable={true}
+                  // searchPlaceholder="Set duration here..."
+                  onOpen={onCompanyOpen}
+                  onChangeValue={onChange}
+                />
+              </View>
+            )}
+          />
+          {errors.jobtype && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                marginTop: "-4%",
+                marginLeft: "5%",
+                marginBottom: "2%",
+              }}
+            >
+              {errors.jobtype.message}
             </Text>
           )}
         </View>
@@ -555,10 +623,10 @@ const Sign = ({ navigation: { goBack } }) => {
                 placeholderStyle={[styles.placeholderStyles]}
                 containerStyle={{ zIndex: 50 }}
                 loading={loading}
-                listMode="SCROLLVIEW"
+                listMode="MODAL"
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Set duration here..."
+                searchPlaceholder="Search Country"
                 onOpen={ondurationOpen}
                 onChangeValue={(onCountryChange(countryvalue), onChange)}
               />
@@ -615,7 +683,7 @@ const Sign = ({ navigation: { goBack } }) => {
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   containerStyle={{ zIndex: 50, width: 150 }}
-                  searchPlaceholder="Search title here..."
+                  searchPlaceholder="Search State"
                   // onOpen={onCompanyOpen1}
                   onChangeValue={(onstateChange(companyValue1), onChange)}
                   zIndex={1000}
@@ -660,10 +728,10 @@ const Sign = ({ navigation: { goBack } }) => {
                     placeholderStyle={[styles.placeholderStyles]}
                     containerStyle={{ zIndex: 50, width: 155 }}
                     loading={loading}
-                    listMode="SCROLLVIEW"
+                    listMode="MODAL"
                     activityIndicatorColor="#5188E3"
                     searchable={true}
-                    searchPlaceholder="Set duration here..."
+                    searchPlaceholder="Search District"
                     onOpen={ondurationOpen}
                     onChangeValue={(onCityChange(cityvalue), onChange)}
                   />
@@ -685,7 +753,7 @@ const Sign = ({ navigation: { goBack } }) => {
             )}
           </View>
         </View>
-        <View>
+        {/* <View>
           <Controller
             name="Duration"
             defaultValue=""
@@ -708,7 +776,7 @@ const Sign = ({ navigation: { goBack } }) => {
                   placeholderStyle={styles.placeholderStyles}
                   containerStyle={{ zIndex: 50 }}
                   loading={loading}
-                  listMode="SCROLLVIEW"
+                  listMode="MODAL"
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   searchPlaceholder="Set duration here..."
@@ -731,7 +799,7 @@ const Sign = ({ navigation: { goBack } }) => {
               {errors.Duration.message}
             </Text>
           )}
-        </View>
+        </View> */}
         <View
           style={{
             flexDirection: "row",
@@ -742,6 +810,7 @@ const Sign = ({ navigation: { goBack } }) => {
               name="Salary"
               defaultValue=""
               control={control}
+              keyboardType="numeric"
               render={({ field: { onChange, value } }) => (
                 <TextInput
                   style={[styles.input, { width: 180 }]}
@@ -790,8 +859,8 @@ const Sign = ({ navigation: { goBack } }) => {
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  searchable={true}
-                  searchPlaceholder="Set duration here..."
+                  // searchable={true}
+                  // searchPlaceholder="Set duration here..."
                   onOpen={ondurationOpen}
                   onChangeValue={onChange}
                 />
@@ -812,6 +881,52 @@ const Sign = ({ navigation: { goBack } }) => {
           </View>
         </View>
         <Controller
+          name="workspace"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <View style={styles.dropdownCompany}>
+              <DropDownPicker
+                style={styles.dropdown}
+                open={jobtypeopen1}
+                value={jobtypevalue1} //companyValue
+                items={jobtype1}
+                setOpen={setjobtypeopen1}
+                setValue={setjobtypevalue1}
+                setItems={setjobtype1}
+                placeholder="Experience"
+                arrowIconStyle={{ Color: "red" }}
+                dropDownContainerStyle={{
+                  position: "relative", // to fix scroll issue ... it is by default 'absolute'
+                  top: 0, //to fix gap between label box and container
+                }}
+                placeholderStyle={styles.placeholderStyles}
+                containerStyle={{ zIndex: 50 }}
+                loading={loading}
+                listMode="SCROLLVIEW"
+                activityIndicatorColor="#5188E3"
+                // searchable={true}
+                // searchPlaceholder="Set duration here..."
+                onOpen={onCompanyOpen}
+                onChangeValue={onChange}
+              />
+            </View>
+          )}
+        />
+        {errors.jobtype && (
+          <Text
+            style={{
+              fontSize: 10,
+              color: "red",
+              marginTop: "-4%",
+              marginLeft: "5%",
+              marginBottom: "2%",
+            }}
+          >
+            {errors.jobtype.message}
+          </Text>
+        )}
+        <Controller
           name="Education"
           defaultValue=""
           control={control}
@@ -825,25 +940,7 @@ const Sign = ({ navigation: { goBack } }) => {
             />
           )}
         />
-        <Controller
-          name="job_description"
-          defaultValue=""
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={[
-                styles.input,
-                { height: 200, textAlignVertical: "top", paddingTop: 10 },
-              ]}
-              selectionColor={"#5188E3"}
-              placeholder={t("Job_Description")}
-              multiline={true}
-              numberOfLines={50}
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
+
         <Controller
           name="mobile_number"
           defaultValue=""
@@ -913,8 +1010,50 @@ const Sign = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
+        <View>
+          <Text>expire date</Text>
+        </View>
 
         <Controller
+          name="job_description"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={[
+                styles.input,
+                { height: 200, textAlignVertical: "top", paddingTop: 10 },
+              ]}
+              selectionColor={"#5188E3"}
+              placeholder="Required Skills"
+              multiline={true}
+              numberOfLines={50}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+        <Controller
+          name="job_description"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={[
+                styles.input,
+                { height: 200, textAlignVertical: "top", paddingTop: 10 },
+              ]}
+              selectionColor={"#5188E3"}
+              placeholder={t("Job_Description")}
+              multiline={true}
+              numberOfLines={50}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+
+        {/* <Controller
           name="email"
           defaultValue=""
           control={control}
@@ -942,7 +1081,7 @@ const Sign = ({ navigation: { goBack } }) => {
           >
             {errors.email.message}
           </Text>
-        )}
+        )} */}
         <Text
           // style={{ paddingLeft: 20, marginBottom: 10 }}
           style={{
@@ -967,7 +1106,7 @@ const Sign = ({ navigation: { goBack } }) => {
             {t("Allow_candidates_to_call")}
           </Text>
         </View>
-        <Text
+        {/* <Text
           style={{
             marginLeft: "4%",
             // marginHorizontal: 10,
@@ -977,8 +1116,8 @@ const Sign = ({ navigation: { goBack } }) => {
           }}
         >
           {t("Add_Image")}
-        </Text>
-        <TouchableOpacity
+        </Text> */}
+        {/* <TouchableOpacity
           onPress={() => {
             setModalVisible(!modalVisible);
           }}
@@ -1017,8 +1156,8 @@ const Sign = ({ navigation: { goBack } }) => {
               />
             </View>
           )}
-        </TouchableOpacity>
-        <Modal
+        </TouchableOpacity> */}
+        {/* <Modal
           animationType="slide"
           //animationInTiming = {13900}
           transparent={true}
@@ -1060,8 +1199,7 @@ const Sign = ({ navigation: { goBack } }) => {
             >
               {ActivityIndicators ? (
                 <View>
-                  {/* <Text>Loading. please wait</Text>
-                  <ActivityIndicator size="large" /> */}
+                  
                   <LottieViewloadingmodal />
                 </View>
               ) : (
@@ -1146,7 +1284,7 @@ const Sign = ({ navigation: { goBack } }) => {
               )}
             </View>
           </View>
-        </Modal>
+        </Modal> */}
       </ScrollView>
       <TouchableOpacity
         onPress={handleSubmit(onSubmit)}

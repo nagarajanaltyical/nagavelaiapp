@@ -525,7 +525,7 @@ export default function Profilepage({ navigation, route }) {
                 flexDirection: "row",
               }}
             >
-              <Feather name="edit" size={22} color="#333" />
+              <Feather name="edit" size={22} color="#56909d" />
               <Text
                 style={{
                   marginLeft: 20,
@@ -564,7 +564,7 @@ export default function Profilepage({ navigation, route }) {
                 flexDirection: "row",
               }}
             >
-              <MaterialIcons name="security" size={22} color="#333" />
+              <MaterialIcons name="security" size={22} color="#56909d" />
               <Text
                 style={{
                   marginLeft: 20,
@@ -606,7 +606,7 @@ export default function Profilepage({ navigation, route }) {
               <Ionicons
                 name="ios-information-circle-outline"
                 size={22}
-                color="#333"
+                color="#56909d"
               />
               <Text
                 style={{
@@ -642,7 +642,7 @@ export default function Profilepage({ navigation, route }) {
                 flexDirection: "row",
               }}
             >
-              <AntDesign name="customerservice" size={22} color="#333" />
+              <AntDesign name="customerservice" size={22} color="#56909d" />
 
               <Text
                 style={{
@@ -678,7 +678,7 @@ export default function Profilepage({ navigation, route }) {
                 flexDirection: "row",
               }}
             >
-              <FontAwesome5 name="handshake" size={20} color="#333" />
+              <FontAwesome5 name="handshake" size={20} color="#56909d" />
               <Text
                 style={{
                   marginLeft: 19,
@@ -717,7 +717,7 @@ export default function Profilepage({ navigation, route }) {
                 flexDirection: "row",
               }}
             >
-              <SimpleLineIcons name="question" size={22} color="#333" />
+              <SimpleLineIcons name="question" size={22} color="#56909d" />
               <Text
                 style={{
                   marginLeft: 20,

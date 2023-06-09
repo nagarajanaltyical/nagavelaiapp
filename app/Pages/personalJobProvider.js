@@ -53,6 +53,7 @@ import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import LottieViewloadingmodal from "../components/Loadinmodal";
+import { color } from "react-native-reanimated";
 
 //forschema
 const schema = yup.object().shape({
@@ -421,6 +422,24 @@ export default function PersonalJobProvider({ navigation }) {
         <Text style={styles.titlestyle}>Personal Information</Text>
       </View>
       <ScrollView nestedScrollEnabled={true}>
+        <View
+          style={{
+            width: "100%",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              fontWeight: "500",
+              color: "#707070",
+              marginTop: 10,
+              marginBottom: -10,
+            }}
+          >
+            Your Pic
+          </Text>
+        </View>
         <View style={styles.iconstotal}>
           <View>
             <TouchableOpacity onPress={() => setprofilemodal(true)}>
@@ -445,7 +464,7 @@ export default function PersonalJobProvider({ navigation }) {
                 </View>
               ) : (
                 <>
-                  <FontAwesome name="user-circle" size={100} color="#D9D9D9" />
+                  <FontAwesome name="user-circle" size={100} color="#1e5966" />
                   <MaterialCommunityIcons
                     name="pencil-circle"
                     size={33}
@@ -540,10 +559,10 @@ export default function PersonalJobProvider({ navigation }) {
                           backgroundColor: "#1E5966",
                           marginTop: 20,
                         }}
-                        onPress={
-                          (() => requestPermission1(),
-                          takeAndUploadPhotoAsync1("files"))
-                        }
+                        // onPress={
+                        //   (() => requestPermission1(),
+                        //   takeAndUploadPhotoAsync1("files"))
+                        // }
                       >
                         <View
                           style={{
@@ -724,7 +743,7 @@ export default function PersonalJobProvider({ navigation }) {
                   </View> */}
                   <View style={{}}>
                     <TextInput
-                      placeholder="location"
+                      placeholder="Location"
                       style={styles.input}
                       onChangeText={handleChange("location")}
                       onBlur={handleBlur("location")}
@@ -866,6 +885,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     paddingTop: 20,
+    marginBottom: -10,
   },
   education: {
     flexDirection: "row",

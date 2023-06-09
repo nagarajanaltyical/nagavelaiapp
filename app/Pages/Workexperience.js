@@ -13,6 +13,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Checkbox from "expo-checkbox";
+
 // import { isValidPhoneNumber } from "react-phone-number-input";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import * as ImagePicker from "expo-image-picker";
@@ -65,6 +67,8 @@ export default function Workexperience({ navigation }) {
   //   fetchdata();
   // }, []);
   //DAte picker
+  const [isChecked, setChecked] = useState(false);
+  const [isclicked, setisclicked] = useState(false);
   const [date, setDate] = useState(new Date());
   const [showplace, setshowplace] = useState(true);
   const [showplace1, setshowplace1] = useState(true);
@@ -321,39 +325,11 @@ export default function Workexperience({ navigation }) {
                       </Text>
                     )}
                   </View>
-                  <View style={styles.email}>
-                    {/* <Text style={styles.labelname}>Your Job Description</Text> */}
-                    <TextInput
-                      placeholder="Enter Your Description"
-                      style={[
-                        styles.input,
-                        { height: 150, textAlignVertical: "top" },
-                      ]}
-                      onChangeText={handleChange("job_description")}
-                      onBlur={handleBlur("job_description")}
-                      placeholderTextColor="#ACACAC"
-                      defaultValue=""
-                      multiline={true}
-                      numberOfLines={2}
-                    />
-                    {errors.job_description && touched.job_description && (
-                      <Text
-                        style={{
-                          fontSize: 10,
-                          color: "red",
-                          marginTop: "-2%",
-                          marginLeft: "7%",
-                          marginBottom: "2%",
-                        }}
-                      >
-                        {errors.job_description}
-                      </Text>
-                    )}
-                  </View>
+
                   <View style={styles.password}>
                     {/* <Text style={styles.labelname}>From:</Text> */}
                     <TextInput
-                      placeholder="Start From"
+                      placeholder="Start Date"
                       style={[styles.input, { position: "relative" }]}
                       placeholderTextColor="#ACACAC"
                       defaultValue={
@@ -386,10 +362,23 @@ export default function Workexperience({ navigation }) {
                       </Text>
                     )}
                   </View>
+
+                  <View style={[styles.section, { marginLeft: 25 }]}>
+                    <Checkbox
+                      style={styles.checkbox}
+                      value={isChecked}
+                      onValueChange={() => {
+                        setisclicked(!isclicked), setChecked(!isChecked);
+                      }}
+                    />
+                    <Text style={[styles.paragraph, { color: "#333" }]}>
+                      {t("Allow_Call")}
+                    </Text>
+                  </View>
                   <View style={styles.password}>
                     {/* <Text style={styles.labelname}>To:</Text> */}
                     <TextInput
-                      placeholder="End at"
+                      placeholder="End Date"
                       style={[styles.input, { position: "relative" }]}
                       underlineColorAndroid="transparent"
                       placeholderTextColor="#ACACAC"
@@ -416,6 +405,35 @@ export default function Workexperience({ navigation }) {
                       onConfirm={handleConfirm}
                       onCancel={hideDatePicker}
                     />
+                  </View>
+                  <View style={styles.email}>
+                    {/* <Text style={styles.labelname}>Your Job Description</Text> */}
+                    <TextInput
+                      placeholder="Enter Your Description"
+                      style={[
+                        styles.input,
+                        { height: 150, textAlignVertical: "top" },
+                      ]}
+                      onChangeText={handleChange("job_description")}
+                      onBlur={handleBlur("job_description")}
+                      placeholderTextColor="#ACACAC"
+                      defaultValue=""
+                      multiline={true}
+                      numberOfLines={2}
+                    />
+                    {errors.job_description && touched.job_description && (
+                      <Text
+                        style={{
+                          fontSize: 10,
+                          color: "red",
+                          marginTop: "-2%",
+                          marginLeft: "7%",
+                          marginBottom: "2%",
+                        }}
+                      >
+                        {errors.job_description}
+                      </Text>
+                    )}
                   </View>
                 </View>
                 <LinearGradient
@@ -545,5 +563,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 10,
     justifyContent: "center",
+  },
+  section: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  paragraph: {
+    fontSize: 15,
   },
 });

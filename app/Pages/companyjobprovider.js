@@ -317,6 +317,24 @@ export default function CompanyJobProvider({ navigation }) {
         <Text style={styles.titlestyle}> Company Information</Text>
       </View>
       <ScrollView nestedScrollEnabled={true}>
+        <View
+          style={{
+            width: "100%",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              fontWeight: "500",
+              color: "#707070",
+              marginTop: 10,
+              marginBottom: -10,
+            }}
+          >
+            Company Logo
+          </Text>
+        </View>
         <View style={styles.iconstotal}>
           <View>
             <TouchableOpacity onPress={() => setprofilemodal(true)}>
@@ -341,7 +359,7 @@ export default function CompanyJobProvider({ navigation }) {
                 </View>
               ) : (
                 <>
-                  <FontAwesome name="user-circle" size={100} color="#D9D9D9" />
+                  <FontAwesome name="user-circle" size={100} color="#1e5966" />
                   <MaterialCommunityIcons
                     name="pencil-circle"
                     size={33}
@@ -566,7 +584,57 @@ export default function CompanyJobProvider({ navigation }) {
                   </View>
                   <View style={{}}>
                     <TextInput
-                      placeholder="Mail id"
+                      placeholder="Company Website"
+                      style={styles.input}
+                      //   keyboardType="number-pad"
+                      placeholderTextColor="#acacac"
+                      onChangeText={handleChange("location")}
+                      onBlur={handleBlur("location")}
+                      defaultValue=""
+                    />
+                    {errors.location && touched.location && (
+                      <Text
+                        style={{
+                          fontSize: 10,
+                          color: "red",
+                          marginTop: "-2%",
+                          marginLeft: "7%",
+                          // marginTop: "-2%",
+                          marginBottom: "2%",
+                        }}
+                      >
+                        {errors.location}
+                      </Text>
+                    )}
+                  </View>
+                  <View style={{}}>
+                    <TextInput
+                      placeholder="GST Number"
+                      style={styles.input}
+                      //   keyboardType="number-pad"
+                      placeholderTextColor="#acacac"
+                      onChangeText={handleChange("location")}
+                      onBlur={handleBlur("location")}
+                      defaultValue=""
+                    />
+                    {errors.location && touched.location && (
+                      <Text
+                        style={{
+                          fontSize: 10,
+                          color: "red",
+                          marginTop: "-2%",
+                          marginLeft: "7%",
+                          // marginTop: "-2%",
+                          marginBottom: "2%",
+                        }}
+                      >
+                        {errors.location}
+                      </Text>
+                    )}
+                  </View>
+                  <View style={{}}>
+                    <TextInput
+                      placeholder="Mail Id"
                       style={styles.input}
                       keyboardType="email-address"
                       placeholderTextColor="#acacac"
@@ -616,7 +684,7 @@ export default function CompanyJobProvider({ navigation }) {
                   </View>
                   <View style={{}}>
                     <TextInput
-                      placeholder="Your Designation"
+                      placeholder="Account Manager Designation"
                       style={styles.input}
                       placeholderTextColor="#acacac"
                       onChangeText={handleChange("designation")}

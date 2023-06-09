@@ -543,6 +543,48 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
+        <View>
+          <Controller
+            name="Openings"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={{
+                  borderColor: "#D9D9D9",
+                  backgroundColor: "#FFF",
+                  borderRadius: 10,
+                  borderWidth: 0.5,
+                  fontSize: 13,
+                  height: 50,
+                  marginHorizontal: 10,
+                  paddingStart: 10,
+                  marginBottom: 15,
+                }}
+                selectionColor={"#5188E3"}
+                placeholder="Type Job Title"
+                multiline={true}
+                numberOfLines={50}
+                onChangeText={onChange}
+                value={value}
+                keyboardType="numeric"
+              />
+            )}
+          />
+          {errors.Openings && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                marginTop: "-4%",
+                marginLeft: "5%",
+                marginBottom: "4%",
+              }}
+            >
+              {errors.Openings.message} - vacancy
+            </Text>
+          )}
+        </View>
         <Controller
           name="company"
           defaultValue=""
@@ -589,6 +631,29 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
             />
           )}
         />
+        <Controller
+          name="position"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={[styles.input]}
+              selectionColor={"#5188E3"}
+              placeholder="Account  Manager Designation"
+              //   keyboardType="number-pad"
+              multiline
+              // maxLength={}
+              numberOfLines={4}
+              onChangeText={onChange}
+              value={
+                value
+                // phonenumber == ""
+                //   ? value
+                //   : phonenumber.replace(/^(\+91)(\d{10})$/, "$1 $2")
+              }
+            />
+          )}
+        />
         <View style={styles.dropdownCompany}>
           <Controller
             name="country"
@@ -611,7 +676,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
                 placeholderStyle={[styles.placeholderStyles]}
                 containerStyle={{ zIndex: 50 }}
                 loading={loading}
-                listMode="SCROLLVIEW"
+                listMode="MODAL"
                 activityIndicatorColor="#5188E3"
                 searchable={true}
                 searchPlaceholder="Set duration here..."
@@ -717,7 +782,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
                   placeholderStyle={[styles.placeholderStyles]}
                   containerStyle={{ zIndex: 50, width: 155 }}
                   loading={loading}
-                  listMode="SCROLLVIEW"
+                  listMode="MODAL"
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   searchPlaceholder="Set District here..."
@@ -763,6 +828,9 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
             />
           )}
         />
+        <View>
+          <Text>Expire Date</Text>
+        </View>
         <Controller
           name="job_description"
           defaultValue=""
@@ -820,7 +888,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
                   placeholderStyle={styles.placeholderStyles}
                   containerStyle={{ zIndex: 50 }}
                   loading={loading}
-                  listMode="SCROLLVIEW"
+                  listMode="MODAL"
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   searchPlaceholder="Set duration here..."
@@ -944,7 +1012,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
                     placeholderStyle={[styles.placeholderStyles]}
                     containerStyle={{ zIndex: 50, width: 120 }}
                     loading={loading}
-                    listMode="SCROLLVIEW"
+                    listMode="MODAL"
                     activityIndicatorColor="#5188E3"
                     searchable={true}
                     searchPlaceholder="Set duration here..."
@@ -970,7 +1038,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
           </View>
           <View></View>
         </View>
-        <Text
+        {/* <Text
           style={{
             marginLeft: "4%",
             // marginHorizontal: 10,
@@ -978,7 +1046,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
             fontSize: 17,
             fontWeight: "500",
           }}
-        >
+        > 
           {t("Add_Image")}
         </Text>
         <TouchableOpacity
@@ -1065,8 +1133,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
               {ActivityIndicators ? (
                 <View>
                   <LottieViewloadingmodal />
-                  {/* <Text>Loading. please wait</Text>
-                  <ActivityIndicator size="large" /> */}
+               
                 </View>
               ) : (
                 <>
@@ -1149,7 +1216,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
               )}
             </View>
           </View>
-        </Modal>
+        </Modal> */}
 
         <Text
           style={{

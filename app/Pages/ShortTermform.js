@@ -71,6 +71,11 @@ const schema = yup.object().shape({
     .required("openings can't be empty")
 
     .typeError("openings cannot be null"),
+  expire: yup
+    .string()
+    .required("Expire Date can't be empty")
+
+    .typeError("Expire Date cannot be null"),
   // mobile_number: yup.string().required("Mobile number is required"),
   // email: yup.string().required("email id is required"),
 });
@@ -133,11 +138,11 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
   const [durationopen, setdurationopen] = useState(false);
   const [durationvalue, setdurationvalue] = useState(false);
   const [duration, setduration] = useState([
-    { label: "1-10 Days", value: "1-10 Days" },
-    { label: "11-30 Days", value: "11-30 Days" },
-    { label: "1-6 Months", value: "1-6 Months" },
-    { label: "7-12 Months", value: "7-12 Months" },
-    { label: "2 Year or Above", value: "2 Year or Above " },
+    { label: "1 - 10 Days", value: "1 - 10 Days" },
+    { label: "11 - 30 Days", value: "11 - 30 Days" },
+    { label: "1 - 6 Months", value: "1 - 6 Months" },
+    { label: "7 - 12 Months", value: "7 - 12 Months" },
+    { label: "1+ Years", value: "1+ Years " },
   ]);
   const ondurationOpen = useCallback(() => {
     setCompanyOpen(false);
@@ -470,7 +475,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                 loading={loading}
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Search title here..."
+                searchPlaceholder="Search Title Here.."
                 onOpen={onCompanyOpen}
                 onChangeValue={onChange}
                 zIndex={1000}
@@ -556,10 +561,10 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                 placeholderStyle={[styles.placeholderStyles]}
                 containerStyle={{ zIndex: 50 }}
                 loading={loading}
-                listMode="SCROLLVIEW"
+                listMode="MODAL"
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Set duration here..."
+                searchPlaceholder="Search Country Here..."
                 onOpen={ondurationOpen}
                 onChangeValue={(onCountryChange(countryvalue), onChange)}
               />
@@ -618,7 +623,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   containerStyle={{ zIndex: 50, width: 150 }}
-                  searchPlaceholder="Search title here..."
+                  searchPlaceholder="Search State Here..."
                   // onOpen={onCompanyOpen1}
                   onChangeValue={(onstateChange(companyValue1), onChange)}
                   zIndex={1000}
@@ -662,10 +667,10 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                   placeholderStyle={[styles.placeholderStyles]}
                   containerStyle={{ zIndex: 50, width: 155 }}
                   loading={loading}
-                  listMode="SCROLLVIEW"
+                  listMode="MODAL"
                   activityIndicatorColor="#5188E3"
                   searchable={true}
-                  searchPlaceholder="Set duration here..."
+                  searchPlaceholder="Search District Here..."
                   onOpen={ondurationOpen}
                   onChangeValue={(onCityChange(cityvalue), onChange)}
                 />
@@ -738,7 +743,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  searchable={true}
+                  searchable={false}
                   searchPlaceholder="Set duration here..."
                   onOpen={ondurationOpen}
                   onChangeValue={onChange}
@@ -863,8 +868,8 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                     loading={loading}
                     listMode="SCROLLVIEW"
                     activityIndicatorColor="#5188E3"
-                    searchable={true}
-                    searchPlaceholder="Set duration here..."
+                    // searchable={true}
+                    // searchPlaceholder="Set duration here..."
                     onOpen={ondurationOpen}
                     onChangeValue={onChange}
                   />
@@ -886,20 +891,56 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
             )}
           </View>
         </View>
-        <View style={{ height: 40 }}>
+
+        <View style={{ height: 40, marginBottom: 50 }}>
+          <TextInput
+            placeholder="expire date"
+            style={{
+              position: "relative",
+              borderRadius: 10,
+              height: 50,
+              backgroundColor: "#fff",
+              borderColor: "#D9D9D9",
+              width: "100%",
+              borderTopLeftRadius: 10,
+              borderTopRightRadius: 10,
+              borderWidth: 0.5,
+              width: "90%",
+              padding: 10,
+              marginHorizontal: 20,
+              marginVertical: 10,
+              justifyContent: "center",
+            }}
+            underlineColorAndroid="transparent"
+            // onChangeText={handleChange("password")}
+            // onBlur={handleBlur("password")}
+            placeholderTextColor="#707070"
+            // value={opens ? date.toDateString() : value}
+          />
           <Pressable onPress={showDatepicker}>
             <FontAwesome5
               name="calendar-alt"
               size={24}
               color="#333"
-              // style={{
-              //   position: "absolute",
-              //   right: 40,
-              //   bottom: 23,
-              // }}
+              style={{
+                position: "absolute",
+                right: 40,
+                bottom: 23,
+              }}
             />
           </Pressable>
-          <Text>Expire Date</Text>
+
+          {errors.expire && (
+            <Text
+              style={{
+                fontSize: 13,
+                color: "red",
+                marginHorizontal: 20,
+              }}
+            >
+              {errors.expire.message}
+            </Text>
+          )}
         </View>
         {/* <Text
           style={{

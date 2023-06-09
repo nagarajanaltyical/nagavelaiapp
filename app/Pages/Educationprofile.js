@@ -269,6 +269,30 @@ export default function EduInfo({ navigation }) {
             <>
               <View style={{}}>
                 <View style={{}}>
+                  <View style={{}}>
+                    {/* <Text style={styles.labelname}>Education Level</Text> */}
+                    <TextInput
+                      placeholder="Highest Education Level"
+                      style={styles.input}
+                      placeholderTextColor="#acacac"
+                      onChangeText={handleChange("eduaction_level")}
+                      onBlur={handleBlur("eduaction_level")}
+                      defaultValue=""
+                    />
+                    {errors.eduaction_level && touched.eduaction_level && (
+                      <Text
+                        style={{
+                          fontSize: 10,
+                          color: "red",
+                          marginTop: "-3%",
+                          marginLeft: "7%",
+                          marginBottom: "2%",
+                        }}
+                      >
+                        {errors.eduaction_level}
+                      </Text>
+                    )}
+                  </View>
                   <TextInput
                     placeholder="Institute Name"
                     name="inisitute"
@@ -292,31 +316,6 @@ export default function EduInfo({ navigation }) {
                       {errors.inisitute}
                     </Text>
                   )}
-
-                  <View style={{}}>
-                    {/* <Text style={styles.labelname}>Education Level</Text> */}
-                    <TextInput
-                      placeholder="Education Level"
-                      style={styles.input}
-                      placeholderTextColor="#acacac"
-                      onChangeText={handleChange("eduaction_level")}
-                      onBlur={handleBlur("eduaction_level")}
-                      defaultValue=""
-                    />
-                    {errors.eduaction_level && touched.eduaction_level && (
-                      <Text
-                        style={{
-                          fontSize: 10,
-                          color: "red",
-                          marginTop: "-3%",
-                          marginLeft: "7%",
-                          marginBottom: "2%",
-                        }}
-                      >
-                        {errors.eduaction_level}
-                      </Text>
-                    )}
-                  </View>
                   <View style={styles.email}>
                     {/* <Text style={styles.labelname}>Grade(Optional)</Text> */}
                     <TextInput
@@ -344,7 +343,7 @@ export default function EduInfo({ navigation }) {
                   <View style={{}}>
                     {/* <Text style={styles.labelname}>From:</Text> */}
                     <TextInput
-                      placeholder="Start From"
+                      placeholder="Start Date"
                       style={[styles.input, { position: "relative" }]}
                       underlineColorAndroid="transparent"
                       placeholderTextColor="#acacac"
@@ -368,7 +367,7 @@ export default function EduInfo({ navigation }) {
                   <View style={{}}>
                     {/* <Text style={styles.labelname}>To:</Text> */}
                     <TextInput
-                      placeholder="End At"
+                      placeholder="End Date"
                       style={[styles.input, { position: "relative" }]}
                       underlineColorAndroid="transparent"
                       placeholderTextColor="#acacac"
@@ -433,7 +432,7 @@ export default function EduInfo({ navigation }) {
                         color: isValid ? "#fff" : "white",
                       }}
                     >
-                      Create
+                      Update
                     </Text>
                   </TouchableOpacity>
                 </LinearGradient>
