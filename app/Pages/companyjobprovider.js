@@ -417,7 +417,7 @@ export default function CompanyJobProvider({ navigation }) {
                     </View>
                   ) : (
                     <>
-                      <TouchableHighlight
+                      {/* <TouchableHighlight
                         style={{
                           ...styles.openButton,
                           width: 150,
@@ -446,7 +446,7 @@ export default function CompanyJobProvider({ navigation }) {
                             Take Pic
                           </Text>
                         </View>
-                      </TouchableHighlight>
+                      </TouchableHighlight> */}
                       <TouchableHighlight
                         style={{
                           ...styles.openButton,
@@ -508,6 +508,8 @@ export default function CompanyJobProvider({ navigation }) {
             username: "",
             companyname: "",
             location: "",
+            website: "",
+            GST_number: "",
             designation: "",
             emailid: "",
             // number: "",
@@ -588,11 +590,11 @@ export default function CompanyJobProvider({ navigation }) {
                       style={styles.input}
                       //   keyboardType="number-pad"
                       placeholderTextColor="#acacac"
-                      onChangeText={handleChange("location")}
-                      onBlur={handleBlur("location")}
+                      onChangeText={handleChange("website")}
+                      onBlur={handleBlur("website")}
                       defaultValue=""
                     />
-                    {errors.location && touched.location && (
+                    {errors.website && touched.website && (
                       <Text
                         style={{
                           fontSize: 10,
@@ -603,7 +605,7 @@ export default function CompanyJobProvider({ navigation }) {
                           marginBottom: "2%",
                         }}
                       >
-                        {errors.location}
+                        {errors.website}
                       </Text>
                     )}
                   </View>
@@ -613,11 +615,11 @@ export default function CompanyJobProvider({ navigation }) {
                       style={styles.input}
                       //   keyboardType="number-pad"
                       placeholderTextColor="#acacac"
-                      onChangeText={handleChange("location")}
-                      onBlur={handleBlur("location")}
+                      onChangeText={handleChange("GST_number")}
+                      onBlur={handleBlur("GST_number")}
                       defaultValue=""
                     />
-                    {errors.location && touched.location && (
+                    {errors.GST_number && touched.GST_number && (
                       <Text
                         style={{
                           fontSize: 10,
@@ -628,7 +630,7 @@ export default function CompanyJobProvider({ navigation }) {
                           marginBottom: "2%",
                         }}
                       >
-                        {errors.location}
+                        {errors.GST_number}
                       </Text>
                     )}
                   </View>

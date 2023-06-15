@@ -526,11 +526,20 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                   />
                 </TouchableOpacity> */}
                 <View style={{ paddingHorizontal: "4%" }}>
-                  <MaterialCommunityIcons
-                    name="share-all-outline"
-                    size={22}
-                    color="#56909d"
-                  />
+                  <TouchableOpacity
+                    onPress={() => {
+                      Alert.alert(
+                        "Share",
+                        "Our new features are just around the corner."
+                      );
+                    }}
+                  >
+                    <MaterialCommunityIcons
+                      name="share-all-outline"
+                      size={22}
+                      color="#56909d"
+                    />
+                  </TouchableOpacity>
                 </View>
                 {/* <MaterialCommunityIcons
                   name="share-circle"

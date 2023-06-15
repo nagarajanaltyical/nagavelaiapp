@@ -45,17 +45,17 @@ const listTab = [
       />
     ),
   },
-  {
-    status: "Category",
+  // {
+  //   status: "Category",
 
-    icon: (
-      <Image
-        resizeMode="contain"
-        style={{ height: 22, width: 22 }}
-        source={require("../../../images/Imagefilter/categories.png")}
-      />
-    ),
-  },
+  //   icon: (
+  //     <Image
+  //       resizeMode="contain"
+  //       style={{ height: 22, width: 22 }}
+  //       source={require("../../../images/Imagefilter/categories.png")}
+  //     />
+  //   ),
+  // },
   {
     status: "Duration",
     icon: (
@@ -85,10 +85,10 @@ const data = [
     name: <Location />,
     status: "Location",
   },
-  {
-    name: <MyComponent />,
-    status: "Category",
-  },
+  // {
+  //   name: <MyComponent />,
+  //   status: "Category",
+  // },
 
   {
     name: <Duration />,
@@ -438,7 +438,7 @@ const styles = StyleSheet.create({
   listTab: {
     borderColor: "#acacac",
     borderWidth: 1,
-    height: "50%",
+    height: "60%",
     width: "20%",
     // paddingVertical: "5%",
     backgroundColor: "#FFF",
@@ -447,6 +447,7 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     // alignItems: "center",
     marginTop: "10%",
+    paddingTop: 35,
     // marginLeft: 5,
     // borderRadius: 20,
     borderTopRightRadius: 10,
@@ -456,11 +457,12 @@ const styles = StyleSheet.create({
   },
   btnTab: {
     // width: 0,
-    // backgroundColor: "red",
     // flexDirection: "column",
     // marginBottom: 5,
     // marginTop: "5%",
-
+    height: 70,
+    marginBottom: 40,
+    // backgroundColor: "red",
     // paddingHorizontal: 5,
     // paddingVertical: 3,
     alignContent: "center",
@@ -491,7 +493,7 @@ const styles = StyleSheet.create({
   btnTabActive: {
     backgroundColor: "#d5f4fe",
     // marginTop: "5%",
-    height: "100%",
+    height: 50,
     width: "93%",
     // paddingTop: "35%",
 

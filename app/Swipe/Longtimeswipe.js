@@ -98,6 +98,7 @@ const swiperRef = React.createRef();
 const transitionRef = React.createRef();
 export default function LongtimeSwiperCard({ route }) {
   const { t, language, setlanguage } = useContext(LocalizationContext);
+  const { state2, dispatch2 } = useContext(L_FILTER);
   const isdetailsgiven = useSelector((state) => state.user_details_given);
   const userID = useSelector((state) => state.ID);
   const states = useSelector((state) => state);
@@ -131,16 +132,17 @@ export default function LongtimeSwiperCard({ route }) {
     if (isFocused) {
       // callback
       // getPermission();
-      shorttime();
-      console.log(state2);
-      if (state2.filter_click) {
-        getdataofthefilter();
-      } else {
-        getdata();
-      }
-      // getJobs();
-      // getdata();
-      setIndex(0);
+      getdata();
+      // shorttime();
+      // console.log(state2);
+      // if (state2.filter_click) {
+      //   getdataofthefilter();
+      // } else {
+      //   getdata();
+      // }
+      // // getJobs();
+      // // getdata();
+      // setIndex(0);
       // hellouser();
     }
   }, [isFocused]);
@@ -363,38 +365,29 @@ export default function LongtimeSwiperCard({ route }) {
   // }, []);
   const getdata = async () => {
     const body = {};
-    body.page = 0;
-    body.filter = {
-      states: "$",
-      district: "$",
-      job_title: "$",
-      duration: "$",
-      salary: "$",
-      workmode: "$",
-      education: "$",
-      experience: "$",
-      companyname: "$",
-      filter_click: false,
-    };
-    body.language = states.lang_value;
+    body.post_id = route.params.postid;
+    body.TableType = "long_job_post";
+    body.user_id = userID;
 
     try {
-      await fetch(
-        `http://103.174.10.108:5002/api/limit/L_like_apply_check/${userID}`,
-        {
-          method: "POST",
-          mode: "cors",
-          cache: "no-cache",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
-        }
-      )
+      await fetch(`http://192.168.1.12:5000/api/limit/L_like_apply_check1`, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      })
         .then((response) => response.json())
         .then((result) => {
           if (result["long"].length > 0) {
+            // function find_id(paras) {
+            //   return paras.id == route.params.postid;
+            // }
+            // const resultof = result["long"].filter(find_id);
+
             setData(result["long"]);
             console.log(result["long"]);
 
@@ -505,7 +498,7 @@ export default function LongtimeSwiperCard({ route }) {
   };
   const onSwiped = () => {
     //
-    navigation.goBack();
+    // navigation.goBack();
     // transitionRef.current.animateNextTransition();
     // if ((index) => 0) {
     //   setIndex(index + 1);
@@ -525,14 +518,12 @@ export default function LongtimeSwiperCard({ route }) {
     //
     navigation.goBack();
     // transitionRef.current.animateNextTransition();
-
     // setIndex(index - 1);
     // if (index === 7) {
     //   Alert.alert("hiiiiiiii");
     //   getdata1(page);
     // }
   };
-  const { state2, dispatch2 } = useContext(L_FILTER);
 
   const Card = React.memo(({ card }) => {
     const { state, dispatch } = useContext(AuthContext);
@@ -615,7 +606,7 @@ export default function LongtimeSwiperCard({ route }) {
                     paddingHorizontal: 10,
                   }}
                 >
-                  2 days ago
+                  {route.params.dates} days ago
                 </Text>
                 {/* <FontAwesome name="rupee" size={16} color="#000000" />
                 {data[index].payment} */}
@@ -897,8 +888,9 @@ export default function LongtimeSwiperCard({ route }) {
                     color: "#535353",
                   }}
                 >
-                  1-2 Years
-                  {/* {data[index].location} | {data[index].distance} km */}
+                  {data[index].experience == null
+                    ? "Any"
+                    : data[index].experience}
                 </Text>
               </View>
 
@@ -952,13 +944,13 @@ export default function LongtimeSwiperCard({ route }) {
                   alignItems: "center",
                 }}
               >
-                <Image
+                {/* <Image
                   // resizeMode="contain"
                   source={require("../images/link.png")}
                   style={{ width: 16, height: 16 }}
                 />
                 {/* <Ionicons name="location-outline" size={22} color="#333" /> */}
-                <Text
+                {/* <Text
                   style={{
                     marginLeft: "5%",
                     fontSize: 14,
@@ -969,7 +961,7 @@ export default function LongtimeSwiperCard({ route }) {
                   }}
                 >
                   www.zealzoft.com
-                </Text>
+                </Text> */}
               </View>
             </View>
             <View
@@ -994,7 +986,7 @@ export default function LongtimeSwiperCard({ route }) {
                   fontWeight: "400",
                 }}
               >
-                work from home
+                {data[index].workspace}
               </Text>
 
               <Text
@@ -1021,7 +1013,7 @@ export default function LongtimeSwiperCard({ route }) {
                   fontWeight: "400",
                 }}
               >
-                Permanent
+                {data[index].jobtype == null ? "-" : data[index].jobtype}
               </Text>
               <Text
                 style={{
@@ -1047,7 +1039,7 @@ export default function LongtimeSwiperCard({ route }) {
                   fontWeight: "400",
                 }}
               >
-                2 Openings
+                {data[index].Openings} Openings
               </Text>
             </View>
             <View
@@ -1068,7 +1060,14 @@ export default function LongtimeSwiperCard({ route }) {
                   fontFamily: "Roboto",
                 }}
               >
-                Job Expire : 26-5-2033
+                Job Expire :
+                {data[index].exp_date == null
+                  ? `${new Date().getDate()}-${
+                      new Date().getMonth() + 1
+                    }-${new Date().getFullYear()}`
+                  : `${new Date(data[index].exp_date).getDate()}-${
+                      new Date(data[index].exp_date).getMonth() + 1
+                    }-${new Date().getFullYear()}`}
               </Text>
             </View>
 
@@ -1406,10 +1405,9 @@ export default function LongtimeSwiperCard({ route }) {
                         color: "#535353",
                       }}
                     >
-                      {data[index].job_description == ""
-                        ? ""
-                        : data[index].job_description[0].toUpperCase() +
-                          data[index].job_description.slice(1)}
+                      {data[index].Required_Skills == null
+                        ? "Skills Not Mentioned"
+                        : data[index].Required_Skills}
                     </Text>
                   </View>
                 </View>
@@ -1481,7 +1479,7 @@ export default function LongtimeSwiperCard({ route }) {
                 </View>
                 <View style={{ marginTop: "5%" }}>
                   <Image
-                    source={{ uri: data[index].ads.ads }}
+                    source={{ uri: data[0].ads.ads }}
                     style={{
                       position: "relative",
 
@@ -1944,9 +1942,7 @@ export default function LongtimeSwiperCard({ route }) {
     //   //
     //   //
     //   // Alert.alert("No more cards left!");
-
     //   setTimeout(() => dispatch2({ type: "RESET" }), 1000);
-
     //   setloading(true);
     //   // setlastcard(true);
     //   // setSwipedAll(true);

@@ -1026,7 +1026,7 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
                 //  <ActivityIndicator size="large" />
                 // </View>
                 <>
-                  <TouchableHighlight
+                  {/* <TouchableHighlight
                     style={{
                       ...styles.openButton,
                       width: 150,
@@ -1055,7 +1055,7 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
                         {t("Take_Pic")}
                       </Text>
                     </View>
-                  </TouchableHighlight>
+                  </TouchableHighlight> */}
 
                   <TouchableHighlight
                     style={{

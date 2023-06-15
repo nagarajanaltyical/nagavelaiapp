@@ -49,17 +49,17 @@ const listTab = [
       />
     ),
   },
-  {
-    status: "Category",
+  // {
+  //   status: "Category",
 
-    icon: (
-      <Image
-        resizeMode="contain"
-        style={{ height: 22, width: 22 }}
-        source={require("../../images/Imagefilter/categories.png")}
-      />
-    ),
-  },
+  //   icon: (
+  //     <Image
+  //       resizeMode="contain"
+  //       style={{ height: 22, width: 22 }}
+  //       source={require("../../images/Imagefilter/categories.png")}
+  //     />
+  //   ),
+  // },
   {
     status: "Duration",
     icon: (
@@ -152,11 +152,11 @@ const data = [
     text: "This is my homepage. Here I welcome you to my website and try me best to make a good impression. I tell you about the services I provide and encourage you to venture into my site.",
     status: "Location",
   },
-  {
-    name: <MyComponent1 />,
-    text: "This is my homepage. Here I welcome you to my website and try me best to make a good impression. I tell you about the services I provide and encourage you to venture into my site.",
-    status: "Category",
-  },
+  // {
+  //   name: <MyComponent1 />,
+  //   text: "This is my homepage. Here I welcome you to my website and try me best to make a good impression. I tell you about the services I provide and encourage you to venture into my site.",
+  //   status: "Category",
+  // },
 
   {
     name: <Duration1 />,
@@ -598,8 +598,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderColor: "#d9d9d9",
     borderWidth: 1,
-    height: "95%",
+    height: "90%",
     width: "20%",
+    paddingTop: 20,
     // paddingVertical: "5%",
     backgroundColor: "#FFF",
     flexDirection: "column",

@@ -541,7 +541,7 @@ export default function Profileform({ navigation, route }) {
                   </View>
                 ) : (
                   <>
-                    <TouchableHighlight
+                    {/* <TouchableHighlight
                       style={{
                         ...styles.openButton,
                         width: 150,
@@ -561,7 +561,7 @@ export default function Profileform({ navigation, route }) {
                         <AntDesign name="camera" size={24} color="white" />
                         <Text style={styles.textStyle}>{t("pic")}</Text>
                       </View>
-                    </TouchableHighlight>
+                    </TouchableHighlight> */}
 
                     <TouchableHighlight
                       style={{

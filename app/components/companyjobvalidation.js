@@ -1,5 +1,5 @@
 import * as yup from "yup";
-
+const regex = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$";
 const companyValidationSchema = yup.object().shape({
   // proof
   // number
@@ -8,6 +8,8 @@ const companyValidationSchema = yup.object().shape({
   location: yup.string().required("Location is Required"),
   companyname: yup.string().required("Company Name is Required"),
   username: yup.string().required("Account Manager Name is Required"),
+  GST_number: yup.string().matches(regex, "Invalid GST Number"),
+  website: yup.string(),
   // number: yup.number().required("number is required"),
   emailid: yup
     .string()

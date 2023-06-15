@@ -409,16 +409,18 @@ export default function ShorttimeSwiperCard({ route }) {
   React.useEffect(() => {
     if (isFocused) {
       // callback
-      console.log(state1);
-      if (state1.filter_click) {
-        getdatafilter();
-      } else {
-        getdata();
-      }
+      getdata();
+      // console.log(state1);
+      // if (state1.filter_click) {
+      //   getdatafilter();
+      // } else {
+      //   getdata();
+      // }
 
-      setIndex(0);
-      hellouser();
-      shorttime();
+      // setIndex(0);
+      // hellouser();
+      // shorttime();
+      // getdata11();
     }
   }, [isFocused]);
 
@@ -467,50 +469,82 @@ export default function ShorttimeSwiperCard({ route }) {
     }
   };
   // console.log(getdata);
-  const getdata = async (paras) => {
+  const getdata11 = async (paras) => {
+    console.log("im the dATA iVING");
     const body = {};
-    body.page = 0;
-    body.filter = {
-      states: "$",
-      district: "$",
-      job_title: "$",
-      duration: "$",
-      salary: "$",
-      filter_click: false,
-    };
-    body.language = states.lang_value;
+    body.user_id = userID;
+    body.post_id = route.params.postid;
+    body.table_name = "shorttime_job";
+    console.log(body);
+    // body.page = route.params.page;
 
-    setloading(true);
+    // body.page = 0;
     try {
-      //192.168.1.8:5000/api/govt_jobs_del/
-      await fetch(
-        `http://103.174.10.108:5002/api/limit/s_like_apply_check/${userID}`,
-        {
-          method: "POST",
-          mode: "cors",
-          cache: "no-cache",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
-        }
-      )
+      await fetch(`http://192.168.1.10:5000/api/like_apply_slideshow`, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      })
         .then((response) => response.json())
         .then((result) => {
-          if (result["short"].length > 0) {
-            setData(result["short"]);
-            setloading(false);
-            setpage(page + 1);
-            console.log(result["short"]);
-          } else {
-            setnodata(true);
-            dispatch1({ type: "Revert_CLick" });
-          }
+          console.log("im the data of the first");
+          console.log(result);
+          console.log(result["post"][0]);
+          setData(result["post"]);
+          //  setDatas(result["post"][0]);
+          //  setloadings(false);
+
+          // console.log(result["post"][0].designation);
+          //   setCompanyValue(result["post"][0].designation);
+          // setloading(false);
+          // setloading(false);
+          //   setpage(page + 1);
         });
     } catch (error) {
       console.log(error);
     }
+  };
+  const getdata = async () => {
+    const body = {};
+    body.post_id = route.params.postid;
+    body.TableType = "shorttime_job";
+    body.user_id = userID;
+
+    try {
+      await fetch(`http://192.168.1.12:5000/api/limit/L_like_apply_check1`, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          if (result["short"].length > 0) {
+            // function find_id(paras) {
+            //   return paras.id == route.params.postid;
+            // }
+            // const resultof = result["long"].filter(find_id);
+
+            setData(result["short"]);
+            console.log(result["short"]);
+
+            setpage(page + 1);
+            setloading(false);
+          } else {
+            setnodata(true);
+            dispatch2({ type: "Revert_clicked_long" });
+          }
+        });
+    } catch (error) {}
   };
   const getdata23 = async (paras) => {
     const body = {};
@@ -702,7 +736,7 @@ export default function ShorttimeSwiperCard({ route }) {
   const onSwiped = () => {
     //
     //
-    navigation.goBack();
+    //navigation.navigate("Homes");
     // transitionRef.current.animateNextTransition();
     // if ((index) => 0) {
     //   setIndex(index + 1);
@@ -719,9 +753,8 @@ export default function ShorttimeSwiperCard({ route }) {
     //
     //
     //
-    navigation.goBack();
+    // navigation.navigate("bottomhome");
     // transitionRef.current.animateNextTransition();
-
     // setIndex(index - 1);
     // if (index === 7) {
     //   Alert.alert("hiiiiiiii");
@@ -816,7 +849,7 @@ export default function ShorttimeSwiperCard({ route }) {
                     paddingHorizontal: 10,
                   }}
                 >
-                  2 days ago
+                  {route.params.dates} days ago
                 </Text>
                 {/* <FontAwesome name="rupee" size={16} color="#000000" />
                 {data[index].payment} */}
@@ -945,7 +978,7 @@ export default function ShorttimeSwiperCard({ route }) {
                   fontWeight: "500",
                 }}
               >
-                {data[index].Openings} 1 Opening
+                {data[index].Openings} Openings
               </Text>
               {/* <Text style={{ color: "#333" }}>
                 <SimpleLineIcons
@@ -1155,7 +1188,14 @@ export default function ShorttimeSwiperCard({ route }) {
                   fontFamily: "Roboto",
                 }}
               >
-                Job Expire : 26-5-2033
+                Job Expire :
+                {data[index].exp_date == null
+                  ? `${new Date().getDate()}-${
+                      new Date().getMonth() + 1
+                    }-${new Date().getFullYear()}`
+                  : `${new Date(data[index].exp_date).getDate()}-${
+                      new Date(data[index].exp_date).getMonth() + 1
+                    }-${new Date().getFullYear()}`}
               </Text>
             </View>
             {/* <View style={{ marginTop: "5%" }}>
@@ -1423,7 +1463,7 @@ export default function ShorttimeSwiperCard({ route }) {
                       }}
                     >
                       {data[index].job_description == ""
-                        ? ""
+                        ? "Skills Not Mentioned"
                         : data[index].job_description[0].toUpperCase() +
                           data[index].job_description.slice(1)}
                     </Text>
@@ -1431,7 +1471,7 @@ export default function ShorttimeSwiperCard({ route }) {
                 </View>
                 <View style={{ marginTop: "5%" }}>
                   <Image
-                    source={{ uri: data[index].ads.ads }}
+                    source={{ uri: data[0].ads.ads }}
                     style={{
                       position: "relative",
 

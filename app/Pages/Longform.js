@@ -7,17 +7,20 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   ActivityIndicator,
+  Pressable,
   Modal,
   Alert,
   Image,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesome5 } from "@expo/vector-icons";
+
 import Checkbox from "expo-checkbox";
 import { useEffect } from "react";
 // import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useIsFocused } from "@react-navigation/native";
-
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import * as yup from "yup";
 import { useContext } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -34,47 +37,48 @@ import LottieViewloadingmodal from "../components/Loadinmodal";
 const schema = yup.object().shape({
   job_title: yup
     .string()
-    .required("Job Title is Required")
-    .typeError("Job Title is Required"),
+    .required("Job title cant be empty")
+    .typeError("Job title  cannot be null"),
+  Other_title: yup.string().typeError("Please Enter the job title"),
+
   workspace: yup
     .string()
-    .required("Workspace is Required")
-    .typeError("Workspace is Required"),
-  jobtype: yup
-    .string()
-    .required("Job Type is Required")
-    .typeError("Job Type is Required"),
+    .required("Workspace is required")
+    .typeError("Workspace cannot be null"),
   // location: yup.string().required("location of the job is required"),
   country: yup
     .string()
-    .required("Country is Required")
-    .typeError("Country is Required"),
+    .required("Country cant be empty")
+    .typeError("Country  cannot be null"),
   state: yup
     .string()
-    .required("State is Required")
-    .typeError("State is Required"),
+    .required("State cant be empty")
+    .typeError("State  cannot be null"),
   District: yup
     .string()
-    .required("District is Required")
-    .typeError("District is Required"),
-  Duration: yup
+    .required("District cant be empty")
+    .typeError("District  cannot be null"),
+  jobtype: yup
     .string()
-    .typeError("Duration is Required")
-    .required("Duration is Required"),
+    .required("Job Type is Required")
+    .typeError("Job Type Cannot be null"),
+  experience: yup
+    .string()
+    .required("Experience Required")
+    .typeError("Experience Cannot be null"),
   per: yup
     .string()
-    .required("Salary Detail is Required")
+    .required("Salary details can't be empty")
 
-    .typeError("Salary Detail is Required"),
-  Openings: yup
-    .string()
-    .required("Openings is Required")
+    .typeError("Job title  cannot be null"),
+  Education: yup.string().required("Salary details can't be empty"),
+  job_description: yup.string().required("job Description can't be empty"),
+  Openings: yup.string().required("openings can't be empty"),
 
-    .typeError("Openings is Required"),
-
-  Salary: yup.string().required("Salary is Required"),
+  Salary: yup.string().required("Please enter the salary Details"),
+  Required_Skills: yup.string().required("Please enter the Required Skills"),
   // mobile_number: yup.string().required("Mobile number is required"),
-  email: yup.string().required("Email id is required"),
+  email: yup.string(),
 });
 const Sign = ({ navigation: { goBack } }) => {
   //gender
@@ -94,6 +98,81 @@ const Sign = ({ navigation: { goBack } }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [ActivityIndicators, setActivityIndicators] = useState(false);
   const [image, setImage] = useState(null);
+
+  // To get the Expire date
+  const [opens, setisopen] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [showplace, setshowplace] = useState(true);
+
+  const showDatepicker = () => {
+    setisopen(true);
+    showMode("date");
+    setshowplace(false);
+    minDate: new Date();
+  };
+  const onChange = (event, selectedDate) => {
+    console.log(selectedDate);
+    const currentDate = selectedDate;
+    console.log(
+      currentDate.getDate(),
+      currentDate.getMonth(),
+      currentDate.getFullYear()
+    );
+    setDate(currentDate);
+    setisopen(false);
+  };
+  function convertDate(dateString) {
+    // Convert the date string to a Date object.
+    let date = new Date(dateString);
+
+    // Get the year, month, day, hour, minute, second, and millisecond properties of the Date object.
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    let millisecond = date.getMilliseconds();
+
+    // Return a JavaScript object containing the date data.
+    return {
+      year: year,
+      month: month,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
+    };
+  }
+  const showMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange,
+      mode: currentMode,
+    });
+  };
+
+  //To get the job Title
+  const [selctedjob, setselectedjob] = useState("");
+  const onselected = (data) => {
+    if (data != null) {
+      const result = company.filter(checkcom);
+      function checkcom(com) {
+        return com.value == companyValue;
+      }
+      console.log(result.length);
+      if (result.length > 0) {
+        const finalJob = result[0].label;
+        setselectedjob(finalJob);
+      } else {
+        console.log(selctedjob);
+      }
+    } else {
+      console.log(data);
+      console.log(selctedjob);
+    }
+  };
 
   //image
   const [jobpost, setjobpostpic] = useState(null);
@@ -192,14 +271,7 @@ const Sign = ({ navigation: { goBack } }) => {
     { label: "Hybrid", value: "Hybrid" },
     { label: "Onsite", value: "Onsite" },
   ]);
-  //jobtype
-  const [jobtypeopen, setjobtypeopen] = useState(false);
-  const [jobtypevalue, setjobtypevalue] = useState(false);
-  const [jobtype, setjobtype] = useState([
-    { label: "Full Time", value: "Full Time" },
-    { label: "Internship", value: "Internship" },
-    { label: "Part Time", value: "Part Time" },
-  ]);
+  //duration
 
   const [jobtypeopen1, setjobtypeopen1] = useState(false);
   const [jobtypevalue1, setjobtypevalue1] = useState(false);
@@ -211,7 +283,6 @@ const Sign = ({ navigation: { goBack } }) => {
     { label: "5 - 10 Years", value: "5 - 10 Years" },
     { label: "10+ Years", value: "10+ Years" },
   ]);
-  //duration
   const [durationopen, setdurationopen] = useState(false);
   const [durationvalue, setdurationvalue] = useState(false);
   const [duration, setduration] = useState([
@@ -229,6 +300,16 @@ const Sign = ({ navigation: { goBack } }) => {
     { label: "UCP", value: "ucp" },
     { label: "UET", value: "uet" },
   ]);
+
+  //jobtype
+  const [jobtypeopen, setjobtypeopen] = useState(false);
+  const [jobtypevalue, setjobtypevalue] = useState(false);
+  const [jobtype, setjobtype] = useState([
+    { label: "Full Time", value: "Full Time" },
+    { label: "Internship", value: "Internship" },
+    { label: "Part Time", value: "Part Time" },
+  ]);
+
   const [companyOpen1, setCompanyOpen1] = useState(false);
   const [companyValue1, setCompanyValue1] = useState(null);
   const [company1, setComapny1] = useState([
@@ -244,7 +325,6 @@ const Sign = ({ navigation: { goBack } }) => {
   const [hour, sethour] = useState([
     { label: "Per Month", value: "Per Month" },
     { label: "LPA", value: "LPA" },
-    { label: "Not Disclosed", value: "Not Disclosed" },
   ]);
 
   //to get the job title
@@ -392,15 +472,19 @@ const Sign = ({ navigation: { goBack } }) => {
       return com.value == companyValue;
     }
     const finalJob = result[0].label;
-
-    data.job_title = finalJob;
-    data.jobpic = jobpost;
+    data.job_title = finalJob == "OTHERS" ? data.Other_title : finalJob;
+    //  data.job_title = finalJob;
+    data.jobpic = "";
     data.is_short = "False";
     data.isallow_tocall = isclicked;
     data.user_id = userID;
+    data.exp_date = date;
     data.mobile_number = phonenumber;
+    data.Duration = "";
     data.s_admin = "False";
 
+    delete data.Other_title;
+    console.log(data);
     async function submitdata() {
       try {
         await fetch("http://103.174.10.108:5002/api/long_job_post", {
@@ -481,9 +565,9 @@ const Sign = ({ navigation: { goBack } }) => {
                   loading={loading}
                   activityIndicatorColor="#5188E3"
                   searchable={true}
-                  searchPlaceholder="Search Title"
+                  searchPlaceholder="Search title here..."
                   onOpen={onCompanyOpen}
-                  onChangeValue={onChange}
+                  onChangeValue={(onselected(company), onChange)}
                   zIndex={1000}
                   zIndexInverse={3000}
                 />
@@ -504,6 +588,53 @@ const Sign = ({ navigation: { goBack } }) => {
             )}
           </View>
         </View>
+        {selctedjob == "OTHERS" ? (
+          <View>
+            <Controller
+              name="Other_title"
+              defaultValue={null}
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <TextInput
+                  style={{
+                    borderColor: "#D9D9D9",
+                    backgroundColor: "#FFF",
+                    borderRadius: 10,
+                    borderWidth: 0.5,
+                    fontSize: 13,
+                    height: 50,
+                    marginHorizontal: 10,
+                    paddingStart: 10,
+                    marginBottom: 15,
+                  }}
+                  selectionColor={"#5188E3"}
+                  placeholder="Type Job Title"
+                  multiline={true}
+                  numberOfLines={50}
+                  editable={selctedjob == "OTHERS" ? true : false}
+                  onChangeText={onChange}
+                  value={value}
+                  //keyboardType="numeric"
+                />
+              )}
+            />
+            {errors.Other_title && (
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "red",
+                  marginTop: "-4%",
+                  marginLeft: "5%",
+                  marginBottom: "4%",
+                }}
+              >
+                {errors.Other_title.message}
+              </Text>
+            )}
+          </View>
+        ) : (
+          ""
+        )}
         <View>
           {/*workspace*/}
           <Controller
@@ -525,14 +656,13 @@ const Sign = ({ navigation: { goBack } }) => {
                     position: "relative", // to fix scroll issue ... it is by default 'absolute'
                     top: 0, //to fix gap between label box and container
                   }}
-                  dropdownIconColor="red"
                   placeholderStyle={styles.placeholderStyles}
                   containerStyle={{ zIndex: 50 }}
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  // searchable={true}
-                  // searchPlaceholder="Set duration here..."
+                  searchable={true}
+                  searchPlaceholder="Set duration here..."
                   onOpen={onCompanyOpen}
                   onChangeValue={onChange}
                 />
@@ -556,7 +686,7 @@ const Sign = ({ navigation: { goBack } }) => {
         <View>
           {/*workspace*/}
           <Controller
-            name="workspace"
+            name="jobtype"
             defaultValue=""
             control={control}
             render={({ field: { onChange, value } }) => (
@@ -623,10 +753,10 @@ const Sign = ({ navigation: { goBack } }) => {
                 placeholderStyle={[styles.placeholderStyles]}
                 containerStyle={{ zIndex: 50 }}
                 loading={loading}
-                listMode="MODAL"
+                listMode="SCROLLVIEW"
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Search Country"
+                searchPlaceholder="Set Country here..."
                 onOpen={ondurationOpen}
                 onChangeValue={(onCountryChange(countryvalue), onChange)}
               />
@@ -683,7 +813,7 @@ const Sign = ({ navigation: { goBack } }) => {
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   containerStyle={{ zIndex: 50, width: 150 }}
-                  searchPlaceholder="Search State"
+                  searchPlaceholder="Search title here..."
                   // onOpen={onCompanyOpen1}
                   onChangeValue={(onstateChange(companyValue1), onChange)}
                   zIndex={1000}
@@ -728,10 +858,10 @@ const Sign = ({ navigation: { goBack } }) => {
                     placeholderStyle={[styles.placeholderStyles]}
                     containerStyle={{ zIndex: 50, width: 155 }}
                     loading={loading}
-                    listMode="MODAL"
+                    listMode="SCROLLVIEW"
                     activityIndicatorColor="#5188E3"
                     searchable={true}
-                    searchPlaceholder="Search District"
+                    searchPlaceholder="Set district here..."
                     onOpen={ondurationOpen}
                     onChangeValue={(onCityChange(cityvalue), onChange)}
                   />
@@ -776,7 +906,7 @@ const Sign = ({ navigation: { goBack } }) => {
                   placeholderStyle={styles.placeholderStyles}
                   containerStyle={{ zIndex: 50 }}
                   loading={loading}
-                  listMode="MODAL"
+                  listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   searchPlaceholder="Set duration here..."
@@ -810,7 +940,6 @@ const Sign = ({ navigation: { goBack } }) => {
               name="Salary"
               defaultValue=""
               control={control}
-              keyboardType="numeric"
               render={({ field: { onChange, value } }) => (
                 <TextInput
                   style={[styles.input, { width: 180 }]}
@@ -859,8 +988,8 @@ const Sign = ({ navigation: { goBack } }) => {
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  // searchable={true}
-                  // searchPlaceholder="Set duration here..."
+                  searchable={true}
+                  searchPlaceholder="Set duration here..."
                   onOpen={ondurationOpen}
                   onChangeValue={onChange}
                 />
@@ -881,7 +1010,7 @@ const Sign = ({ navigation: { goBack } }) => {
           </View>
         </View>
         <Controller
-          name="workspace"
+          name="experience"
           defaultValue=""
           control={control}
           render={({ field: { onChange, value } }) => (
@@ -913,7 +1042,7 @@ const Sign = ({ navigation: { goBack } }) => {
             </View>
           )}
         />
-        {errors.jobtype && (
+        {errors.experience && (
           <Text
             style={{
               fontSize: 10,
@@ -923,9 +1052,45 @@ const Sign = ({ navigation: { goBack } }) => {
               marginBottom: "2%",
             }}
           >
-            {errors.jobtype.message}
+            {errors.experience.message}
           </Text>
         )}
+        <View style={{ height: 70 }}>
+          <TextInput
+            style={{
+              borderColor: "#D9D9D9",
+              backgroundColor: "#FFF",
+              borderRadius: 10,
+              borderWidth: 0.5,
+              fontSize: 13,
+              height: 50,
+              marginHorizontal: 10,
+              paddingStart: 10,
+              marginBottom: 15,
+            }}
+            selectionColor={"#5188E3"}
+            placeholder={"Expire date"}
+            multiline={true}
+            numberOfLines={50}
+            //onChangeText={onChange}
+            defaultValue={showplace ? "" : date.toDateString().slice(3)}
+            value={date}
+            keyboardType="numeric"
+          />
+
+          <TouchableOpacity onPressIn={() => showDatepicker()}>
+            <FontAwesome5
+              name="calendar-alt"
+              size={24}
+              color="#333"
+              style={{
+                position: "absolute",
+                right: 40,
+                bottom: 28,
+              }}
+            />
+          </TouchableOpacity>
+        </View>
         <Controller
           name="Education"
           defaultValue=""
@@ -940,7 +1105,74 @@ const Sign = ({ navigation: { goBack } }) => {
             />
           )}
         />
-
+        <View>
+          <Controller
+            name="Required_Skills"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={[
+                  styles.input,
+                  { height: 200, textAlignVertical: "top", paddingTop: 10 },
+                ]}
+                selectionColor={"#5188E3"}
+                placeholder={"Required skills"}
+                multiline={true}
+                numberOfLines={50}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+          {errors.Required_Skills && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                // marginTop: "-3%",
+                marginLeft: "2%",
+                // marginBottom: "2%",
+              }}
+            >
+              {errors.Required_Skills.message}
+            </Text>
+          )}
+        </View>
+        <View>
+          <Controller
+            name="job_description"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={[
+                  styles.input,
+                  { height: 200, textAlignVertical: "top", paddingTop: 10 },
+                ]}
+                selectionColor={"#5188E3"}
+                placeholder={t("Job_Description")}
+                multiline={true}
+                numberOfLines={50}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+          {errors.job_description && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                // marginTop: "-3%",
+                marginLeft: "2%",
+                // marginBottom: "2%",
+              }}
+            >
+              {errors.job_description.message}
+            </Text>
+          )}
+        </View>
         <Controller
           name="mobile_number"
           defaultValue=""
@@ -1010,50 +1242,8 @@ const Sign = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
-        <View>
-          <Text>expire date</Text>
-        </View>
 
         <Controller
-          name="job_description"
-          defaultValue=""
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={[
-                styles.input,
-                { height: 200, textAlignVertical: "top", paddingTop: 10 },
-              ]}
-              selectionColor={"#5188E3"}
-              placeholder="Required Skills"
-              multiline={true}
-              numberOfLines={50}
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
-        <Controller
-          name="job_description"
-          defaultValue=""
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={[
-                styles.input,
-                { height: 200, textAlignVertical: "top", paddingTop: 10 },
-              ]}
-              selectionColor={"#5188E3"}
-              placeholder={t("Job_Description")}
-              multiline={true}
-              numberOfLines={50}
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
-
-        {/* <Controller
           name="email"
           defaultValue=""
           control={control}
@@ -1081,7 +1271,7 @@ const Sign = ({ navigation: { goBack } }) => {
           >
             {errors.email.message}
           </Text>
-        )} */}
+        )}
         <Text
           // style={{ paddingLeft: 20, marginBottom: 10 }}
           style={{
@@ -1116,8 +1306,8 @@ const Sign = ({ navigation: { goBack } }) => {
           }}
         >
           {t("Add_Image")}
-        </Text> */}
-        {/* <TouchableOpacity
+        </Text>
+        <TouchableOpacity
           onPress={() => {
             setModalVisible(!modalVisible);
           }}
@@ -1156,8 +1346,8 @@ const Sign = ({ navigation: { goBack } }) => {
               />
             </View>
           )}
-        </TouchableOpacity> */}
-        {/* <Modal
+        </TouchableOpacity>
+        <Modal
           animationType="slide"
           //animationInTiming = {13900}
           transparent={true}
@@ -1199,7 +1389,7 @@ const Sign = ({ navigation: { goBack } }) => {
             >
               {ActivityIndicators ? (
                 <View>
-                  
+                 
                   <LottieViewloadingmodal />
                 </View>
               ) : (

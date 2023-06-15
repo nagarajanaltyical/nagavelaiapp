@@ -13,6 +13,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { useContext, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { S_FILTER } from "../../App";
 import { L_FILTER } from "../../App";
 
 import {
@@ -640,7 +641,29 @@ function SwipeMealsScreenTabs() {
 }
 export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
   const [loading, setloading] = useState(true);
+  const { state1, dispatch1 } = useContext(S_FILTER);
 
+  React.useEffect(() => {
+    fetchdata();
+  }, []);
+  async function fetchdata() {
+    try {
+      await fetch("http://103.174.10.108:5002/api/s_job_title", {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => (console.log(result), setComapny(result)));
+    } catch (error) {
+      console.warn(error);
+    }
+  }
   const [short, setishort] = useState(true);
   const { t, language, setlanguage } = useContext(LocalizationContext);
   const [companyOpen, setCompanyOpen] = useState(false);
@@ -663,7 +686,9 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
       }
       console.log(result[0].label);
       const finalJob = result[0].label;
-      GETdATASEARCH(finalJob, "longtime_job", userID);
+      dispatch1({ type: "SET_JOBTITLE", payload: finalJob });
+      dispatch1({ type: "Is_filter_clicked" });
+      //  GETdATASEARCH(finalJob, "longtime_job", userID);
       //
       //
     }
@@ -885,10 +910,9 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
               >
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate("Shorttimefilter"),
-                      setloading(true),
-                      setIndex(0);
-                    dispatch1({ type: "HASH_VALUES" });
+                    navigation.navigate("Shorttimefilter"), setloading(true);
+                    //setIndex(0);
+                    // dispatch1({ type: "HASH_VALUES" });
                   }}
                 >
                   <Image
@@ -991,10 +1015,9 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
               >
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate("Longtimefilter"),
-                      setloading(true),
-                      setIndex(0);
-                    dispatch2({ type: "RESET" });
+                    navigation.navigate("Longtimefilter"), setloading(true);
+                    //  setIndex(0);
+                    //dispatch2({ type: "RESET" });
                   }}
                   // style={{ marginRight: 40 }}
                 >

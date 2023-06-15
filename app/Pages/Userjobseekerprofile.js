@@ -368,9 +368,10 @@ export default function Userjobseekerprofile({ navigation, route }) {
       })
         .then((response) => response.json())
         .then((result) => {
+          consol;
           if (result === "success") {
             redux_dispatch({ type: "User_Details_Given" });
-            navigation.navigate("bottomhome");
+            navigation.goBack();
           }
         });
     } catch (error) {
@@ -469,7 +470,7 @@ export default function Userjobseekerprofile({ navigation, route }) {
                     </View>
                   ) : (
                     <>
-                      <TouchableHighlight
+                      {/* <TouchableHighlight
                         style={{
                           ...styles.openButton,
                           width: 150,
@@ -498,7 +499,7 @@ export default function Userjobseekerprofile({ navigation, route }) {
                             Take Pic
                           </Text>
                         </View>
-                      </TouchableHighlight>
+                      </TouchableHighlight> */}
                       <TouchableHighlight
                         style={{
                           ...styles.openButton,

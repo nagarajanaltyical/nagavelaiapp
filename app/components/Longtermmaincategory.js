@@ -2,6 +2,7 @@
 import React, { Component, useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useCallback } from "react";
+import { useIsFocused } from "@react-navigation/native";
 
 import {
   View,
@@ -71,6 +72,7 @@ const onShare = async ({
   title,
   sal,
   per,
+  propic,
   time,
   loc,
   cou,
@@ -112,117 +114,171 @@ const Items = ({
   page,
   Dis,
   pic,
+  exp,
+  edu,
   name,
+  days_ago,
+  workspace,
+  jobtype,
+  company_name,
+  Openings,
+  propic,
+  lik,
+  user_id,
   short,
   longs,
   shortID,
   Id,
   navigation,
-}) => (
-  <View
-    style={{
-      flex: 1,
-      width: "100%",
-      height: "100%",
-      justifyContent: "center",
-      alignContent: "center",
-      alignItems: "center",
-      marginTop: 3,
-      marginBottom: 3,
-    }}
-  >
-    <TouchableWithoutFeedback
-      onPress={() => {
-        navigation.navigate("longtimeswipe");
+}) => {
+  console.log(lik);
+  lik = lik == "false" ? null : "true";
+  lik = Boolean(lik);
+  console.log(lik);
+  console.log(typeof lik);
+  const flase = lik;
+  const [isClick, setisclcikc] = useState(flase);
+  console.log(isClick);
+  async function fetchdata(paras1, paras2) {
+    const body = {};
+    body.l_id = paras2;
+    body.user_id = paras1;
+    setisclcikc(!isClick);
+    try {
+      await fetch("http://103.174.10.108:5002/api/l_like_job", {
+        method: "post", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(body),
+      })
+        .then((response) => response.json())
+        .then((result) => {});
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+  return (
+    <View
+      style={{
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+        marginTop: 3,
+        marginBottom: 3,
       }}
     >
-      <View
-        style={{
-          backgroundColor: "#fff",
-          borderRadius: 10,
-          height: "100%",
-          width: "98%",
-          paddingHorizontal: 7,
-
-          shadowColor: "#000000",
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 2.62,
-          elevation: 3,
+      <TouchableWithoutFeedback
+        onPress={() => {
+          navigation.navigate("longtimeswipe", {
+            postid: Id,
+            dates: days_ago,
+          });
         }}
       >
         <View
           style={{
-            // height: 170,
+            backgroundColor: "#fff",
+            borderRadius: 10,
             height: "100%",
-            marginLeft: 5,
-            flexDirection: "column",
-            // marginHorizontal: 30,
+            width: "98%",
+            paddingHorizontal: 7,
+
+            shadowColor: "#000000",
+            shadowOffset: {
+              width: 0,
+              height: 1,
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 2.62,
+            elevation: 3,
           }}
         >
           <View
-            style={{ flexDirection: "row", marginBottom: 10, marginTop: 5 }}
+            style={{
+              // height: 170,
+              height: "100%",
+              marginLeft: 5,
+              flexDirection: "column",
+              // marginHorizontal: 30,
+            }}
           >
-            <Text
-              style={{
-                color: "#333",
-                fontSize: 18,
-                textAlign: "left",
-                fontWeight: "500",
-                textAlign: "left",
-                marginTop: 10,
-                lineHeight: 21,
-                width: "85%",
-                // backgroundColor: "red",
-                // marginHorizontal: 30,
-              }}
-            >
-              {title}
-            </Text>
             <View
-              style={{
-                alignItems: "center",
-              }}
+              style={{ flexDirection: "row", marginBottom: 10, marginTop: 5 }}
             >
-              <EvilIcons
-                name="heart"
-                size={24}
-                color="black"
-                style={{ marginTop: 10 }}
-              />
-              <Text
-                style={{ color: "#BDBCBC", fontSize: 10, fontWeight: "400" }}
-              >
-                2 days ago
-              </Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Image
-                // resizeMode="contain"
-                source={require("../images/rupee.png")}
-                style={{ width: 18, height: 18 }}
-              />
               <Text
                 style={{
-                  // marginTop: 3,
-                  color: "#535353",
-                  fontSize: 13,
-                  width: 150,
-                  marginLeft: 10,
+                  color: "#1e5966",
+                  fontSize: 18,
+                  textAlign: "left",
+                  fontWeight: "500",
+                  textAlign: "left",
+                  marginTop: 10,
+                  lineHeight: 21,
+                  width: "85%",
                   // backgroundColor: "red",
-                  fontSize: 14,
-                  fontWeight: "400",
+                  // marginHorizontal: 30,
                 }}
               >
-                {sal} {per}
+                {title}
               </Text>
+              <View
+                style={{
+                  alignItems: "center",
+                }}
+              >
+                <TouchableOpacity onPress={() => fetchdata(user_id, Id)}>
+                  {isClick ? (
+                    <Ionicons
+                      name="ios-heart-sharp"
+                      size={22}
+                      color="#ff0000"
+                    />
+                  ) : (
+                    <Ionicons
+                      name="ios-heart-outline"
+                      size={22}
+                      color="#56909d"
+                    />
+                  )}
+                </TouchableOpacity>
+                <Text
+                  style={{ color: "#BDBCBC", fontSize: 10, fontWeight: "400" }}
+                >
+                  {days_ago} days ago
+                </Text>
+              </View>
             </View>
-            {/* <View
+            <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Image
+                  // resizeMode="contain"
+                  source={require("../images/rupee.png")}
+                  style={{ width: 18, height: 18 }}
+                />
+                <Text
+                  style={{
+                    // marginTop: 3,
+                    color: "#535353",
+                    fontSize: 13,
+                    width: 150,
+                    marginLeft: 10,
+                    // backgroundColor: "red",
+                    fontSize: 14,
+                    fontWeight: "400",
+                  }}
+                >
+                  {sal} {per}
+                </Text>
+              </View>
+              {/* <View
               style={{
                 flexDirection: "row",
 
@@ -249,245 +305,264 @@ const Items = ({
                 {short == "True" ? time : work}
               </Text>
             </View> */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignContent: "center",
+                }}
+              >
+                <Image
+                  // resizeMode="contain"
+                  source={require("../images/experience.png")}
+                  style={{ width: 19, height: 19 }}
+                />
+                <Text
+                  style={{
+                    // marginTop: 3,
+                    color: "#535353",
+                    fontSize: 13,
+                    fontSize: 14,
+                    width: 210,
+                    marginLeft: 10,
+                    fontWeight: "400",
+                  }}
+                >
+                  {exp == null ? "Fresher" : exp}
+                </Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: "row", marginVertical: 10 }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  marginVertical: 10,
+                  alignContent: "center",
+                }}
+              >
+                <Image
+                  // resizeMode="contain"
+                  source={require("../images/mappin.png")}
+                  style={{ width: 19, height: 19 }}
+                />
+                <Text
+                  style={{
+                    // marginTop: 3,
+                    color: "#535353",
+                    fontSize: 13,
+                    fontSize: 14,
+                    width: 150,
+                    marginLeft: 10,
+                    fontWeight: "400",
+                  }}
+                >
+                  {loc.split(",")[0]} ,{loc.split(",")[1]}
+                  {/* | {Dis} km */}
+                </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  marginVertical: 10,
+                  alignContent: "center",
+                }}
+              >
+                <Image
+                  // resizeMode="contain"
+                  source={require("../images/college.png")}
+                  style={{ width: 19, height: 19 }}
+                />
+                <Text
+                  style={{
+                    // marginTop: 3,
+                    color: "#535353",
+                    fontSize: 13,
+                    fontSize: 14,
+                    marginLeft: 10,
+                    fontWeight: "400",
+                  }}
+                >
+                  {/* Adyar, {loc.split(",")[0]} | {Dis} km */}
+                  {edu}
+                </Text>
+              </View>
+            </View>
+
             <View
               style={{
                 flexDirection: "row",
-                alignContent: "center",
+                width: "100%",
+                marginBottom: 10,
               }}
             >
-              <Image
-                // resizeMode="contain"
-                source={require("../images/experience.png")}
-                style={{ width: 19, height: 19 }}
-              />
-              <Text
+              <View
                 style={{
-                  // marginTop: 3,
-                  color: "#535353",
-                  fontSize: 13,
-                  fontSize: 14,
-                  width: 210,
-                  marginLeft: 10,
-                  fontWeight: "400",
-                }}
-              >
-                1-2 Years
-              </Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: "row", marginVertical: 10 }}>
-            <View
-              style={{
-                flexDirection: "row",
-                marginVertical: 10,
-                alignContent: "center",
-              }}
-            >
-              <Image
-                // resizeMode="contain"
-                source={require("../images/mappin.png")}
-                style={{ width: 19, height: 19 }}
-              />
-              <Text
-                style={{
-                  // marginTop: 3,
-                  color: "#535353",
-                  fontSize: 13,
-                  fontSize: 14,
-                  width: 150,
-                  marginLeft: 10,
-                  fontWeight: "400",
-                }}
-              >
-                Adyar, {loc.split(",")[0]}
-                {/* | {Dis} km */}
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginVertical: 10,
-                alignContent: "center",
-              }}
-            >
-              <Image
-                // resizeMode="contain"
-                source={require("../images/college.png")}
-                style={{ width: 19, height: 19 }}
-              />
-              <Text
-                style={{
-                  // marginTop: 3,
-                  color: "#535353",
-                  fontSize: 13,
-                  fontSize: 14,
-                  marginLeft: 10,
-                  fontWeight: "400",
-                }}
-              >
-                {/* Adyar, {loc.split(",")[0]} | {Dis} km */}
-                Any Graduate
-              </Text>
-            </View>
-          </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-              width: "100%",
-              marginBottom: 10,
-            }}
-          >
-            <View
-              style={{
-                width: 45,
-                height: 45,
-                //   marginTop: 3,
-
-                borderRadius: 50,
-                shadowColor: "#000000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.2,
-                shadowRadius: 5.62,
-                elevation: 8,
-
-                resizeMode: "cover",
-              }}
-            >
-              <Image
-                source={{
-                  uri: pic,
-                }}
-                style={{
-                  backgroundColor: "#EEFBFF",
                   width: 45,
                   height: 45,
                   //   marginTop: 3,
 
                   borderRadius: 50,
+                  shadowColor: "#000000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.2,
+                  shadowRadius: 5.62,
+                  elevation: 8,
 
                   resizeMode: "cover",
-                  // borderColor: "#f6ab03",
-                  // borderWidth: 1,
                 }}
-              />
+              >
+                {!(propic == "") ? (
+                  <Image
+                    source={{
+                      uri: propic,
+                    }}
+                    style={{
+                      backgroundColor: "#EEFBFF",
+                      width: 45,
+                      height: 45,
+                      //   marginTop: 3,
+
+                      borderRadius: 50,
+
+                      resizeMode: "cover",
+                      // borderColor: "#f6ab03",
+                      // borderWidth: 1,
+                    }}
+                  />
+                ) : (
+                  <Image
+                    source={require("../images/account.png")}
+                    style={{
+                      backgroundColor: "#EEFBFF",
+                      width: 45,
+                      height: 45,
+                      //   marginTop: 3,
+
+                      borderRadius: 50,
+
+                      resizeMode: "cover",
+                      // borderColor: "#f6ab03",
+                      // borderWidth: 1,
+                    }}
+                  />
+                )}
+              </View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  width: "65%",
+                  paddingLeft: 10,
+
+                  justifyContent: "center",
+                }}
+              >
+                <Text
+                  style={{ color: "#56909D", fontSize: 15, fontWeight: "500" }}
+                >
+                  {company_name == null ? name : company_name}
+                </Text>
+                <Text
+                  style={{
+                    color: "#56909D",
+                    fontSize: 13,
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {company_name == null ? "owner" : name}
+                </Text>
+              </View>
             </View>
             <View
               style={{
-                flexDirection: "column",
-                width: "65%",
-                paddingLeft: 10,
+                justifyContent: "flex-end",
+                alignItems: "center",
+                flexDirection: "row",
+                width: "100%",
 
-                justifyContent: "center",
+                marginBottom: 15,
               }}
             >
               <Text
-                style={{ color: "#56909D", fontSize: 15, fontWeight: "500" }}
+                style={{
+                  // marginTop: 3,
+                  color: "#56909D",
+                  fontSize: 13,
+                  fontSize: 14,
+
+                  marginHorizontal: 2,
+
+                  fontWeight: "400",
+                }}
               >
-                {name}
+                {workspace}
+              </Text>
+
+              <Text
+                style={{
+                  // marginTop: 3,
+
+                  color: "#56909D",
+                  fontSize: 13,
+                  fontSize: 14,
+                  marginHorizontal: 2,
+
+                  fontWeight: "400",
+                }}
+              >
+                |
               </Text>
               <Text
                 style={{
+                  // marginTop: 3,
+
                   color: "#56909D",
                   fontSize: 13,
+                  fontSize: 14,
+                  marginHorizontal: 2,
+
                   fontWeight: "400",
-                  textTransform: "capitalize",
                 }}
               >
-                Owner
+                {jobtype}
+              </Text>
+              <Text
+                style={{
+                  // marginTop: 3,
+
+                  color: "#56909D",
+                  fontSize: 13,
+                  fontSize: 14,
+                  marginHorizontal: 2,
+
+                  fontWeight: "400",
+                }}
+              >
+                |
+              </Text>
+              <Text
+                style={{
+                  // marginTop: 3,
+
+                  color: "#56909D",
+                  fontSize: 13,
+                  fontSize: 14,
+                  marginHorizontal: 2,
+                  width: 80,
+                  fontWeight: "400",
+                }}
+              >
+                {Openings} Openings
               </Text>
             </View>
           </View>
-          <View
-            style={{
-              justifyContent: "flex-end",
-              alignItems: "center",
-              flexDirection: "row",
-              width: "100%",
-
-              marginBottom: 15,
-            }}
-          >
-            <Text
-              style={{
-                // marginTop: 3,
-                color: "#56909D",
-                fontSize: 13,
-                fontSize: 14,
-
-                marginHorizontal: 2,
-
-                fontWeight: "400",
-              }}
-            >
-              work from home
-            </Text>
-
-            <Text
-              style={{
-                // marginTop: 3,
-
-                color: "#56909D",
-                fontSize: 13,
-                fontSize: 14,
-                marginHorizontal: 2,
-
-                fontWeight: "400",
-              }}
-            >
-              |
-            </Text>
-            <Text
-              style={{
-                // marginTop: 3,
-
-                color: "#56909D",
-                fontSize: 13,
-                fontSize: 14,
-                marginHorizontal: 2,
-
-                fontWeight: "400",
-              }}
-            >
-              Permanent
-            </Text>
-            <Text
-              style={{
-                // marginTop: 3,
-
-                color: "#56909D",
-                fontSize: 13,
-                fontSize: 14,
-                marginHorizontal: 2,
-
-                fontWeight: "400",
-              }}
-            >
-              |
-            </Text>
-            <Text
-              style={{
-                // marginTop: 3,
-
-                color: "#56909D",
-                fontSize: 13,
-                fontSize: 14,
-                marginHorizontal: 2,
-                width: 80,
-                fontWeight: "400",
-              }}
-            >
-              2 Openings
-            </Text>
-          </View>
         </View>
-      </View>
-    </TouchableWithoutFeedback>
-  </View>
-);
+      </TouchableWithoutFeedback>
+    </View>
+  );
+};
 
 // create a component
 
@@ -495,6 +570,8 @@ function Longtermmainlist({ navigation, route }) {
   // const [search, setSearch] = useState("");
   const { t, language, setlanguage } = useContext(LocalizationContext);
   const { state2, dispatch2 } = useContext(L_FILTER);
+  console.log(state2);
+  const isFocused = useIsFocused();
 
   console.log(state2);
   const [search, setSearch] = useState("");
@@ -508,10 +585,24 @@ function Longtermmainlist({ navigation, route }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [refreshing, setRefreshing] = useState(true);
   useEffect(() => {
-    fetchdata();
-  }, []);
+    if (isFocused) {
+      if (state2.filter_click) {
+        console.log("hhhiihih");
+        fetchdata1();
+      } else {
+        fetchdata();
+      }
+    }
+  }, [isFocused]);
   React.useEffect(() => {
-    navigation.addListener("tabPress", () => fetchdata());
+    navigation.addListener("focus", () => {
+      if (state2.filter_click) {
+        console.log("hhhiihih");
+        fetchdata1();
+      } else {
+        fetchdata();
+      }
+    });
   }, []);
   const [nodata, setnodata] = useState(false);
 
@@ -521,24 +612,13 @@ function Longtermmainlist({ navigation, route }) {
     console.log(state2.page);
     const pagevalue = state2.page + 1;
     body.page = pagevalue;
-    body.filter = {
-      states: "$",
-      district: "$",
-      job_title: "$",
-      duration: "$",
-      salary: "$",
-      workmode: "$",
-      education: "$",
-      experience: "$",
-      companyname: "$",
-      filter_click: false,
-    };
+    body.filter = state2;
 
     body.language = states.lang_value;
     console.log(body);
     try {
       await fetch(
-        `http://103.174.10.108:5002/api/limit/L_like_apply_check/${user_id}`,
+        `http://192.168.1.12:5000/api/limit/L_like_apply_check/${user_id}`,
         {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin
@@ -572,6 +652,24 @@ function Longtermmainlist({ navigation, route }) {
       console.warn(error);
     }
   };
+  function getthedays(paras) {
+    const dateoo = `${new Date(paras).getMonth() + 1}/${new Date(
+      paras
+    ).getDate()}/${new Date(paras).getFullYear()}`;
+    console.log(dateoo);
+    const dateof = `${
+      new Date().getMonth() + 1
+    }/${new Date().getDate()}/${new Date().getFullYear()}`;
+    console.log(dateof);
+    var date1 = new Date(dateoo);
+    var date2 = new Date(dateof);
+    var Difference_In_Time = date2.getTime() - date1.getTime();
+
+    // To calculate the no. of days between two dates
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    return Difference_In_Days;
+  }
 
   async function fetchdata() {
     try {
@@ -591,7 +689,49 @@ function Longtermmainlist({ navigation, route }) {
       };
       body.language = states.lang_value;
       await fetch(
-        `http://103.174.10.108:5002/api/limit/L_like_apply_check/${user_id}`,
+        `http://192.168.1.12:5000/api/limit/L_like_apply_check/${user_id}`,
+        {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify(body),
+        }
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          setRefreshing(false);
+
+          var newdata = result["long"];
+
+          if (newdata.length == 0) {
+            setnodata(true);
+            setloading(false);
+          } else {
+            setdata(newdata);
+            setloading(false);
+            setnodata(false);
+          }
+          // setdata(newdata);
+          // setloading(false);
+        });
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+  async function fetchdata1() {
+    try {
+      const body = {};
+      body.page = 0;
+      body.filter = state2;
+      body.language = states.lang_value;
+      await fetch(
+        `http://192.168.1.12:5000/api/limit/L_like_apply_check/${user_id}`,
         {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin
@@ -731,8 +871,18 @@ function Longtermmainlist({ navigation, route }) {
                 time={item.Duration}
                 work={item.time}
                 name={item.username}
+                user_id={user_id}
                 loc={item.location}
+                Openings={item.Openings}
+                exp={item.experience}
+                lik={item.liked}
+                propic={item.profilepic}
+                edu={item.Education}
+                company_name={item.companyname}
+                jobtype={item.jobtype}
+                workspace={item.workspace}
                 // page={route.name}
+                days_ago={getthedays(item.posteddatetime)}
                 Dis={item.distance}
                 short={item.is_short}
                 longs={item.long_id}

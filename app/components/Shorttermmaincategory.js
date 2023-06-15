@@ -22,6 +22,8 @@ import Top from "../components/Topcontainer";
 import { useEffect } from "react";
 import { LocalizationContext } from "../../App";
 import { useContext } from "react";
+import { useIsFocused } from "@react-navigation/native";
+
 import { Ionicons } from "@expo/vector-icons";
 import {
   MaterialCommunityIcons,
@@ -42,6 +44,7 @@ import LottieViewloading from "../components/Loading";
 import Nodata from "../Lottie/Nodata";
 import { MotiView } from "moti";
 import { endAsyncEvent } from "react-native/Libraries/Performance/Systrace";
+
 //get a item
 
 const DATA = [
@@ -71,6 +74,7 @@ const onShare = async ({
   Dis,
   name,
   short,
+  Openings,
   work,
 }) => {
   try {
@@ -108,267 +112,349 @@ const Items = ({
   pic,
   name,
   short,
+  lik,
   longs,
   shortID,
+  company_name,
+  days_ago,
+  Openings,
+  user_id,
   Id,
   navigation,
-}) => (
-  <View
-    style={{
-      flex: 1,
-      width: "100%",
-      height: "100%",
-      justifyContent: "center",
-      alignContent: "center",
-      alignItems: "center",
-      marginTop: 3,
-      marginBottom: 3,
-    }}
-  >
-    <TouchableWithoutFeedback
-      onPress={() => {
-        navigation.navigate("shorttimeswipe");
+}) => {
+  console.log(lik);
+  lik = lik == "false" ? null : "true";
+  lik = Boolean(lik);
+  console.log(lik);
+  console.log(typeof lik);
+  const flase = lik;
+  const [isClick, setisclcikc] = useState(flase);
+  console.log(isClick);
+  const handleLikeButtonPress = (card) => {
+    const newCards = data.map((c) => {
+      if (c.id === card.id) {
+        fetchdata(userID, card.id);
+
+        return { ...c, liked: c.liked == "true" ? "false" : "true" };
+      } else {
+        return c;
+      }
+    });
+  };
+  //to get the API && mark liked
+  async function fetchdata(paras1, paras2) {
+    const body = {};
+    body.s_id = paras2;
+    body.user_id = paras1;
+    setisclcikc(!isClick);
+    // console.log("gur");
+    // lik = lik == "false" ? "true" : "false";
+    try {
+      await fetch("http://103.174.12.108:5002/api/s_like_details", {
+        method: "post", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(body),
+      })
+        .then((response) => response.json())
+        .then((result) => {});
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+  return (
+    <View
+      style={{
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+        marginTop: 3,
+        marginBottom: 3,
       }}
     >
-      <View
-        style={{
-          backgroundColor: "#fff",
-          borderRadius: 10,
-          height: "100%",
-          width: "98%",
-          paddingHorizontal: 7,
-
-          shadowColor: "#000000",
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 2.62,
-          elevation: 3,
+      <TouchableWithoutFeedback
+        onPress={() => {
+          navigation.navigate("shorttimeswipe", {
+            postid: Id,
+            dates: days_ago,
+          });
         }}
       >
         <View
           style={{
-            // height: 170,
+            backgroundColor: "#fff",
+            borderRadius: 10,
             height: "100%",
-            marginLeft: 5,
-            flexDirection: "column",
-            // marginHorizontal: 30,
+            width: "98%",
+            paddingHorizontal: 7,
+
+            shadowColor: "#000000",
+            shadowOffset: {
+              width: 0,
+              height: 1,
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 2.62,
+            elevation: 3,
           }}
         >
           <View
-            style={{ flexDirection: "row", marginBottom: 10, marginTop: 5 }}
-          >
-            <Text
-              style={{
-                color: "#333",
-                fontSize: 18,
-                textAlign: "left",
-                fontWeight: "500",
-                textAlign: "left",
-                marginTop: 10,
-                lineHeight: 21,
-                width: "85%",
-                // backgroundColor: "red",
-                // marginHorizontal: 30,
-              }}
-            >
-              {title}
-            </Text>
-            <View
-              style={{
-                alignItems: "center",
-              }}
-            >
-              <EvilIcons
-                name="heart"
-                size={24}
-                color="black"
-                style={{ marginTop: 10 }}
-              />
-              <Text
-                style={{ color: "#BDBCBC", fontSize: 10, fontWeight: "400" }}
-              >
-                2 days ago
-              </Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Image
-                // resizeMode="contain"
-                source={require("../images/rupee.png")}
-                style={{ width: 18, height: 18 }}
-              />
-              <Text
-                style={{
-                  // marginTop: 3,
-                  color: "#535353",
-                  fontSize: 13,
-                  width: 150,
-                  marginLeft: 10,
-                  // backgroundColor: "red",
-                  fontSize: 14,
-                  fontWeight: "400",
-                }}
-              >
-                {sal} {per}
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-
-                alignItems: "center",
-              }}
-            >
-              <Image
-                // resizeMode="contain"
-                source={require("../images/history.png")}
-                style={{ width: 19, height: 23 }}
-              />
-              <Text
-                style={{
-                  // marginTop: 3,
-                  color: "#535353",
-                  fontSize: 13,
-                  fontSize: 14,
-                  marginLeft: 10,
-                  width: 120,
-
-                  fontWeight: "400",
-                }}
-              >
-                {short == "True" ? time : work}
-              </Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <View
-              style={{
-                flexDirection: "row",
-                marginVertical: 10,
-                alignContent: "center",
-              }}
-            >
-              <Image
-                // resizeMode="contain"
-                source={require("../images/mappin.png")}
-                style={{ width: 19, height: 19 }}
-              />
-              <Text
-                style={{
-                  // marginTop: 3,
-                  color: "#535353",
-                  fontSize: 13,
-                  fontSize: 14,
-                  width: 210,
-                  marginLeft: 10,
-                  fontWeight: "400",
-                }}
-              >
-                Adyar, {loc.split(",")[0]} | {Dis} km
-              </Text>
-            </View>
-          </View>
-
-          <View
             style={{
-              marginVertical: 10,
-              flexDirection: "row",
-              width: "100%",
-              marginBottom: 15,
+              // height: 170,
+              height: "100%",
+              marginLeft: 5,
+              flexDirection: "column",
+              // marginHorizontal: 30,
             }}
           >
             <View
+              style={{ flexDirection: "row", marginBottom: 10, marginTop: 5 }}
+            >
+              <Text
+                style={{
+                  color: "#1e5966",
+                  fontSize: 18,
+                  textAlign: "left",
+                  fontWeight: "500",
+                  textAlign: "left",
+                  marginTop: 10,
+                  lineHeight: 21,
+                  width: "85%",
+                  // backgroundColor: "red",
+                  // marginHorizontal: 30,
+                }}
+              >
+                {title}
+              </Text>
+              <View
+                style={{
+                  alignItems: "center",
+                }}
+              >
+                <TouchableOpacity onPress={() => fetchdata(user_id, Id)}>
+                  {isClick ? (
+                    <Ionicons
+                      name="ios-heart-sharp"
+                      size={22}
+                      color="#ff0000"
+                    />
+                  ) : (
+                    <Ionicons
+                      name="ios-heart-outline"
+                      size={22}
+                      color="#56909d"
+                    />
+                  )}
+                </TouchableOpacity>
+                <Text
+                  style={{ color: "#BDBCBC", fontSize: 10, fontWeight: "400" }}
+                >
+                  {days_ago} Days ago
+                </Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Image
+                  // resizeMode="contain"
+                  source={require("../images/rupee.png")}
+                  style={{ width: 18, height: 18 }}
+                />
+                <Text
+                  style={{
+                    // marginTop: 3,
+                    color: "#535353",
+                    fontSize: 13,
+                    width: 150,
+                    marginLeft: 10,
+                    // backgroundColor: "red",
+                    fontSize: 14,
+                    fontWeight: "400",
+                  }}
+                >
+                  {sal} {per}
+                </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  // resizeMode="contain"
+                  source={require("../images/history.png")}
+                  style={{ width: 19, height: 23 }}
+                />
+                <Text
+                  style={{
+                    // marginTop: 3,
+                    color: "#535353",
+                    fontSize: 13,
+                    fontSize: 14,
+                    marginLeft: 10,
+                    width: 120,
+
+                    fontWeight: "400",
+                  }}
+                >
+                  {short == "True" ? time : work}
+                </Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: "row" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  marginVertical: 10,
+                  alignContent: "center",
+                }}
+              >
+                <Image
+                  // resizeMode="contain"
+                  source={require("../images/mappin.png")}
+                  style={{ width: 19, height: 19 }}
+                />
+                <Text
+                  style={{
+                    // marginTop: 3,
+                    color: "#535353",
+                    fontSize: 13,
+                    fontSize: 14,
+                    width: 210,
+                    marginLeft: 10,
+                    fontWeight: "400",
+                  }}
+                >
+                  {loc.split(",")[0]},{loc.split(",")[1]} | {Dis} km
+                </Text>
+              </View>
+            </View>
+
+            <View
               style={{
-                width: 45,
-                height: 45,
-                //   marginTop: 3,
-
-                borderRadius: 50,
-                shadowColor: "#000000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.2,
-                shadowRadius: 5.62,
-                elevation: 8,
-
-                resizeMode: "cover",
+                marginVertical: 10,
+                flexDirection: "row",
+                width: "100%",
+                marginBottom: 15,
               }}
             >
-              <Image
-                source={{
-                  uri: pic,
-                }}
+              <View
                 style={{
-                  backgroundColor: "#EEFBFF",
                   width: 45,
                   height: 45,
                   //   marginTop: 3,
 
                   borderRadius: 50,
+                  shadowColor: "#000000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.2,
+                  shadowRadius: 5.62,
+                  elevation: 8,
 
                   resizeMode: "cover",
-                  // borderColor: "#f6ab03",
-                  // borderWidth: 1,
                 }}
-              />
-            </View>
-            <View
-              style={{
-                flexDirection: "column",
-                width: "65%",
-                paddingLeft: 10,
-
-                justifyContent: "center",
-              }}
-            >
-              <Text
-                style={{ color: "#56909D", fontSize: 15, fontWeight: "500" }}
               >
-                {name}
-              </Text>
-              <Text
+                {!(pic == "") ? (
+                  <Image
+                    source={{
+                      uri: pic,
+                    }}
+                    style={{
+                      backgroundColor: "#EEFBFF",
+                      width: 45,
+                      height: 45,
+                      //   marginTop: 3,
+
+                      borderRadius: 50,
+
+                      resizeMode: "cover",
+                      // borderColor: "#f6ab03",
+                      // borderWidth: 1,
+                    }}
+                  />
+                ) : (
+                  <Image
+                    source={require("../images/account.png")}
+                    style={{
+                      backgroundColor: "#EEFBFF",
+                      width: 45,
+                      height: 45,
+                      //   marginTop: 3,
+
+                      borderRadius: 50,
+
+                      resizeMode: "cover",
+                      // borderColor: "#f6ab03",
+                      // borderWidth: 1,
+                    }}
+                  />
+                )}
+              </View>
+              <View
                 style={{
-                  color: "#56909D",
-                  fontSize: 13,
-                  fontWeight: "400",
-                  textTransform: "capitalize",
+                  flexDirection: "column",
+                  width: "65%",
+                  paddingLeft: 10,
+
+                  justifyContent: "center",
                 }}
               >
-                Owner
-              </Text>
-            </View>
-            <View
-              style={{
-                justifyContent: "flex-end",
-                alignItems: "flex-end",
-              }}
-            >
-              <Text
+                <Text
+                  style={{ color: "#56909D", fontSize: 15, fontWeight: "500" }}
+                >
+                  {company_name == null ? name : company_name}
+                </Text>
+                <Text
+                  style={{
+                    color: "#56909D",
+                    fontSize: 13,
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {company_name == null ? "owner" : name}
+                </Text>
+              </View>
+              <View
                 style={{
-                  // marginTop: 3,
-
-                  color: "#56909D",
-                  fontSize: 13,
-                  fontSize: 14,
-
-                  fontWeight: "400",
+                  justifyContent: "flex-end",
+                  alignItems: "flex-end",
                 }}
               >
-                2 Openings
-              </Text>
+                <Text
+                  style={{
+                    // marginTop: 3,
+
+                    color: "#56909D",
+                    fontSize: 13,
+                    fontSize: 14,
+
+                    fontWeight: "400",
+                  }}
+                >
+                  {Openings} Openings
+                </Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
-    </TouchableWithoutFeedback>
-  </View>
-);
+      </TouchableWithoutFeedback>
+    </View>
+  );
+};
 
 // create a component
 
@@ -377,19 +463,37 @@ function Shorttermmainlist({ navigation, route }) {
   const { t, language, setlanguage } = useContext(LocalizationContext);
   const { state1, dispatch1 } = useContext(S_FILTER);
   console.log(state1);
+
   const [search, setSearch] = useState("");
   const states = useSelector((state) => state);
-
+  const isFocused = useIsFocused();
   const user_id = useSelector((state) => state.ID);
   const [data, setdata] = useState([]);
   const [loading, setloading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [refreshing, setRefreshing] = useState(true);
   useEffect(() => {
-    fetchdata();
-  }, []);
+    console.log(state1.filter_click);
+    console.log("imm the dTA");
+    if (isFocused) {
+      if (state1.filter_click) {
+        console.log("hhhiihih");
+        fetchdata1();
+      } else {
+        fetchdata();
+      }
+    }
+  }, [isFocused]);
+
   React.useEffect(() => {
-    navigation.addListener("tabPress", () => fetchdata());
+    navigation.addListener("focus", () => {
+      if (state1.filter_click) {
+        console.log("hhhiihih");
+        fetchdata1();
+      } else {
+        fetchdata();
+      }
+    });
   }, []);
   const [nodata, setnodata] = useState(false);
   const [end, OnEnd] = useState(false);
@@ -400,19 +504,13 @@ function Shorttermmainlist({ navigation, route }) {
     const pagevalue = state1.page + 1;
     body.page = pagevalue;
     dispatch1({ type: "Page_Increase", payload: pagevalue });
-    body.filter = {
-      states: "$",
-      district: "$",
-      job_title: "$",
-      duration: "$",
-      salary: "$",
-      filter_click: false,
-    };
+    body.filter = state1;
     body.language = states.lang_value;
+    console.log(body);
 
     try {
       await fetch(
-        `http://103.174.10.108:5002/api/limit/s_like_apply_check/${user_id}`,
+        `http://192.168.1.12:5000/api/limit/s_like_apply_check/${user_id}`,
         {
           method: "POST",
           mode: "cors",
@@ -446,6 +544,26 @@ function Shorttermmainlist({ navigation, route }) {
     }
   };
 
+  //get the diiference data
+  function getthedays(paras) {
+    const dateoo = `${new Date(paras).getMonth() + 1}/${new Date(
+      paras
+    ).getDate()}/${new Date(paras).getFullYear()}`;
+    console.log(dateoo);
+    const dateof = `${
+      new Date().getMonth() + 1
+    }/${new Date().getDate()}/${new Date().getFullYear()}`;
+    console.log(dateof);
+    var date1 = new Date(dateoo);
+    var date2 = new Date(dateof);
+    var Difference_In_Time = date2.getTime() - date1.getTime();
+
+    // To calculate the no. of days between two dates
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    return Difference_In_Days;
+  }
+
   async function fetchdata() {
     console.log(states);
     const body = {};
@@ -462,7 +580,7 @@ function Shorttermmainlist({ navigation, route }) {
 
     try {
       await fetch(
-        `http://103.174.10.108:5002/api/limit/s_like_apply_check/${user_id}`,
+        `http://192.168.1.12:5000/api/limit/s_like_apply_check/${user_id}`,
         {
           method: "POST",
           mode: "cors",
@@ -484,6 +602,51 @@ function Shorttermmainlist({ navigation, route }) {
             setnodata(true);
             setloading(false);
           } else {
+            console.log(newdata);
+            dispatch1({ type: "Page_Increase", payload: 1 });
+            setdata(newdata);
+            setloading(false);
+            setnodata(false);
+          }
+          // setdata(newdata);
+          // setloading(false);
+        });
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+  async function fetchdata1() {
+    console.log(states);
+    const body = {};
+    body.page = 0;
+    body.filter = state1;
+    body.language = states.lang_value;
+
+    try {
+      await fetch(
+        `http://192.168.1.12:5000/api/limit/s_like_apply_check/${user_id}`,
+        {
+          method: "POST",
+          mode: "cors",
+          cache: "no-cache",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          setRefreshing(false);
+          var newdata = result["short"];
+
+          if (newdata.length == 0) {
+            setnodata(true);
+            setloading(false);
+          } else {
+            console.log(newdata);
             dispatch1({ type: "Page_Increase", payload: 1 });
             setdata(newdata);
             setloading(false);
@@ -611,20 +774,28 @@ function Shorttermmainlist({ navigation, route }) {
                   work={item.time}
                   name={item.username}
                   loc={item.location}
+                  lik={item.liked}
                   // page={route.name}
-                  pic={item.pic}
+                  company_name={item.companyname}
+                  Openings={item.Openings}
+                  days_ago={getthedays(item.posteddatetime)}
+                  pic={item.profilepic}
                   Dis={item.distance}
                   short={item.is_short}
                   longs={item.long_id}
                   shortID={item.short_id}
                   Id={item.id}
+                  user_id={user_id}
                   end={end}
                   navigation={navigation}
                 />
               )}
               keyExtractor={(item) => item.unique_id}
               refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={fetchdata} />
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={state1.filter_click ? fetchdata1 : fetchdata}
+                />
               }
               onEndReached={() => (!no_more ? Onfetch() : console.log("hii"))}
             />

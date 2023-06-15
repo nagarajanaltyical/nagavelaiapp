@@ -32,36 +32,37 @@ const Item = ({ dur2, loc, per, price, pic, title, dur, navigation, id }) => (
       marginTop: 10,
     }}
   >
-    <TouchableWithoutFeedback
-      onPress={() =>
-        navigation.navigate("rentalproviderswipe", {
-          post_id: id,
-        })
-      }
+    <View
+      style={{
+        backgroundColor: "#fff",
+        borderRadius: 15,
+        height: "100%",
+        width: "90%",
+        marginLeft: "5%",
+        justifyContent: "center",
+        shadowColor: "#000000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 5.62,
+        elevation: 8,
+      }}
     >
-      <View
-        style={{
-          backgroundColor: "#fff",
-          borderRadius: 15,
-          height: "100%",
-          width: "90%",
-          marginLeft: "5%",
-          justifyContent: "center",
-          shadowColor: "#000000",
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 5.62,
-          elevation: 8,
-        }}
-      >
-        <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row" }}>
+        <TouchableWithoutFeedback
+          onPress={() =>
+            navigation.navigate("rentalproviderswipe", {
+              post_id: id,
+            })
+          }
+        >
           <View
             style={{
               flexDirection: "column",
               width: "75%",
+              // backgroundColor: "green",
               marginHorizontal: 10,
               marginTop: 10,
             }}
@@ -133,7 +134,7 @@ const Item = ({ dur2, loc, per, price, pic, title, dur, navigation, id }) => (
               <Image
                 // resizeMode="contain"
                 source={require("../../../images/history.png")}
-                style={{ width: 19, height: 19 }}
+                style={{ width: 19, height: 23 }}
               />
               <Text
                 style={{
@@ -178,56 +179,65 @@ const Item = ({ dur2, loc, per, price, pic, title, dur, navigation, id }) => (
               </Text>
             </View>
           </View>
+        </TouchableWithoutFeedback>
+        <View
+          style={{
+            position: "relative",
+            flexDirection: "column",
+            marginLeft: -8,
+            // backgroundColor: "red",
+            // width: "18%",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
           <View
             style={{
-              position: "relative",
-              flexDirection: "column",
-              marginLeft: -8,
+              marginTop: "-4%",
+              // backgroundColor: "red",
+              width: "80%",
+              paddingLeft: 23,
+              // justifyContent: "flex-end",
 
-              // width: "18%",
-              justifyContent: "space-around",
-              alignItems: "center",
+              // marginLeft: "5%",
             }}
           >
-            <View
-              style={{
-                marginTop: "-4%",
-                // backgroundColor: "red",
-                width: "80%",
-                paddingLeft: 23,
-                // justifyContent: "flex-end",
-
-                // marginLeft: "5%",
+            <TouchableOpacity
+              onPress={() => {
+                Alert.alert(
+                  "Share",
+                  "Our new features are just around the corner."
+                );
               }}
             >
               <MaterialCommunityIcons
                 name="share-all-outline"
                 size={22}
-                color="#333"
+                color="#56909d"
               />
-            </View>
-            <Image
-              source={{
-                uri: pic,
-              }}
-              style={{
-                backgroundColor: "#eefbff",
-                width: 60,
-                height: 60,
-                //   marginTop: 3,
-                borderRadius: 10,
-                borderColor: "#1e5966",
-                borderWidth: 1,
-                resizeMode: "cover",
-
-                // borderColor: "#f6ab03",
-                // borderWidth: 1,
-              }}
-            />
+            </TouchableOpacity>
           </View>
+          <Image
+            source={{
+              uri: pic,
+            }}
+            style={{
+              backgroundColor: "#eefbff",
+              width: 60,
+              height: 60,
+              //   marginTop: 3,
+              borderRadius: 10,
+              borderColor: "#1e5966",
+              borderWidth: 1,
+              resizeMode: "cover",
+
+              // borderColor: "#f6ab03",
+              // borderWidth: 1,
+            }}
+          />
         </View>
       </View>
-    </TouchableWithoutFeedback>
+    </View>
     {/* <View style={{ height: "25%" }}></View> */}
   </View>
 );

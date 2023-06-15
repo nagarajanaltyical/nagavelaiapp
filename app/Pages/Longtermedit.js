@@ -15,6 +15,9 @@ import { useSelector, useDispatch } from "react-redux";
 import Checkbox from "expo-checkbox";
 import { useEffect } from "react";
 import LottieViewloading from "../components/Loading";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+
 // import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useIsFocused } from "@react-navigation/native";
@@ -175,11 +178,78 @@ const LongTermedit = ({ navigation, route }) => {
   const [workspaceopen, setworkspaceopen] = useState(false);
   const [workspacevalue, setworkspacevalue] = useState(false);
   const [workspace, setworkspace] = useState([
-    { label: "Work from office", value: "Work from office" },
-    { label: "Permanent Remote / WFH", value: "Permanent Remote / WFH" },
+    { label: "Work From Office", value: "Work From Office" },
+    { label: "Remote", value: "Remote" },
     { label: "Hybrid", value: "Hybrid" },
-    { label: "Temporary", value: "Temporary" },
+    { label: "Onsite", value: "Onsite" },
   ]);
+  //to get the date
+  // To get the Expire date
+  const [opens, setisopen] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [showplace, setshowplace] = useState(true);
+
+  const showDatepicker = () => {
+    setisopen(true);
+    showMode("date");
+    setshowplace(false);
+    minDate: new Date();
+  };
+  const onChange = (event, selectedDate) => {
+    console.log(selectedDate);
+    const currentDate = selectedDate;
+    console.log(
+      currentDate.getDate(),
+      currentDate.getMonth(),
+      currentDate.getFullYear()
+    );
+    setDate(currentDate);
+    setisopen(false);
+  };
+  function convertDate(dateString) {
+    // Convert the date string to a Date object.
+    let date = new Date(dateString);
+
+    // Get the year, month, day, hour, minute, second, and millisecond properties of the Date object.
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    let millisecond = date.getMilliseconds();
+
+    // Return a JavaScript object containing the date data.
+    return {
+      year: year,
+      month: month,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
+    };
+  }
+  const showMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange,
+      mode: currentMode,
+    });
+  };
+
+  //jobtype1
+  const [jobtypeopen1, setjobtypeopen1] = useState(false);
+  const [jobtypevalue1, setjobtypevalue1] = useState(false);
+  const [jobtype1, setjobtype1] = useState([
+    { label: "Fresher", value: "Fresher" },
+    { label: "0 - 6 Months", value: "0 - 6 Months" },
+    { label: "7 - 12 Months", value: "7 - 12 Months" },
+    { label: "1 - 5 Years", value: "1 - 5 Years" },
+    { label: "5 - 10 Years", value: "5 - 10 Years" },
+    { label: "10+ Years", value: "10+ Years" },
+  ]);
+
   //duration
   const [durationopen, setdurationopen] = useState(false);
   const [durationvalue, setdurationvalue] = useState(false);
@@ -200,6 +270,13 @@ const LongTermedit = ({ navigation, route }) => {
   ]);
   const [companyOpen1, setCompanyOpen1] = useState(false);
   const [companyValue1, setCompanyValue1] = useState(null);
+  const [jobtypeopen, setjobtypeopen] = useState(false);
+  const [jobtypevalue, setjobtypevalue] = useState(false);
+  const [jobtype, setjobtype] = useState([
+    { label: "Full Time", value: "Full Time" },
+    { label: "Internship", value: "Internship" },
+    { label: "Part Time", value: "Part Time" },
+  ]);
   const [company1, setComapny1] = useState([
     { label: "PUCIT", value: "pucit" },
     { label: "UCP", value: "ucp" },
@@ -234,7 +311,7 @@ const LongTermedit = ({ navigation, route }) => {
 
     // body.page = 0;
     try {
-      await fetch(`http://103.174.10.108:5002/api/like_apply_slideshow`, {
+      await fetch(`http://192.168.1.10:5000/api/like_apply_slideshow`, {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
@@ -404,7 +481,7 @@ const LongTermedit = ({ navigation, route }) => {
     console.log("im the dataaa");
     console.log(result.length);
     const finalJob = result.length == 0 ? datas.job_title : result[0].label;
-    data.Duration = data.Duration == "" ? datas.Duration : data.Duration;
+    data.Duration = "";
     data.Education = data.Education == "" ? datas.Education : data.Education;
     data.Salary = data.Salary == "" ? datas.Salary : data.Salary;
     data.email = data.email == "" ? datas.email : data.email;
@@ -416,13 +493,19 @@ const LongTermedit = ({ navigation, route }) => {
       data.country == null ? datas.location.split(",")[2] : data.country;
     data.state = data.state == null ? datas.location.split(",")[1] : data.state;
     data.per = data.per == "" ? datas.per : data.per;
-    data.job_title = finalJob;
-    data.jobpic = jobpost == null ? datas.jobpost : jobpost;
+    data.Required_Skills =
+      data.Required_Skills == "" ? datas.Required_Skills : data.Required_Skills;
+    data.jobpic = "";
+    data.experience =
+      data.experience == "" ? datas.experience : data.experience;
     data.is_short = "False";
+    data.exp_date = date == new Date() ? datas.exp_date : date;
     console.log("im thee data of the");
     console.log(data.workspace);
     data.workspace = data.workspace == "" ? datas.workspace : data.workspace;
     // data.isallow_tocall = isclicked;
+    data.jobtype = data.jobtype == "" ? datas.jobtype : data.jobtype;
+    data.Openings = data.Openings == "" ? datas.Openings : data.Openings;
     data.user_id = userID;
     data.mobile_number = phonenumber;
     data.card_id = route.params.post_id;
@@ -487,58 +570,7 @@ const LongTermedit = ({ navigation, route }) => {
         </Text>
       </View> */}
       <ScrollView style={{ marginHorizontal: 10 }}>
-        <View>
-          <View style={styles.dropdownCompany}>
-            <Controller
-              name="job_title"
-              defaultValue=""
-              control={control}
-              render={({ field: { onChange, value, onBlur } }) => (
-                <DropDownPicker
-                  style={styles.dropdown}
-                  open={companyOpen}
-                  value={companyValue} //companyValue
-                  items={company}
-                  setOpen={setCompanyOpen}
-                  listMode="MODAL"
-                  modalTitle="Select job title"
-                  modalProps={{
-                    animationType: "slide",
-                  }}
-                  modalContentContainerStyle={{
-                    backgroundColor: "white",
-                  }}
-                  setValue={setCompanyValue}
-                  setItems={setComapny}
-                  placeholder={datas.job_title}
-                  onBlur={onBlur}
-                  placeholderStyle={styles.placeholderStyles}
-                  loading={loading}
-                  activityIndicatorColor="#5188E3"
-                  searchable={true}
-                  searchPlaceholder="Search title here..."
-                  onOpen={onCompanyOpen}
-                  onChangeValue={onChange}
-                  zIndex={1000}
-                  zIndexInverse={3000}
-                />
-              )}
-            />
-            {errors.job_title && (
-              <Text
-                style={{
-                  fontSize: 10,
-                  color: "red",
-                  // marginTop: "-3%",
-                  marginLeft: "2%",
-                  // marginBottom: "2%",
-                }}
-              >
-                {errors.job_title.message}
-              </Text>
-            )}
-          </View>
-        </View>
+        <View></View>
         <View>
           {/*workspace*/}
           <Controller
@@ -584,6 +616,54 @@ const LongTermedit = ({ navigation, route }) => {
               }}
             >
               {errors.workspace.message}
+            </Text>
+          )}
+        </View>
+        <View>
+          {/*workspace*/}
+          <Controller
+            name="jobtype"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <View style={styles.dropdownCompany}>
+                <DropDownPicker
+                  style={styles.dropdown}
+                  open={jobtypeopen}
+                  value={jobtypevalue} //companyValue
+                  items={jobtype}
+                  setOpen={setjobtypeopen}
+                  setValue={setjobtypevalue}
+                  setItems={setjobtype}
+                  placeholder={datas.jobtype}
+                  dropDownContainerStyle={{
+                    position: "relative", // to fix scroll issue ... it is by default 'absolute'
+                    top: 0, //to fix gap between label box and container
+                  }}
+                  placeholderStyle={styles.placeholderStyles}
+                  containerStyle={{ zIndex: 50 }}
+                  loading={loading}
+                  listMode="SCROLLVIEW"
+                  activityIndicatorColor="#5188E3"
+                  // searchable={true}
+                  // searchPlaceholder="Set duration here..."
+                  onOpen={onCompanyOpen}
+                  onChangeValue={onChange}
+                />
+              </View>
+            )}
+          />
+          {errors.jobtype && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                marginTop: "-4%",
+                marginLeft: "5%",
+                marginBottom: "2%",
+              }}
+            >
+              {errors.jobtype.message}
             </Text>
           )}
         </View>
@@ -745,53 +825,7 @@ const LongTermedit = ({ navigation, route }) => {
             )}
           </View>
         </View>
-        <View>
-          <Controller
-            name="Duration"
-            defaultValue=""
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <View style={styles.dropdownCompany}>
-                <DropDownPicker
-                  style={styles.dropdown}
-                  open={durationopen}
-                  value={durationvalue} //companyValue
-                  items={duration}
-                  setOpen={setdurationopen}
-                  setValue={setdurationvalue}
-                  setItems={setduration}
-                  placeholder={loading == true ? "" : datas.Duration}
-                  dropDownContainerStyle={{
-                    position: "relative", // to fix scroll issue ... it is by default 'absolute'
-                    top: 0, //to fix gap between label box and container
-                  }}
-                  placeholderStyle={styles.placeholderStyles}
-                  containerStyle={{ zIndex: 50 }}
-                  loading={loading}
-                  listMode="SCROLLVIEW"
-                  activityIndicatorColor="#5188E3"
-                  searchable={true}
-                  searchPlaceholder="Set duration here..."
-                  onOpen={ondurationOpen}
-                  onChangeValue={onChange}
-                />
-              </View>
-            )}
-          />
-          {errors.Duration && (
-            <Text
-              style={{
-                fontSize: 10,
-                color: "red",
-                marginTop: "-4%",
-                marginLeft: "5%",
-                marginBottom: "4%",
-              }}
-            >
-              {errors.Duration.message}
-            </Text>
-          )}
-        </View>
+
         <View
           style={{
             flexDirection: "row",
@@ -888,6 +922,39 @@ const LongTermedit = ({ navigation, route }) => {
           )}
         />
         <Controller
+          name="experience"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <View style={styles.dropdownCompany}>
+              <DropDownPicker
+                style={styles.dropdown}
+                open={jobtypeopen1}
+                value={jobtypevalue1} //companyValue
+                items={jobtype1}
+                setOpen={setjobtypeopen1}
+                setValue={setjobtypevalue1}
+                setItems={setjobtype1}
+                placeholder={datas.experience}
+                arrowIconStyle={{ Color: "red" }}
+                dropDownContainerStyle={{
+                  position: "relative", // to fix scroll issue ... it is by default 'absolute'
+                  top: 0, //to fix gap between label box and container
+                }}
+                placeholderStyle={styles.placeholderStyles}
+                containerStyle={{ zIndex: 50 }}
+                loading={loading}
+                listMode="SCROLLVIEW"
+                activityIndicatorColor="#5188E3"
+                // searchable={true}
+                // searchPlaceholder="Set duration here..."
+                onOpen={onCompanyOpen}
+                onChangeValue={onChange}
+              />
+            </View>
+          )}
+        />
+        <Controller
           name="job_description"
           defaultValue=""
           control={control}
@@ -907,6 +974,49 @@ const LongTermedit = ({ navigation, route }) => {
             />
           )}
         />
+        <View>
+          <Controller
+            name="Openings"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={{
+                  borderColor: "#D9D9D9",
+                  backgroundColor: "#FFF",
+                  borderRadius: 10,
+                  borderWidth: 0.5,
+                  fontSize: 13,
+                  height: 50,
+                  marginHorizontal: 10,
+                  paddingStart: 10,
+                  marginBottom: 15,
+                }}
+                selectionColor={"#5188E3"}
+                defaultValue={datas.Openings}
+                multiline={true}
+                numberOfLines={50}
+                onChangeText={onChange}
+                value={value == "" ? datas.Openings : value}
+                keyboardType="numeric"
+              />
+            )}
+          />
+          {errors.Openings && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                marginTop: "-4%",
+                marginLeft: "5%",
+                marginBottom: "4%",
+              }}
+            >
+              {errors.Openings.message}
+            </Text>
+          )}
+        </View>
+
         <Controller
           name="mobile_number"
           defaultValue=""
@@ -964,7 +1074,81 @@ const LongTermedit = ({ navigation, route }) => {
             {errors.email.message}
           </Text>
         )}
-        <Text
+        <View style={{ height: 70 }}>
+          <TextInput
+            style={{
+              borderColor: "#D9D9D9",
+              backgroundColor: "#FFF",
+              borderRadius: 10,
+              borderWidth: 0.5,
+              fontSize: 13,
+              height: 50,
+              marginHorizontal: 10,
+              paddingStart: 10,
+              marginBottom: 15,
+            }}
+            selectionColor={"#5188E3"}
+            placeholder={"Expire date"}
+            multiline={true}
+            numberOfLines={50}
+            //onChangeText={onChange}
+            defaultValue={
+              showplace
+                ? new Date(datas.exp_date).toDateString()
+                : date.toDateString().slice(3)
+            }
+            value={date}
+            keyboardType="numeric"
+          />
+
+          <TouchableOpacity onPressIn={() => showDatepicker()}>
+            <FontAwesome5
+              name="calendar-alt"
+              size={24}
+              color="#333"
+              style={{
+                position: "absolute",
+                right: 40,
+                bottom: 28,
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Controller
+            name="Required_Skills"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={[
+                  styles.input,
+                  { height: 200, textAlignVertical: "top", paddingTop: 10 },
+                ]}
+                selectionColor={"#5188E3"}
+                defaultValue={datas.Required_Skills}
+                multiline={true}
+                numberOfLines={50}
+                onChangeText={onChange}
+                value={value == "" ? datas.Required_Skills : value}
+              />
+            )}
+          />
+          {errors.Required_Skills && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                // marginTop: "-3%",
+                marginLeft: "2%",
+                // marginBottom: "2%",
+              }}
+            >
+              {errors.Required_Skills.message}
+            </Text>
+          )}
+        </View>
+        {/* <Text
           // style={{ paddingLeft: 20, marginBottom: 10 }}
           style={{
             marginLeft: "4%",
@@ -975,8 +1159,8 @@ const LongTermedit = ({ navigation, route }) => {
           }}
         >
           Your Preference
-        </Text>
-        <View style={[styles.section, { marginLeft: 10, marginBottom: "5%" }]}>
+        </Text> */}
+        {/* <View style={[styles.section, { marginLeft: 10, marginBottom: "5%" }]}>
           <Checkbox
             style={styles.checkbox}
             value={isChecked}
@@ -985,8 +1169,8 @@ const LongTermedit = ({ navigation, route }) => {
             }}
           />
           <Text style={[styles.paragraph]}>Allow candidates to call HR</Text>
-        </View>
-        <Text
+        </View> */}
+        {/* <Text
           style={{
             marginLeft: "4%",
             // marginHorizontal: 10,
@@ -1036,7 +1220,7 @@ const LongTermedit = ({ navigation, route }) => {
               />
             </View>
           )}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Modal
           animationType="slide"
           //animationInTiming = {13900}

@@ -522,7 +522,11 @@ export default function RentalproviderSwiperCard({ route }) {
                       color="#ff0000"
                     />
                   ) : (
-                    <Ionicons name="ios-heart-outline" size={22} color="#333" />
+                    <Ionicons
+                      name="ios-heart-outline"
+                      size={22}
+                      color="#56909d"
+                    />
                   )}
 
                   {/* <AntDesign name="hearto" size={34} color="black" /> */}
@@ -534,7 +538,7 @@ export default function RentalproviderSwiperCard({ route }) {
                   <Ionicons
                     name="ios-chatbox-ellipses-outline"
                     size={22}
-                    color="#333"
+                    color="#56909d"
                   />
                 </TouchableOpacity>
 
@@ -550,7 +554,7 @@ export default function RentalproviderSwiperCard({ route }) {
                     <MaterialCommunityIcons
                       name="share-all-outline"
                       size={22}
-                      color="#333"
+                      color="#56909d"
                     />
                   </TouchableOpacity>
                 </View>
@@ -597,7 +601,7 @@ export default function RentalproviderSwiperCard({ route }) {
                 {data[index].pic === null ? (
                   <Image
                     source={{
-                      uri: "https://images.pexels.com/photos/442559/pexels-photo-442559.jpeg?auto=compress&cs=tinysrgb&w=600",
+                      uri: "https://blogdesigner-79e1.kxcdn.com/wp-content/plugins/blog-designer-pro/public/images/related_post_no_available_image.png",
                     }}
                     style={{
                       height: 250,
@@ -647,9 +651,7 @@ export default function RentalproviderSwiperCard({ route }) {
               >
                 {data[index].profilepic === null ? (
                   <Image
-                    source={{
-                      uri: "https://images.pexels.com/photos/442559/pexels-photo-442559.jpeg?auto=compress&cs=tinysrgb&w=600",
-                    }}
+                    source={require("../../images/account.png")}
                     style={{
                       backgroundColor: "#eefbff",
                       width: 50,
@@ -686,7 +688,7 @@ export default function RentalproviderSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      color: "#333",
+                      color: "#56909d",
                       fontSize: 18,
                       width: "90%",
                       fontWeight: "500",
@@ -702,8 +704,8 @@ export default function RentalproviderSwiperCard({ route }) {
                   </Text>
                   <Text
                     style={{
-                      color: "#535353",
-                      fontSize: 15,
+                      color: "#56909d",
+                      fontSize: 13,
                       fontWeight: "400",
                       textTransform: "capitalize",
                       // textAlign: "left",
@@ -729,7 +731,7 @@ export default function RentalproviderSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       marginBottom: "2%",
@@ -771,7 +773,7 @@ export default function RentalproviderSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       // backgroundColor: "blue",
@@ -835,7 +837,7 @@ export default function RentalproviderSwiperCard({ route }) {
                           fontWeight: "400",
                         }}
                       >
-                        {data[index].product_fees}/
+                        {data[index].product_fees}{" "}
                         {data[index].product_fees_hour}
                       </Text>
                     </View>
@@ -877,7 +879,7 @@ export default function RentalproviderSwiperCard({ route }) {
                       >
                         {console.log("hiii dude")}
                         {console.log(data[index].Duration)}
-                        {data[index].Duration}/ {data[index].Duration2}
+                        {data[index].Duration} {data[index].Duration2}
                       </Text>
                     </View>
                     <View
@@ -971,7 +973,7 @@ export default function RentalproviderSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       // backgroundColor: "blue",
@@ -1034,7 +1036,7 @@ export default function RentalproviderSwiperCard({ route }) {
                 >
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       textTransform: "capitalize",
                       // width: "22%",
                       // backgroundColor: "blue",
@@ -1227,7 +1229,7 @@ export default function RentalproviderSwiperCard({ route }) {
                     </LinearGradient> */}
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: "500",
                     }}
                   >
@@ -1279,7 +1281,7 @@ export default function RentalproviderSwiperCard({ route }) {
                   >
                     <Text
                       style={{
-                        fontSize: 18,
+                        fontSize: 16,
                         textTransform: "capitalize",
                         // width: "22%",
                         // backgroundColor: "blue",

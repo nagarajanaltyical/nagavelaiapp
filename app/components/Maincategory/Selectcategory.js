@@ -66,6 +66,8 @@ export default function SelectCategory({ route }) {
     (state) => state.job_Provider_company_user_details
   );
   const [isclick, setIsclick] = useState(false);
+  const [jobCount, setjobCount] = useState(0);
+  const [employer, setemployer] = useState(0);
   const { state1, dispatch1 } = useContext(S_FILTER);
   const { state2, dispatch2 } = useContext(L_FILTER);
   const dispatch = useDispatch();
@@ -85,6 +87,7 @@ export default function SelectCategory({ route }) {
   const [phonenumber, setphonenumber] = useState("");
   useEffect(() => {
     getphonenumber();
+    GetCount();
   }, []);
   async function getphonenumber() {
     try {
@@ -107,7 +110,41 @@ export default function SelectCategory({ route }) {
           // setActivityIndicators(false);
           // setModalVisible(false);
         });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //to get job count and Employers Count
+  async function GetCount() {
+    try {
+      await fetch(`http://192.168.1.12:5000/api/total_jobs`, {
+        method: "GET",
+        mode: "cors", // no-cors, *cors, same-origin
+        // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        // credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          Accept: "application/json",
+          // "Content-Type": "multipart/form-data",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        // body: formdata, // body data type must match "Content-Type" header
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(typeof result.totaljobs);
+          //const result1 = String(result.totaljobs.job);
+          console.log(result);
+          setjobCount(result.totaljobs.job);
+          setemployer(result.totaljobs.employers);
+          console.log(state);
+          // setjobpostpic(result["updated"]);
+          // setActivityIndicators(false);
+          // setModalVisible(false);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // useEffect(async () => {
@@ -657,7 +694,7 @@ export default function SelectCategory({ route }) {
                           fontStyle: "italic", // fontFamily: "Roboto-BoldItalic",
                         }}
                       >
-                        100+ Jobs
+                        {jobCount}+ Jobs
                       </Text>
                     </View>
                   </View>
@@ -816,7 +853,7 @@ export default function SelectCategory({ route }) {
                           // fontFamily: "Roboto-BoldItalic",
                         }}
                       >
-                        100+ Employers
+                        {employer}+ Employers
                       </Text>
                     </View>
                   </View>

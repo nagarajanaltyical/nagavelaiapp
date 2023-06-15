@@ -372,40 +372,44 @@ export default function Workexperience({ navigation }) {
                       }}
                     />
                     <Text style={[styles.paragraph, { color: "#333" }]}>
-                      {t("Allow_Call")}
+                      Currently working
                     </Text>
                   </View>
-                  <View style={styles.password}>
-                    {/* <Text style={styles.labelname}>To:</Text> */}
-                    <TextInput
-                      placeholder="End Date"
-                      style={[styles.input, { position: "relative" }]}
-                      underlineColorAndroid="transparent"
-                      placeholderTextColor="#ACACAC"
-                      defaultValue={
-                        showplace1 ? "" : selectedDate.toDateString().slice(3)
-                      }
-                    />
-                    <Pressable onPressOut={showDatePicker1}>
-                      <FontAwesome5
-                        name="calendar-alt"
-                        size={20}
-                        color="#1e5966"
-                        style={{
-                          position: "absolute",
-                          right: 40,
-                          bottom: 23,
-                        }}
+                  {!isChecked ? (
+                    <View style={styles.password}>
+                      {/* <Text style={styles.labelname}>To:</Text> */}
+                      <TextInput
+                        placeholder="End Date"
+                        style={[styles.input, { position: "relative" }]}
+                        underlineColorAndroid="transparent"
+                        placeholderTextColor="#ACACAC"
+                        defaultValue={
+                          showplace1 ? "" : selectedDate.toDateString().slice(3)
+                        }
                       />
-                    </Pressable>
-                    <DateTimePickerModal
-                      date={selectedDate}
-                      isVisible={datePickerVisible}
-                      mode="date"
-                      onConfirm={handleConfirm}
-                      onCancel={hideDatePicker}
-                    />
-                  </View>
+                      <Pressable onPressOut={showDatePicker1}>
+                        <FontAwesome5
+                          name="calendar-alt"
+                          size={20}
+                          color="#1e5966"
+                          style={{
+                            position: "absolute",
+                            right: 40,
+                            bottom: 23,
+                          }}
+                        />
+                      </Pressable>
+                      <DateTimePickerModal
+                        date={selectedDate}
+                        isVisible={datePickerVisible}
+                        mode="date"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                      />
+                    </View>
+                  ) : (
+                    ""
+                  )}
                   <View style={styles.email}>
                     {/* <Text style={styles.labelname}>Your Job Description</Text> */}
                     <TextInput
@@ -473,7 +477,7 @@ export default function Workexperience({ navigation }) {
                         color: isValid ? "#fff" : "white",
                       }}
                     >
-                      Create
+                      Update
                     </Text>
                   </TouchableOpacity>
                 </LinearGradient>
@@ -570,5 +574,6 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: 15,
+    marginLeft: 5,
   },
 });

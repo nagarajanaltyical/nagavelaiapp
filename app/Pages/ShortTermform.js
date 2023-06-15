@@ -35,8 +35,8 @@ import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 const schema = yup.object().shape({
   job_title: yup
     .string()
-    .required("Job title cant be empty")
-    .typeError("Job title  cannot be null"),
+    .required("Job Title is Required")
+    .typeError("Job Title is Required"),
   // workspace: yup
   //   .string()
   //   .required("workspace is required")
@@ -47,35 +47,29 @@ const schema = yup.object().shape({
   //   .required("job_description of the job is required"),
   Duration: yup
     .string()
-    .typeError("Duration cannot be null")
-    .required("Duration is required"),
+    .typeError("Duration is Required")
+    .required("Duration is Required"),
   per: yup
     .string()
-    .required("Salary details cant be empty")
-    .typeError("Job title  cannot be null"),
-  Salary: yup.string().required("Please enter the salary Details"),
+    .required("Salary Detail is Required")
+    .typeError("Salary Detail is Required"),
+  Salary: yup.string().required("Salary is Required"),
   country: yup
     .string()
-    .required("Country cant be empty")
-    .typeError("Country  cannot be null"),
+    .required("Country is Required")
+    .typeError("Country is Required"),
   state: yup
     .string()
-    .required("State cant be empty")
-    .typeError("State  cannot be null"),
+    .required("State is Required")
+    .typeError("State is Required"),
   District: yup
     .string()
-    .required("District can't be empty")
-    .typeError("District  cannot be null"),
-  Openings: yup
-    .string()
-    .required("openings can't be empty")
+    .required("District is Required")
+    .typeError("District is Required"),
+  Openings: yup.string().required("Job Opening is Required"),
+  Other_title: yup.string().typeError("Job Title is Required"),
+  Expire: yup.string().required("Expire Date is Required"),
 
-    .typeError("openings cannot be null"),
-  expire: yup
-    .string()
-    .required("Expire Date can't be empty")
-
-    .typeError("Expire Date cannot be null"),
   // mobile_number: yup.string().required("Mobile number is required"),
   // email: yup.string().required("email id is required"),
 });
@@ -83,15 +77,49 @@ const schema = yup.object().shape({
 const ShortTermForms = ({ navigation: { goBack } }) => {
   const [opens, setisopen] = useState(false);
   const [date, setDate] = useState(new Date());
+  const [showplace, setshowplace] = useState(true);
 
   const showDatepicker = () => {
     setisopen(true);
     showMode("date");
+    setshowplace(false);
+    minDate: new Date();
   };
   const onChange = (event, selectedDate) => {
+    console.log(selectedDate);
     const currentDate = selectedDate;
+    console.log(
+      currentDate.getDate(),
+      currentDate.getMonth(),
+      currentDate.getFullYear()
+    );
     setDate(currentDate);
+    setisopen(false);
   };
+  function convertDate(dateString) {
+    // Convert the date string to a Date object.
+    let date = new Date(dateString);
+
+    // Get the year, month, day, hour, minute, second, and millisecond properties of the Date object.
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    let millisecond = date.getMilliseconds();
+
+    // Return a JavaScript object containing the date data.
+    return {
+      year: year,
+      month: month,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
+    };
+  }
   const showMode = (currentMode) => {
     DateTimePickerAndroid.open({
       value: date,
@@ -99,7 +127,6 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
       mode: currentMode,
     });
   };
-
   const [genderOpen, setGenderOpen] = useState(false);
   const [genderValue, setGenderValue] = useState(null);
   const { t, language, setlanguage } = useContext(LocalizationContext);
@@ -219,6 +246,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
 
   const [cityopen, setcityopen] = useState(false);
   const [cityvalue, setcityvalue] = useState(null);
+
   const [countryopen, setcountryopen] = useState(false);
   const [countryvalue, setcountryvalue] = useState(null);
   const [data1, setdata1] = useState([]);
@@ -370,21 +398,46 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [selctedjob, setselectedjob] = useState("");
+  const onselected = (data) => {
+    if (data != null) {
+      const result = company.filter(checkcom);
+      function checkcom(com) {
+        return com.value == companyValue;
+      }
+      console.log(result.length);
+      if (result.length > 0) {
+        const finalJob = result[0].label;
+        setselectedjob(finalJob);
+      } else {
+        console.log(selctedjob);
+      }
+    } else {
+      console.log(data);
+      console.log(selctedjob);
+    }
+  };
   const onSubmit = (data) => {
     const result = company.filter(checkcom);
+
     function checkcom(com) {
       return com.value == companyValue;
     }
     const finalJob = result[0].label;
 
-    data.job_title = finalJob;
-    data.pic = jobpost;
+    data.job_title = finalJob == "OTHERS" ? data.Other_title : finalJob;
+    data.pic = "";
     data.number = phonenumber;
     data.user_id = userID;
     data.is_short = "True";
     data.isallow_tocall = isclicked;
+    // data.Openings = Openings;
+    data.exp_date = date;
     data.s_admin = "False";
 
+    delete data.Other_title;
+    console.log(data);
     async function submitdatas() {
       try {
         await fetch("http://103.174.10.108:5002/api/shorttime_job", {
@@ -469,15 +522,15 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                   backgroundColor: "white",
                 }}
                 setValue={setCompanyValue}
-                setItems={setComapny}
+                // setItems={setComapny}
                 placeholder={t("job_title")}
                 placeholderStyle={styles.placeholderStyles}
                 loading={loading}
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Search Title Here.."
+                searchPlaceholder="Search Title"
                 onOpen={onCompanyOpen}
-                onChangeValue={onChange}
+                onChangeValue={(onselected(company), onChange)}
                 zIndex={1000}
                 zIndexInverse={3000}
               />
@@ -497,48 +550,53 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
-        <View>
-          <Controller
-            name="Openings"
-            defaultValue=""
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
+        {selctedjob == "OTHERS" ? (
+          <View>
+            <Controller
+              name="Other_title"
+              defaultValue={null}
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <TextInput
+                  style={{
+                    borderColor: "#D9D9D9",
+                    backgroundColor: "#FFF",
+                    borderRadius: 10,
+                    borderWidth: 0.5,
+                    fontSize: 13,
+                    height: 50,
+                    marginHorizontal: 10,
+                    paddingStart: 10,
+                    marginBottom: 15,
+                  }}
+                  selectionColor={"#5188E3"}
+                  placeholder="Type Job Title"
+                  multiline={true}
+                  numberOfLines={50}
+                  editable={selctedjob == "OTHERS" ? true : false}
+                  onChangeText={onChange}
+                  value={value}
+                  //keyboardType="numeric"
+                />
+              )}
+            />
+            {errors.Other_title && (
+              <Text
                 style={{
-                  borderColor: "#D9D9D9",
-                  backgroundColor: "#FFF",
-                  borderRadius: 10,
-                  borderWidth: 0.5,
-                  fontSize: 13,
-                  height: 50,
-                  marginHorizontal: 10,
-                  paddingStart: 10,
-                  marginBottom: 15,
+                  fontSize: 10,
+                  color: "red",
+                  marginTop: "-4%",
+                  marginLeft: "5%",
+                  marginBottom: "4%",
                 }}
-                selectionColor={"#5188E3"}
-                placeholder="Type Job Title"
-                multiline={true}
-                numberOfLines={50}
-                onChangeText={onChange}
-                value={value}
-                keyboardType="numeric"
-              />
+              >
+                {errors.Other_title.message}
+              </Text>
             )}
-          />
-          {errors.Openings && (
-            <Text
-              style={{
-                fontSize: 10,
-                color: "red",
-                marginTop: "-4%",
-                marginLeft: "5%",
-                marginBottom: "4%",
-              }}
-            >
-              {errors.Openings.message} - vacancy
-            </Text>
-          )}
-        </View>
+          </View>
+        ) : (
+          ""
+        )}
         <View style={styles.dropdownCompany}>
           <Controller
             name="country"
@@ -564,7 +622,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                 listMode="MODAL"
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Search Country Here..."
+                searchPlaceholder="Select Country"
                 onOpen={ondurationOpen}
                 onChangeValue={(onCountryChange(countryvalue), onChange)}
               />
@@ -623,7 +681,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   containerStyle={{ zIndex: 50, width: 150 }}
-                  searchPlaceholder="Search State Here..."
+                  searchPlaceholder="Select State"
                   // onOpen={onCompanyOpen1}
                   onChangeValue={(onstateChange(companyValue1), onChange)}
                   zIndex={1000}
@@ -670,7 +728,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                   listMode="MODAL"
                   activityIndicatorColor="#5188E3"
                   searchable={true}
-                  searchPlaceholder="Search District Here..."
+                  searchPlaceholder="Select District"
                   onOpen={ondurationOpen}
                   onChangeValue={(onCityChange(cityvalue), onChange)}
                 />
@@ -804,7 +862,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                 marginBottom: "4%",
               }}
             >
-              {errors.Openings.message} - vacancy
+              {errors.Openings.message}
             </Text>
           )}
         </View>
@@ -869,7 +927,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                     listMode="SCROLLVIEW"
                     activityIndicatorColor="#5188E3"
                     // searchable={true}
-                    // searchPlaceholder="Set duration here..."
+                    searchPlaceholder="Set duration here..."
                     onOpen={ondurationOpen}
                     onChangeValue={onChange}
                   />
@@ -891,54 +949,52 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
             )}
           </View>
         </View>
-
-        <View style={{ height: 40, marginBottom: 50 }}>
+        <View style={{ height: 70 }}>
           <TextInput
-            placeholder="expire date"
             style={{
-              position: "relative",
-              borderRadius: 10,
-              height: 50,
-              backgroundColor: "#fff",
               borderColor: "#D9D9D9",
-              width: "100%",
-              borderTopLeftRadius: 10,
-              borderTopRightRadius: 10,
+              backgroundColor: "#FFF",
+              borderRadius: 10,
               borderWidth: 0.5,
-              width: "90%",
-              padding: 10,
-              marginHorizontal: 20,
-              marginVertical: 10,
-              justifyContent: "center",
+              fontSize: 13,
+              height: 50,
+              marginHorizontal: 10,
+              paddingStart: 10,
+              marginBottom: 15,
             }}
-            underlineColorAndroid="transparent"
-            // onChangeText={handleChange("password")}
-            // onBlur={handleBlur("password")}
-            placeholderTextColor="#707070"
-            // value={opens ? date.toDateString() : value}
+            selectionColor={"#5188E3"}
+            placeholder={"Expire Date"}
+            multiline={true}
+            numberOfLines={50}
+            //onChangeText={onChange}
+            defaultValue={showplace ? "" : date.toDateString().slice(3)}
+            value={date}
+            keyboardType="numeric"
           />
-          <Pressable onPress={showDatepicker}>
+
+          <TouchableOpacity onPressIn={() => showDatepicker()}>
             <FontAwesome5
               name="calendar-alt"
-              size={24}
-              color="#333"
+              size={20}
+              color="#1e5966"
               style={{
                 position: "absolute",
                 right: 40,
                 bottom: 23,
               }}
             />
-          </Pressable>
-
-          {errors.expire && (
+          </TouchableOpacity>
+          {errors.Expire && (
             <Text
               style={{
-                fontSize: 13,
+                fontSize: 10,
                 color: "red",
-                marginHorizontal: 20,
+                marginTop: "-4%",
+                marginLeft: "5%",
+                marginBottom: "4%",
               }}
             >
-              {errors.expire.message}
+              {errors.Expire.message}
             </Text>
           )}
         </View>

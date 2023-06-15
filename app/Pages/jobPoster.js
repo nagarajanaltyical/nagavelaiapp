@@ -453,7 +453,7 @@ export default function JobposterDetails({ route }) {
                               </View>
                             ) : (
                               <>
-                                <TouchableHighlight
+                                {/* <TouchableHighlight
                                   style={{
                                     ...styles.openButton,
                                     width: 150,
@@ -480,7 +480,7 @@ export default function JobposterDetails({ route }) {
                                       {t("pic")}
                                     </Text>
                                   </View>
-                                </TouchableHighlight>
+                                </TouchableHighlight> */}
                                 <TouchableHighlight
                                   style={{
                                     ...styles.openButton,

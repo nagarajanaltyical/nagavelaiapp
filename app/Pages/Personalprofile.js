@@ -621,7 +621,7 @@ export default function PersonProfilepage({ route, navigation }) {
           <View style={{}}>
             {data[0].profilepic == "" && profile == null ? (
               <>
-                <FontAwesome name="user-circle" size={80} color="#D9D9D9" />
+                <FontAwesome name="user-circle" size={80} color="#1e5966" />
                 <MaterialCommunityIcons
                   name="pencil-circle"
                   size={33}
@@ -703,7 +703,7 @@ export default function PersonProfilepage({ route, navigation }) {
                 </View>
               ) : (
                 <>
-                  <TouchableHighlight
+                  {/* <TouchableHighlight
                     style={{
                       ...styles.openButton,
                       width: 150,
@@ -731,7 +731,7 @@ export default function PersonProfilepage({ route, navigation }) {
                         Take pic
                       </Text>
                     </View>
-                  </TouchableHighlight>
+                  </TouchableHighlight> */}
                   <TouchableHighlight
                     style={{
                       ...styles.openButton,

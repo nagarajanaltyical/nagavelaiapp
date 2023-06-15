@@ -191,8 +191,8 @@ const Items = ({
           >
             <Image
               // resizeMode="contain"
-              source={require("../images/government1.png")}
-              style={{ width: 23, height: 23 }}
+              source={require("../images/link.png")}
+              style={{ width: 16, height: 16 }}
             />
             <Text
               style={{

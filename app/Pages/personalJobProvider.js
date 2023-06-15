@@ -150,7 +150,7 @@ export default function PersonalJobProvider({ navigation }) {
 
       let localUri = result.assets[0]["uri"];
 
-      setImage(localUri);
+      setprofile(localUri);
       let filename = localUri.split("/").pop();
 
       // Infer the type of the image
@@ -166,7 +166,7 @@ export default function PersonalJobProvider({ navigation }) {
       async function submitdata() {
         try {
           await fetch(
-            `http://192.168.1.8:5000/api/job_post/aws_upload/${userID}`,
+            `http://192.168.1.10:5000/api/job_post/aws_upload/${userID}`,
             {
               method: "POST",
               mode: "cors", // no-cors, *cors, same-origin
@@ -182,7 +182,7 @@ export default function PersonalJobProvider({ navigation }) {
           )
             .then((response) => response.json())
             .then((result) => {
-              setjobpostpic(result["updated"]);
+              setprofilepic(result["updated"]);
               setprofileActivityIndicators(false);
               setModalVisible(false);
             });
@@ -223,7 +223,7 @@ export default function PersonalJobProvider({ navigation }) {
       // console.log(result);
       let localUri = response.uri;
 
-      setImage(localUri);
+      setprofile(localUri);
       let filename = localUri.split("/").pop();
 
       // Infer the type of the image
@@ -239,7 +239,7 @@ export default function PersonalJobProvider({ navigation }) {
       async function submitdata() {
         try {
           await fetch(
-            `http://103.174.10.108:5002/api/job_post/aws_upload/${userID}`,
+            `http://192.168.1.10:5000/api/job_post/aws_upload/${userID}`,
             {
               method: "POST",
               mode: "cors", // no-cors, *cors, same-origin
@@ -255,9 +255,9 @@ export default function PersonalJobProvider({ navigation }) {
           )
             .then((response) => response.json())
             .then((result) => {
-              // setjobpostpic(result["updated"]);
-              // setActivityIndicators(false);
-              // setModalVisible(false);
+              setprofilepic(result["updated"]);
+              setActivityIndicators(false);
+              setModalVisible(false);
             });
         } catch (error) {}
       }
@@ -522,7 +522,7 @@ export default function PersonalJobProvider({ navigation }) {
                     </View>
                   ) : (
                     <>
-                      <TouchableHighlight
+                      {/* <TouchableHighlight
                         style={{
                           ...styles.openButton,
                           width: 150,
@@ -551,7 +551,7 @@ export default function PersonalJobProvider({ navigation }) {
                             Take Pic
                           </Text>
                         </View>
-                      </TouchableHighlight>
+                      </TouchableHighlight> */}
                       <TouchableHighlight
                         style={{
                           ...styles.openButton,
@@ -559,10 +559,10 @@ export default function PersonalJobProvider({ navigation }) {
                           backgroundColor: "#1E5966",
                           marginTop: 20,
                         }}
-                        // onPress={
-                        //   (() => requestPermission1(),
-                        //   takeAndUploadPhotoAsync1("files"))
-                        // }
+                        onPress={() => {
+                          requestPermission1();
+                          takeAndUploadPhotoAsync1("files");
+                        }}
                       >
                         <View
                           style={{

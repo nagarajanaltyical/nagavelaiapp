@@ -660,7 +660,7 @@ export default function RentalSwiperCard({ route }) {
                 {data[index].pic === null ? (
                   <Image
                     source={{
-                      uri: "https://images.pexels.com/photos/442559/pexels-photo-442559.jpeg?auto=compress&cs=tinysrgb&w=600",
+                      uri: "https://blogdesigner-79e1.kxcdn.com/wp-content/plugins/blog-designer-pro/public/images/related_post_no_available_image.png",
                     }}
                     style={{
                       height: 250,
@@ -709,9 +709,7 @@ export default function RentalSwiperCard({ route }) {
               >
                 {data[index].profilepic === null ? (
                   <Image
-                    source={{
-                      uri: "https://cdn.pixabay.com/photo/2013/07/13/10/44/man-157699__340.png",
-                    }}
+                    source={require("../../images/account.png")}
                     style={{
                       backgroundColor: "#eefbff",
                       width: 50,

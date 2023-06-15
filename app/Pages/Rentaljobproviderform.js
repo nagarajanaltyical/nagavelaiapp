@@ -394,7 +394,8 @@ export default function RentalJobProvider({ navigation }) {
                 </View>
               ) : (
                 <>
-                  <FontAwesome name="user-circle" size={80} color="#D9D9D9" />
+                  <FontAwesome name="user-circle" size={80} color="#1e5966" />
+
                   <MaterialCommunityIcons
                     name="pencil-circle"
                     size={33}
@@ -452,7 +453,7 @@ export default function RentalJobProvider({ navigation }) {
                     </View>
                   ) : (
                     <>
-                      <TouchableHighlight
+                      {/* <TouchableHighlight
                         style={{
                           ...styles.openButton,
                           width: 150,
@@ -481,7 +482,7 @@ export default function RentalJobProvider({ navigation }) {
                             Take Pic
                           </Text>
                         </View>
-                      </TouchableHighlight>
+                      </TouchableHighlight> */}
                       <TouchableHighlight
                         style={{
                           ...styles.openButton,

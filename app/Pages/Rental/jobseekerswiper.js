@@ -720,7 +720,7 @@ export default function JobseekerSwiperCard({ route }) {
                   {data[index].profilepic === "" ? (
                     <Image
                       source={{
-                        uri: "https://images.pexels.com/photos/442559/pexels-photo-442559.jpeg?auto=compress&cs=tinysrgb&w=600",
+                        uri: data[index].profilepic,
                       }}
                       style={{
                         backgroundColor: "#eefbff",

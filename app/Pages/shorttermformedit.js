@@ -11,6 +11,8 @@ import {
   Image,
   TouchableHighlight,
 } from "react-native";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import * as ImagePicker from "expo-image-picker";
@@ -19,6 +21,8 @@ import { useContext } from "react";
 import { LocalizationContext } from "../../App";
 import Checkbox from "expo-checkbox";
 import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FontAwesome } from "@expo/vector-icons";
@@ -152,6 +156,60 @@ const ShortTermFormsedit = ({ navigation, route }) => {
     getuserdata();
     getdata();
   }, []);
+  //to get the date
+  const [opens, setisopen] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [showplace, setshowplace] = useState(true);
+
+  const showDatepicker = () => {
+    setisopen(true);
+    showMode("date");
+    setshowplace(false);
+    minDate: new Date();
+  };
+  const onChange = (event, selectedDate) => {
+    console.log(selectedDate);
+    const currentDate = selectedDate;
+    console.log(
+      currentDate.getDate(),
+      currentDate.getMonth(),
+      currentDate.getFullYear()
+    );
+    setDate(currentDate);
+    setisopen(false);
+  };
+  function convertDate(dateString) {
+    // Convert the date string to a Date object.
+    let date = new Date(dateString);
+
+    // Get the year, month, day, hour, minute, second, and millisecond properties of the Date object.
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    let millisecond = date.getMilliseconds();
+
+    // Return a JavaScript object containing the date data.
+    return {
+      year: year,
+      month: month,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
+    };
+  }
+  const showMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange,
+      mode: currentMode,
+    });
+  };
+
   async function fetchdata() {
     try {
       await fetch("http://103.174.10.108:5002/api/s_job_title", {
@@ -184,7 +242,7 @@ const ShortTermFormsedit = ({ navigation, route }) => {
 
     // body.page = 0;
     try {
-      await fetch(`http://103.174.10.108:5002/api/like_apply_slideshow`, {
+      await fetch(`http://192.168.1.10:5000/api/like_apply_slideshow`, {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
@@ -390,10 +448,12 @@ const ShortTermFormsedit = ({ navigation, route }) => {
     data.state = data.state == null ? datas.location.split(",")[1] : data.state;
     data.job_description =
       data.job_description == "" ? datas.job_description : data.job_description;
-    data.job_title = finalJob;
-    data.pic = data.pic == null ? datas.pic : jobpost;
+    //  data.job_title = finalJob;
+    // data.pic = data.pic == null ? datas.pic : jobpost;
     data.per = data.per == "" ? datas.per : data.per;
-    data.number = phonenumber;
+    data.exp_date = date == new Date() ? datas.exp_date : date;
+    data.Openings = data.Openings == "" ? datas.Openings : data.Openings;
+    // data.number = phonenumber;
     data.user_id = userID;
     data.is_short = "True";
     // data.isallow_tocall = isclicked;
@@ -458,7 +518,7 @@ const ShortTermFormsedit = ({ navigation, route }) => {
         </Text>
       </View> */}
       <ScrollView style={{ marginHorizontal: 10 }}>
-        <View style={styles.dropdownCompany}>
+        {/* <View style={styles.dropdownCompany}>
           <Controller
             name="job_title"
             defaultValue=""
@@ -506,7 +566,7 @@ const ShortTermFormsedit = ({ navigation, route }) => {
               {errors.job_title.message}
             </Text>
           )}
-        </View>
+        </View> */}
         <View style={styles.dropdownCompany}>
           <Controller
             name="country"
@@ -670,28 +730,7 @@ const ShortTermFormsedit = ({ navigation, route }) => {
             )}
           </View>
         </View>
-        <Controller
-          name="number"
-          defaultValue=""
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={[styles.input]}
-              selectionColor={"#5188E3"}
-              placeholder="Mobile Number"
-              keyboardType="number-pad"
-              multiline
-              // maxLength={}
-              numberOfLines={4}
-              onChangeText={onChange}
-              value={
-                phonenumber == ""
-                  ? value
-                  : phonenumber.replace(/^(\+91)(\d{10})$/, "$1 $2")
-              }
-            />
-          )}
-        />
+
         <Controller
           name="job_description"
           defaultValue=""
@@ -774,6 +813,48 @@ const ShortTermFormsedit = ({ navigation, route }) => {
               }}
             >
               {errors.Duration.message}
+            </Text>
+          )}
+        </View>
+        <View>
+          <Controller
+            name="Openings"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={{
+                  borderColor: "#D9D9D9",
+                  backgroundColor: "#FFF",
+                  borderRadius: 10,
+                  borderWidth: 0.5,
+                  fontSize: 13,
+                  height: 50,
+                  marginHorizontal: 10,
+                  paddingStart: 10,
+                  marginBottom: 15,
+                }}
+                selectionColor={"#5188E3"}
+                defaultValue={datas.Openings}
+                multiline={true}
+                numberOfLines={50}
+                onChangeText={onChange}
+                value={value == "" ? datas.Openings : value}
+                keyboardType="numeric"
+              />
+            )}
+          />
+          {errors.Openings && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                marginTop: "-4%",
+                marginLeft: "5%",
+                marginBottom: "4%",
+              }}
+            >
+              {errors.Openings.message} - vacancy
             </Text>
           )}
         </View>
@@ -862,7 +943,46 @@ const ShortTermFormsedit = ({ navigation, route }) => {
               </Text>
             )}
           </View>
-          <View></View>
+        </View>
+        <View style={{ height: 70 }}>
+          <TextInput
+            style={{
+              borderColor: "#D9D9D9",
+              backgroundColor: "#FFF",
+              borderRadius: 10,
+              borderWidth: 0.5,
+              fontSize: 13,
+              height: 50,
+              marginHorizontal: 10,
+              paddingStart: 10,
+              marginBottom: 15,
+            }}
+            selectionColor={"#5188E3"}
+            placeholder={"Expire date"}
+            multiline={true}
+            numberOfLines={50}
+            //onChangeText={onChange}
+            defaultValue={
+              showplace
+                ? new Date(datas.exp_date).toDateString()
+                : date.toDateString().slice(3)
+            }
+            value={date}
+            keyboardType="numeric"
+          />
+
+          <TouchableOpacity onPressIn={() => showDatepicker()}>
+            <FontAwesome5
+              name="calendar-alt"
+              size={24}
+              color="#333"
+              style={{
+                position: "absolute",
+                right: 40,
+                bottom: 28,
+              }}
+            />
+          </TouchableOpacity>
         </View>
         <Text
           style={{
@@ -872,10 +992,8 @@ const ShortTermFormsedit = ({ navigation, route }) => {
             fontSize: 17,
             fontWeight: "500",
           }}
-        >
-          Add Image
-        </Text>
-        <TouchableOpacity
+        ></Text>
+        {/* <TouchableOpacity
           onPress={() => {
             setModalVisible(true);
           }}
@@ -915,7 +1033,7 @@ const ShortTermFormsedit = ({ navigation, route }) => {
               />
             </View>
           )}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Modal
           animationType="slide"
           //animationInTiming = {13900}
@@ -1042,7 +1160,7 @@ const ShortTermFormsedit = ({ navigation, route }) => {
             </View>
           </View>
         </Modal>
-        <Text
+        {/* <Text
           // style={{ paddingLeft: 20, marginBottom: 10 }}
           style={{
             marginLeft: "4%",
@@ -1063,7 +1181,7 @@ const ShortTermFormsedit = ({ navigation, route }) => {
             }}
           />
           <Text style={[styles.paragraph, { color: "#333" }]}>Allow call</Text>
-        </View>
+        </View> */}
       </ScrollView>
       <TouchableOpacity
         onPress={handleSubmit(onSubmit)}
