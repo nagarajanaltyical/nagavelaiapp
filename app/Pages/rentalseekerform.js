@@ -76,12 +76,12 @@ export default function RentalSeeker({ navigation }) {
   async function takeAndUploadPhotoAsync1(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
-
     let result =
       paras === "files"
         ? await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             base64: true,
+
             allowsEditing: true,
             aspect: [4, 3],
             quality: 0.5,
@@ -89,19 +89,20 @@ export default function RentalSeeker({ navigation }) {
         : await ImagePicker.launchCameraAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             base64: true,
+
             allowsEditing: true,
             aspect: [4, 3],
             quality: 0.5,
           });
-    result;
-    // ImagePicker saves the taken photo to disk and returns a local URI to it
 
+    // ImagePicker saves the taken photo to disk and returns a local URI to it
+    console.log(result);
     if (!result.canceled) {
-      setActivityIndicators(true);
-      setprofile(localUri);
+      setprofileActivityIndicators(true);
+
       let localUri = result.assets[0]["uri"];
 
-      setImage(localUri);
+      setprofile(localUri);
       let filename = localUri.split("/").pop();
 
       // Infer the type of the image
@@ -117,15 +118,16 @@ export default function RentalSeeker({ navigation }) {
       async function submitdata() {
         try {
           await fetch(
-            `http://192.168.1.8:5000/api/job_post/aws_upload/${userID}`,
+            //http://192.168.0.12:5000/api/s_like_details
+            `http://103.174.10.108:5002/api/job_post/aws_upload/${userID}`,
             {
               method: "POST",
               mode: "cors", // no-cors, *cors, same-origin
               // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
               // credentials: "same-origin", // include, *same-origin, omit
               headers: {
-                // Accept: "application/json",
-                "Content-Type": "multipart/form-data",
+                Accept: "application/json",
+                // "Content-Type": "multipart/form-data",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
               },
               body: formdata, // body data type must match "Content-Type" header
@@ -134,19 +136,89 @@ export default function RentalSeeker({ navigation }) {
             .then((response) => response.json())
             .then((result) => {
               setprofilepic(result["updated"]);
-              setActivityIndicators(false);
-              setModalVisible(false);
+
+              setprofileActivityIndicators(false);
+              setprofilemodal(false);
             });
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (error) {}
       }
       submitdata();
     } else {
-      setActivityIndicators(false);
-      setModalVisible(false);
+      setprofileActivityIndicators(false);
+      setprofilemodal(false);
     }
   }
+  //   let result =
+  //     paras === "files"
+  //       ? await ImagePicker.launchImageLibraryAsync({
+  //           mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  //           base64: true,
+  //           allowsEditing: true,
+  //           aspect: [4, 3],
+  //           quality: 0.5,
+  //         })
+  //       : await ImagePicker.launchCameraAsync({
+  //           mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  //           base64: true,
+  //           allowsEditing: true,
+  //           aspect: [4, 3],
+  //           quality: 0.5,
+  //         });
+  //   console.log(result);
+  //   // ImagePicker saves the taken photo to disk and returns a local URI to it
+
+  //   if (!result.canceled) {
+  //     setprofileActivityIndicators(true);
+  //     setActivityIndicators(true);
+
+  //     let localUri = result.assets[0]["uri"];
+  //     setprofile(localUri);
+  //     //  setImage(localUri);
+  //     let filename = localUri.split("/").pop();
+
+  //     // Infer the type of the image
+  //     let match = /\.(\w+)$/.exec(filename);
+  //     let type = match ? `image/${match[1]}` : `image`;
+
+  //     var formdata = new FormData();
+  //     formdata.append("file", { uri: localUri, name: filename, type });
+  //     // Upload the image using the fetch and FormData APIs
+  //     let FFormData = new FormData();
+  //     // Assume "photo" is the name of the form field the server expects
+  //     FFormData.append("photo", { uri: localUri, name: filename, type });
+  //     async function submitdata() {
+  //       try {
+  //         await fetch(
+  //           `http://103.174.10.108:5002/api/job_post/aws_upload/${userID}`,
+  //           {
+  //             method: "POST",
+  //             mode: "cors", // no-cors, *cors, same-origin
+  //             // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+  //             // credentials: "same-origin", // include, *same-origin, omit
+  //             headers: {
+  //               // Accept: "application/json",
+  //               "Content-Type": "multipart/form-data",
+  //               // 'Content-Type': 'application/x-www-form-urlencoded',
+  //             },
+  //             body: formdata, // body data type must match "Content-Type" header
+  //           }
+  //         )
+  //           .then((response) => response.json())
+  //           .then((result) => {
+  //             setprofilepic(result["updated"]);
+  //             setActivityIndicators(false);
+  //             setModalVisible(false);
+  //           });
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     }
+  //     submitdata();
+  //   } else {
+  //     setActivityIndicators(false);
+  //     setModalVisible(false);
+  //   }
+  // }
 
   const handlecall = () => {
     // console.log("console.log");
@@ -288,7 +360,7 @@ export default function RentalSeeker({ navigation }) {
         )
           .then((response) => response.json())
           .then((result) => {
-            setjobpostpic(result["updated"]);
+            setprofilepic(result["updated"]);
             setActivityIndicators(false);
             setModalVisible(false);
           });
@@ -662,7 +734,7 @@ export default function RentalSeeker({ navigation }) {
                   </View> */}
                   <View style={{}}>
                     <TextInput
-                      placeholder="location"
+                      placeholder="Location"
                       style={styles.input}
                       onChangeText={handleChange("location")}
                       onBlur={handleBlur("location")}

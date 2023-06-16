@@ -108,6 +108,7 @@ const Items = ({
   Dis,
   name,
   short,
+  days_ago,
   work,
   iD,
   navigation,
@@ -230,11 +231,15 @@ const Items = ({
             </View>
             <TouchableWithoutFeedback
               onPress={() =>
-                navigation.navigate("JobPRocards", {
-                  post_id: iD,
-                  table_name:
-                    short == "True" ? "shorttime_job" : "long_job_post",
-                })
+                short == "True"
+                  ? navigation.navigate("Jobswipe1", {
+                      postid: iD,
+                      dates: days_ago,
+                    })
+                  : navigation.navigate("Jobswipe2", {
+                      postid: iD,
+                      dates: days_ago,
+                    })
               }
             >
               <View
@@ -319,7 +324,7 @@ const Items = ({
                     fontWeight: "400",
                   }}
                 >
-                  {loc}
+                  {loc.split(",")[0]}, {loc.split(",")[1]}, {loc.split(",")[2]}
                 </Text>
               </View>
             </TouchableWithoutFeedback>
@@ -348,16 +353,17 @@ const Items = ({
                 }
               >
                 <LinearGradient
-                  colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                  colors={["#fff", "#fff", "#fff", "#fff"]}
                   style={{
                     borderRadius: 8,
                     flexDirection: "row",
                     height: 30,
                     width: "65%",
-                    // marginLeft: 70,
+                    marginLeft: -25,
                     justifyContent: "center",
                     alignItems: "center",
-                    // marginBottom: 14,
+                    // paddingBottom: 15,
+                    //marginBottom: 14,
                   }}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
@@ -371,10 +377,12 @@ const Items = ({
                   <Text
                     style={{
                       marginLeft: 10,
-                      fontSize: 14,
-                      color: "#fff",
+                      // marginBottom: 10,
 
-                      fontWeight: "400",
+                      fontSize: 14,
+                      color: "#56909d",
+                      textDecorationLine: "underline",
+                      fontWeight: "600",
                     }}
                   >
                     Edit me
@@ -390,7 +398,7 @@ const Items = ({
                   });
                 }}
               >
-                <LinearGradient
+                {/* <LinearGradient
                   colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
                   style={{
                     alignContent: "center",
@@ -405,8 +413,8 @@ const Items = ({
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   useAngle={45}
-                >
-                  {/* <View
+                > */}
+                {/* <View
               style={{
                 borderTopWidth: 20,
                 backgroundColor: "red",
@@ -414,19 +422,21 @@ const Items = ({
               }}
             > */}
 
-                  <Text
-                    style={{
-                      fontSize: 12,
-                      color: "#fff",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {short == "True" ? "Short Term" : "Long Term"} - {cou}{" "}
-                    Persons Applied
-                  </Text>
-                  {/* </View> */}
-                </LinearGradient>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    color: "#56909d",
+                    fontWeight: "600",
+                    textDecorationLine: "underline",
+                  }}
+                >
+                  {short == "True" ? "Short Term" : "Long Term"} - {cou} Persons
+                  Applied
+                </Text>
+                {/* </View> */}
               </TouchableOpacity>
+              {/* </LinearGradient> */}
+              {/* </View></View>  </TouchableOpacity> */}
             </View>
           </View>
         </View>
@@ -497,6 +507,25 @@ export default function Jobpostermain({ navigation }) {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function getthedays(paras) {
+    const dateoo = `${new Date(paras).getMonth() + 1}/${new Date(
+      paras
+    ).getDate()}/${new Date(paras).getFullYear()}`;
+    console.log(dateoo);
+    const dateof = `${
+      new Date().getMonth() + 1
+    }/${new Date().getDate()}/${new Date().getFullYear()}`;
+    console.log(dateof);
+    var date1 = new Date(dateoo);
+    var date2 = new Date(dateof);
+    var Difference_In_Time = date2.getTime() - date1.getTime();
+
+    // To calculate the no. of days between two dates
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    return Difference_In_Days;
   }
   const [nodata, setnodata] = useState(false);
   async function submitdata() {
@@ -747,6 +776,7 @@ export default function Jobpostermain({ navigation }) {
                     loc={item.location}
                     short={item.is_short}
                     work={item.workspace}
+                    days_ago={getthedays(item.posteddatetime)}
                     cou={item.count}
                     navigation={navigation}
                     // count={item.count}

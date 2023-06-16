@@ -150,7 +150,7 @@ const Items = ({
     // console.log("gur");
     // lik = lik == "false" ? "true" : "false";
     try {
-      await fetch("http://103.174.12.108:5002/api/s_like_details", {
+      await fetch("http://103.174.10.108:5002/api/s_like_details", {
         method: "post", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -335,7 +335,7 @@ const Items = ({
                     fontWeight: "400",
                   }}
                 >
-                  {loc.split(",")[0]},{loc.split(",")[1]} | {Dis} km
+                  {loc.split(",")[0]}, {loc.split(",")[1]} | {Dis} km
                 </Text>
               </View>
             </View>
@@ -510,7 +510,7 @@ function Shorttermmainlist({ navigation, route }) {
 
     try {
       await fetch(
-        `http://192.168.1.12:5000/api/limit/s_like_apply_check/${user_id}`,
+        `http://103.174.10.108:5002/api/limit/s_like_apply_check/${user_id}`,
         {
           method: "POST",
           mode: "cors",
@@ -580,7 +580,7 @@ function Shorttermmainlist({ navigation, route }) {
 
     try {
       await fetch(
-        `http://192.168.1.12:5000/api/limit/s_like_apply_check/${user_id}`,
+        `http://103.174.10.108:5002/api/limit/s_like_apply_check/${user_id}`,
         {
           method: "POST",
           mode: "cors",
@@ -624,7 +624,7 @@ function Shorttermmainlist({ navigation, route }) {
 
     try {
       await fetch(
-        `http://192.168.1.12:5000/api/limit/s_like_apply_check/${user_id}`,
+        `http://103.174.10.108:5002/api/limit/s_like_apply_check/${user_id}`,
         {
           method: "POST",
           mode: "cors",

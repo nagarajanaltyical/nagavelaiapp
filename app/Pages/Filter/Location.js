@@ -193,7 +193,7 @@ export default function Location(props) {
     <View
       style={{
         justifyContent: "space-evenly",
-        // backgroundColor: "red",
+        //backgroundColor: "red",
       }}
     >
       {/* <View style={{ height: 20 }}>
@@ -232,9 +232,6 @@ export default function Location(props) {
           // arrowIconStyle={{ color: "red" }}
           // arrowIconContainerStyle={{ color: "#3" }}
           placeholder={"Choose Your State"}
-          dropDownContainerStyle={{
-            backgroundColor: "#DFDFDF",
-          }}
           listMode="MODAL"
           placeholderStyle={{ color: "#acacac" }}
           modalTitle="Select an item"
@@ -242,6 +239,12 @@ export default function Location(props) {
           modalContentContainerStyle={{
             backgroundColor: "#fff",
             // color: "red",
+          }}
+          dropDownContainerStyle={{
+            backgroundColor: "#DFDFDF",
+
+            position: "relative", // to fix scroll issue ... it is by default 'absolute'
+            top: 0, //to fix gap between label box and container
           }}
           modalTitleStyle={{
             fontWeight: "bold",
@@ -257,6 +260,7 @@ export default function Location(props) {
           customItemLabelStyle={{
             fontStyle: "italic",
           }}
+          searchPlaceholder="Select State"
           onChangeValue={(value) => {
             dispatch1({ type: "SET_STATE", payload: value });
             // handledistrict(value);

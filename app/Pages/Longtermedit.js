@@ -311,7 +311,7 @@ const LongTermedit = ({ navigation, route }) => {
 
     // body.page = 0;
     try {
-      await fetch(`http://192.168.1.10:5000/api/like_apply_slideshow`, {
+      await fetch(`http://103.174.10.108:5002/api/like_apply_slideshow`, {
         method: "POST",
         mode: "cors",
         cache: "no-cache",

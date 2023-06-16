@@ -37,46 +37,46 @@ import LottieViewloadingmodal from "../components/Loadinmodal";
 const schema = yup.object().shape({
   job_title: yup
     .string()
-    .required("Job title cant be empty")
-    .typeError("Job title  cannot be null"),
+    .required("Job Title is Required")
+    .typeError("Job Title is Required"),
   Other_title: yup.string().typeError("Please Enter the job title"),
 
   workspace: yup
     .string()
-    .required("Workspace is required")
-    .typeError("Workspace cannot be null"),
+    .required("Workspace is Required")
+    .typeError("Workspace is Required"),
   // location: yup.string().required("location of the job is required"),
   country: yup
     .string()
-    .required("Country cant be empty")
-    .typeError("Country  cannot be null"),
+    .required("Country is Required")
+    .typeError("Country is Required"),
   state: yup
     .string()
-    .required("State cant be empty")
-    .typeError("State  cannot be null"),
+    .required("State is Required")
+    .typeError("State is Required"),
   District: yup
     .string()
-    .required("District cant be empty")
-    .typeError("District  cannot be null"),
+    .required("District is Required")
+    .typeError("District is Required"),
   jobtype: yup
     .string()
     .required("Job Type is Required")
-    .typeError("Job Type Cannot be null"),
+    .typeError("Job Type is Required"),
   experience: yup
     .string()
-    .required("Experience Required")
-    .typeError("Experience Cannot be null"),
+    .required("Experience is Required")
+    .typeError("Experience is Required"),
   per: yup
     .string()
-    .required("Salary details can't be empty")
+    .required("Salary Detail is Required")
 
-    .typeError("Job title  cannot be null"),
-  Education: yup.string().required("Salary details can't be empty"),
-  job_description: yup.string().required("job Description can't be empty"),
-  Openings: yup.string().required("openings can't be empty"),
+    .typeError("Salary Detail is Required"),
+  Education: yup.string().required("Education is Required"),
+  job_description: yup.string().required("Job Description is Required"),
+  Openings: yup.string().required("Openings are Required"),
 
-  Salary: yup.string().required("Please enter the salary Details"),
-  Required_Skills: yup.string().required("Please enter the Required Skills"),
+  Salary: yup.string().required("Salary is Required"),
+  Required_Skills: yup.string().required("Skills are Required"),
   // mobile_number: yup.string().required("Mobile number is required"),
   email: yup.string(),
 });
@@ -565,7 +565,7 @@ const Sign = ({ navigation: { goBack } }) => {
                   loading={loading}
                   activityIndicatorColor="#5188E3"
                   searchable={true}
-                  searchPlaceholder="Search title here..."
+                  searchPlaceholder="Select Title "
                   onOpen={onCompanyOpen}
                   onChangeValue={(onselected(company), onChange)}
                   zIndex={1000}
@@ -661,7 +661,6 @@ const Sign = ({ navigation: { goBack } }) => {
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  searchable={true}
                   searchPlaceholder="Set duration here..."
                   onOpen={onCompanyOpen}
                   onChangeValue={onChange}
@@ -705,9 +704,12 @@ const Sign = ({ navigation: { goBack } }) => {
                     top: 0, //to fix gap between label box and container
                   }}
                   placeholderStyle={styles.placeholderStyles}
-                  containerStyle={{ zIndex: 50 }}
+                  //containerStyle={{ zIndex: 50 }}
                   loading={loading}
                   listMode="SCROLLVIEW"
+                  modalProps={{
+                    animationType: "slide",
+                  }}
                   activityIndicatorColor="#5188E3"
                   // searchable={true}
                   // searchPlaceholder="Set duration here..."
@@ -753,10 +755,10 @@ const Sign = ({ navigation: { goBack } }) => {
                 placeholderStyle={[styles.placeholderStyles]}
                 containerStyle={{ zIndex: 50 }}
                 loading={loading}
-                listMode="SCROLLVIEW"
+                listMode="MODAL"
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Set Country here..."
+                searchPlaceholder="Select Country"
                 onOpen={ondurationOpen}
                 onChangeValue={(onCountryChange(countryvalue), onChange)}
               />
@@ -813,7 +815,7 @@ const Sign = ({ navigation: { goBack } }) => {
                   activityIndicatorColor="#5188E3"
                   searchable={true}
                   containerStyle={{ zIndex: 50, width: 150 }}
-                  searchPlaceholder="Search title here..."
+                  searchPlaceholder="Select State"
                   // onOpen={onCompanyOpen1}
                   onChangeValue={(onstateChange(companyValue1), onChange)}
                   zIndex={1000}
@@ -858,10 +860,10 @@ const Sign = ({ navigation: { goBack } }) => {
                     placeholderStyle={[styles.placeholderStyles]}
                     containerStyle={{ zIndex: 50, width: 155 }}
                     loading={loading}
-                    listMode="SCROLLVIEW"
+                    listMode="MODAL"
                     activityIndicatorColor="#5188E3"
                     searchable={true}
-                    searchPlaceholder="Set district here..."
+                    searchPlaceholder="Select District"
                     onOpen={ondurationOpen}
                     onChangeValue={(onCityChange(cityvalue), onChange)}
                   />
@@ -988,7 +990,7 @@ const Sign = ({ navigation: { goBack } }) => {
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  searchable={true}
+                  //searchable={true}
                   searchPlaceholder="Set duration here..."
                   onOpen={ondurationOpen}
                   onChangeValue={onChange}
@@ -1069,7 +1071,7 @@ const Sign = ({ navigation: { goBack } }) => {
               marginBottom: 15,
             }}
             selectionColor={"#5188E3"}
-            placeholder={"Expire date"}
+            placeholder={"Expire Date"}
             multiline={true}
             numberOfLines={50}
             //onChangeText={onChange}
@@ -1081,98 +1083,46 @@ const Sign = ({ navigation: { goBack } }) => {
           <TouchableOpacity onPressIn={() => showDatepicker()}>
             <FontAwesome5
               name="calendar-alt"
-              size={24}
-              color="#333"
+              size={20}
+              color="#1e5966"
               style={{
                 position: "absolute",
                 right: 40,
-                bottom: 28,
+                bottom: 30,
               }}
             />
           </TouchableOpacity>
         </View>
-        <Controller
-          name="Education"
-          defaultValue=""
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={styles.input}
-              selectionColor={"#5188E3"}
-              placeholder={t("Education")}
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
         <View>
           <Controller
-            name="Required_Skills"
+            name="Education"
             defaultValue=""
             control={control}
             render={({ field: { onChange, value } }) => (
               <TextInput
-                style={[
-                  styles.input,
-                  { height: 200, textAlignVertical: "top", paddingTop: 10 },
-                ]}
+                style={styles.input}
                 selectionColor={"#5188E3"}
-                placeholder={"Required skills"}
-                multiline={true}
-                numberOfLines={50}
+                placeholder={t("Education")}
                 onChangeText={onChange}
                 value={value}
               />
             )}
           />
-          {errors.Required_Skills && (
+          {errors.Education && (
             <Text
               style={{
                 fontSize: 10,
                 color: "red",
-                // marginTop: "-3%",
-                marginLeft: "2%",
-                // marginBottom: "2%",
+                marginTop: "-3%",
+                marginLeft: "4%",
+                marginBottom: "6%",
               }}
             >
-              {errors.Required_Skills.message}
+              {errors.Education.message}
             </Text>
           )}
         </View>
-        <View>
-          <Controller
-            name="job_description"
-            defaultValue=""
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={[
-                  styles.input,
-                  { height: 200, textAlignVertical: "top", paddingTop: 10 },
-                ]}
-                selectionColor={"#5188E3"}
-                placeholder={t("Job_Description")}
-                multiline={true}
-                numberOfLines={50}
-                onChangeText={onChange}
-                value={value}
-              />
-            )}
-          />
-          {errors.job_description && (
-            <Text
-              style={{
-                fontSize: 10,
-                color: "red",
-                // marginTop: "-3%",
-                marginLeft: "2%",
-                // marginBottom: "2%",
-              }}
-            >
-              {errors.job_description.message}
-            </Text>
-          )}
-        </View>
+
         <Controller
           name="mobile_number"
           defaultValue=""
@@ -1242,36 +1192,106 @@ const Sign = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
-
-        <Controller
-          name="email"
-          defaultValue=""
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={[styles.input]}
-              selectionColor={"#5188E3"}
-              placeholder="abc@gmail.com"
-              keyboardType="email-address"
-              multiline
-              onChangeText={onChange}
-              value={value}
-            />
+        <View>
+          <Controller
+            name="email"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={[styles.input]}
+                selectionColor={"#5188E3"}
+                placeholder="abc@gmail.com"
+                keyboardType="email-address"
+                multiline
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+          {errors.email && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                marginTop: "-4%",
+                marginLeft: "4%",
+                marginBottom: "2%",
+              }}
+            >
+              {errors.email.message}
+            </Text>
           )}
-        />
-        {errors.email && (
-          <Text
-            style={{
-              fontSize: 10,
-              color: "red",
-              marginTop: "-4%",
-              marginLeft: "4%",
-              marginBottom: "2%",
-            }}
-          >
-            {errors.email.message}
-          </Text>
-        )}
+        </View>
+        <View>
+          <Controller
+            name="Required_Skills"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={[
+                  styles.input,
+                  { height: 200, textAlignVertical: "top", paddingTop: 10 },
+                ]}
+                selectionColor={"#5188E3"}
+                placeholder={"Required skills"}
+                multiline={true}
+                numberOfLines={50}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+          {errors.Required_Skills && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                marginTop: "-3%",
+                marginLeft: "4%",
+                marginBottom: "2%",
+              }}
+            >
+              {errors.Required_Skills.message}
+            </Text>
+          )}
+        </View>
+        <View>
+          <Controller
+            name="job_description"
+            defaultValue=""
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={[
+                  styles.input,
+                  { height: 200, textAlignVertical: "top", paddingTop: 10 },
+                ]}
+                selectionColor={"#5188E3"}
+                placeholder={t("Job_Description")}
+                multiline={true}
+                numberOfLines={50}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+          {errors.job_description && (
+            <Text
+              style={{
+                fontSize: 10,
+                color: "red",
+                marginTop: "-3%",
+                marginLeft: "4%",
+                marginBottom: "2%",
+              }}
+            >
+              {errors.job_description.message}
+            </Text>
+          )}
+        </View>
+
         <Text
           // style={{ paddingLeft: 20, marginBottom: 10 }}
           style={{

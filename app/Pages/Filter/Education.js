@@ -40,7 +40,7 @@ export default function Education() {
           }}
           listMode="MODAL"
           placeholderStyle={{ color: "#acacac" }}
-          modalTitle="Select an item"
+          modalTitle="Select Education"
           modalAnimationType="slide"
           modalContentContainerStyle={{
             backgroundColor: "#fff",
@@ -48,7 +48,7 @@ export default function Education() {
           modalTitleStyle={{
             fontWeight: "bold",
           }}
-          searchable={true}
+          //  searchable={true}
           mode="BADGE"
           categorySelectable={true}
           closeAfterSelecting={true}

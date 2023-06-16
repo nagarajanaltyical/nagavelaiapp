@@ -37,15 +37,16 @@ export default function Duration() {
           }}
           placeholderStyle={{ color: "#acacac" }}
           listMode="MODAL"
-          modalTitle="Select an item"
+          modalTitle="Select Duration"
           modalAnimationType="slide"
           modalContentContainerStyle={{
             backgroundColor: "#fff",
+            //  height: 200,
           }}
           modalTitleStyle={{
             fontWeight: "bold",
           }}
-          searchable={true}
+          //searchable={true}
           mode="BADGE"
           categorySelectable={true}
           closeAfterSelecting={true}
@@ -83,6 +84,7 @@ export default function Duration() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    //backgroundColor: "red",
     justifyContent: "space-evenly",
   },
 });

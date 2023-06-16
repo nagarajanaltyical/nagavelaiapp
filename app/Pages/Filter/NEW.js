@@ -61,7 +61,7 @@ const listTab = [
   //   ),
   // },
   {
-    status: "Duration",
+    status: "Job Type",
     icon: (
       <Image
         resizeMode="contain"
@@ -82,7 +82,7 @@ const listTab = [
     ),
   },
   {
-    status: "Work Space",
+    status: "Workspace",
     icon: (
       <Image
         resizeMode="contain"
@@ -161,7 +161,7 @@ const data = [
   {
     name: <Duration1 />,
     text: "Here I go into details about myself and my business, including the services we provide, how we started and our overall ethos.",
-    status: "Duration",
+    status: "Job Type",
   },
   {
     name: <Experiance />,
@@ -172,7 +172,7 @@ const data = [
   {
     name: <Workmode />,
     text: "Here we give you information on how to contact us for business discussions and possible collaborations.",
-    status: "Work Space",
+    status: "Workspace",
   },
   {
     name: <LongSalery />,

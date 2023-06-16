@@ -139,7 +139,7 @@ export default function Profilepage({ navigation, route }) {
       async function submitdata() {
         try {
           await fetch(
-            `http://192.168.1.3:5000/api/job_post/aws_upload/${userID}`, //this IP address need to change and check
+            `http://103.174.10.108:5002/api/job_post/aws_upload/${userID}`, //this IP address need to change and check
             {
               method: "POST",
               mode: "cors", // no-cors, *cors, same-origin
@@ -157,7 +157,7 @@ export default function Profilepage({ navigation, route }) {
             .then((result) => {
               setprofilepic(result["updated"]);
               setprofileActivityIndicators(false);
-              setModalVisible(false);
+              setprofilemodal(false);
             });
         } catch (error) {
           console.log(error);
@@ -166,7 +166,7 @@ export default function Profilepage({ navigation, route }) {
       submitdata();
     } else {
       setprofileActivityIndicators(false);
-      setModalVisible(false);
+      setprofilemodal(false);
     }
   }
 

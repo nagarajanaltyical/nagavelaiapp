@@ -1856,7 +1856,7 @@ function Saved({ navigation, route }) {
   const [nodata, setnodata] = useState(false);
   async function fetchdata() {
     try {
-      await fetch(`http://192.168.1.12:5000/api/s_apply_details/${user_id}`, {
+      await fetch(`http://103.174.10.108:5002/api/s_apply_details/${user_id}`, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

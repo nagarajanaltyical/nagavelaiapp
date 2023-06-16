@@ -68,7 +68,7 @@ const schema = yup.object().shape({
     .typeError("District is Required"),
   Openings: yup.string().required("Job Opening is Required"),
   Other_title: yup.string().typeError("Job Title is Required"),
-  Expire: yup.string().required("Expire Date is Required"),
+  //Expire: yup.string().required("Expire Date is Required"),
 
   // mobile_number: yup.string().required("Mobile number is required"),
   // email: yup.string().required("email id is required"),
@@ -528,7 +528,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
                 loading={loading}
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Search Title"
+                searchPlaceholder="Select Title"
                 onOpen={onCompanyOpen}
                 onChangeValue={(onselected(company), onChange)}
                 zIndex={1000}
@@ -980,11 +980,11 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
               style={{
                 position: "absolute",
                 right: 40,
-                bottom: 23,
+                bottom: 30,
               }}
             />
           </TouchableOpacity>
-          {errors.Expire && (
+          {/* {errors.Expire && (
             <Text
               style={{
                 fontSize: 10,
@@ -996,7 +996,7 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
             >
               {errors.Expire.message}
             </Text>
-          )}
+          )} */}
         </View>
         {/* <Text
           style={{

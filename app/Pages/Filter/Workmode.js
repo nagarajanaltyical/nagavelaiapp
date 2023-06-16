@@ -11,10 +11,10 @@ export default function Workmode() {
   const { state2, dispatch2 } = useContext(L_FILTER);
 
   const [items, setItems] = useState([
-    { label: "Work from office", value: "Work from office" },
-    { label: "Permanent Remote / WFH", value: "Permanent Remote / WFH" },
+    { label: "Work From Office", value: "Work From Office" },
+    { label: "Remote", value: "Remote" },
     { label: "Hybrid", value: "Hybrid" },
-    { label: "Temporary", value: "Temporary" },
+    { label: "Onsite", value: "Onsite" },
   ]);
 
   return (
@@ -37,7 +37,7 @@ export default function Workmode() {
           }}
           listMode="MODAL"
           placeholderStyle={{ color: "#acacac" }}
-          modalTitle="Select an item"
+          modalTitle="Select workspace"
           modalAnimationType="slide"
           modalContentContainerStyle={{
             backgroundColor: "#fff",
@@ -45,7 +45,7 @@ export default function Workmode() {
           modalTitleStyle={{
             fontWeight: "bold",
           }}
-          searchable={true}
+          //  searchable={true}
           mode="BADGE"
           categorySelectable={true}
           closeAfterSelecting={true}

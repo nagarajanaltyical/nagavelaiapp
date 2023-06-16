@@ -13,13 +13,14 @@ export default function Salery() {
   const { state1, dispatch1 } = useContext(S_FILTER);
   const [items, setItems] = useState([
     {
-      label: "Hourly payment",
+      label: "Hourly Payment",
 
-      value: "Hourly payment",
+      value: "Hourly Payment",
     },
-    { label: "Daily payment", value: "Daily payment" },
-    { label: "Weekly payment", value: "Weekly payment" },
+    { label: "Daily Payment", value: "Daily Payment" },
+    { label: "Weekly Payment", value: "Weekly Payment" },
     { label: "Monthly Payment", value: "Monthly Payment" },
+    { label: "Yearly Payment", value: "Yearly Payment" },
   ]);
 
   return (
@@ -41,7 +42,7 @@ export default function Salery() {
             backgroundColor: "#DFDFDF",
           }}
           listMode="MODAL"
-          modalTitle="Select an item"
+          modalTitle="Select Payment"
           modalAnimationType="slide"
           modalContentContainerStyle={{
             backgroundColor: "#fff",
@@ -49,7 +50,7 @@ export default function Salery() {
           modalTitleStyle={{
             fontWeight: "bold",
           }}
-          searchable={true}
+          // searchable={true}
           mode="BADGE"
           categorySelectable={true}
           closeAfterSelecting={true}

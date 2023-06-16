@@ -10,6 +10,8 @@ import {
   Text,
 } from "react-native";
 import ShortTermFormsedit from "../Pages/shorttermformedit";
+import ShorttimeSwiperCard1 from "../Swipe/shorttimeswipe1";
+import LongtimeSwiperCard1 from "../Swipe/Longtimeswipe1";
 import LongTermsuperadmin from "../Pages/Longtermsuperadmin";
 import ShortTermadminForms from "../Pages/Shorttermsuperadmin";
 import LongTermedit from "../Pages/Longtermedit";
@@ -1063,17 +1065,17 @@ function Root({ navigation }) {
             // headerRight: () => <></>,
           }}
         />
-        {!state.Rental_provider_user_details ? (
-          <Stack.Screen
-            name="providerform"
-            component={RentalJobProvider}
-            options={{
-              title: "",
-              headerShadowVisible: false,
+        {/* {!state.Rental_provider_user_details ? ( */}
+        <Stack.Screen
+          name="providerform"
+          component={RentalJobProvider}
+          options={{
+            title: "",
+            headerShadowVisible: false,
 
-              headerRight: (props) => (
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  {/* <View
+            headerRight: (props) => (
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                {/* <View
                     style={{
                       flexDirection: "row",
                       marginLeft: "70%",
@@ -1084,19 +1086,19 @@ function Root({ navigation }) {
                       <Text style={{ Text: 18, color: "#333" }}>EN</Text>
                     </Pressable>
                   </View> */}
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      marginHorizontal: 12,
-                    }}
-                  >
-                    <Image
-                      resizeMode="contain"
-                      source={require("../images/velailogo.png")}
-                      style={{ width: 35, height: 35 }}
-                    />
-                    {/* <Pressable onPress={() => setisvoice(!isvoice)}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginHorizontal: 12,
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={require("../images/velailogo.png")}
+                    style={{ width: 35, height: 35 }}
+                  />
+                  {/* <Pressable onPress={() => setisvoice(!isvoice)}>
                       {isvoice ? (
                         <MaterialCommunityIcons
                           name="account-voice"
@@ -1111,17 +1113,17 @@ function Root({ navigation }) {
                         />
                       )}
                     </Pressable> */}
-                  </View>
                 </View>
-              ),
-              headerStyle: {
-                backgroundColor: "#eefbff",
-              },
-            }}
-          ></Stack.Screen>
-        ) : (
+              </View>
+            ),
+            headerStyle: {
+              backgroundColor: "#eefbff",
+            },
+          }}
+        ></Stack.Screen>
+        {/* ) : (
           <></>
-        )}
+        )} */}
         {/* <Stack.Screen
           name="category"
           component={Maincategory}
@@ -1237,6 +1239,119 @@ function Root({ navigation }) {
         <Stack.Screen
           name="JobPRocards"
           component={JobProvidercards}
+          options={{
+            headerTintColor: "#333",
+            headerShadowVisible: false,
+
+            headerRight: (props) => (
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                {/* <View
+                  style={{
+                    flexDirection: "row",
+                    marginLeft: "70%",
+                  }}
+                >
+                  <Ionicons name="md-globe-outline" size={22} color="#333" />
+                  <Pressable>
+                    <Text style={{ Text: 18, color: "#333" }}>EN</Text>
+                  </Pressable>
+                </View> */}
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginHorizontal: 12,
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={require("../images/velailogo.png")}
+                    style={{ width: 35, height: 35 }}
+                  />
+                  {/* <Pressable onPress={() => setisvoice(!isvoice)}>
+                    {isvoice ? (
+                      <MaterialCommunityIcons
+                        name="account-voice"
+                        size={22}
+                        color="#333"
+                      />
+                    ) : (
+                      <MaterialCommunityIcons
+                        name="account-voice-off"
+                        size={22}
+                        color="#333"
+                      />
+                    )}
+                  </Pressable> */}
+                </View>
+              </View>
+            ),
+            headerStyle: {
+              backgroundColor: "#Eefbff",
+            },
+            title: "",
+          }}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="Jobswipe1"
+          component={ShorttimeSwiperCard1}
+          options={{
+            headerTintColor: "#333",
+            headerShadowVisible: false,
+
+            headerRight: (props) => (
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                {/* <View
+                  style={{
+                    flexDirection: "row",
+                    marginLeft: "70%",
+                  }}
+                >
+                  <Ionicons name="md-globe-outline" size={22} color="#333" />
+                  <Pressable>
+                    <Text style={{ Text: 18, color: "#333" }}>EN</Text>
+                  </Pressable>
+                </View> */}
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginHorizontal: 12,
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={require("../images/velailogo.png")}
+                    style={{ width: 35, height: 35 }}
+                  />
+                  {/* <Pressable onPress={() => setisvoice(!isvoice)}>
+                    {isvoice ? (
+                      <MaterialCommunityIcons
+                        name="account-voice"
+                        size={22}
+                        color="#333"
+                      />
+                    ) : (
+                      <MaterialCommunityIcons
+                        name="account-voice-off"
+                        size={22}
+                        color="#333"
+                      />
+                    )}
+                  </Pressable> */}
+                </View>
+              </View>
+            ),
+            headerStyle: {
+              backgroundColor: "#Eefbff",
+            },
+            title: "",
+          }}
+        ></Stack.Screen>
+
+        <Stack.Screen
+          name="Jobswipe2"
+          component={LongtimeSwiperCard1}
           options={{
             headerTintColor: "#333",
             headerShadowVisible: false,

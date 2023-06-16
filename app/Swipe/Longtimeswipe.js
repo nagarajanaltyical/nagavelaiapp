@@ -370,7 +370,7 @@ export default function LongtimeSwiperCard({ route }) {
     body.user_id = userID;
 
     try {
-      await fetch(`http://192.168.1.12:5000/api/limit/L_like_apply_check1`, {
+      await fetch(`http://103.174.10.108:5002/api/limit/L_like_apply_check1`, {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
@@ -926,7 +926,10 @@ export default function LongtimeSwiperCard({ route }) {
                     color: "#535353",
                   }}
                 >
-                  {data[index].location} | {data[index].distance} km
+                  {data[index].location.split(",")[0]},{" "}
+                  {data[index].location.split(",")[1]},{" "}
+                  {data[index].location.split(",")[2]} | {data[index].distance}
+                  km
                 </Text>
               </View>
 
@@ -1062,10 +1065,10 @@ export default function LongtimeSwiperCard({ route }) {
               >
                 Job Expire :
                 {data[index].exp_date == null
-                  ? `${new Date().getDate()}-${
+                  ? ` ${new Date().getDate()} - ${
                       new Date().getMonth() + 1
-                    }-${new Date().getFullYear()}`
-                  : `${new Date(data[index].exp_date).getDate()}-${
+                    } - ${new Date().getFullYear()}`
+                  : `${new Date(data[index].exp_date).getDate()} - ${
                       new Date(data[index].exp_date).getMonth() + 1
                     }-${new Date().getFullYear()}`}
               </Text>

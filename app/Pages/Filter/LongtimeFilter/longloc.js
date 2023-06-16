@@ -215,6 +215,7 @@ export default function Location1(props) {
           listMode="MODAL"
           placeholderStyle={{ color: "#acacac" }}
           modalTitle="Select an item"
+          searchPlaceholder="Select State"
           modalAnimationType="slide"
           modalContentContainerStyle={{
             backgroundColor: "#fff",
@@ -249,6 +250,7 @@ export default function Location1(props) {
           onChangeText={(dist) => setDistrict(dist)}
           placeholder={"Enter the District"}
           style={styles.input}
+          placeholderTextColor={"#acacac"}
           onBlur={() => {
             dispatch2({ type: "SET_DISTRICT_long", payload: District });
           }}

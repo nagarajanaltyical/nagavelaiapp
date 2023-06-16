@@ -96,9 +96,9 @@ export default function RentalJobProvider({ navigation }) {
             aspect: [4, 3],
             quality: 0.5,
           });
-    result;
-    // ImagePicker saves the taken photo to disk and returns a local URI to it
 
+    // ImagePicker saves the taken photo to disk and returns a local URI to it
+    console.log(result);
     if (!result.canceled) {
       setprofileActivityIndicators(true);
 
@@ -120,6 +120,7 @@ export default function RentalJobProvider({ navigation }) {
       async function submitdata() {
         try {
           await fetch(
+            //http://192.168.0.12:5000/api/s_like_details
             `http://103.174.10.108:5002/api/job_post/aws_upload/${userID}`,
             {
               method: "POST",
@@ -275,7 +276,7 @@ export default function RentalJobProvider({ navigation }) {
       async function submitdata() {
         try {
           await fetch(
-            `http://192.168.1.8:5000/api/job_post/aws_upload/${userID}`,
+            `http://103.174.10.108:5002/api/job_post/aws_upload/${userID}`,
             {
               method: "POST",
               mode: "cors", // no-cors, *cors, same-origin

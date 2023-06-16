@@ -478,6 +478,7 @@ export default function PersonProfilepage({ route, navigation }) {
   async function takeAndUploadPhotoAsync1(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
+    console.log("imm the claaa");
     let result =
       paras === "files"
         ? await ImagePicker.launchImageLibraryAsync({

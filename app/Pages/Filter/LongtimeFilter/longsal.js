@@ -40,12 +40,12 @@ export default function LongSalery() {
           value={value}
           items={items}
           placeholderStyle={{ color: "#acacac" }}
-          placeholder={"Select Package"}
+          placeholder={"Select Salary"}
           dropDownContainerStyle={{
             backgroundColor: "#DFDFDF",
           }}
           listMode="MODAL"
-          modalTitle="Select an item"
+          modalTitle="Select Salary"
           modalAnimationType="slide"
           modalContentContainerStyle={{
             backgroundColor: "#fff",
@@ -53,7 +53,7 @@ export default function LongSalery() {
           modalTitleStyle={{
             fontWeight: "bold",
           }}
-          searchable={true}
+          //  searchable={true}
           mode="BADGE"
           categorySelectable={true}
           closeAfterSelecting={true}

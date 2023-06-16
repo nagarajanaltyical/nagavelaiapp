@@ -355,7 +355,7 @@ const Items = ({
                     fontWeight: "400",
                   }}
                 >
-                  {loc.split(",")[0]} ,{loc.split(",")[1]}
+                  {loc.split(",")[0]}, {loc.split(",")[1]}
                   {/* | {Dis} km */}
                 </Text>
               </View>
@@ -618,7 +618,7 @@ function Longtermmainlist({ navigation, route }) {
     console.log(body);
     try {
       await fetch(
-        `http://192.168.1.12:5000/api/limit/L_like_apply_check/${user_id}`,
+        `http://103.174.10.108:5002/api/limit/L_like_apply_check/${user_id}`,
         {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin
@@ -689,7 +689,7 @@ function Longtermmainlist({ navigation, route }) {
       };
       body.language = states.lang_value;
       await fetch(
-        `http://192.168.1.12:5000/api/limit/L_like_apply_check/${user_id}`,
+        `http://103.174.10.108:5002/api/limit/L_like_apply_check/${user_id}`,
         {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin
@@ -731,7 +731,7 @@ function Longtermmainlist({ navigation, route }) {
       body.filter = state2;
       body.language = states.lang_value;
       await fetch(
-        `http://192.168.1.12:5000/api/limit/L_like_apply_check/${user_id}`,
+        `http://103.174.10.108:5002/api/limit/L_like_apply_check/${user_id}`,
         {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin

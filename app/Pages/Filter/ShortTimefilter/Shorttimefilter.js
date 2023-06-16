@@ -328,7 +328,8 @@ export default function Shorttimefilter({ navigation: { goBack } }) {
                 <View
                   style={{
                     // backgroundColor: "red",
-                    marginVertical: "10%",
+                    //marginVertical: "10%",
+                    marginBottom: 30,
                     height: "18%",
                     justifyContent: "center",
                     // alignItems: "center",
@@ -438,7 +439,7 @@ const styles = StyleSheet.create({
   listTab: {
     borderColor: "#acacac",
     borderWidth: 1,
-    height: "60%",
+    height: "40%",
     width: "20%",
     // paddingVertical: "5%",
     backgroundColor: "#FFF",
@@ -447,7 +448,7 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     // alignItems: "center",
     marginTop: "10%",
-    paddingTop: 35,
+    paddingTop: 15,
     // marginLeft: 5,
     // borderRadius: 20,
     borderTopRightRadius: 10,
@@ -461,7 +462,7 @@ const styles = StyleSheet.create({
     // marginBottom: 5,
     // marginTop: "5%",
     height: 70,
-    marginBottom: 40,
+    //marginBottom: 20,
     // backgroundColor: "red",
     // paddingHorizontal: 5,
     // paddingVertical: 3,

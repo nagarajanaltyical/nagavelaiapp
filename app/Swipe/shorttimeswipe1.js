@@ -101,7 +101,7 @@ const transition = (
 );
 const swiperRef = React.createRef();
 const transitionRef = React.createRef();
-export default function ShorttimeSwiperCard({ route }) {
+export default function ShorttimeSwiperCard1({ route }) {
   const { t, language, setlanguage, userDetails } =
     useContext(LocalizationContext);
   const isFocused = useIsFocused();
@@ -126,6 +126,34 @@ export default function ShorttimeSwiperCard({ route }) {
       recipients: ["help@velaiapp.com"],
     });
   }
+
+  //job provider deeletion
+  const handleDeletion = async (paras) => {
+    const body = {};
+    body.id = route.params.postid;
+    body.is_short = true;
+
+    try {
+      await fetch(`http://103.174.10.108:5002/api/post_delete`, {
+        method: "DELETE",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.result == "successfully deleted") {
+            navigation.goBack();
+          }
+        });
+    } catch (error) {
+      console.warn(error);
+    }
+  };
 
   // const { getstate } = useContext(AuthContext);
 
@@ -853,14 +881,8 @@ export default function ShorttimeSwiperCard({ route }) {
                 </Text>
                 {/* <FontAwesome name="rupee" size={16} color="#000000" />
                 {data[index].payment} */}
-                <TouchableOpacity
-                  style={{ paddingHorizontal: "4%" }}
-                  onPress={() => {
-                    console.log("im at the like ", data[index].liked);
-                    handleLikeButtonPress(data[index]);
-                  }}
-                >
-                  {data[index].liked == "true" ? (
+                <TouchableOpacity style={{ paddingHorizontal: "4%" }}>
+                  {/* {data[index].liked == "true" ? (
                     <Ionicons
                       name="ios-heart-sharp"
                       size={22}
@@ -872,7 +894,7 @@ export default function ShorttimeSwiperCard({ route }) {
                       size={22}
                       color="#56909d"
                     />
-                  )}
+                  )} */}
 
                   {/* <AntDesign name="hearto" size={34} color="black" /> */}
                 </TouchableOpacity>
@@ -907,7 +929,7 @@ export default function ShorttimeSwiperCard({ route }) {
                   marginLeft: "13%",
                 }}
               > */}
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   onPress={() => checktheuserChat()}
                   style={{ paddingHorizontal: "4%" }}
                 >
@@ -916,9 +938,9 @@ export default function ShorttimeSwiperCard({ route }) {
                     size={22}
                     color="#56909d"
                   />
-                </TouchableOpacity>
-                <View style={{ paddingHorizontal: "4%" }}>
-                  <TouchableOpacity
+                </TouchableOpacity> */}
+
+                {/* <TouchableOpacity
                     onPress={() => {
                       Alert.alert(
                         "Share",
@@ -931,8 +953,8 @@ export default function ShorttimeSwiperCard({ route }) {
                       size={22}
                       color="#56909d"
                     />
-                  </TouchableOpacity>
-                </View>
+                  </TouchableOpacity> */}
+
                 {/* <MaterialCommunityIcons
                   name="share-circle"
                   size={22}
@@ -1511,8 +1533,12 @@ export default function ShorttimeSwiperCard({ route }) {
                 >
                   <View style={{}}>
                     <TouchableOpacity
-                      onPress={() => handleCallclick(data[index])}
-                      disabled={data[index].isallow_tocall == "0"}
+                      onPress={() => {
+                        // navigation.navigate("Userprofile");
+                        handleDeletion(data[index]);
+                      }}
+
+                      // handleLikeButtonPress(data[index]);
                     >
                       <LinearGradient
                         colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
@@ -1523,23 +1549,20 @@ export default function ShorttimeSwiperCard({ route }) {
                           height: 38,
                           width: 160,
                           borderRadius: 10,
-                          opacity: data[index].isallow_tocall == "0" ? 0.5 : 1,
+
+                          opacity: 1,
                           justifyContent: "center",
                           alignItems: "center",
-                          flexDirection: "row",
                         }}
                       >
-                        <FontAwesome name="phone" size={22} color="#fff" />
                         <Text
                           style={{
                             color: "#fff",
-                            fontSize: language == "English" ? 16 : 13,
+                            fontSize: 16,
                             fontWeight: "500",
-                            marginHorizontal: 10,
-                            justifyContent: "center",
                           }}
                         >
-                          {t("Call_Now")}
+                          Delete this Post
                         </Text>
                       </LinearGradient>
                     </TouchableOpacity>
@@ -1559,44 +1582,7 @@ export default function ShorttimeSwiperCard({ route }) {
                         {data[index].Duration2}
                       </Text>
                     </LinearGradient> */}
-                  <View style={{}}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        // navigation.navigate("Userprofile");
-                        checktheusercondtiton(data[index]);
-                      }}
-                      disabled={data[index].apply == "True"}
-                      // handleLikeButtonPress(data[index]);
-                    >
-                      <LinearGradient
-                        colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 1 }}
-                        useAngle={45}
-                        style={{
-                          height: 38,
-                          width: 160,
-                          borderRadius: 10,
-
-                          opacity: data[index].apply == "True" ? 0.5 : 1,
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Text
-                          style={{
-                            color: "#fff",
-                            fontSize: language == "English" ? 16 : 13,
-                            fontWeight: "500",
-                          }}
-                        >
-                          {data[index].apply == "True"
-                            ? t("Applied")
-                            : t("Apply_Now")}
-                        </Text>
-                      </LinearGradient>
-                    </TouchableOpacity>
-                  </View>
+                  <View style={{}}></View>
                 </View>
 
                 <View

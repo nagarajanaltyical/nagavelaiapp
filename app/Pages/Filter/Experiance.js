@@ -10,11 +10,9 @@ export default function Experiance() {
   const [value, setValue] = useState(null);
   const { state2, dispatch2 } = useContext(L_FILTER);
   const [items, setItems] = useState([
-    {
-      label: "0 - 1 Year",
-
-      value: "0 - 1 Year",
-    },
+    { label: "Fresher", value: "Fresher" },
+    { label: "0 - 6 Months", value: "0 - 6 Months" },
+    { label: "7 - 12 Months", value: "7 - 12 Months" },
     { label: "1 - 5 Years", value: "1 - 5 Years" },
     { label: "5 - 10 Years", value: "5 - 10 Years" },
     { label: "10+ Years", value: "10+ Years" },
@@ -40,7 +38,7 @@ export default function Experiance() {
           }}
           placeholderStyle={{ color: "#acacac" }}
           listMode="MODAL"
-          modalTitle="Select an item"
+          modalTitle="Select Experience"
           modalAnimationType="slide"
           modalContentContainerStyle={{
             backgroundColor: "#fff",
@@ -48,7 +46,7 @@ export default function Experiance() {
           modalTitleStyle={{
             fontWeight: "bold",
           }}
-          searchable={true}
+          //  searchable={true}
           mode="BADGE"
           categorySelectable={true}
           closeAfterSelecting={true}

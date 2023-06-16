@@ -118,7 +118,7 @@ export default function SelectCategory({ route }) {
   //to get job count and Employers Count
   async function GetCount() {
     try {
-      await fetch(`http://192.168.1.12:5000/api/total_jobs`, {
+      await fetch(`http://103.174.10.108:5002/api/total_jobs`, {
         method: "GET",
         mode: "cors", // no-cors, *cors, same-origin
         // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

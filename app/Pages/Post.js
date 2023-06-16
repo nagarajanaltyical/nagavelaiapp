@@ -118,7 +118,7 @@
 //   const getJobs = async () => {
 //     try {
 //       await fetch(
-//         `http://192.168.1.10:5000/api/count_apply_job/${route.params.userID}`,
+//         `http://103.174.10.108:5002/api/count_apply_job/${route.params.userID}`,
 //         {
 //           method: "GET",
 //           mode: "cors",
@@ -204,7 +204,7 @@
 //     body.post_id = parameter;
 //     console.log(body);
 //     try {
-//       await fetch("http://192.168.1.10:5000/api/apply_job", {
+//       await fetch("http://103.174.10.108:5002/api/apply_job", {
 //         method: "POST",
 //         mode: "cors",
 //         cache: "no-cache",
