@@ -12,6 +12,7 @@ import {
   Alert,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+
 // import * as MailComposer from "expo-mail-composer";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
@@ -36,6 +37,8 @@ export default function Profilepage({ navigation, route }) {
   const is_details_given = useSelector((state) => state.user_details_given);
   // const user_type = useSelector((state) => state.job_seeker_info);
   const userID = useSelector((state) => state.ID);
+  const [profileupdated, setprofileupdated] = useState(false);
+
   const states = useSelector((state) => state);
   delete states["_persist"];
   const dispatch2 = useDispatch();
@@ -64,7 +67,7 @@ export default function Profilepage({ navigation, route }) {
   // to addd the
 
   //add image to backend
-  const addprofile = async (paras1, paras2) => {
+  const addprofile = async (paras1) => {
     const body = {};
     body.userType = !states.job_seeker_info
       ? !states.job_provider_info
@@ -88,7 +91,9 @@ export default function Profilepage({ navigation, route }) {
         body: JSON.stringify(body),
       })
         .then((response) => response.json())
-        .then((result) => {});
+        .then((result) => {
+          getdataofuser();
+        });
     } catch (error) {}
   };
 
@@ -117,7 +122,7 @@ export default function Profilepage({ navigation, route }) {
           });
     result;
     // ImagePicker saves the taken photo to disk and returns a local URI to it
-
+    console.log(result);
     if (!result.canceled) {
       setprofileActivityIndicators(true);
 
@@ -156,6 +161,9 @@ export default function Profilepage({ navigation, route }) {
             .then((response) => response.json())
             .then((result) => {
               setprofilepic(result["updated"]);
+              addprofile(result["updated"]);
+              getdataofuser();
+              setprofileupdated(true);
               setprofileActivityIndicators(false);
               setprofilemodal(false);
             });
@@ -277,13 +285,22 @@ export default function Profilepage({ navigation, route }) {
                   marginBottom: 10,
                 }}
               >
-                <Image
-                  source={{
-                    uri:
-                      data[0].profilepic == "" ? profile : data[0].profilepic,
-                  }}
-                  style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
-                />
+                {profileupdated ? (
+                  <Image
+                    source={{
+                      uri: profile,
+                    }}
+                    style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
+                  />
+                ) : (
+                  <Image
+                    source={{
+                      uri:
+                        data[0].profilepic == "" ? profile : data[0].profilepic,
+                    }}
+                    style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
+                  />
+                )}
                 <MaterialCommunityIcons
                   name="pencil-circle"
                   size={33}

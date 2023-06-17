@@ -1231,37 +1231,45 @@ const ShortTermForms = ({ navigation: { goBack } }) => {
             {t("Allow_Call")}
           </Text>
         </View>
-      </ScrollView>
-      <TouchableOpacity
-        onPress={handleSubmit(onSubmit)}
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          height: "10%",
-        }}
-      >
-        <LinearGradient
-          colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+        <View
           style={{
-            // backgroundColor: isValid ? "#6BC3FF" : "#87CEEB",
-            textAlign: "center",
-            // marginHorizontal: 60,
-            padding: 10,
-            width: "50%",
-            // paddingVertical: 15,
-            borderRadius: 10,
             alignItems: "center",
-            // marginTop: 20,
+            marginTop: 20,
+            marginBottom: 25,
           }}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          useAngle={45}
         >
-          <Text style={{ color: "#fff", fontWeight: "600", fontSize: 17 }}>
-            {t("Create_Job")}
-          </Text>
-        </LinearGradient>
-      </TouchableOpacity>
+          <LinearGradient
+            colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+            style={{
+              // backgroundColor: isValid ? "#6BC3FF" : "#87CEEB",
+              textAlign: "center",
+              // marginHorizontal: 60,
+              padding: 10,
+              width: "50%",
+              // paddingVertical: 15,
+              borderRadius: 10,
+              alignItems: "center",
+              // marginTop: 20,
+            }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            useAngle={45}
+          >
+            <TouchableOpacity
+              onPress={handleSubmit(onSubmit)}
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
+              <Text style={{ color: "#fff", fontWeight: "600", fontSize: 17 }}>
+                {t("Create_Job")}
+              </Text>
+            </TouchableOpacity>
+          </LinearGradient>
+        </View>
+      </ScrollView>
     </View>
   );
 };

@@ -26,7 +26,7 @@ export default function NextButton({ scrollTo, lastitem }) {
         justifyContent: "center",
         alignItems: "center",
         position: "relative",
-        top: -40,
+        top: -130,
         // backgroundColor: "blue",
       }}
     >
@@ -35,7 +35,7 @@ export default function NextButton({ scrollTo, lastitem }) {
         style={Styles.button}
         activeOpacity={0.6}
       >
-        <AntDesign name="arrowright" size={24} color="#fff" />
+        <AntDesign name="rightcircle" size={50} color="#194751" />
       </TouchableOpacity>
     </View>
   );
@@ -45,8 +45,8 @@ const Styles = StyleSheet.create({
   button: {
     position: "absolute",
     borderColor: "#aee9f7",
-    borderWidth: 20,
-    backgroundColor: "#1e5966",
+    // borderWidth: 20,
+    // backgroundColor: "#1e5966",
     borderRadius: 100,
     padding: 20,
   },

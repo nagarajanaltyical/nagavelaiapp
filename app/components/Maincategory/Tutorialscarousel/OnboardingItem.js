@@ -22,12 +22,12 @@ export default function OnboardingItem({ item }) {
       <Image
         source={item.image}
         style={{
-          width: "70%",
-          height: "70%",
-          margin: 20,
-          marginTop: 40,
+          width: "100%",
+          height: "100%",
+          // margin: 20,
+          // marginTop: 40,
           //   marginTop: 10,
-          marginBottom: 10,
+          // marginBottom: 10,
         }}
       />
       <View
@@ -41,7 +41,7 @@ export default function OnboardingItem({ item }) {
           <Text style={styles.sampleline}>SKIP</Text>
         </TouchableOpacity>
       </View>
-      <View
+      {/* <View
         style={{
           flex: 0.8,
           // alignItems: "center",
@@ -51,9 +51,9 @@ export default function OnboardingItem({ item }) {
           justifyContent: "center",
         }}
       >
-        <Text style={styles.title}>{item.description}</Text>
-        {/* <Text style={styles.description}>{item.description}</Text> */}
-      </View>
+        <Text style={styles.title}>{item.description}</Text> */}
+      {/* <Text style={styles.description}>{item.description}</Text> */}
+      {/* </View> */}
     </View>
   );
 }

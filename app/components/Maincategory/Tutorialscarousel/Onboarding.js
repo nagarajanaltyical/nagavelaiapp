@@ -47,7 +47,7 @@ export default function Onboarding({ route }) {
         ref={slidersRef}
         renderItem={({ item }) => <OnboardingItem item={item} />}
       />
-      <Paginator data={tutorialData} scrollx={scrollx} />
+      {/* <Paginator data={tutorialData} scrollx={scrollx} /> */}
       <NextButton scrollTo={scrollTo} lastitem={lastitem} />
     </View>
   );

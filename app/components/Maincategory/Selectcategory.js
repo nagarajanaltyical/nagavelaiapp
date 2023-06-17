@@ -37,6 +37,7 @@ import Swiper from "react-native-deck-swiper";
 import SwiperCard from "../../Pages/Post";
 import { Alert } from "react-native";
 import Coming from "../../Lottie/Comingsoon";
+import Coming1 from "../coming";
 
 // create a component
 export default function SelectCategory({ route }) {
@@ -690,7 +691,7 @@ export default function SelectCategory({ route }) {
                           color: "#fff",
                           fontSize: 10,
                           fontWeight: "600",
-                          fontFamily: "Roboto",
+                          fontFamily: "serif",
                           fontStyle: "italic", // fontFamily: "Roboto-BoldItalic",
                         }}
                       >
@@ -730,7 +731,7 @@ export default function SelectCategory({ route }) {
                       color: "#fff",
                       marginTop: 10,
                       fontWeight: "700",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
 
                       // fontFamily: "Roboto-Regular",
 
@@ -848,7 +849,7 @@ export default function SelectCategory({ route }) {
                           // color: "#fff",
                           color: "#fff",
                           fontSize: 10,
-                          fontFamily: "Roboto",
+                          fontFamily: "serif",
                           fontStyle: "italic",
                           // fontFamily: "Roboto-BoldItalic",
                         }}
@@ -886,7 +887,7 @@ export default function SelectCategory({ route }) {
                       color: "#fff",
                       marginTop: 10,
                       fontWeight: "700",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
 
                       // fontFamily: "Roboto-Regular",
                       textAlign: "center",
@@ -1163,7 +1164,7 @@ export default function SelectCategory({ route }) {
                       color: "#fff",
                       // fontWeight: "500",
                       fontWeight: "700",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
 
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1176,7 +1177,7 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       fontWeight: "700",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
 
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1272,7 +1273,7 @@ export default function SelectCategory({ route }) {
                     style={{
                       fontSize: 11,
                       color: "#fff",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
 
                       fontWeight: "700",
                       // fontFamily: "Roboto-Regular",
@@ -1285,7 +1286,7 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       fontWeight: "700",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
 
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1376,7 +1377,7 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       fontWeight: "700",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
 
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1388,7 +1389,7 @@ export default function SelectCategory({ route }) {
                     style={{
                       fontSize: 11,
                       color: "#fff",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
 
                       fontWeight: "700",
                       // fontFamily: "Roboto-Regular",
@@ -1614,7 +1615,7 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       textTransform: "uppercase",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
                       fontWeight: "700",
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1697,7 +1698,7 @@ export default function SelectCategory({ route }) {
                 >
                   <Image
                     resizeMode="contain"
-                    source={require("../Maincategory/Categoryimage/Insurance.png")}
+                    source={require("../Maincategory/Categoryimage/insurancehealth.png")}
                     style={{
                       width: 50,
                       height: 60,
@@ -1709,7 +1710,7 @@ export default function SelectCategory({ route }) {
                       fontSize: 11,
                       color: "#fff",
                       fontWeight: "700",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
                       textTransform: "uppercase",
                       // fontFamily: "Roboto-Regular",
                     }}
@@ -1788,9 +1789,12 @@ export default function SelectCategory({ route }) {
                     // elevation: 8,
                   }}
                 >
+                  {/* <View style={{ backgroundColor: "red" }}> */}
+                  {/* <Coming1 /> */}
+                  {/* </View> */}
                   <Image
                     resizeMode="contain"
-                    source={require("../Maincategory/Categoryimage/bub.gif")}
+                    source={require("../Maincategory/Categoryimage/update.png")}
                     style={{
                       width: 60,
                       height: 60,
@@ -1801,12 +1805,12 @@ export default function SelectCategory({ route }) {
                       fontSize: 13,
                       color: "#333",
                       fontWeight: "700",
-                      fontFamily: "Roboto",
+                      fontFamily: "sans-serif",
                       // fontFamily: "RobotoBoldItalic-4e0x",
                       textAlign: "center",
                     }}
                   >
-                    Stay Tunned for our Updates
+                    Stay Tunned For Our Updates
                   </Text>
                   {/* <Text
               style={{
@@ -1856,6 +1860,18 @@ export default function SelectCategory({ route }) {
           </View>
         </View>
       </ScrollView>
+      {/* <Text style={{ fontFamily: "normal" }}> normal </Text>
+      <Text style={{ fontFamily: "notoserif" }}> notoserif </Text>
+      <Text style={{ fontFamily: "sans-serif" }}> sans-serif </Text>
+      <Text style={{ fontFamily: "sans-serif-light" }}> sans-serif-light </Text>
+      <Text style={{ fontFamily: "sans-serif-thin" }}> sans-serif-thin </Text>
+      <Text style={{ fontFamily: "sans-serif-condensed" }}>
+        sans-serif-condensed
+      </Text>
+      <Text style={{ fontFamily: "sans-serif-medium" }}>sans-serif-medium</Text>
+      <Text style={{ fontFamily: "serif" }}> serif </Text>
+      <Text style={{ fontFamily: "Roboto" }}> Roboto </Text>
+      <Text style={{ fontFamily: "monospace" }}> monospace </Text> */}
       <View style={{ height: "8%", backgroundColor: "#eefbff" }}></View>
     </>
   );

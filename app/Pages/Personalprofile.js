@@ -52,6 +52,7 @@ export default function PersonProfilepage({ route, navigation }) {
     useState(false);
   const [profile, setprofile] = useState(null);
   const [profilepic, setprofilepic] = useState("");
+  const [profileupdated, setprofileupdated] = useState(false);
   // for comapny name
   const [companymodalVisible, setcompanymodalVisible] = useState(false);
   const [companyname, setcompanyname] = useState("");
@@ -493,7 +494,7 @@ export default function PersonProfilepage({ route, navigation }) {
             aspect: [4, 3],
             quality: 1,
           });
-    result;
+
     // ImagePicker saves the taken photo to disk and returns a local URI to it
     // if (!result.canceled) {
     //   setprofileActivityIndicators(true);
@@ -589,6 +590,7 @@ export default function PersonProfilepage({ route, navigation }) {
               console.log(result);
               setprofilepic(result["updated"]);
               setprofileActivityIndicators(false);
+              setprofileupdated(true);
               setprofilemodal(false);
             });
         } catch (error) {
@@ -638,13 +640,22 @@ export default function PersonProfilepage({ route, navigation }) {
                   // marginBottom: 10,
                 }}
               >
-                <Image
-                  source={{
-                    uri:
-                      data[0].profilepic == "" ? profile : data[0].profilepic,
-                  }}
-                  style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
-                />
+                {profileupdated ? (
+                  <Image
+                    source={{
+                      uri: profile,
+                    }}
+                    style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
+                  />
+                ) : (
+                  <Image
+                    source={{
+                      uri:
+                        data[0].profilepic == "" ? profile : data[0].profilepic,
+                    }}
+                    style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
+                  />
+                )}
                 <MaterialCommunityIcons
                   name="pencil-circle"
                   size={33}
@@ -1730,11 +1741,11 @@ export default function PersonProfilepage({ route, navigation }) {
                   {
                     console.log(states.job_seeker_info);
 
-                    !states.job_seeker_info
-                      ? !states.job_provider_info
-                        ? console.log("First Expression true")
-                        : console.log("seconde Ecpression")
-                      : console.log("Third expression");
+                    // !states.job_seeker_info
+                    //   ? !states.job_provider_info
+                    //     ? console.log("First Expression true")
+                    //     : console.log("seconde Ecpression")
+                    //   : console.log("Third expression");
                     !states.job_seeker_info
                       ? !states.job_provider_info
                         ? handleSubmit({

@@ -15,9 +15,10 @@ export default function Paginator({ data, scrollx }) {
     <View
       style={{
         flexDirection: "row",
-        height: 60,
+        height: 2,
+        // backgroundColor: "red",
         position: "absolute",
-        top: Math.round(height) - 270,
+        top: Math.round(height) - 160,
         left: width / 2.6,
         alignItems: "center",
         justifyContent: "center",

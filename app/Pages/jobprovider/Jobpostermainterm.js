@@ -598,9 +598,10 @@ export default function Jobpostermain({ navigation }) {
       >
         <TouchableOpacity
           onPress={() =>
-            phonenumber == "+918825848880"
-              ? navigation.navigate("shortTermadminforms")
-              : navigation.navigate("short")
+            // phonenumber == "+918825848880"
+            //   ? navigation.navigate("shortTermadminforms")
+            //   :
+            navigation.navigate("short")
           }
           style={{ marginHorizontal: 5 }}
         >
@@ -635,9 +636,10 @@ export default function Jobpostermain({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
-            phonenumber == "+918825848880"
-              ? navigation.navigate("LongTermsuperadmin")
-              : navigation.navigate("Long")
+            // phonenumber == "+918825848880"
+            //   ? navigation.navigate("LongTermsuperadmin")
+            //   :
+            navigation.navigate("Long")
           }
           // style={{ marginVertical: "" }}
           style={{

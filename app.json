@@ -2,7 +2,7 @@
   "expo": {
     "name": "Velai",
     "slug": "Velai",
-    "version": "1.0.15",
+    "version": "1.0.17",
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",
     "plugins": [
@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "com.zealzoft.velai",
-      "versionCode": 16,
+      "versionCode": 18,
       "adaptiveIcon": {
         "foregroundImage": "./assets/loggo.png",
         "backgroundImage": "./assets/iconbg.png"
