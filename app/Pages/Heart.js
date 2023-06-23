@@ -133,78 +133,88 @@ const LongTermCategory = ({
         marginBottom: 3,
       }}
     >
-      <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate("longtimeswipe", {
-            postid: Id,
-            dates: days_ago,
-          });
+      <View
+        style={{
+          backgroundColor: "#fff",
+          borderRadius: 10,
+          height: "100%",
+          width: "98%",
+          paddingHorizontal: 7,
+
+          shadowColor: "#000000",
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.2,
+          shadowRadius: 2.62,
+          elevation: 3,
         }}
       >
         <View
           style={{
-            backgroundColor: "#fff",
-            borderRadius: 10,
+            // height: 170,
             height: "100%",
-            width: "98%",
-            paddingHorizontal: 7,
-
-            shadowColor: "#000000",
-            shadowOffset: {
-              width: 0,
-              height: 1,
-            },
-            shadowOpacity: 0.2,
-            shadowRadius: 2.62,
-            elevation: 3,
+            marginLeft: 5,
+            flexDirection: "column",
+            // marginHorizontal: 30,
           }}
         >
           <View
-            style={{
-              // height: 170,
-              height: "100%",
-              marginLeft: 5,
-              flexDirection: "column",
-              // marginHorizontal: 30,
-            }}
+            style={{ flexDirection: "row", marginBottom: 10, marginTop: 5 }}
           >
-            <View
-              style={{ flexDirection: "row", marginBottom: 10, marginTop: 5 }}
+            <Text
+              style={{
+                color: "#333",
+                fontSize: 18,
+                textAlign: "left",
+                fontWeight: "500",
+                textAlign: "left",
+                marginTop: 10,
+                lineHeight: 21,
+                width: "85%",
+                // backgroundColor: "red",
+                // marginHorizontal: 30,
+              }}
             >
-              <Text
-                style={{
-                  color: "#333",
-                  fontSize: 18,
-                  textAlign: "left",
-                  fontWeight: "500",
-                  textAlign: "left",
-                  marginTop: 10,
-                  lineHeight: 21,
-                  width: "85%",
-                  // backgroundColor: "red",
-                  // marginHorizontal: 30,
-                }}
-              >
-                {title}
-              </Text>
+              {title}
+            </Text>
+            <View
+              style={{
+                alignItems: "center",
+              }}
+            >
               <View
                 style={{
-                  alignItems: "center",
+                  marginTop: 10,
+                  marginLeft: "3%",
                 }}
               >
-                <View
-                  style={{
-                    marginTop: 10,
-                    marginLeft: "3%",
-                  }}
+                <TouchableOpacity
+                  onPress={() =>
+                    onShare({
+                      title,
+                      sal,
+                      per,
+                      time,
+                      loc,
+                      cou,
+                      Dis,
+                      name,
+                      short,
+                      work,
+                    })
+                  }
+                  // style={{ backgroundColor: "red", width: "45%" }}
                 >
                   <MaterialCommunityIcons
                     name="share-all-outline"
                     size={22}
                     color="#333"
                   />
-                </View>
-                {/* <EvilIcons
+                </TouchableOpacity>
+              </View>
+              {/* <EvilIcons
                   name="heart"
                   size={24}
                   color="black"
@@ -216,31 +226,40 @@ const LongTermCategory = ({
                   2 days ago
                 </Text>{" "}
                 */}
-              </View>
             </View>
-            <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  // resizeMode="contain"
-                  source={require("../images/rupee.png")}
-                  style={{ width: 18, height: 18 }}
-                />
-                <Text
-                  style={{
-                    // marginTop: 3,
-                    color: "#535353",
-                    fontSize: 13,
-                    width: 150,
-                    marginLeft: 10,
-                    // backgroundColor: "red",
-                    fontSize: 14,
-                    fontWeight: "400",
-                  }}
-                >
-                  {sal} {per}
-                </Text>
-              </View>
-              {/* <View
+          </View>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              navigation.navigate("longtimeswipe", {
+                postid: Id,
+                dates: days_ago,
+              });
+            }}
+          >
+            <View>
+              <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <Image
+                    // resizeMode="contain"
+                    source={require("../images/rupee.png")}
+                    style={{ width: 18, height: 18 }}
+                  />
+                  <Text
+                    style={{
+                      // marginTop: 3,
+                      color: "#535353",
+                      fontSize: 13,
+                      width: 150,
+                      marginLeft: 10,
+                      // backgroundColor: "red",
+                      fontSize: 14,
+                      fontWeight: "400",
+                    }}
+                  >
+                    {sal} {per}
+                  </Text>
+                </View>
+                {/* <View
               style={{
                 flexDirection: "row",
 
@@ -267,260 +286,265 @@ const LongTermCategory = ({
                 {short == "True" ? time : work}
               </Text>
             </View> */}
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignContent: "center",
-                }}
-              >
-                <Image
-                  // resizeMode="contain"
-                  source={require("../images/experience.png")}
-                  style={{ width: 19, height: 19 }}
-                />
-                <Text
+                <View
                   style={{
-                    // marginTop: 3,
-                    color: "#535353",
-                    fontSize: 13,
-                    fontSize: 14,
-                    width: 210,
-                    marginLeft: 10,
-                    fontWeight: "400",
+                    flexDirection: "row",
+                    alignContent: "center",
                   }}
                 >
-                  1-2 Years
-                </Text>
-              </View>
-            </View>
-            <View style={{ flexDirection: "row", marginVertical: 10 }}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  marginVertical: 10,
-                  alignContent: "center",
-                }}
-              >
-                <Image
-                  // resizeMode="contain"
-                  source={require("../images/mappin.png")}
-                  style={{ width: 19, height: 19 }}
-                />
-                <Text
-                  style={{
-                    // marginTop: 3,
-                    color: "#535353",
-                    fontSize: 13,
-                    fontSize: 14,
-                    width: 150,
-                    marginLeft: 10,
-                    fontWeight: "400",
-                  }}
-                >
-                  {loc.split(",")[0]} ,{loc.split(",")[1]} {Dis} km
-                </Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  marginVertical: 10,
-                  alignContent: "center",
-                }}
-              >
-                <Image
-                  // resizeMode="contain"
-                  source={require("../images/college.png")}
-                  style={{ width: 19, height: 19 }}
-                />
-                <Text
-                  style={{
-                    // marginTop: 3,
-                    color: "#535353",
-                    fontSize: 13,
-                    fontSize: 14,
-                    marginLeft: 10,
-                    fontWeight: "400",
-                  }}
-                >
-                  {/* Adyar, {loc.split(",")[0]} | {Dis} km */}
-                  {education}
-                </Text>
-              </View>
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                width: "100%",
-                marginBottom: 10,
-              }}
-            >
-              <View
-                style={{
-                  width: 45,
-                  height: 45,
-                  //   marginTop: 3,
-
-                  borderRadius: 50,
-                  shadowColor: "#000000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 0.2,
-                  shadowRadius: 5.62,
-                  elevation: 8,
-
-                  resizeMode: "cover",
-                }}
-              >
-                {!(pic == "") ? (
                   <Image
-                    source={{
-                      uri: pic,
-                    }}
-                    style={{
-                      backgroundColor: "#EEFBFF",
-                      width: 45,
-                      height: 45,
-                      //   marginTop: 3,
-
-                      borderRadius: 50,
-
-                      resizeMode: "cover",
-                      // borderColor: "#f6ab03",
-                      // borderWidth: 1,
-                    }}
+                    // resizeMode="contain"
+                    source={require("../images/experience.png")}
+                    style={{ width: 19, height: 19 }}
                   />
-                ) : (
+                  <Text
+                    style={{
+                      // marginTop: 3,
+                      color: "#535353",
+                      fontSize: 13,
+                      fontSize: 14,
+                      width: 210,
+                      marginLeft: 10,
+                      fontWeight: "400",
+                    }}
+                  >
+                    1-2 Years
+                  </Text>
+                </View>
+              </View>
+              <View style={{ flexDirection: "row", marginVertical: 10 }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginVertical: 10,
+                    alignContent: "center",
+                  }}
+                >
                   <Image
-                    source={require("../images/account.png")}
-                    style={{
-                      backgroundColor: "#EEFBFF",
-                      width: 45,
-                      height: 45,
-                      //   marginTop: 3,
-
-                      borderRadius: 50,
-
-                      resizeMode: "cover",
-                      // borderColor: "#f6ab03",
-                      // borderWidth: 1,
-                    }}
+                    // resizeMode="contain"
+                    source={require("../images/mappin.png")}
+                    style={{ width: 19, height: 19 }}
                   />
-                )}
+                  <Text
+                    style={{
+                      // marginTop: 3,
+                      color: "#535353",
+                      fontSize: 13,
+                      fontSize: 14,
+                      width: 150,
+                      marginLeft: 10,
+                      fontWeight: "400",
+                    }}
+                  >
+                    {loc.split(",")[0]} ,{loc.split(",")[1]} {Dis} km
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginVertical: 10,
+                    alignContent: "center",
+                  }}
+                >
+                  <Image
+                    // resizeMode="contain"
+                    source={require("../images/college.png")}
+                    style={{ width: 19, height: 19 }}
+                  />
+                  <Text
+                    style={{
+                      // marginTop: 3,
+                      color: "#535353",
+                      fontSize: 13,
+                      fontSize: 14,
+                      marginLeft: 10,
+                      fontWeight: "400",
+                    }}
+                  >
+                    {/* Adyar, {loc.split(",")[0]} | {Dis} km */}
+                    {education}
+                  </Text>
+                </View>
+              </View>
+
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: "100%",
+                  marginBottom: 10,
+                }}
+              >
+                <View
+                  style={{
+                    width: 45,
+                    height: 45,
+                    //   marginTop: 3,
+
+                    borderRadius: 50,
+                    shadowColor: "#000000",
+                    shadowOffset: {
+                      width: 0,
+                      height: 2,
+                    },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 5.62,
+                    elevation: 8,
+
+                    resizeMode: "cover",
+                  }}
+                >
+                  {!(pic == "") ? (
+                    <Image
+                      source={{
+                        uri: pic,
+                      }}
+                      style={{
+                        backgroundColor: "#EEFBFF",
+                        width: 45,
+                        height: 45,
+                        //   marginTop: 3,
+
+                        borderRadius: 50,
+
+                        resizeMode: "cover",
+                        // borderColor: "#f6ab03",
+                        // borderWidth: 1,
+                      }}
+                    />
+                  ) : (
+                    <Image
+                      source={require("../images/account.png")}
+                      style={{
+                        backgroundColor: "#EEFBFF",
+                        width: 45,
+                        height: 45,
+                        //   marginTop: 3,
+
+                        borderRadius: 50,
+
+                        resizeMode: "cover",
+                        // borderColor: "#f6ab03",
+                        // borderWidth: 1,
+                      }}
+                    />
+                  )}
+                </View>
+                <View
+                  style={{
+                    flexDirection: "column",
+                    width: "65%",
+                    paddingLeft: 10,
+
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#56909D",
+                      fontSize: 15,
+                      fontWeight: "500",
+                    }}
+                  >
+                    {name}
+                  </Text>
+                  <Text
+                    style={{
+                      color: "#56909D",
+                      fontSize: 13,
+                      fontWeight: "400",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    Owner
+                  </Text>
+                </View>
               </View>
               <View
                 style={{
-                  flexDirection: "column",
-                  width: "65%",
-                  paddingLeft: 10,
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  flexDirection: "row",
+                  width: "100%",
 
-                  justifyContent: "center",
+                  marginBottom: 15,
                 }}
               >
                 <Text
-                  style={{ color: "#56909D", fontSize: 15, fontWeight: "500" }}
-                >
-                  {name}
-                </Text>
-                <Text
                   style={{
+                    // marginTop: 3,
                     color: "#56909D",
                     fontSize: 13,
+                    fontSize: 14,
+
+                    marginHorizontal: 2,
+
                     fontWeight: "400",
-                    textTransform: "capitalize",
                   }}
                 >
-                  Owner
+                  {workspace}
+                </Text>
+
+                <Text
+                  style={{
+                    // marginTop: 3,
+
+                    color: "#56909D",
+                    fontSize: 13,
+                    fontSize: 14,
+                    marginHorizontal: 2,
+
+                    fontWeight: "400",
+                  }}
+                >
+                  |
+                </Text>
+                <Text
+                  style={{
+                    // marginTop: 3,
+
+                    color: "#56909D",
+                    fontSize: 13,
+                    fontSize: 14,
+                    marginHorizontal: 2,
+
+                    fontWeight: "400",
+                  }}
+                >
+                  {jobtype}
+                </Text>
+                <Text
+                  style={{
+                    // marginTop: 3,
+
+                    color: "#56909D",
+                    fontSize: 13,
+                    fontSize: 14,
+                    marginHorizontal: 2,
+
+                    fontWeight: "400",
+                  }}
+                >
+                  |
+                </Text>
+                <Text
+                  style={{
+                    // marginTop: 3,
+
+                    color: "#56909D",
+                    fontSize: 13,
+                    fontSize: 14,
+                    marginHorizontal: 2,
+                    width: 100,
+                    fontWeight: "400",
+                  }}
+                >
+                  {Openings} Openings
                 </Text>
               </View>
             </View>
-            <View
-              style={{
-                justifyContent: "flex-end",
-                alignItems: "center",
-                flexDirection: "row",
-                width: "100%",
-
-                marginBottom: 15,
-              }}
-            >
-              <Text
-                style={{
-                  // marginTop: 3,
-                  color: "#56909D",
-                  fontSize: 13,
-                  fontSize: 14,
-
-                  marginHorizontal: 2,
-
-                  fontWeight: "400",
-                }}
-              >
-                {workspace}
-              </Text>
-
-              <Text
-                style={{
-                  // marginTop: 3,
-
-                  color: "#56909D",
-                  fontSize: 13,
-                  fontSize: 14,
-                  marginHorizontal: 2,
-
-                  fontWeight: "400",
-                }}
-              >
-                |
-              </Text>
-              <Text
-                style={{
-                  // marginTop: 3,
-
-                  color: "#56909D",
-                  fontSize: 13,
-                  fontSize: 14,
-                  marginHorizontal: 2,
-
-                  fontWeight: "400",
-                }}
-              >
-                {jobtype}
-              </Text>
-              <Text
-                style={{
-                  // marginTop: 3,
-
-                  color: "#56909D",
-                  fontSize: 13,
-                  fontSize: 14,
-                  marginHorizontal: 2,
-
-                  fontWeight: "400",
-                }}
-              >
-                |
-              </Text>
-              <Text
-                style={{
-                  // marginTop: 3,
-
-                  color: "#56909D",
-                  fontSize: 13,
-                  fontSize: 14,
-                  marginHorizontal: 2,
-                  width: 80,
-                  fontWeight: "400",
-                }}
-              >
-                {Openings} Openings
-              </Text>
-            </View>
-          </View>
+          </TouchableWithoutFeedback>
         </View>
-      </TouchableWithoutFeedback>
+      </View>
     </View>
   );
 };
@@ -1844,7 +1868,7 @@ const Heart = ({ navigation, route }) => {
         {refreshing ? <ActivityIndicator /> : null}
         {/* <View style={{ height: "8%" }}></View> */}
       </View>
-      <View style={{ height: "13%" }}></View>
+      <View style={{ height: "13.5%" }}></View>
     </View>
   );
 };

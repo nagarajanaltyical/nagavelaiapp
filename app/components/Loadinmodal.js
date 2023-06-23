@@ -14,6 +14,7 @@ export default function LottieViewloadingmodal(paras) {
         style={{
           width: 100,
           height: 100,
+          // backgroundColor: "#eefbff",
         }}
         source={require("./loading.json")}
         // OR find more Lottie files @ https://lottiefiles.com/featured
@@ -30,5 +31,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
   },
-  buttonContainer: {},
 });

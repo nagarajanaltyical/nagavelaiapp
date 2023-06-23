@@ -128,7 +128,7 @@ const LongTermCategory = ({
               >
                 {title}
               </Text>
-              <View
+              {/* <View
                 style={{
                   alignItems: "center",
                 }}
@@ -144,8 +144,8 @@ const LongTermCategory = ({
                     size={22}
                     color="#333"
                   />
-                </View>
-                {/* <EvilIcons
+                </View> */}
+              {/* <EvilIcons
                   name="heart"
                   size={24}
                   color="black"
@@ -157,7 +157,7 @@ const LongTermCategory = ({
                   2 days ago
                 </Text>{" "}
                 */}
-              </View>
+              {/* </View> */}
             </View>
             <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -452,7 +452,7 @@ const LongTermCategory = ({
                   fontSize: 13,
                   fontSize: 14,
                   marginHorizontal: 2,
-                  width: 80,
+                  width: 100,
                   fontWeight: "400",
                 }}
               >
@@ -956,7 +956,7 @@ const ShortTermCategory = ({
               >
                 {title}
               </Text>
-              <View
+              {/* <View
                 style={{
                   alignItems: "center",
                 }}
@@ -972,8 +972,8 @@ const ShortTermCategory = ({
                     size={22}
                     color="#333"
                   />
-                </View>
-                {/* <EvilIcons
+                </View> */}
+              {/* <EvilIcons
                   name="heart"
                   size={24}
                   color="black"
@@ -985,7 +985,7 @@ const ShortTermCategory = ({
                   2 days ago
                 </Text>{" "}
                 */}
-              </View>
+              {/* </View> */}
             </View>
             <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -1897,9 +1897,15 @@ function Saved({ navigation, route }) {
 
   if (loading && data.length > 0) {
     return (
-      <View style={{ height: "100%", backgroundColor: "#eefbff" }}>
+      <View
+        style={{
+          height: "100%",
+          backgroundColor: "red",
+          justifyContent: "center",
+        }}
+      >
         <Text>
-          <LottieViewloading />;
+          <LottieViewloading />
         </Text>
       </View>
     );
@@ -2131,7 +2137,7 @@ function Saved({ navigation, route }) {
           </SafeAreaView>
         )}
       </View>
-      <View style={{ height: "18%" }}></View>
+      <View style={{ height: "18.5%" }}></View>
     </View>
   );
 }

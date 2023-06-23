@@ -569,6 +569,7 @@ export default function SelectCategory({ route }) {
             style={{
               width: "100%",
               marginBottom: 10,
+
               backgroundColor: "#eefbff",
             }}
           >
@@ -576,6 +577,7 @@ export default function SelectCategory({ route }) {
               style={{
                 flexDirection: "row",
                 width: "100%",
+                marginBottom: 10,
                 justifyContent: "center",
                 // borderColor: "transparent",
                 // marginVertical: 50,
@@ -909,7 +911,16 @@ export default function SelectCategory({ route }) {
               </TouchableHighlight>
             </View>
           </View>
-
+          {/* <View
+            style={{
+              height: 10,
+              width: "95%",
+              marginHorizontal: 10,
+              borderBottomWidth: 0.5,
+              borderBottomColor: "#333",
+              marginBottom: 10,
+            }}
+          ></View> */}
           {/* <TouchableHighlight
             onPress={() => handleRentalSeeker()}
             activeOpacity={0.6}
@@ -1084,217 +1095,215 @@ export default function SelectCategory({ route }) {
               </Text>
             </LinearGradient>
           </TouchableHighlight> */}
-          <View style={{ width: width, backgroundColor: "#eefbff" }}>
+          <View
+            style={{
+              width: width,
+              backgroundColor: "#eefbff",
+              marginBottom: 5,
+            }}
+          >
             <View
               style={{ flexDirection: "row", justifyContent: "space-evenly" }}
             >
-              <TouchableHighlight
-                onPress={() => handleRentalSeeker()}
-                // onPress={() => {
-                //   navigation.navigate("Insurance");
-                //   // Alert.alert(
-                //   //   "Insurance",
-                //   //   "You will soon receive details about the services."
-                //   // );
-                // }}
-                activeOpacity={0.6}
-                underlayColor="#Eefbff"
-                style={{
-                  height: 100,
-                  width: 100,
-                  // backgroundColor: "#FFFFFF",
-                  marginHorizontal: 5,
-                  marginVertical: 20,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  // borderWidth: 1,
-                  // borderColor: "#A3A3A3",
-                  borderRadius: 20,
-                  alignContent: "center",
-                  position: "relative",
-                  shadowColor: "#846437",
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 10,
-                  shadowRadius: 10.62,
-                  elevation: 18,
-                }}
-              >
-                <LinearGradient
-                  colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  useAngle={45}
+              <View style={{}}>
+                <View>
+                  <TouchableHighlight
+                    onPress={() => handleRentalSeeker()}
+                    // onPress={() => {
+                    //   navigation.navigate("Insurance");
+                    //   // Alert.alert(
+                    //   //   "Insurance",
+                    //   //   "You will soon receive details about the services."
+                    //   // );
+                    // }}
+                    activeOpacity={0.6}
+                    underlayColor="#Eefbff"
+                    style={{
+                      height: 80,
+                      width: 105,
+                      backgroundColor: "#FFFFFF",
+                      marginHorizontal: 5,
+                      // marginVertical: 20,
+                      marginBottom: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      // borderWidth: 1,
+                      // borderColor: "#A3A3A3",
+                      borderRadius: 20,
+                      alignContent: "center",
+                      position: "relative",
+                      shadowColor: "#846437",
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 10,
+                      shadowRadius: 10.62,
+                      elevation: 18,
+                    }}
+                  >
+                    <LinearGradient
+                      colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      useAngle={45}
+                      style={{
+                        height: 80,
+                        width: 105,
+                        // backgroundColor: "#FFFFFF",
+                        marginHorizontal: 5,
+                        // marginVertical: 20,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        // borderWidth: 1,
+                        // borderColor: "#A3A3A3",
+                        borderRadius: 20,
+                        alignContent: "center",
+                        position: "relative",
+                        // shadowColor: "#1F4C5B",
+                        // shadowOffset: {
+                        //   width: 0,
+                        //   height: 6,
+                        // },
+                        // shadowOpacity: 10,
+                        // shadowRadius: 5,
+                        // elevation: 8,
+                      }}
+                    >
+                      <Image
+                        resizeMode="contain"
+                        source={require("../Maincategory/Categoryimage/deal1.png")}
+                        style={{
+                          width: 55,
+                          height: 70,
+                        }}
+                      />
+
+                      {/* <Text
+              style={{
+                fontSize: 15,
+                color: "#fff",
+                fontWeight: "600",
+              }}
+            >
+              PROVIDER
+            </Text> */}
+                    </LinearGradient>
+                  </TouchableHighlight>
+                </View>
+                <View
                   style={{
-                    height: 130,
-                    width: 110,
-                    // backgroundColor: "#FFFFFF",
-                    marginHorizontal: 5,
-                    marginVertical: 20,
                     justifyContent: "center",
                     alignItems: "center",
-                    // borderWidth: 1,
-                    // borderColor: "#A3A3A3",
-                    borderRadius: 20,
-                    alignContent: "center",
-                    position: "relative",
-                    // shadowColor: "#1F4C5B",
-                    // shadowOffset: {
-                    //   width: 0,
-                    //   height: 6,
-                    // },
-                    // shadowOpacity: 10,
-                    // shadowRadius: 5,
-                    // elevation: 8,
+                    // backgroundColor: "green",
                   }}
                 >
-                  <Image
-                    resizeMode="contain"
-                    source={require("../Maincategory/Categoryimage/deal1.png")}
-                    style={{
-                      width: 50,
-                      height: 70,
-                    }}
-                  />
                   <Text
                     style={{
                       fontSize: 11,
-                      color: "#fff",
+                      color: "#333",
                       // fontWeight: "500",
-                      fontWeight: "700",
-                      fontFamily: "sans-serif",
-
+                      fontWeight: "600",
+                      fontFamily: "sans-serif-medium",
                       // fontFamily: "Roboto-Regular",
                     }}
                   >
                     {/* {t("Rental1")} */}
-                    RENT
+                    Rent
                   </Text>
                   <Text
                     style={{
                       fontSize: 11,
-                      color: "#fff",
-                      fontWeight: "700",
-                      fontFamily: "sans-serif",
+                      color: "#333",
+                      fontWeight: "600",
+                      fontFamily: "sans-serif-medium",
 
                       // fontFamily: "Roboto-Regular",
                     }}
                   >
                     {/* {t("Seeker")} */}
-                    YOUR NEEDS
+                    Your Needs
                   </Text>
-                  {/* <Text
-              style={{
-                fontSize: 15,
-                color: "#fff",
-                fontWeight: "600",
-              }}
-            >
-              PROVIDER
-            </Text> */}
-                </LinearGradient>
-              </TouchableHighlight>
+                </View>
+              </View>
               {/* <View>
               <Text>1008 Products</Text>
             </View> */}
-              <TouchableHighlight
-                // onPress={() => {
-                //   navigation.navigate("Insurance");
-                //   // Alert.alert(
-                //   //   "Insurance",
-                //   //   "You will soon receive details about the services."
-                //   // );
-                // }}
-                onPress={() => handleRentalProvider()}
-                activeOpacity={0.6}
-                underlayColor="#Eefbff"
-                style={{
-                  height: 100,
-                  width: 100,
-                  // backgroundColor: "#FFFFFF",
-                  marginHorizontal: 5,
-                  marginVertical: 20,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  // borderWidth: 1,
-                  // borderColor: "#A3A3A3",
-                  borderRadius: 20,
-                  alignContent: "center",
-                  position: "relative",
-                  shadowColor: "#846437",
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 10,
-                  shadowRadius: 10.62,
-                  elevation: 18,
-                }}
-              >
-                <LinearGradient
-                  colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  useAngle={45}
-                  style={{
-                    height: 130,
-                    width: 110,
-                    // backgroundColor: "#FFFFFF",
-                    marginHorizontal: 5,
-                    marginVertical: 20,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    // borderWidth: 1,
-                    // borderColor: "#A3A3A3",
-                    borderRadius: 20,
-                    alignContent: "center",
-                    position: "relative",
-                    // shadowColor: "#1F4C5B",
-                    // shadowOffset: {
-                    //   width: 0,
-                    //   height: 6,
-                    // },
-                    // shadowOpacity: 10,
-                    // shadowRadius: 5,
-                    // elevation: 8,
-                  }}
-                >
-                  <Image
-                    resizeMode="contain"
-                    source={require("../Maincategory/Categoryimage/deal.png")}
+              <View style={{}}>
+                <View>
+                  <TouchableHighlight
+                    // onPress={() => {
+                    //   navigation.navigate("Insurance");
+                    //   // Alert.alert(
+                    //   //   "Insurance",
+                    //   //   "You will soon receive details about the services."
+                    //   // );
+                    // }}
+                    onPress={() => handleRentalProvider()}
+                    activeOpacity={0.6}
+                    underlayColor="#Eefbff"
                     style={{
-                      width: 50,
-                      height: 70,
-                    }}
-                  />
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: "#fff",
-                      fontFamily: "sans-serif",
-
-                      fontWeight: "700",
-                      // fontFamily: "Roboto-Regular",
+                      height: 80,
+                      width: 105,
+                      // backgroundColor: "#FFFFFF",
+                      marginHorizontal: 5,
+                      // marginVertical: 20,
+                      marginBottom: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      // borderWidth: 1,
+                      // borderColor: "#A3A3A3",
+                      borderRadius: 20,
+                      alignContent: "center",
+                      position: "relative",
+                      shadowColor: "#846437",
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 10,
+                      shadowRadius: 10.62,
+                      elevation: 18,
                     }}
                   >
-                    {/* {t("Rental1")} */} POST
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: "#fff",
-                      fontWeight: "700",
-                      fontFamily: "sans-serif",
+                    <LinearGradient
+                      colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      useAngle={45}
+                      style={{
+                        height: 80,
+                        width: 105,
+                        // backgroundColor: "#FFFFFF",
+                        marginHorizontal: 5,
+                        // marginVertical: 20,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        // borderWidth: 1,
+                        // borderColor: "#A3A3A3",
+                        borderRadius: 20,
+                        alignContent: "center",
+                        position: "relative",
+                        // shadowColor: "#1F4C5B",
+                        // shadowOffset: {
+                        //   width: 0,
+                        //   height: 6,
+                        // },
+                        // shadowOpacity: 10,
+                        // shadowRadius: 5,
+                        // elevation: 8,
+                      }}
+                    >
+                      <Image
+                        resizeMode="contain"
+                        source={require("../Maincategory/Categoryimage/deal.png")}
+                        style={{
+                          width: 50,
+                          height: 70,
+                        }}
+                      />
 
-                      // fontFamily: "Roboto-Regular",
-                    }}
-                  >
-                    {/* {t("provider")} */}
-                    YOUR RENTALS
-                  </Text>
-                  {/* <Text
+                      {/* <Text
               style={{
                 fontSize: 15,
                 color: "#fff",
@@ -1303,102 +1312,115 @@ export default function SelectCategory({ route }) {
             >
               PROVIDER
             </Text> */}
-                </LinearGradient>
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={() =>
-                  phonenumber == "+918825848880"
-                    ? navigation.navigate("Mainjob")
-                    : navigation.navigate("JobGov")
-                }
-                activeOpacity={0.6}
-                underlayColor="#Eefbff"
-                style={{
-                  height: 100,
-                  width: 100,
-                  backgroundColor: "#FFFFFF",
-                  marginHorizontal: 5,
-                  marginVertical: 20,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  // borderWidth: 1,
-                  // borderColor: "#A3A3A3",
-                  borderRadius: 20,
-                  alignContent: "center",
-                  position: "relative",
-                  shadowColor: "#846437",
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 10,
-                  shadowRadius: 10.62,
-                  elevation: 18,
-                }}
-              >
-                <LinearGradient
-                  colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  useAngle={45}
-                  style={{
-                    height: 130,
-                    width: 110,
-                    backgroundColor: "#FFFFFF",
-                    marginHorizontal: 5,
-                    marginVertical: 20,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    // borderWidth: 1,
-                    // borderColor: "#A3A3A3",
-                    borderRadius: 20,
-                    alignContent: "center",
-                    position: "relative",
-                    // shadowColor: "#000000",
-                    // shadowOffset: {
-                    //   width: 0,
-                    //   height: 2,
-                    // },
-                    // shadowOpacity: 0.2,
-                    // shadowRadius: 5.62,
-                    // elevation: 8,
-                  }}
-                >
-                  <Image
-                    resizeMode="contain"
-                    source={require("../Maincategory/Categoryimage/Govt.png")}
+                    </LinearGradient>
+                  </TouchableHighlight>
+                  <View
                     style={{
-                      width: 70,
-                      height: 70,
-                    }}
-                  />
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: "#fff",
-                      fontWeight: "700",
-                      fontFamily: "sans-serif",
-
-                      // fontFamily: "Roboto-Regular",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      // backgroundColor: "green",
                     }}
                   >
-                    {/* {t("Government")} */}
-                    GOVERNMENT
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: "#fff",
-                      fontFamily: "sans-serif",
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        color: "#333",
+                        fontFamily: "sans-serif-medium",
 
-                      fontWeight: "700",
-                      // fontFamily: "Roboto-Regular",
+                        fontWeight: "600",
+                        // fontFamily: "Roboto-Regular",
+                      }}
+                    >
+                      {/* {t("Rental1")} */} Post
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        color: "#333",
+                        fontWeight: "600",
+                        fontFamily: "sans-serif-medium",
+
+                        // fontFamily: "Roboto-Regular",
+                      }}
+                    >
+                      {/* {t("provider")} */}
+                      Your Rentals
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View style={{}}>
+                <View>
+                  <TouchableHighlight
+                    onPress={() =>
+                      phonenumber == "+918825848880"
+                        ? navigation.navigate("Mainjob")
+                        : navigation.navigate("JobGov")
+                    }
+                    activeOpacity={0.6}
+                    underlayColor="#Eefbff"
+                    style={{
+                      height: 80,
+                      width: 105,
+                      // backgroundColor: "#FFFFFF",
+                      marginHorizontal: 5,
+                      // marginVertical: 20,
+                      marginBottom: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      // borderWidth: 1,
+                      // borderColor: "#A3A3A3",
+                      borderRadius: 20,
+                      alignContent: "center",
+                      position: "relative",
+                      shadowColor: "#846437",
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 3,
+                      shadowRadius: 10.62,
+                      elevation: 18,
                     }}
                   >
-                    JOBS LINK
-                    {/* {t("jobs")} */}
-                  </Text>
-                  {/* <Text
+                    <LinearGradient
+                      colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      useAngle={45}
+                      style={{
+                        height: 80,
+                        width: 105,
+                        // backgroundColor: "#FFFFFF",
+                        marginHorizontal: 5,
+                        // marginVertical: 20,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        // borderWidth: 1,
+                        // borderColor: "#A3A3A3",
+                        borderRadius: 20,
+                        alignContent: "center",
+                        position: "relative",
+                        // shadowColor: "#000000",
+                        // shadowOffset: {
+                        //   width: 0,
+                        //   height: 2,
+                        // },
+                        // shadowOpacity: 0.2,
+                        // shadowRadius: 5.62,
+                        // elevation: 8,
+                      }}
+                    >
+                      <Image
+                        resizeMode="contain"
+                        source={require("../Maincategory/Categoryimage/Govt.png")}
+                        style={{
+                          width: 90,
+                          height: 50,
+                        }}
+                      />
+
+                      {/* <Text
               style={{
                 fontSize: 15,
                 color: "#fff",
@@ -1407,8 +1429,44 @@ export default function SelectCategory({ route }) {
             >
               PROVIDER
             </Text> */}
-                </LinearGradient>
-              </TouchableHighlight>
+                    </LinearGradient>
+                  </TouchableHighlight>
+                  <View
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      // backgroundColor: "green",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        color: "#333",
+                        fontWeight: "600",
+                        fontFamily: "sans-serif-medium",
+
+                        // fontFamily: "Roboto-Regular",
+                      }}
+                    >
+                      {/* {t("Government")} */}
+                      Government
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        color: "#333",
+                        fontFamily: "sans-serif-medium",
+
+                        fontWeight: "600",
+                        // fontFamily: "Roboto-Regular",
+                      }}
+                    >
+                      Jobs Link
+                      {/* {t("jobs")} */}
+                    </Text>
+                  </View>
+                </View>
+              </View>
             </View>
           </View>
 
@@ -1418,6 +1476,17 @@ export default function SelectCategory({ route }) {
             style={{ width: "100%", height: "100%" }}
           /> */}
           <View
+            style={{
+              borderBottomColor: "#333",
+              borderBottomWidth: 0.5,
+              width: "95%",
+              marginHorizontal: 10,
+              marginVertical: 5,
+            }}
+          >
+            <Text>Upcoming</Text>
+          </View>
+          {/* <View
             style={{
               height: "8%",
               width: width,
@@ -1443,8 +1512,14 @@ export default function SelectCategory({ route }) {
               inactiveSlideScale={2}
               autoplayInterval={5000}
             />
-          </View>
-          <View style={{ width: width, backgroundColor: "#eefbff" }}>
+          </View> */}
+          <View
+            style={{
+              width: width,
+              backgroundColor: "#eefbff",
+              marginVertical: 10,
+            }}
+          >
             <View
               style={{
                 //            backgroundColor: "#eefbff",
@@ -1544,79 +1619,103 @@ export default function SelectCategory({ route }) {
             
             </LinearGradient>
           </TouchableHighlight> */}
-              <TouchableHighlight
-                onPress={() => {
-                  // phonenumber == "+918825848880"
-                  //   ? navigation.navigate("shortTImeAD")
-                  navigation.navigate("Freelance");
-                  // Alert.alert(
-                  //   "Freelance",
-                  //   "You will soon receive details about the services."
-                  // );
-                }}
-                activeOpacity={0.6}
-                underlayColor="#Eefbff"
-                style={{
-                  height: 100,
-                  width: 100,
-                  marginHorizontal: 5,
-                  marginVertical: 20,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  // borderWidth: 1,
-                  // borderColor: "#A3A3A3",
-                  borderRadius: 20,
-                  alignContent: "center",
-                  position: "relative",
-                  shadowColor: "#846437",
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 10,
-                  shadowRadius: 10.62,
-                  elevation: 18,
-                }}
-              >
-                <LinearGradient
-                  colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  useAngle={45}
+              <View style={{}}>
+                <View>
+                  <TouchableHighlight
+                    onPress={() => {
+                      // phonenumber == "+918825848880"
+                      //   ? navigation.navigate("shortTImeAD")
+                      navigation.navigate("Freelance");
+                      // Alert.alert(
+                      //   "Freelance",
+                      //   "You will soon receive details about the services."
+                      // );
+                    }}
+                    activeOpacity={0.6}
+                    underlayColor="#Eefbff"
+                    style={{
+                      height: 80,
+                      width: 105,
+                      marginHorizontal: 5,
+                      // marginVertical: 20,
+                      marginBottom: 5,
+
+                      justifyContent: "center",
+                      alignItems: "center",
+                      // borderWidth: 1,
+                      // borderColor: "#A3A3A3",
+                      borderRadius: 20,
+                      alignContent: "center",
+                      position: "relative",
+                      shadowColor: "#846437",
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 10,
+                      shadowRadius: 10.62,
+                      elevation: 18,
+                    }}
+                  >
+                    <LinearGradient
+                      colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      useAngle={45}
+                      style={{
+                        height: 80,
+                        width: 105,
+                        marginHorizontal: 5,
+                        // marginVertical: 20,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        // borderWidth: 1,
+                        // borderColor: "#A3A3A3",
+                        borderRadius: 20,
+                        alignContent: "center",
+                        position: "relative",
+                        // shadowColor: "#000000",
+                        // shadowOffset: {
+                        //   width: 0,
+                        //   height: 2,
+                        // },
+                        // shadowOpacity: 0.2,
+                        // shadowRadius: 5.62,
+                        // elevation: 8,
+                      }}
+                    >
+                      <Image
+                        resizeMode="contain"
+                        style={{ width: 50, height: 60 }}
+                        source={require("../Maincategory/Categoryimage/Freelance.png")}
+                      />
+
+                      {/* <Text
+              style={{
+                fontSize: 15,
+                color: "#fff",
+                fontWeight: "600",
+              }}
+            >
+              PROVIDER
+            </Text> */}
+                    </LinearGradient>
+                  </TouchableHighlight>
+                </View>
+                <View
                   style={{
-                    height: 130,
-                    width: 110,
-                    marginHorizontal: 5,
-                    marginVertical: 20,
                     justifyContent: "center",
                     alignItems: "center",
-                    // borderWidth: 1,
-                    // borderColor: "#A3A3A3",
-                    borderRadius: 20,
-                    alignContent: "center",
-                    position: "relative",
-                    // shadowColor: "#000000",
-                    // shadowOffset: {
-                    //   width: 0,
-                    //   height: 2,
-                    // },
-                    // shadowOpacity: 0.2,
-                    // shadowRadius: 5.62,
-                    // elevation: 8,
+                    // backgroundColor: "green",
                   }}
                 >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: 50, height: 60, marginBottom: 10 }}
-                    source={require("../Maincategory/Categoryimage/Freelance.png")}
-                  />
                   <Text
                     style={{
                       fontSize: 11,
-                      color: "#fff",
-                      textTransform: "uppercase",
-                      fontFamily: "sans-serif",
-                      fontWeight: "700",
+                      color: "#333",
+                      // textTransform: "uppercase",
+                      fontFamily: "sans-serif-medium",
+                      fontWeight: "600",
                       // fontFamily: "Roboto-Regular",
                     }}
                   >
@@ -1624,7 +1723,84 @@ export default function SelectCategory({ route }) {
 
                     {t("Freelance")}
                   </Text>
-                  {/* <Text
+                </View>
+              </View>
+              <View>
+                <View>
+                  <TouchableHighlight
+                    onPress={() => {
+                      navigation.navigate("Insurance");
+                      // Alert.alert(
+                      //   "Insurance",
+                      //   "You will soon receive details about the services."
+                      // );
+                    }}
+                    activeOpacity={0.6}
+                    underlayColor="#Eefbff"
+                    style={{
+                      height: 80,
+                      width: 105,
+                      // backgroundColor: "#FFFFFF",
+                      marginHorizontal: 5,
+                      // marginVertical: 20,
+                      marginBottom: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      // borderWidth: 1,
+                      // borderColor: "#A3A3A3",
+                      borderRadius: 20,
+                      alignContent: "center",
+                      position: "relative",
+                      shadowColor: "#846437",
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 10,
+                      shadowRadius: 10.62,
+                      elevation: 18,
+                    }}
+                  >
+                    <LinearGradient
+                      colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      useAngle={45}
+                      style={{
+                        height: 80,
+                        width: 105,
+                        // backgroundColor: "#FFFFFF",
+                        marginHorizontal: 5,
+                        marginBottom: 5,
+                        // marginVertical: 20,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        // borderWidth: 1,
+                        // borderColor: "#A3A3A3",
+                        borderRadius: 20,
+                        alignContent: "center",
+                        position: "relative",
+                        // shadowColor: "#1F4C5B",
+                        // shadowOffset: {
+                        //   width: 0,
+                        //   height: 6,
+                        // },
+                        // shadowOpacity: 10,
+                        // shadowRadius: 5,
+                        // elevation: 8,
+                      }}
+                    >
+                      <Image
+                        resizeMode="contain"
+                        source={require("../Maincategory/Categoryimage/insurancehealth.png")}
+                        style={{
+                          width: 50,
+                          height: 60,
+                          // marginBottom: 10,
+                        }}
+                      />
+
+                      {/* <Text
               style={{
                 fontSize: 15,
                 color: "#fff",
@@ -1633,198 +1809,93 @@ export default function SelectCategory({ route }) {
             >
               PROVIDER
             </Text> */}
-                </LinearGradient>
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={() => {
-                  navigation.navigate("Insurance");
-                  // Alert.alert(
-                  //   "Insurance",
-                  //   "You will soon receive details about the services."
-                  // );
-                }}
-                activeOpacity={0.6}
-                underlayColor="#Eefbff"
-                style={{
-                  height: 100,
-                  width: 100,
-                  // backgroundColor: "#FFFFFF",
-                  marginHorizontal: 5,
-                  marginVertical: 20,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  // borderWidth: 1,
-                  // borderColor: "#A3A3A3",
-                  borderRadius: 20,
-                  alignContent: "center",
-                  position: "relative",
-                  shadowColor: "#846437",
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 10,
-                  shadowRadius: 10.62,
-                  elevation: 18,
-                }}
-              >
-                <LinearGradient
-                  colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  useAngle={45}
+                    </LinearGradient>
+                  </TouchableHighlight>
+                </View>
+                <View
                   style={{
-                    height: 130,
-                    width: 110,
-                    // backgroundColor: "#FFFFFF",
-                    marginHorizontal: 5,
-                    marginVertical: 20,
                     justifyContent: "center",
                     alignItems: "center",
-                    // borderWidth: 1,
-                    // borderColor: "#A3A3A3",
-                    borderRadius: 20,
-                    alignContent: "center",
-                    position: "relative",
-                    // shadowColor: "#1F4C5B",
-                    // shadowOffset: {
-                    //   width: 0,
-                    //   height: 6,
-                    // },
-                    // shadowOpacity: 10,
-                    // shadowRadius: 5,
-                    // elevation: 8,
+                    // backgroundColor: "green",
                   }}
                 >
-                  <Image
-                    resizeMode="contain"
-                    source={require("../Maincategory/Categoryimage/insurancehealth.png")}
-                    style={{
-                      width: 50,
-                      height: 60,
-                      marginBottom: 10,
-                    }}
-                  />
                   <Text
                     style={{
                       fontSize: 11,
-                      color: "#fff",
-                      fontWeight: "700",
-                      fontFamily: "sans-serif",
-                      textTransform: "uppercase",
+                      color: "#333",
+                      fontWeight: "600",
+                      fontFamily: "sans-serif-medium",
+                      // textTransform: "uppercase",
                       // fontFamily: "Roboto-Regular",
                     }}
                   >
                     {t("Insurance")}
                   </Text>
-                  {/* <Text
-              style={{
-                fontSize: 15,
-                color: "#fff",
-                fontWeight: "600",
-              }}
-            >
-              PROVIDER
-            </Text> */}
-                </LinearGradient>
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={() => {
-                  navigation.navigate("Insurance");
-                  // Alert.alert(
-                  //   "Insurance",
-                  //   "You will soon receive details about the services."
-                  // );
-                }}
-                activeOpacity={0.6}
-                underlayColor="#Eefbff"
-                // style={{
-                //   height: 120,
-                //   width: 100,
-                //   // backgroundColor: "#FFFFFF",
-                //   marginHorizontal: 5,
-                //   marginVertical: 20,
-                //   justifyContent: "center",
-                //   alignItems: "center",
-                //   // borderWidth: 1,
-                //   // borderColor: "#A3A3A3",
-                //   borderRadius: 20,
-                //   alignContent: "center",
-                //   position: "relative",
-                //   shadowColor: "#846437",
-                //   shadowOffset: {
-                //     width: 0,
-                //     height: 2,
-                //   },
-                //   shadowOpacity: 10,
-                //   shadowRadius: 10.62,
-                //   elevation: 18,
-                // }}
-              >
+                </View>
+              </View>
+              <View style={{ display: "flex", flexDirection: "column" }}>
                 <View
-                  // colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                  // start={{ x: 0, y: 0 }}
-                  // end={{ x: 1, y: 1 }}
-                  // useAngle={45}
                   style={{
-                    height: 120,
-                    width: 100,
+                    height: 80,
+                    width: 105,
                     // backgroundColor: "#FFFFFF",
                     marginHorizontal: 5,
-                    marginVertical: 20,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    // borderWidth: 1,
-                    // borderColor: "#A3A3A3",
-                    borderRadius: 20,
-                    alignContent: "center",
-                    position: "relative",
-                    // shadowColor: "#1F4C5B",
-                    // shadowOffset: {
-                    //   width: 0,
-                    //   height: 6,
-                    // },
-                    // shadowOpacity: 10,
-                    // shadowRadius: 5,
-                    // elevation: 8,
+                    marginBottom: 5,
+                    // marginVertical: 20,
+                    // justifyContent: "center",
+                    // alignItems: "center",
+                    // // borderWidth: 1,
+                    // // borderColor: "#A3A3A3",
+                    // // borderRadius: 20,
+                    // alignContent: "center",
+                    // position: "relative",
                   }}
                 >
-                  {/* <View style={{ backgroundColor: "red" }}> */}
-                  {/* <Coming1 /> */}
-                  {/* </View> */}
-                  <Image
-                    resizeMode="contain"
-                    source={require("../Maincategory/Categoryimage/update.png")}
+                  <View
                     style={{
-                      width: 60,
-                      height: 60,
+                      height: 80,
+                      width: 105,
+                      // backgroundColor: "#FFFFFF",
+                      marginHorizontal: 5,
+                      // marginVertical: 20,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      // borderWidth: 1,
+                      // borderColor: "#A3A3A3",
+                      borderRadius: 20,
+                      alignContent: "center",
+                      position: "relative",
                     }}
-                  />
+                  >
+                    <Image
+                      resizeMode="contain"
+                      source={require("../Maincategory/Categoryimage/update.png")}
+                      style={{
+                        width: 60,
+                        height: 60,
+                      }}
+                    />
+                  </View>
+                </View>
+
+                <View>
                   <Text
                     style={{
-                      fontSize: 13,
+                      fontSize: 11,
                       color: "#333",
-                      fontWeight: "700",
-                      fontFamily: "sans-serif",
-                      // fontFamily: "RobotoBoldItalic-4e0x",
+                      width: 105,
+                      fontWeight: "600",
+                      fontFamily: "sans-serif-medium", // fontFamily: "RobotoBoldItalic-4e0x",
                       textAlign: "center",
                     }}
                   >
                     Stay Tunned For Our Updates
                   </Text>
-                  {/* <Text
-              style={{
-                fontSize: 15,
-                color: "#fff",
-                fontWeight: "600",
-              }}
-            >
-              PROVIDER
-            </Text> */}
                 </View>
-              </TouchableHighlight>
+              </View>
             </View>
           </View>
+
           {/* <View
             style={{
               height: "8%",

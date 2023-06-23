@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, StyleSheet, View } from "react-native";
+import { Button, StyleSheet, View, Text } from "react-native";
 import LottieView from "lottie-react-native";
 export default function LottieViewloading(paras) {
   const animation = React.useRef(null);
@@ -13,25 +13,28 @@ export default function LottieViewloading(paras) {
         ref={animation}
         style={{
           width: 400,
+          // height: 400,
           height: 400,
-          marginTop: 40,
-          backgroundColor: "#EEFBFF",
+          marginTop: 50,
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
         }}
         source={require("./loading.json")}
-        // OR find more Lottie files @ https://lottiefiles.com/featured
-        // Just click the one you like, place that file in the 'assets' folder to the left, and replace the above 'require' statement
       />
+      <Text style={{ fontSize: 25, fontFamily: "monospace", marginLeft: -20 }}>
+        Loading...
+      </Text>
     </View>
   );
 }
 const styles = StyleSheet.create({
   animationContainer: {
     alignItems: "center",
+    height: "100%",
+    width: "100%",
+    display: "flex",
     justifyContent: "center",
     flex: 1,
-    backgroundColor: "#EEFBFF",
-  },
-  buttonContainer: {
-    paddingTop: 20,
   },
 });

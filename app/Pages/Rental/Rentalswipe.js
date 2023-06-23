@@ -59,6 +59,41 @@ import { useMemo } from "react";
 import { USER_ID } from "../../Redux/action";
 import LottieViewloading from "../../components/Loading";
 
+const onShare = async ({
+  title,
+  sal,
+  per,
+  time,
+  loc,
+  cou,
+  Dis,
+  name,
+  short,
+  work,
+}) => {
+  try {
+    const result = await Share.share({
+      title: "Message from Velai app",
+      message: `Job Title:${title}\nSalary:${sal}/${
+        short == "True" ? per : "LPA"
+      }\nTime:${
+        short == "True" ? time : work
+      }\nLocation:${loc}\n Message sent from velai app`,
+    });
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        // shared with activity type of result.activityType
+      } else {
+        // shared
+      }
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
+    }
+  } catch (error) {
+    Alert.alert(error.message);
+  }
+};
+
 const { height, width } = Dimensions.get("window");
 
 const stackSize = 4;
@@ -603,12 +638,21 @@ export default function RentalSwiperCard({ route }) {
                 </TouchableOpacity>
                 <View style={{ paddingHorizontal: "4%" }}>
                   <TouchableOpacity
-                    onPress={() => {
-                      Alert.alert(
-                        "Share",
-                        "Our new features are just around the corner."
-                      );
-                    }}
+                    onPress={() =>
+                      onShare({
+                        title,
+                        sal,
+                        per,
+                        time,
+                        loc,
+                        cou,
+                        Dis,
+                        name,
+                        short,
+                        work,
+                      })
+                    }
+                    // style={{ backgroundColor: "red", width: "45%" }}
                   >
                     <MaterialCommunityIcons
                       name="share-all-outline"

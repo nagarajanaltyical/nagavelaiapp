@@ -1064,7 +1064,7 @@ export default function LongtimeSwiperCard1({ route }) {
                   color: "#56909D",
                   fontSize: 14,
                   marginHorizontal: 2,
-                  width: 80,
+                  width: 100,
                   fontWeight: "400",
                 }}
               >

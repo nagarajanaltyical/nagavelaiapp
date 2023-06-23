@@ -979,7 +979,7 @@ export default function ShorttimeSwiperCard1({ route }) {
                 style={{
                   color: "#333",
                   fontWeight: "500",
-                  width: "85%",
+                  width: "80%",
                   textTransform: "capitalize",
 
                   fontSize: 20,
