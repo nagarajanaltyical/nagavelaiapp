@@ -1677,10 +1677,8 @@ const Heart = ({ navigation, route }) => {
   );
   if (loading && data.length > 0) {
     return (
-      <View style={{ height: "100%", backgroundColor: "#eefbff" }}>
-        <Text>
-          <LottieViewloading />;
-        </Text>
+      <View style={{ backgroundColor: "#eefbff" }}>
+        <LottieViewloading />
       </View>
     );
   }
@@ -1705,7 +1703,6 @@ const Heart = ({ navigation, route }) => {
             style={{
               justifyContent: "center",
               alignContent: "center",
-              marginVertical: "50%",
             }}
           >
             <LottieViewloading />
@@ -1718,20 +1715,20 @@ const Heart = ({ navigation, route }) => {
               }}
               source={require("../../images/jobpost.png")}
             /> */}
-            <View
+            {/* <View
               style={{
                 justifyContent: "center",
                 alignItems: "center",
                 position: "relative",
                 marginTop: "30%",
               }}
-            >
-              {/* <Text
+            > */}
+            {/* <Text
                   style={{ fontSize: 20, fontWeight: "600", color: "#1e5966" }}
                 >
                   Don’t have an any post
                 </Text> */}
-            </View>
+            {/* </View> */}
           </View>
         ) : nodata ? (
           <View

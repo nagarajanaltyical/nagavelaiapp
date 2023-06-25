@@ -16,6 +16,8 @@ import {
   Pressable,
   ToastAndroid,
 } from "react-native";
+import MapView from "react-native-maps";
+
 import { EvilIcons } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -1334,7 +1336,7 @@ export default function RentalSwiperCard({ route }) {
                     Location
                   </Text>
                   <TouchableWithoutFeedback onPress={toast}>
-                    <Image
+                    {/* <Image
                       style={{
                         height: 100,
                         width: "100%",
@@ -1344,7 +1346,16 @@ export default function RentalSwiperCard({ route }) {
                         backgroundColor: "#eefbff",
                       }}
                       source={require("../../images/map.png")}
-                    />
+                    /> */}
+                    <MapView
+                      style={{
+                        height: 100,
+                        width: "100%",
+                        marginTop: "3%",
+                        resizeMode: "cover",
+                        backgroundColor: "#eefbff",
+                      }}
+                    ></MapView>
                   </TouchableWithoutFeedback>
                   {/* <Image
                       style={{
@@ -1536,9 +1547,7 @@ export default function RentalSwiperCard({ route }) {
   if (loading) {
     return (
       <View style={{ height: "100%", backgroundColor: "#EEFBFF" }}>
-        <Text style={{ height: "100%" }}>
-          <LottieViewloading />;
-        </Text>
+        <LottieViewloading />
       </View>
     );
   }

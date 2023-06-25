@@ -9,32 +9,48 @@ export default function LottieViewloading(paras) {
   }, []);
   return (
     <View style={styles.animationContainer}>
-      <LottieView
-        ref={animation}
+      <Text
         style={{
-          width: 400,
-          // height: 400,
-          height: 400,
-          marginTop: 50,
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
+          fontSize: 30,
+          fontWeight: "800",
+          position: "relative",
+          width: "100%",
+          marginLeft: 100,
+          marginTop: 150,
+          fontFamily: "monospace",
         }}
-        source={require("./loading.json")}
-      />
-      <Text style={{ fontSize: 25, fontFamily: "monospace", marginLeft: -20 }}>
+      >
         Loading...
       </Text>
+      <View style={{ position: "absolute" }}>
+        <LottieView
+          ref={animation}
+          style={{
+            width: 400,
+            // height: 400,
+            height: 400,
+            marginTop: 50,
+            // position: "absolute",
+            // justifyContent: "center",
+            // alignContent: "center",
+            // alignItems: "center",
+          }}
+          source={require("./loading.json")}
+        />
+      </View>
+
+      {/* <View style={{ position: "relative" }}> */}
+
+      {/* </View> */}
     </View>
   );
 }
 const styles = StyleSheet.create({
   animationContainer: {
-    alignItems: "center",
     height: "100%",
     width: "100%",
+    marginTop: 50,
     display: "flex",
-    justifyContent: "center",
     flex: 1,
   },
 });

@@ -637,10 +637,9 @@ export default function Jobpostermain({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
-            // phonenumber == "+918825848880"
-            //   ? navigation.navigate("LongTermsuperadmin")
-            //   :
-            navigation.navigate("Long")
+            phonenumber == "+918825848880"
+              ? navigation.navigate("LongTermsuperadmin")
+              : navigation.navigate("Long")
           }
           // style={{ marginVertical: "" }}
           style={{
@@ -698,14 +697,7 @@ export default function Jobpostermain({ navigation }) {
           </Text>
         </View>
         {loading ? (
-          <View
-            style={{
-              justifyContent: "center",
-              alignContent: "center",
-
-              // marginVertical: 30,
-            }}
-          >
+          <View>
             <LottieViewloading />
             {/* <Nodata /> */}
             {/* <Image
@@ -716,20 +708,6 @@ export default function Jobpostermain({ navigation }) {
               }}
               source={require("../../images/jobpost.png")}
             /> */}
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-                marginTop: "-17%",
-              }}
-            >
-              {/* <Text
-                  style={{ fontSize: 20, fontWeight: "600", color: "#1e5966" }}
-                >
-                  Don’t have an any post
-                </Text> */}
-            </View>
           </View>
         ) : nodata ? (
           <View

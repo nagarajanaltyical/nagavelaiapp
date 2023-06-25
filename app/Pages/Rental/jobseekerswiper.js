@@ -16,6 +16,8 @@ import {
   Pressable,
   ToastAndroid,
 } from "react-native";
+import MapView from "react-native-maps";
+
 import * as MailComposer from "expo-mail-composer";
 
 import { EvilIcons } from "@expo/vector-icons";
@@ -1344,7 +1346,7 @@ export default function JobseekerSwiperCard({ route }) {
                     Location
                   </Text>
                   <TouchableWithoutFeedback onPress={toast}>
-                    <Image
+                    {/* <Image
                       style={{
                         height: 100,
                         width: "100%",
@@ -1353,7 +1355,16 @@ export default function JobseekerSwiperCard({ route }) {
                         resizeMode: "cover",
                       }}
                       source={require("../../images/map.png")}
-                    />
+                    /> */}
+                    <MapView
+                      style={{
+                        height: 100,
+                        width: "100%",
+                        marginTop: "3%",
+                        resizeMode: "cover",
+                        backgroundColor: "#eefbff",
+                      }}
+                    ></MapView>
                   </TouchableWithoutFeedback>
                   {/* <Image
                       style={{

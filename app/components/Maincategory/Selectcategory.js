@@ -27,7 +27,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import Top from "../Topcontainer";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Carousel from "react-native-reanimated-carousel";
+import Carousel, { Pagination } from "react-native-reanimated-carousel";
 import { useSelector, useDispatch } from "react-redux";
 import { AuthContext } from "../../../App";
 import { useFonts } from "expo-font";
@@ -38,6 +38,7 @@ import SwiperCard from "../../Pages/Post";
 import { Alert } from "react-native";
 import Coming from "../../Lottie/Comingsoon";
 import Coming1 from "../coming";
+import Stay from "../../Lottie/Stay";
 
 // create a component
 export default function SelectCategory({ route }) {
@@ -314,12 +315,21 @@ export default function SelectCategory({ route }) {
     },
   ]);
 
-  const CarouselItem = ({ item }) => {
+  function CarouselItem({ item }) {
     return (
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#eefbff",
+          marginHorizontal: "3%",
+        }}
+      >
         <Image
           source={item.src}
           style={{
+            backgroundColor: "#eefbff",
+
             resizeMode: "cover",
             width: "100%",
             height: "100%",
@@ -337,7 +347,7 @@ export default function SelectCategory({ route }) {
         </Text> */}
       </View>
     );
-  };
+  }
 
   const CarouselItem2 = ({ item }) => {
     return (
@@ -1099,7 +1109,7 @@ export default function SelectCategory({ route }) {
             style={{
               width: width,
               backgroundColor: "#eefbff",
-              marginBottom: 5,
+              marginBottom: 10,
             }}
           >
             <View
@@ -1133,13 +1143,13 @@ export default function SelectCategory({ route }) {
                       alignContent: "center",
                       position: "relative",
                       shadowColor: "#846437",
-                      shadowOffset: {
-                        width: 0,
-                        height: 2,
-                      },
-                      shadowOpacity: 10,
-                      shadowRadius: 10.62,
-                      elevation: 18,
+                      // shadowOffset: {
+                      //   width: 0,
+                      //   height: 2,
+                      // },
+                      // shadowOpacity: 10,
+                      // shadowRadius: 10.62,
+                      // elevation: 18,
                     }}
                   >
                     <LinearGradient
@@ -1257,13 +1267,13 @@ export default function SelectCategory({ route }) {
                       alignContent: "center",
                       position: "relative",
                       shadowColor: "#846437",
-                      shadowOffset: {
-                        width: 0,
-                        height: 2,
-                      },
-                      shadowOpacity: 10,
-                      shadowRadius: 10.62,
-                      elevation: 18,
+                      // shadowOffset: {
+                      //   width: 0,
+                      //   height: 2,
+                      // },
+                      // shadowOpacity: 10,
+                      // shadowRadius: 10.62,
+                      // elevation: 18,
                     }}
                   >
                     <LinearGradient
@@ -1374,13 +1384,13 @@ export default function SelectCategory({ route }) {
                       alignContent: "center",
                       position: "relative",
                       shadowColor: "#846437",
-                      shadowOffset: {
-                        width: 0,
-                        height: 2,
-                      },
-                      shadowOpacity: 3,
-                      shadowRadius: 10.62,
-                      elevation: 18,
+                      // shadowOffset: {
+                      //   width: 0,
+                      //   height: 2,
+                      // },
+                      // shadowOpacity: 3,
+                      // shadowRadius: 10.62,
+                      // elevation: 18,
                     }}
                   >
                     <LinearGradient
@@ -1477,14 +1487,20 @@ export default function SelectCategory({ route }) {
           /> */}
           <View
             style={{
-              borderBottomColor: "#333",
-              borderBottomWidth: 0.5,
-              width: "95%",
-              marginHorizontal: 10,
+              width: "100%",
+              marginHorizontal: "3%",
               marginVertical: 5,
             }}
           >
-            <Text>Upcoming</Text>
+            <Text
+              style={{
+                fontFamily: "sans-serif-medium",
+                fontSize: 18,
+                fontWeight: "600",
+              }}
+            >
+              Upcoming
+            </Text>
           </View>
           {/* <View
             style={{
@@ -1648,13 +1664,13 @@ export default function SelectCategory({ route }) {
                       alignContent: "center",
                       position: "relative",
                       shadowColor: "#846437",
-                      shadowOffset: {
-                        width: 0,
-                        height: 2,
-                      },
-                      shadowOpacity: 10,
-                      shadowRadius: 10.62,
-                      elevation: 18,
+                      // shadowOffset: {
+                      //   width: 0,
+                      //   height: 2,
+                      // },
+                      // shadowOpacity: 1,
+                      // shadowRadius: 1.62,
+                      // elevation: 18,
                     }}
                   >
                     <LinearGradient
@@ -1752,13 +1768,13 @@ export default function SelectCategory({ route }) {
                       alignContent: "center",
                       position: "relative",
                       shadowColor: "#846437",
-                      shadowOffset: {
-                        width: 0,
-                        height: 2,
-                      },
-                      shadowOpacity: 10,
-                      shadowRadius: 10.62,
-                      elevation: 18,
+                      // shadowOffset: {
+                      //   width: 0,
+                      //   height: 2,
+                      // },
+                      // shadowOpacity: 10,
+                      // shadowRadius: 10.62,
+                      // elevation: 18,
                     }}
                   >
                     <LinearGradient
@@ -1867,14 +1883,15 @@ export default function SelectCategory({ route }) {
                       position: "relative",
                     }}
                   >
-                    <Image
+                    {/* <Image
                       resizeMode="contain"
                       source={require("../Maincategory/Categoryimage/update.png")}
                       style={{
                         width: 60,
                         height: 60,
                       }}
-                    />
+                    /> */}
+                    <Stay />
                   </View>
                 </View>
 
@@ -1889,7 +1906,19 @@ export default function SelectCategory({ route }) {
                       textAlign: "center",
                     }}
                   >
-                    Stay Tunned For Our Updates
+                    Stay tuned for
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 11,
+                      color: "#333",
+                      width: 105,
+                      fontWeight: "600",
+                      fontFamily: "sans-serif-medium", // fontFamily: "RobotoBoldItalic-4e0x",
+                      textAlign: "center",
+                    }}
+                  >
+                    more updates!
                   </Text>
                 </View>
               </View>
@@ -1909,6 +1938,24 @@ export default function SelectCategory({ route }) {
           ></View> */}
           <View
             style={{
+              width: "100%",
+              marginHorizontal: "3%",
+              marginBottom: 10,
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "sans-serif-medium",
+                fontSize: 18,
+                color: "#333",
+                fontWeight: "600",
+              }}
+            >
+              Explore
+            </Text>
+          </View>
+          <View
+            style={{
               height: 240,
               width: width,
               backgroundColor: "#eefbff",
@@ -1919,15 +1966,29 @@ export default function SelectCategory({ route }) {
             <Carousel
               data={imageData}
               autoPlay={true}
+              loop
+              scrollAnimationDuration={4000}
               renderItem={({ item, index }) => (
                 <CarouselItem item={item} index={index} />
               )}
               height={200}
-              width={Math.round(width) - 22}
-              style={{ backgroundColor: "#fff", borderRadius: 15 }}
+              width={width}
+              style={{
+                backgroundColor: "#eefbff",
+                // borderRadius: 15,
+              }}
               inactiveSlideScale={2}
               autoplayInterval={5000}
             />
+            {/* <Pagination
+              dotsLength={imageData.length}
+              // activeDotIndex={activeSlideIndex}
+              // containerStyle={styles.paginationContainer}
+              // dotStyle={styles.dotStyle}
+              // inactiveDotStyle={styles.inactiveDotStyle}
+              inactiveDotOpacity={0.4}
+              inactiveDotScale={0.6}
+            /> */}
           </View>
         </View>
       </ScrollView>

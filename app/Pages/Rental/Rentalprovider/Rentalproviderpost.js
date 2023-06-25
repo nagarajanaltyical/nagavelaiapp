@@ -525,7 +525,6 @@ export default function Rentalproviderpost({ navigation, route }) {
             style={{
               justifyContent: "center",
               alignContent: "center",
-              marginVertical: "50%",
             }}
           >
             <LottieViewloading />
@@ -538,20 +537,6 @@ export default function Rentalproviderpost({ navigation, route }) {
               }}
               source={require("../../images/jobpost.png")}
             /> */}
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-                marginTop: "30%",
-              }}
-            >
-              {/* <Text
-                  style={{ fontSize: 20, fontWeight: "600", color: "#1e5966" }}
-                >
-                  Don’t have an any post
-                </Text> */}
-            </View>
           </View>
         ) : nodata ? (
           <View

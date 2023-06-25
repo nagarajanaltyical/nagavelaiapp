@@ -17,7 +17,7 @@ import { LinearGradient } from "expo-linear-gradient";
 const DATA = [
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "தமிழ்",
+    title: "தமிழ் (Coming soon)",
     value: "ta",
     // img: (
     //   <Image

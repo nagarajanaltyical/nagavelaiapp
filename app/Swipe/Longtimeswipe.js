@@ -16,6 +16,8 @@ import {
   Pressable,
   ToastAndroid,
 } from "react-native";
+import MapView from "react-native-maps";
+
 import { EvilIcons, Octicons } from "@expo/vector-icons";
 import Icon from "react-native-vector-icons/FontAwesome";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -1669,7 +1671,7 @@ export default function LongtimeSwiperCard({ route }) {
                     {t("Location")}
                   </Text>
                   <TouchableWithoutFeedback onPress={toast}>
-                    <Image
+                    {/* <Image
                       style={{
                         height: 100,
                         width: "100%",
@@ -1679,7 +1681,16 @@ export default function LongtimeSwiperCard({ route }) {
                         resizeMode: "cover",
                       }}
                       source={require("../images/map.png")}
-                    />
+                    /> */}
+                    <MapView
+                      style={{
+                        height: 100,
+                        width: "100%",
+                        marginTop: "3%",
+                        resizeMode: "cover",
+                        backgroundColor: "#eefbff",
+                      }}
+                    ></MapView>
                   </TouchableWithoutFeedback>
 
                   {/* <Image

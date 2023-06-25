@@ -34,6 +34,8 @@ import { FontAwesome5, Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AuthContext } from "../../App";
 // import { useSelector } from "react-redux";
+import MapView from "react-native-maps";
+
 // import { useContext } from "react";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -1652,7 +1654,7 @@ export default function LongtimeSwiperCard1({ route }) {
                     {t("Location")}
                   </Text>
                   <TouchableWithoutFeedback onPress={toast}>
-                    <Image
+                    {/* <Image
                       style={{
                         height: 100,
                         width: "100%",
@@ -1662,7 +1664,16 @@ export default function LongtimeSwiperCard1({ route }) {
                         resizeMode: "cover",
                       }}
                       source={require("../images/map.png")}
-                    />
+                    /> */}
+                    <MapView
+                      style={{
+                        height: 100,
+                        width: "100%",
+                        marginTop: "3%",
+                        resizeMode: "cover",
+                        backgroundColor: "#eefbff",
+                      }}
+                    ></MapView>
                   </TouchableWithoutFeedback>
 
                   {/* <Image

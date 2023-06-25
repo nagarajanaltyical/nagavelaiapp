@@ -1899,14 +1899,10 @@ function Saved({ navigation, route }) {
     return (
       <View
         style={{
-          height: "100%",
-          backgroundColor: "red",
           justifyContent: "center",
         }}
       >
-        <Text>
-          <LottieViewloading />
-        </Text>
+        <LottieViewloading />
       </View>
     );
   }
@@ -1971,13 +1967,7 @@ function Saved({ navigation, route }) {
       <View style={styles.container}>
         {refreshing ? <ActivityIndicator /> : null}
         {loading ? (
-          <View
-            style={{
-              justifyContent: "center",
-              alignContent: "center",
-              marginVertical: "50%",
-            }}
-          >
+          <View>
             <LottieViewloading />
             {/* <Nodata /> */}
             {/* <Image
@@ -1988,20 +1978,6 @@ function Saved({ navigation, route }) {
               }}
               source={require("../../images/jobpost.png")}
             /> */}
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-                marginTop: "30%",
-              }}
-            >
-              {/* <Text
-                  style={{ fontSize: 20, fontWeight: "600", color: "#1e5966" }}
-                >
-                  Don’t have an any post
-                </Text> */}
-            </View>
           </View>
         ) : nodata ? (
           <View
@@ -2137,7 +2113,7 @@ function Saved({ navigation, route }) {
           </SafeAreaView>
         )}
       </View>
-      <View style={{ height: "18.5%" }}></View>
+      <View style={{ height: "19.5%" }}></View>
     </View>
   );
 }

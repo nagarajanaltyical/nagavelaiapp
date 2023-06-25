@@ -21,7 +21,7 @@ import { useIsFocused } from "@react-navigation/native";
 import * as yup from "yup";
 import { useContext } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { LocalizationContext } from "../../App";
@@ -100,6 +100,8 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [ActivityIndicators, setActivityIndicators] = useState(false);
   const [image, setImage] = useState(null);
+  const [showplace, setshowplace] = useState(true);
+  const [date, setDate] = useState(new Date());
 
   //image
   const [jobpost, setjobpostpic] = useState(null);
@@ -1173,8 +1175,41 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             />
           )}
         />
-        <View>
-          <Text>expire date</Text>
+        <View style={{ height: 70 }}>
+          <TextInput
+            style={{
+              borderColor: "#D9D9D9",
+              backgroundColor: "#FFF",
+              borderRadius: 10,
+              borderWidth: 0.5,
+              fontSize: 13,
+              height: 50,
+              marginHorizontal: 10,
+              paddingStart: 10,
+              marginBottom: 15,
+            }}
+            selectionColor={"#5188E3"}
+            placeholder={"Expire Date"}
+            multiline={true}
+            numberOfLines={50}
+            //onChangeText={onChange}
+            defaultValue={showplace ? "" : date.toDateString().slice(3)}
+            value={date}
+            keyboardType="numeric"
+          />
+
+          <TouchableOpacity onPressIn={() => showDatepicker()}>
+            <FontAwesome5
+              name="calendar-alt"
+              size={20}
+              color="#1e5966"
+              style={{
+                position: "absolute",
+                right: 40,
+                bottom: 30,
+              }}
+            />
+          </TouchableOpacity>
         </View>
         <Controller
           name="job_description"
@@ -1590,7 +1625,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
                 </View>
               ) : (
                 <>
-                  <TouchableHighlight
+                  {/* <TouchableHighlight
                     style={{
                       ...styles.openButton,
                       width: 150,
@@ -1619,7 +1654,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
                         {t("Take_Pic")}
                       </Text>
                     </View>
-                  </TouchableHighlight>
+                  </TouchableHighlight> */}
                   <TouchableHighlight
                     style={{
                       ...styles.openButton,
