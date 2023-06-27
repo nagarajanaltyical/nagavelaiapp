@@ -77,6 +77,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
   const [genderOpen, setGenderOpen] = useState(false);
   const [genderValue, setGenderValue] = useState(null);
   const { t, language, setlanguage } = useContext(LocalizationContext);
+  const [selctedjob, setselectedjob] = useState("");
   console.log(language);
   const userID = useSelector((state) => state.ID);
   const [gender, setGender] = useState([
@@ -258,6 +259,24 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
     let city = data1.filter((e) => e.name == paras);
   };
 
+  const onselected = (data) => {
+    if (data != null) {
+      const result = company.filter(checkcom);
+      function checkcom(com) {
+        return com.value == companyValue;
+      }
+      console.log(result.length);
+      if (result.length > 0) {
+        const finalJob = result[0].label;
+        setselectedjob(finalJob);
+      } else {
+        console.log(selctedjob);
+      }
+    } else {
+      console.log(data);
+      console.log(selctedjob);
+    }
+  };
   //image index
   //pic for image
   const [modalVisible, setModalVisible] = useState(false);
@@ -433,19 +452,22 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
       return com.value == companyValue;
     }
     const finalJob = result[0].label;
-
-    data.job_title = finalJob;
-    data.pic = jobpost;
+    console.log(data);
+    data.job_title = finalJob == "OTHERS" ? data.Other_title : finalJob;
+    //  data.pic = jobpost;
     data.logo = jobpost1;
     data.number = phonenumber;
     data.user_id = userID;
     data.is_short = "True";
+    data.pic = "";
     data.s_admin = "True";
     data.isallow_tocall = isclicked;
+    delete data.Other_title;
+    delete data.position1;
     console.log(data);
     async function submitdatas() {
       try {
-        await fetch("http://103.174.10.108:5002/api/shorttime_job", {
+        await fetch("http://192.168.1.15:5000/api/shorttime_job", {
           method: "POST",
           mode: "cors", // no-cors, *cors, same-origin
           cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -515,15 +537,15 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
                   backgroundColor: "white",
                 }}
                 setValue={setCompanyValue}
-                setItems={setComapny}
+                // setItems={setComapny}
                 placeholder={t("job_title")}
                 placeholderStyle={styles.placeholderStyles}
                 loading={loading}
                 activityIndicatorColor="#5188E3"
                 searchable={true}
-                searchPlaceholder="Search title here..."
+                searchPlaceholder="Select Title"
                 onOpen={onCompanyOpen}
-                onChangeValue={onChange}
+                onChangeValue={(onselected(company), onChange)}
                 zIndex={1000}
                 zIndexInverse={3000}
               />
@@ -543,48 +565,53 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
-        <View>
-          <Controller
-            name="Openings"
-            defaultValue=""
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
+        {selctedjob == "OTHERS" ? (
+          <View>
+            <Controller
+              name="Other_title"
+              defaultValue={null}
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <TextInput
+                  style={{
+                    borderColor: "#D9D9D9",
+                    backgroundColor: "#FFF",
+                    borderRadius: 10,
+                    borderWidth: 0.5,
+                    fontSize: 13,
+                    height: 50,
+                    marginHorizontal: 10,
+                    paddingStart: 10,
+                    marginBottom: 15,
+                  }}
+                  selectionColor={"#5188E3"}
+                  placeholder="Type Job Title"
+                  multiline={true}
+                  numberOfLines={50}
+                  editable={selctedjob == "OTHERS" ? true : false}
+                  onChangeText={onChange}
+                  value={value}
+                  //keyboardType="numeric"
+                />
+              )}
+            />
+            {errors.Other_title && (
+              <Text
                 style={{
-                  borderColor: "#D9D9D9",
-                  backgroundColor: "#FFF",
-                  borderRadius: 10,
-                  borderWidth: 0.5,
-                  fontSize: 13,
-                  height: 50,
-                  marginHorizontal: 10,
-                  paddingStart: 10,
-                  marginBottom: 15,
+                  fontSize: 10,
+                  color: "red",
+                  marginTop: "-4%",
+                  marginLeft: "5%",
+                  marginBottom: "4%",
                 }}
-                selectionColor={"#5188E3"}
-                placeholder="Type Job Title"
-                multiline={true}
-                numberOfLines={50}
-                onChangeText={onChange}
-                value={value}
-                keyboardType="numeric"
-              />
+              >
+                {errors.Other_title.message}
+              </Text>
             )}
-          />
-          {errors.Openings && (
-            <Text
-              style={{
-                fontSize: 10,
-                color: "red",
-                marginTop: "-4%",
-                marginLeft: "5%",
-                marginBottom: "4%",
-              }}
-            >
-              {errors.Openings.message} - vacancy
-            </Text>
-          )}
-        </View>
+          </View>
+        ) : (
+          ""
+        )}
         <Controller
           name="company"
           defaultValue=""
@@ -632,7 +659,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
           )}
         />
         <Controller
-          name="position"
+          name="position1"
           defaultValue=""
           control={control}
           render={({ field: { onChange, value } }) => (

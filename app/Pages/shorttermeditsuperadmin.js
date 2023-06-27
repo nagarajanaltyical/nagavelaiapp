@@ -257,7 +257,24 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
   const onCityChange = (paras) => {
     let city = data1.filter((e) => e.name == paras);
   };
-
+  const onselected = (data) => {
+    if (data != null) {
+      const result = company.filter(checkcom);
+      function checkcom(com) {
+        return com.value == companyValue;
+      }
+      console.log(result.length);
+      if (result.length > 0) {
+        const finalJob = result[0].label;
+        setselectedjob(finalJob);
+      } else {
+        console.log(selctedjob);
+      }
+    } else {
+      console.log(data);
+      console.log(selctedjob);
+    }
+  };
   //image index
   //pic for image
   const [modalVisible, setModalVisible] = useState(false);

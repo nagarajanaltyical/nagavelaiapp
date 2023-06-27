@@ -45,7 +45,12 @@ export const ShortTimeFilter = (state, action) => {
     }
     case "Revert_CLick": {
       return {
-        ...state,
+        states: "$",
+        district: "$",
+        job_title: "$",
+        duration: "$",
+        salary: "$",
+        page: 0,
         filter_click: false,
       };
     }

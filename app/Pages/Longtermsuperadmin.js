@@ -17,7 +17,7 @@ import { useEffect } from "react";
 // import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useIsFocused } from "@react-navigation/native";
-
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import * as yup from "yup";
 import { useContext } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -74,13 +74,11 @@ const schema = yup.object().shape({
     .typeError("Account manged by cannot be null"),
   Openings: yup
     .string()
-    .required("openings can't be empty")
 
     .typeError("openings cannot be null"),
 
-  Salary: yup.string().required("Please enter the salary Details"),
-  // mobile_number: yup.string().required("Mobile number is required"),
-  email: yup.string().required("Email id is required"),
+  Salary: yup.string(),
+  email: yup.string(),
 });
 const LongTermsuperadmin = ({ navigation: { goBack } }) => {
   //gender
@@ -90,6 +88,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
   const [isChecked2, setChecked2] = useState(false);
   const [isChecked3, setChecked3] = useState(false);
   const [isclicked, setisclicked] = useState(false);
+  const [selctedjob, setselectedjob] = useState("");
   const isFocused = useIsFocused();
 
   const userID = useSelector((state) => state.ID);
@@ -397,6 +396,25 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
       statesObj.push({ label: states[i], value: states[i] });
     }
   };
+  const [opens, setisopen] = useState(false);
+  const showDatepicker = () => {
+    setisopen(true);
+    showMode("date");
+    setshowplace(false);
+    minDate: new Date();
+  };
+  const onChange = (event, selectedDate) => {
+    console.log(selectedDate);
+    const currentDate = selectedDate;
+    console.log(
+      currentDate.getDate(),
+      currentDate.getMonth(),
+      currentDate.getFullYear()
+    );
+    setDate(currentDate);
+    setisopen(false);
+  };
+
   //state change
   const onstateChange = (paras) => {
     let districts = data1.filter((e) => e.subcountry == paras);
@@ -407,6 +425,31 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
     }
   };
 
+  const onselected = (data) => {
+    if (data != null) {
+      const result = company.filter(checkcom);
+      function checkcom(com) {
+        return com.value == companyValue;
+      }
+      console.log(result.length);
+      if (result.length > 0) {
+        const finalJob = result[0].label;
+        setselectedjob(finalJob);
+      } else {
+        console.log(selctedjob);
+      }
+    } else {
+      console.log(data);
+      console.log(selctedjob);
+    }
+  };
+  const showMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange,
+      mode: currentMode,
+    });
+  };
   //city
   const onCityChange = (paras) => {
     let city = data1.filter((e) => e.name == paras);
@@ -487,10 +530,13 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
     function checkcom(com) {
       return com.value == companyValue;
     }
+
+    console.log(data);
     const finalJob = result[0].label;
 
-    data.job_title = finalJob;
-    data.jobpic = jobpost;
+    data.job_title = finalJob == "OTHERS" ? data.Other_title : finalJob;
+    data.jobpic = "";
+
     data.logo = jobpost1;
 
     data.is_short = "False";
@@ -498,9 +544,13 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
     data.user_id = userID;
     data.mobile_number = phonenumber;
     data.s_admin = "True";
+    data.role = data.position1;
+    data.email = "";
+    delete data.position1;
+    //delete console.log(data);
     async function submitdata() {
       try {
-        await fetch("http://103.174.10.108:5002/api/long_job_post", {
+        await fetch("http://192.168.1.15:5000/api/long_job_post", {
           method: "POST",
           mode: "cors", // no-cors, *cors, same-origin
           cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -555,7 +605,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
               name="job_title"
               defaultValue=""
               control={control}
-              render={({ field: { onChange, value, onBlur } }) => (
+              render={({ field: { onChange, value } }) => (
                 <DropDownPicker
                   style={styles.dropdown}
                   open={companyOpen}
@@ -571,16 +621,15 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
                     backgroundColor: "white",
                   }}
                   setValue={setCompanyValue}
-                  setItems={setComapny}
+                  // setItems={setComapny}
                   placeholder={t("job_title")}
-                  onBlur={onBlur}
                   placeholderStyle={styles.placeholderStyles}
                   loading={loading}
                   activityIndicatorColor="#5188E3"
                   searchable={true}
-                  searchPlaceholder="Search title here..."
+                  searchPlaceholder="Select Title"
                   onOpen={onCompanyOpen}
-                  onChangeValue={onChange}
+                  onChangeValue={(onselected(company), onChange)}
                   zIndex={1000}
                   zIndexInverse={3000}
                 />
@@ -600,8 +649,53 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
               </Text>
             )}
           </View>
-        </View>
-        <View>
+          {selctedjob == "OTHERS" ? (
+            <View>
+              <Controller
+                name="Other_title"
+                defaultValue={null}
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <TextInput
+                    style={{
+                      borderColor: "#D9D9D9",
+                      backgroundColor: "#FFF",
+                      borderRadius: 10,
+                      borderWidth: 0.5,
+                      fontSize: 13,
+                      height: 50,
+                      marginHorizontal: 10,
+                      paddingStart: 10,
+                      marginBottom: 15,
+                    }}
+                    selectionColor={"#5188E3"}
+                    placeholder="Type Job Title"
+                    multiline={true}
+                    numberOfLines={50}
+                    editable={selctedjob == "OTHERS" ? true : false}
+                    onChangeText={onChange}
+                    value={value}
+                    //keyboardType="numeric"
+                  />
+                )}
+              />
+              {errors.Other_title && (
+                <Text
+                  style={{
+                    fontSize: 10,
+                    color: "red",
+                    marginTop: "-4%",
+                    marginLeft: "5%",
+                    marginBottom: "4%",
+                  }}
+                >
+                  {errors.Other_title.message}
+                </Text>
+              )}
+            </View>
+          ) : (
+            ""
+          )}
           {/*workspace*/}
           <Controller
             name="workspace"
@@ -771,7 +865,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
           )}
         </View>
         <Controller
-          name="position"
+          name="position1"
           defaultValue=""
           control={control}
           render={({ field: { onChange, value } }) => (
@@ -815,7 +909,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
                 placeholderStyle={[styles.placeholderStyles]}
                 containerStyle={{ zIndex: 50 }}
                 loading={loading}
-                listMode="SCROLLVIEW"
+                listMode="MODAL"
                 activityIndicatorColor="#5188E3"
                 searchable={true}
                 searchPlaceholder="Set duration here..."
@@ -911,6 +1005,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
                     items={districtsobj}
                     setOpen={setcityopen}
                     setValue={setcityvalue}
+                    listMode="MODAL"
                     // setItems={sethour}
                     placeholder={t("District")}
                     dropDownContainerStyle={{
@@ -920,7 +1015,6 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
                     placeholderStyle={[styles.placeholderStyles]}
                     containerStyle={{ zIndex: 50, width: 155 }}
                     loading={loading}
-                    listMode="SCROLLVIEW"
                     activityIndicatorColor="#5188E3"
                     searchable={true}
                     searchPlaceholder="Select District here..."
@@ -1212,7 +1306,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
           </TouchableOpacity>
         </View>
         <Controller
-          name="job_description"
+          name="web_link"
           defaultValue=""
           control={control}
           render={({ field: { onChange, value } }) => (
@@ -1231,7 +1325,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
           )}
         />
         <Controller
-          name="job_description"
+          name="Required_skills"
           defaultValue=""
           control={control}
           render={({ field: { onChange, value } }) => (

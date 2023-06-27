@@ -7,6 +7,7 @@ import {
   FlatList,
   StatusBar,
   Pressable,
+  Share,
   SafeAreaView,
   RefreshControl,
   TouchableOpacity,
@@ -64,13 +65,18 @@ const onShare = async ({
   per,
   time,
   loc,
-  cou,
-  Dis,
-  name,
+
   short,
-  days_ago,
   work,
 }) => {
+  time =
+    time == null
+      ? ` ${new Date().getDate()} - ${
+          new Date().getMonth() + 1
+        } - ${new Date().getFullYear()}`
+      : `${new Date(time).getDate()} - ${
+          new Date(time).getMonth() + 1
+        } - ${new Date(time).getFullYear()}`;
   try {
     const result = await Share.share({
       title: "Message from Velai app",
@@ -100,6 +106,7 @@ const LongTermCategory = ({
   sal,
   per,
   time,
+  work,
   loc,
   page,
   Dis,
@@ -198,7 +205,7 @@ const LongTermCategory = ({
                       per,
                       time,
                       loc,
-                      cou,
+
                       Dis,
                       name,
                       short,
@@ -553,6 +560,7 @@ const LongTermCategory = ({
 const ShortTermCategory = ({
   title,
   sal,
+  work,
   per,
   time,
   pic,
@@ -879,6 +887,7 @@ const Items = ({
   education,
   jobtype,
   Openings,
+  work,
   Id,
   navigation,
 }) => (
@@ -1565,6 +1574,7 @@ const Items = ({
         Dis={Dis}
         name={name}
         short={short}
+        work={work}
         days_ago={days_ago}
         longs={longs}
         shortID={shortID}
@@ -1577,6 +1587,7 @@ const Items = ({
       <LongTermCategory
         title={title}
         sal={sal}
+        work={work}
         per={per}
         time={time}
         loc={loc}

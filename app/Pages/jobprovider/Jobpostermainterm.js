@@ -500,6 +500,8 @@ export default function Jobpostermain({ navigation }) {
       })
         .then((response) => response.json())
         .then((result) => {
+          console.log("immm the result of ");
+          console.log(result.number);
           setphonenumber(result.number);
           // setjobpostpic(result["updated"]);
           // setActivityIndicators(false);
@@ -599,10 +601,10 @@ export default function Jobpostermain({ navigation }) {
       >
         <TouchableOpacity
           onPress={() =>
-            // phonenumber == "+918825848880"
-            //   ? navigation.navigate("shortTermadminforms")
-            //   :
-            navigation.navigate("short")
+            phonenumber == "+918825848880"
+              ? (console.log(phonenumber),
+                navigation.navigate("shortTermadminforms"))
+              : navigation.navigate("short")
           }
           style={{ marginHorizontal: 5 }}
         >

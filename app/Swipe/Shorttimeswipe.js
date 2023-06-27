@@ -13,6 +13,7 @@ import {
   ScrollView,
   SectionList,
   TextInput,
+  Share,
   Pressable,
   useWindowDimensions,
 } from "react-native";
@@ -67,27 +68,21 @@ import { useMemo } from "react";
 import LottieViewloadingmodal from "../components/Loadinmodal";
 import { ToastAndroid } from "react-native";
 
-const onShare = async ({
-  title,
-  sal,
-  per,
-  time,
-  loc,
-  cou,
-  Dis,
-  name,
-  short,
-  work,
-}) => {
+const onShare = async (title, sal, per, time, loc) => {
+  time =
+    time == null
+      ? ` ${new Date().getDate()} - ${
+          new Date().getMonth() + 1
+        } - ${new Date().getFullYear()}`
+      : `${new Date(time).getDate()} - ${
+          new Date(time).getMonth() + 1
+        } - ${new Date(time).getFullYear()}`;
   try {
     const result = await Share.share({
       title: "Message from Velai app",
-      message: `Job Title:${title}\nSalary:${sal}/${
-        short == "True" ? per : "LPA"
-      }\nTime:${
-        short == "True" ? time : work
-      }\nLocation:${loc}\n Message sent from velai app`,
+      message: `Job Title:${title}\nSalary:${sal}/${per}\nTime:${time}\nLocation:${loc}\n Message sent from velai app`,
     });
+
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
         // shared with activity type of result.activityType
@@ -957,18 +952,13 @@ export default function ShorttimeSwiperCard({ route }) {
                 <View style={{ paddingHorizontal: "4%" }}>
                   <TouchableOpacity
                     onPress={() =>
-                      onShare({
-                        title,
-                        sal,
-                        per,
-                        time,
-                        loc,
-                        cou,
-                        Dis,
-                        name,
-                        short,
-                        work,
-                      })
+                      onShare(
+                        data[index].job_title,
+                        data[index].Salary,
+                        data[index].per,
+                        data[index].exp_date,
+                        data[index].location
+                      )
                     }
                     // style={{ backgroundColor: "red", width: "45%" }}
                   >
@@ -1606,42 +1596,46 @@ export default function ShorttimeSwiperCard({ route }) {
                       </Text>
                     </LinearGradient> */}
                   <View style={{}}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        // navigation.navigate("Userprofile");
-                        checktheusercondtiton(data[index]);
-                      }}
-                      disabled={data[index].apply == "True"}
-                      // handleLikeButtonPress(data[index]);
-                    >
-                      <LinearGradient
-                        colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 1 }}
-                        useAngle={45}
-                        style={{
-                          height: 38,
-                          width: 160,
-                          borderRadius: 10,
-
-                          opacity: data[index].apply == "True" ? 0.5 : 1,
-                          justifyContent: "center",
-                          alignItems: "center",
+                    {data[index].s_admin == "True" ? (
+                      <TouchableOpacity
+                        onPress={() => {
+                          // navigation.navigate("Userprofile");
+                          checktheusercondtiton(data[index]);
                         }}
+                        disabled={data[index].apply == "True"}
+                        // handleLikeButtonPress(data[index]);
                       >
-                        <Text
+                        <LinearGradient
+                          colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 1 }}
+                          useAngle={45}
                           style={{
-                            color: "#fff",
-                            fontSize: language == "English" ? 16 : 13,
-                            fontWeight: "500",
+                            height: 38,
+                            width: 160,
+                            borderRadius: 10,
+
+                            opacity: data[index].apply == "True" ? 0.5 : 1,
+                            justifyContent: "center",
+                            alignItems: "center",
                           }}
                         >
-                          {data[index].apply == "True"
-                            ? t("Applied")
-                            : t("Apply_Now")}
-                        </Text>
-                      </LinearGradient>
-                    </TouchableOpacity>
+                          <Text
+                            style={{
+                              color: "#fff",
+                              fontSize: language == "English" ? 16 : 13,
+                              fontWeight: "500",
+                            }}
+                          >
+                            {data[index].apply == "True"
+                              ? t("Applied")
+                              : t("Apply_Now")}
+                          </Text>
+                        </LinearGradient>
+                      </TouchableOpacity>
+                    ) : (
+                      ""
+                    )}
                   </View>
                 </View>
 

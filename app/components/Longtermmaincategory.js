@@ -110,6 +110,8 @@ const Items = ({
   per,
   time,
   loc,
+  logo,
+  s_admin,
   work,
   page,
   Dis,
@@ -413,7 +415,23 @@ const Items = ({
                   resizeMode: "cover",
                 }}
               >
-                {!(propic == "") ? (
+                {s_admin == "True" ? (
+                  <Image
+                    source={{ uri: logo }}
+                    style={{
+                      backgroundColor: "#EEFBFF",
+                      width: 45,
+                      height: 45,
+                      //   marginTop: 3,
+
+                      borderRadius: 50,
+
+                      resizeMode: "cover",
+                      // borderColor: "#f6ab03",
+                      // borderWidth: 1,
+                    }}
+                  ></Image>
+                ) : !(propic == "") ? (
                   <Image
                     source={{
                       uri: propic,
@@ -754,8 +772,10 @@ function Longtermmainlist({ navigation, route }) {
           if (newdata.length == 0) {
             setnodata(true);
             setloading(false);
+            //dispatch2({ type: "Revert_clicked_long" });
           } else {
             setdata(newdata);
+            // dispatch2({ type: "Revert_clicked_long" });
             setloading(false);
             setnodata(false);
           }
@@ -855,6 +875,8 @@ function Longtermmainlist({ navigation, route }) {
                 work={item.time}
                 name={item.username}
                 user_id={user_id}
+                logo={item.logo}
+                s_admin={item.s_admin}
                 loc={item.location}
                 Openings={item.Openings}
                 exp={item.experience}

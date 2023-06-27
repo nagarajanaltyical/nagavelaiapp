@@ -133,10 +133,10 @@ export default function ShorttimeSwiperCard1({ route }) {
   const handleDeletion = async (paras) => {
     const body = {};
     body.id = route.params.postid;
-    body.is_short = true;
-
+    body.is_short = "true";
+    console.log(body);
     try {
-      await fetch(`http://103.174.10.108:5002/api/post_delete`, {
+      await fetch(`http://192.168.1.7:5000/api/post_delete`, {
         method: "DELETE",
         mode: "cors",
         cache: "no-cache",

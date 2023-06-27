@@ -35,9 +35,11 @@ import { useFonts } from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper";
 import SwiperCard from "../../Pages/Post";
+import { StorageAccessFramework } from "expo-file-system";
 import { Alert } from "react-native";
 import Coming from "../../Lottie/Comingsoon";
 import Coming1 from "../coming";
+
 import Stay from "../../Lottie/Stay";
 
 // create a component
@@ -83,6 +85,26 @@ export default function SelectCategory({ route }) {
 
   const states = useSelector((state) => state);
 
+  //const { Permissions } = MediaLibrary;
+
+  // console.log(MediaLibrary);
+
+  // async function getStoragePermission() {
+  //   const permissions = await Permissions.requestPermissionsAsync();
+  //   console.log(permissions);
+  //   if (permissions.granted) {
+  //     // The user has granted storage permission.
+  //     console.log("im giving");
+  //   } else {
+  //     // The user has denied storage permission.
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   getStoragePermission();
+  // }, []);
+
+  // Requests permissions for external directory
   useEffect(() => {
     setlanguage(states.lang);
   }, [states.lang]);

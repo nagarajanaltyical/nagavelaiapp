@@ -82,6 +82,8 @@ import Mainjobpost from "../components/Top/Mainjobpost";
 import Insurance from "../components/Insurance/Insurance";
 import Freelance from "../components/Freelance/Freelance";
 import LongtimeSwiperCard from "../Swipe/Longtimeswipe";
+import Shorttimejob from "../Pages/ShorttimejobList";
+import Longtimejob from "../Pages/Longtimejoblist";
 const Stack = createStackNavigator();
 
 function CustomHeaderBackImage({ navigation }) {
@@ -565,6 +567,14 @@ function Root({ navigation }) {
           name="shortTermadminforms"
           component={ShortTermadminForms}
           options={{ headerShown: true }}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="shorttimeList"
+          component={Shorttimejob}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="LongtimeList"
+          component={Longtimejob}
         ></Stack.Screen>
         <Stack.Screen
           name="Mainjob"

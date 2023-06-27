@@ -2,8 +2,10 @@ import React from "react";
 import {
   Image,
   StatusBar,
+  Share,
   StyleSheet,
   Text,
+  share,
   View,
   Alert,
   SafeAreaView,
@@ -58,26 +60,12 @@ import { isLoading } from "expo-font";
 import { useMemo } from "react";
 import LottieViewloading from "../../components/Loading";
 
-const onShare = async ({
-  title,
-  sal,
-  per,
-  time,
-  loc,
-  cou,
-  Dis,
-  name,
-  short,
-  work,
-}) => {
+const onShare = async (title, sal, per, time, time2, loc) => {
+  console.log(title);
   try {
     const result = await Share.share({
       title: "Message from Velai app",
-      message: `Job Title:${title}\nSalary:${sal}/${
-        short == "True" ? per : "LPA"
-      }\nTime:${
-        short == "True" ? time : work
-      }\nLocation:${loc}\n Message sent from velai app`,
+      message: `Rent title:${title}\nRent price:${sal}/${per}\nDuration time:${time}${time2}\nLocation:${loc}\n Message sent from velai app`,
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
@@ -487,9 +475,10 @@ export default function RentalproviderbriefSwiperCard({ route }) {
       const body = {};
       body.id = paras.id;
       body.table_name = "rent_post";
-
+      console.log(body);
       try {
-        await fetch("http://103.174.10.108:5002/api/rent_post_delete", {
+        //192.168.1.7:5000/api/post_delete
+        http: await fetch("http://103.174.10.108:5002/api/rent_post_delete", {
           method: "DELETE",
           mode: "cors",
           cache: "no-cache",
@@ -565,18 +554,14 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                 <View style={{ paddingHorizontal: "4%" }}>
                   <TouchableOpacity
                     onPress={() =>
-                      onShare({
-                        title,
-                        sal,
-                        per,
-                        time,
-                        loc,
-                        cou,
-                        Dis,
-                        name,
-                        short,
-                        work,
-                      })
+                      onShare(
+                        data[index].product_name,
+                        data[index].product_fees,
+                        data[index].product_fees_hour,
+                        data[index].Duration,
+                        data[index].Duration2,
+                        data[index].location
+                      )
                     }
                     // style={{ backgroundColor: "red", width: "45%" }}
                   >

@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
+  Share,
   StyleSheet,
   Text,
   TextInput,
@@ -25,26 +26,11 @@ import {
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 
-const onShare = async ({
-  title,
-  sal,
-  per,
-  time,
-  loc,
-  cou,
-  Dis,
-  name,
-  short,
-  work,
-}) => {
+const onShare = async ({ title, price, per, dur, dur2, loc }) => {
   try {
     const result = await Share.share({
       title: "Message from Velai app",
-      message: `Job Title:${title}\nSalary:${sal}/${
-        short == "True" ? per : "LPA"
-      }\nTime:${
-        short == "True" ? time : work
-      }\nLocation:${loc}\n Message sent from velai app`,
+      message: `Rent item:${title}\nRent:${price}/${per}\nTime:${dur} ${dur2}\nLocation:${loc}\n Message sent from velai app`,
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
@@ -242,15 +228,11 @@ const Item = ({ dur2, loc, per, price, pic, title, dur, navigation, id }) => (
               onPress={() =>
                 onShare({
                   title,
-                  sal,
+                  price,
                   per,
-                  time,
+                  dur,
+                  dur2,
                   loc,
-                  cou,
-                  Dis,
-                  name,
-                  short,
-                  work,
                 })
               }
               // style={{ backgroundColor: "red", width: "45%" }}

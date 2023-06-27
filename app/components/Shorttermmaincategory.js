@@ -107,6 +107,8 @@ const Items = ({
   time,
   loc,
   work,
+  logo,
+  s_admin,
   page,
   Dis,
   pic,
@@ -367,7 +369,23 @@ const Items = ({
                   resizeMode: "cover",
                 }}
               >
-                {!(pic == "") ? (
+                {s_admin == "True" ? (
+                  <Image
+                    source={{ uri: logo }}
+                    style={{
+                      backgroundColor: "#EEFBFF",
+                      width: 45,
+                      height: 45,
+                      //   marginTop: 3,
+
+                      borderRadius: 50,
+
+                      resizeMode: "cover",
+                      // borderColor: "#f6ab03",
+                      // borderWidth: 1,
+                    }}
+                  ></Image>
+                ) : !(pic == "") ? (
                   <Image
                     source={{
                       uri: pic,
@@ -485,16 +503,16 @@ function Shorttermmainlist({ navigation, route }) {
     }
   }, [isFocused]);
 
-  React.useEffect(() => {
-    navigation.addListener("focus", () => {
-      if (state1.filter_click) {
-        console.log("hhhiihih");
-        fetchdata1();
-      } else {
-        fetchdata();
-      }
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   navigation.addListener("focus", () => {
+  //     if (state1.filter_click) {
+  //       console.log("hhhiihih");
+  //       fetchdata1();
+  //     } else {
+  //       fetchdata();
+  //     }
+  //   });
+  // }, []);
   const [nodata, setnodata] = useState(false);
   const [end, OnEnd] = useState(false);
   const [no_more, setnomore] = useState(false);
@@ -604,6 +622,7 @@ function Shorttermmainlist({ navigation, route }) {
           } else {
             console.log(newdata);
             dispatch1({ type: "Page_Increase", payload: 1 });
+
             setdata(newdata);
             setloading(false);
             setnodata(false);
@@ -645,9 +664,11 @@ function Shorttermmainlist({ navigation, route }) {
           if (newdata.length == 0) {
             setnodata(true);
             setloading(false);
+            dispatch1({ type: "Revert_CLick" });
           } else {
             console.log(newdata);
             dispatch1({ type: "Page_Increase", payload: 1 });
+            dispatch1({ type: "Revert_CLick" });
             setdata(newdata);
             setloading(false);
             setnodata(false);
@@ -765,6 +786,8 @@ function Shorttermmainlist({ navigation, route }) {
                   Openings={item.Openings}
                   days_ago={getthedays(item.posteddatetime)}
                   pic={item.profilepic}
+                  s_admin={item.s_admin}
+                  logo={item.logo}
                   Dis={item.distance}
                   short={item.is_short}
                   longs={item.long_id}

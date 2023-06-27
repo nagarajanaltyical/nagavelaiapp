@@ -517,7 +517,7 @@ export default function LongtimeSwiperCard1({ route }) {
   const handleDeletion = async (paras) => {
     const body = {};
     body.id = route.params.postid;
-    body.is_short = false;
+    body.is_short = "false";
 
     try {
       await fetch(`http://103.174.10.108:5002/api/post_delete`, {

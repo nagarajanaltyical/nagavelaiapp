@@ -3,6 +3,7 @@ import {
   Image,
   StatusBar,
   StyleSheet,
+  Share,
   Text,
   View,
   Alert,
@@ -58,26 +59,11 @@ import { useMemo } from "react";
 import LottieViewloading from "../../components/Loading";
 import { ToastAndroid } from "react-native";
 
-const onShare = async ({
-  title,
-  sal,
-  per,
-  time,
-  loc,
-  cou,
-  Dis,
-  name,
-  short,
-  work,
-}) => {
+const onShare = async (title, sal, per, time, time2, loc) => {
   try {
     const result = await Share.share({
       title: "Message from Velai app",
-      message: `Job Title:${title}\nSalary:${sal}/${
-        short == "True" ? per : "LPA"
-      }\nTime:${
-        short == "True" ? time : work
-      }\nLocation:${loc}\n Message sent from velai app`,
+      message: `Rent title:${title}\nRent price:${sal}/${per}\nDuration time:${time}${time2}\nLocation:${loc}\n Message sent from velai app`,
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
@@ -582,18 +568,14 @@ export default function RentalproviderSwiperCard({ route }) {
                 <View style={{ paddingHorizontal: "4%" }}>
                   <TouchableOpacity
                     onPress={() =>
-                      onShare({
-                        title,
-                        sal,
-                        per,
-                        time,
-                        loc,
-                        cou,
-                        Dis,
-                        name,
-                        short,
-                        work,
-                      })
+                      onShare(
+                        data[index].product_name,
+                        data[index].product_fees,
+                        data[index].product_fees_hour,
+                        data[index].Duration,
+                        data[index].Duration2,
+                        data[index].location
+                      )
                     }
                     // style={{ backgroundColor: "red", width: "45%" }}
                   >

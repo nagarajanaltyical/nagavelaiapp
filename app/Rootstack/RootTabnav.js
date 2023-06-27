@@ -841,15 +841,18 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
                 alignItems: "center",
               }}
             >
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginTop: -15,
-                  marginRight: 4,
-                }}
+              <TouchableOpacity
+                onPress={() => navigation.navigate("shorttimeList")}
               >
-                <Controller
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginRight: 4,
+                  }}
+                >
+                  <FontAwesome name="search" size={22} color="#fff" />
+                  {/* <Controller
                   name="job_title"
                   defaultValue=""
                   control={control}
@@ -902,8 +905,9 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
                       zIndexInverse={3000}
                     />
                   )}
-                />
-              </View>
+                /> */}
+                </View>
+              </TouchableOpacity>
 
               <View
                 style={{ position: "relative", marginTop: 13, marginRight: 4 }}
@@ -962,16 +966,38 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
                 style={{
                   justifyContent: "center",
                   alignItems: "center",
-                  marginTop: -15,
+                  // marginTop: -15,
                   marginRight: 4,
                 }}
               >
-                <Controller
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("LongtimeList")}
+                >
+                  <View
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      marginRight: 4,
+                    }}
+                  >
+                    <FontAwesome name="search" size={22} color="#fff" />
+                    {/* <Controller
                   name="job_title"
                   defaultValue=""
                   control={control}
                   render={({ field: { onChange, value } }) => (
                     <DropDownPicker
+                      // style={{
+                      //   borderWidth: 0.5,
+                      //   paddingLeft: 20,
+                      //   // margin: 5,
+                      //   height: 20,
+                      //   width: "98%",
+                      //   borderRadius: 20,
+                      //   // marginLeft: 200,
+                      //   borderColor: "transparent",
+                      //   backgroundColor: "red",
+                      // }}
                       style={{
                         borderColor: "transparent",
                         height: 10,
@@ -1008,7 +1034,9 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
                       zIndexInverse={3000}
                     />
                   )}
-                />
+                /> */}
+                  </View>
+                </TouchableOpacity>
               </View>
               <View
                 style={{ position: "relative", marginTop: 13, marginRight: 5 }}
