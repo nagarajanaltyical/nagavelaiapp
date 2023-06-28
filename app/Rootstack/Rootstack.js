@@ -571,10 +571,114 @@ function Root({ navigation }) {
         <Stack.Screen
           name="shorttimeList"
           component={Shorttimejob}
+          options={{
+            headerTintColor: "#333",
+            headerShadowVisible: false,
+
+            headerRight: (props) => (
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                {/* <View
+                    style={{
+                      flexDirection: "row",
+                      marginLeft: "70%",
+                    }}
+                  >
+                    <Ionicons name="md-globe-outline" size={24} color="#333" />
+                    <Pressable>
+                      <Text style={{ Text: 18, color: "#333" }}>EN</Text>
+                    </Pressable>
+                  </View> */}
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginHorizontal: 12,
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={require("../images/velailogo.png")}
+                    style={{ width: 35, height: 35 }}
+                  />
+                  {/* <Pressable onPress={() => setisvoice(!isvoice)}>
+                      {isvoice ? (
+                        <MaterialCommunityIcons
+                          name="account-voice"
+                          size={22}
+                          color="#333"
+                        />
+                      ) : (
+                        <MaterialCommunityIcons
+                          name="account-voice-off"
+                          size={22}
+                          color="#333"
+                        />
+                      )}
+                    </Pressable> */}
+                </View>
+              </View>
+            ),
+            headerStyle: {
+              backgroundColor: "#eefbff",
+            },
+            title: "",
+          }}
         ></Stack.Screen>
         <Stack.Screen
           name="LongtimeList"
           component={Longtimejob}
+          options={{
+            headerTintColor: "#333",
+            headerShadowVisible: false,
+
+            headerRight: (props) => (
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                {/* <View
+                    style={{
+                      flexDirection: "row",
+                      marginLeft: "70%",
+                    }}
+                  >
+                    <Ionicons name="md-globe-outline" size={24} color="#333" />
+                    <Pressable>
+                      <Text style={{ Text: 18, color: "#333" }}>EN</Text>
+                    </Pressable>
+                  </View> */}
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginHorizontal: 12,
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    source={require("../images/velailogo.png")}
+                    style={{ width: 35, height: 35 }}
+                  />
+                  {/* <Pressable onPress={() => setisvoice(!isvoice)}>
+                      {isvoice ? (
+                        <MaterialCommunityIcons
+                          name="account-voice"
+                          size={22}
+                          color="#333"
+                        />
+                      ) : (
+                        <MaterialCommunityIcons
+                          name="account-voice-off"
+                          size={22}
+                          color="#333"
+                        />
+                      )}
+                    </Pressable> */}
+                </View>
+              </View>
+            ),
+            headerStyle: {
+              backgroundColor: "#eefbff",
+            },
+            title: "",
+          }}
         ></Stack.Screen>
         <Stack.Screen
           name="Mainjob"

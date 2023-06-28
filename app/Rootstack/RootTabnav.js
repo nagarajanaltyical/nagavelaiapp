@@ -848,7 +848,6 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
                   style={{
                     justifyContent: "center",
                     alignItems: "center",
-                    marginRight: 4,
                   }}
                 >
                   <FontAwesome name="search" size={22} color="#fff" />
@@ -909,9 +908,7 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
                 </View>
               </TouchableOpacity>
 
-              <View
-                style={{ position: "relative", marginTop: 13, marginRight: 4 }}
-              >
+              <View style={{ position: "relative" }}>
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("Shorttimefilter"), setloading(true);
@@ -967,7 +964,6 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
                   justifyContent: "center",
                   alignItems: "center",
                   // marginTop: -15,
-                  marginRight: 4,
                 }}
               >
                 <TouchableOpacity
@@ -977,7 +973,7 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
                     style={{
                       justifyContent: "center",
                       alignItems: "center",
-                      marginRight: 4,
+                      // marginRight: 4,
                     }}
                   >
                     <FontAwesome name="search" size={22} color="#fff" />
@@ -1038,9 +1034,7 @@ export const SwipeChatmainScreen = React.memo(({ navigation, route }) => {
                   </View>
                 </TouchableOpacity>
               </View>
-              <View
-                style={{ position: "relative", marginTop: 13, marginRight: 5 }}
-              >
+              <View style={{ position: "relative" }}>
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("Longtimefilter"), setloading(true);

@@ -22,7 +22,7 @@ import { Marker } from "react-native-maps";
 import { EvilIcons, Octicons } from "@expo/vector-icons";
 import Icon from "react-native-vector-icons/FontAwesome";
 import DropDownPicker from "react-native-dropdown-picker";
-
+//import { Linking } from "react-native";
 import Happy from "./Happy";
 import * as MailComposer from "expo-mail-composer";
 import { useIsFocused } from "@react-navigation/native";
@@ -134,9 +134,7 @@ export default function LongtimeSwiperCard({ route }) {
   const { state2, dispatch2 } = useContext(L_FILTER);
   const { state, dispatch } = useContext(AuthContext);
   console.log(state.coords.coords);
-  const { latitude } = state.coords.coords;
-  const { longitude } = state.coords.coords;
-  console.log(latitude);
+
   const isdetailsgiven = useSelector((state) => state.user_details_given);
   const userID = useSelector((state) => state.ID);
   const states = useSelector((state) => state);
@@ -1084,7 +1082,7 @@ export default function LongtimeSwiperCard({ route }) {
                   fontWeight: "400",
                 }}
               >
-                {data[index].Openings} Openings
+                {data[index].openings} Openings
               </Text>
             </View>
             <View
@@ -1110,9 +1108,9 @@ export default function LongtimeSwiperCard({ route }) {
                   ? ` ${new Date().getDate()} - ${
                       new Date().getMonth() + 1
                     } - ${new Date().getFullYear()}`
-                  : `${new Date(data[index].exp_date).getDate()} - ${
+                  : ` ${new Date(data[index].exp_date).getDate()} - ${
                       new Date(data[index].exp_date).getMonth() + 1
-                    }-${new Date().getFullYear()}`}
+                    } - ${new Date().getFullYear()}`}
               </Text>
             </View>
 
@@ -1270,8 +1268,8 @@ export default function LongtimeSwiperCard({ route }) {
                     source={require("../images/user.png")}
                     style={{
                       backgroundColor: "#eefbff",
-                      width: 40,
-                      height: 40,
+                      width: 50,
+                      height: 50,
                       // marginTop: 28,
 
                       borderRadius: 50,
@@ -1291,7 +1289,7 @@ export default function LongtimeSwiperCard({ route }) {
                       // marginTop: 28,
 
                       borderRadius: 50,
-                      resizeMode: "cover",
+                      resizeMode: "stretch",
                     }}
                   />
                 )}
@@ -1337,7 +1335,7 @@ export default function LongtimeSwiperCard({ route }) {
                   }}
                 >
                   {data[index].s_admin == "True"
-                    ? data[index].position
+                    ? `${data[index].position} - ${data[index].designation}`
                     : data[index].companyname == null
                     ? `Owner`
                     : `${data[index].username} - ${data[index].designation}`}
@@ -1560,39 +1558,75 @@ export default function LongtimeSwiperCard({ route }) {
                   }}
                 >
                   <View style={{}}>
-                    <TouchableOpacity
-                      onPress={() => handleCallclick(data[index])}
-                      disabled={data[index].isallow_tocall == "0"}
-                    >
-                      <LinearGradient
-                        colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 1 }}
-                        useAngle={45}
-                        style={{
-                          height: 38,
-                          width: 160,
-                          borderRadius: 10,
-                          opacity: data[index].isallow_tocall == "0" ? 0.5 : 1,
-                          justifyContent: "center",
-                          alignItems: "center",
-                          flexDirection: "row",
-                        }}
+                    {data[index].s_admin == null ? (
+                      <TouchableOpacity
+                        onPress={() => handleCallclick(data[index])}
+                        disabled={data[index].isallow_tocall == "0"}
                       >
-                        <FontAwesome name="phone" size={22} color="#fff" />
-                        <Text
+                        <LinearGradient
+                          colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 1 }}
+                          useAngle={45}
                           style={{
-                            color: "#fff",
-                            fontSize: language == "English" ? 16 : 13,
-                            fontWeight: "500",
-                            marginHorizontal: 10,
+                            height: 38,
+                            width: 160,
+                            borderRadius: 10,
+                            opacity:
+                              data[index].isallow_tocall == "0" ? 0.5 : 1,
                             justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "row",
                           }}
                         >
-                          {t("Call_Now")}
-                        </Text>
-                      </LinearGradient>
-                    </TouchableOpacity>
+                          <FontAwesome name="phone" size={22} color="#fff" />
+                          <Text
+                            style={{
+                              color: "#fff",
+                              fontSize: language == "English" ? 16 : 13,
+                              fontWeight: "500",
+                              marginHorizontal: 10,
+                              justifyContent: "center",
+                            }}
+                          >
+                            {t("Call_Now")}
+                          </Text>
+                        </LinearGradient>
+                      </TouchableOpacity>
+                    ) : (
+                      <TouchableOpacity
+                        onPress={() => Linking.openURL(data[index].web_link)}
+                      >
+                        <LinearGradient
+                          colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 1 }}
+                          useAngle={45}
+                          style={{
+                            height: 38,
+                            width: 160,
+                            borderRadius: 10,
+                            opacity: 1,
+
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "row",
+                          }}
+                        >
+                          <Text
+                            style={{
+                              color: "#fff",
+                              fontSize: language == "English" ? 16 : 13,
+                              fontWeight: "500",
+                              marginHorizontal: 10,
+                              justifyContent: "center",
+                            }}
+                          >
+                            Visit Link
+                          </Text>
+                        </LinearGradient>
+                      </TouchableOpacity>
+                    )}
                   </View>
                   {/* <LinearGradient
                       colors={["#6BC3FF", "#1da1f2"]}

@@ -482,8 +482,9 @@ const Sign = ({ navigation: { goBack } }) => {
     data.mobile_number = phonenumber;
     data.Duration = "";
     data.s_admin = "False";
-
+    data.email = "";
     delete data.Other_title;
+
     console.log(data);
     async function submitdata() {
       try {
@@ -1191,7 +1192,7 @@ const Sign = ({ navigation: { goBack } }) => {
             </Text>
           )}
         </View>
-        <View>
+        {/* <View>
           <Controller
             name="email"
             defaultValue=""
@@ -1221,7 +1222,7 @@ const Sign = ({ navigation: { goBack } }) => {
               {errors.email.message}
             </Text>
           )}
-        </View>
+        </View> */}
         <View>
           <Controller
             name="Required_Skills"

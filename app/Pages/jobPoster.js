@@ -181,7 +181,7 @@ export default function JobposterDetails({ route }) {
       async function submitdata() {
         try {
           await fetch(
-            `http://192.168.1.8:5000/api/job_post/aws_upload/${userID}`,
+            `http://103.174.10.108:5002/api/job_post/aws_upload/${userID}`,
             {
               method: "POST",
               mode: "cors", // no-cors, *cors, same-origin

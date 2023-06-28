@@ -18,6 +18,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { S_FILTER } from "../../App";
 import { useEffect } from "react";
+import LottieViewloading from "../components/Loading";
 const DATA = [
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
@@ -104,6 +105,7 @@ const Shorttimejob = ({ navigation }) => {
   }, []);
   const { state1, dispatch1 } = useContext(S_FILTER);
   const [Data, setData] = useState(DATA);
+  const [loading, setloading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const filteredData = Data.filter((item) =>
     item.label.toLowerCase().includes(searchQuery.toLowerCase())
@@ -125,7 +127,7 @@ const Shorttimejob = ({ navigation }) => {
         },
       })
         .then((response) => response.json())
-        .then((result) => setData(result));
+        .then((result) => (setData(result), setloading(false)));
     } catch (error) {
       console.warn(error);
     }
@@ -138,86 +140,103 @@ const Shorttimejob = ({ navigation }) => {
         backgroundColor: "#EEFBFF",
       }}
     >
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <TextInput
-          // underlineColorAndroid="transparent"
-          placeholder="Search by jobtitle"
-          onChangeText={handleSearch}
-          value={searchQuery}
-          style={{
-            // marginRight: "15%",
-            marginLeft: 10,
-            width: "75%",
-
-            fontSize: 12,
-          }}
-        />
-      </View>
-      <FlatList
-        data={filteredData}
-        renderItem={({ item, index }) => (
-          <Item
-            item={item}
-            index={index}
-            selectedIndex={selectedIndex}
-            setSelectedIndex={setSelectedIndex}
-            // style={{ backgroundColor: "red" }}
-          />
-        )}
-        keyExtractor={(item) => item.id}
-      />
-      <View style={{ marginHorizontal: "5%", marginVertical: 5 }}>
-        <TouchableOpacity
-          onPress={() => {
-            console.log(selectedIndex);
-            dispatch1({
-              type: "SET_JOBTITLE",
-              payload: selectedIndex.label,
-            }),
-              dispatch1({
-                type: "Is_filter_clicked",
-              }),
-              dispatch({
-                type: "language_value",
-                payload: selectedIndex.value,
-              });
-            navigation.goBack();
-          }}
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <LinearGradient
-            colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+      {loading ? (
+        <>
+          <View>
+            <LottieViewloading />
+          </View>
+        </>
+      ) : (
+        <>
+          <View
             style={{
-              // backgroundColor: isValid ? "#6BC3FF" : "#87CEEB",
-              textAlign: "center",
-              // marginHorizontal: 60,
-              padding: 10,
-              width: "100%",
-              // paddingVertical: 15,
-              borderRadius: 10,
+              justifyContent: "center",
               alignItems: "center",
-              // marginTop: 20,
+              marginHorizontal: 10,
+              borderRadius: 6,
+              marginBottom: 20,
+              width: "95%",
+              backgroundColor: "#fff",
+              borderColor: "#333",
+              borderWidth: 1,
             }}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            useAngle={45}
           >
-            <Text style={{ color: "#fff", fontWeight: "600", fontSize: 17 }}>
-              Set My Language
-            </Text>
-          </LinearGradient>
-        </TouchableOpacity>
-      </View>
+            <TextInput
+              // underlineColorAndroid="transparent"
+              placeholder="Search by jobtitle"
+              onChangeText={handleSearch}
+              value={searchQuery}
+              style={{
+                // marginRight: "15%",
+                marginLeft: 10,
+                width: "75%",
+
+                fontSize: 12,
+              }}
+            />
+          </View>
+          <FlatList
+            data={filteredData}
+            renderItem={({ item, index }) => (
+              <Item
+                item={item}
+                index={index}
+                selectedIndex={selectedIndex}
+                setSelectedIndex={setSelectedIndex}
+                // style={{ backgroundColor: "red" }}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+          />
+          <View style={{ marginHorizontal: "5%", marginVertical: 5 }}>
+            <TouchableOpacity
+              onPress={() => {
+                console.log(selectedIndex);
+                dispatch1({
+                  type: "SET_JOBTITLE",
+                  payload: selectedIndex.label,
+                }),
+                  dispatch1({
+                    type: "Is_filter_clicked",
+                  }),
+                  dispatch({
+                    type: "language_value",
+                    payload: selectedIndex.value,
+                  });
+                navigation.goBack();
+              }}
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <LinearGradient
+                colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                style={{
+                  // backgroundColor: isValid ? "#6BC3FF" : "#87CEEB",
+                  textAlign: "center",
+                  // marginHorizontal: 60,
+                  padding: 10,
+                  width: "100%",
+                  // paddingVertical: 15,
+                  borderRadius: 10,
+                  alignItems: "center",
+                  // marginTop: 20,
+                }}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                useAngle={45}
+              >
+                <Text
+                  style={{ color: "#fff", fontWeight: "600", fontSize: 17 }}
+                >
+                  Search Job{" "}
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        </>
+      )}
     </View>
   );
 };
@@ -238,7 +257,7 @@ const styles = StyleSheet.create({
     // elevation: 8,
     borderBottomColor: "#D9D9D9",
     marginHorizontal: "5%",
-    marginVertical: 5,
+    marginVertical: 3,
   },
   select: {
     backgroundColor: "#1E5966",

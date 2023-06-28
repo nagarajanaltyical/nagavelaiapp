@@ -107,6 +107,8 @@ const Items = ({
   time,
   loc,
   work,
+  position,
+  position1,
   logo,
   s_admin,
   page,
@@ -118,6 +120,7 @@ const Items = ({
   longs,
   shortID,
   company_name,
+  company_name1,
   days_ago,
   Openings,
   user_id,
@@ -433,7 +436,11 @@ const Items = ({
                 <Text
                   style={{ color: "#56909D", fontSize: 15, fontWeight: "500" }}
                 >
-                  {company_name == null ? name : company_name}
+                  {company_name == null
+                    ? name
+                    : s_admin == "True"
+                    ? company_name1
+                    : company_name}
                 </Text>
                 <Text
                   style={{
@@ -443,7 +450,11 @@ const Items = ({
                     textTransform: "capitalize",
                   }}
                 >
-                  {company_name == null ? "owner" : name}
+                  {company_name == null
+                    ? "owner"
+                    : s_admin == "True"
+                    ? position
+                    : name}
                 </Text>
               </View>
               <View
@@ -782,7 +793,10 @@ function Shorttermmainlist({ navigation, route }) {
                   loc={item.location}
                   lik={item.liked}
                   // page={route.name}
+                  position={item.position}
+                  position1={item.position1}
                   company_name={item.companyname}
+                  company_name1={item.companyname1}
                   Openings={item.Openings}
                   days_ago={getthedays(item.posteddatetime)}
                   pic={item.profilepic}

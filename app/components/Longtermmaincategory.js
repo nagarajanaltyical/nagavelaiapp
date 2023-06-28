@@ -111,6 +111,8 @@ const Items = ({
   time,
   loc,
   logo,
+  position,
+  position1,
   s_admin,
   work,
   page,
@@ -123,6 +125,7 @@ const Items = ({
   workspace,
   jobtype,
   company_name,
+  company_name1,
   Openings,
   propic,
   lik,
@@ -479,7 +482,11 @@ const Items = ({
                 <Text
                   style={{ color: "#56909D", fontSize: 15, fontWeight: "500" }}
                 >
-                  {company_name == null ? name : company_name}
+                  {company_name == null
+                    ? name
+                    : s_admin == "True"
+                    ? company_name1
+                    : company_name}
                 </Text>
                 <Text
                   style={{
@@ -489,7 +496,11 @@ const Items = ({
                     textTransform: "capitalize",
                   }}
                 >
-                  {company_name == null ? "owner" : name}
+                  {company_name == null
+                    ? "owner"
+                    : s_admin == "True"
+                    ? position
+                    : name}
                 </Text>
               </View>
             </View>
@@ -572,6 +583,7 @@ const Items = ({
                   fontWeight: "400",
                 }}
               >
+                {console.log(Openings)}
                 {Openings} Openings
               </Text>
             </View>
@@ -876,13 +888,16 @@ function Longtermmainlist({ navigation, route }) {
                 name={item.username}
                 user_id={user_id}
                 logo={item.logo}
+                position={item.position}
+                position1={item.position1}
                 s_admin={item.s_admin}
                 loc={item.location}
-                Openings={item.Openings}
+                Openings={item.openings}
                 exp={item.experience}
                 lik={item.liked}
                 propic={item.profilepic}
                 edu={item.Education}
+                company_name1={item.companyname1}
                 company_name={item.companyname}
                 jobtype={item.jobtype}
                 workspace={item.workspace}

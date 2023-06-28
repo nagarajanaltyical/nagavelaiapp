@@ -1861,9 +1861,9 @@ export default function SelectCategory({ route }) {
                     style={{
                       fontSize: 11,
                       color: "#333",
+                      // fontWeight: "500",
                       fontWeight: "600",
                       fontFamily: "sans-serif-medium",
-                      // textTransform: "uppercase",
                       // fontFamily: "Roboto-Regular",
                     }}
                   >

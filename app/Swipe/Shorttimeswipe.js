@@ -799,8 +799,40 @@ export default function ShorttimeSwiperCard({ route }) {
   const Card = React.memo(({ card }) => {
     const { state, dispatch } = useContext(AuthContext);
 
+    const checktheusercondtiton = async (paras) => {
+      const body = {};
+      body.user_id = states.ID;
+      body.userType = paras;
+      try {
+        const response = await fetch(
+          `http://103.174.10.108:5002/api/user_in_or_out`,
+          {
+            method: "POST",
+            mode: "cors", // no-cors, *cors, same-origin
+            // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          }
+        );
+        const result = await response.json();
+
+        if (result.result) {
+          return true;
+        } else {
+          return false;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     const handleCallclick = () => {
-      if (data[index].isallow_tocall == "1" && isdetailsgiven) {
+      const detailsUSer = checktheuserChat("job_seeker_info");
+      console.log(detailsUSer);
+      if (data[index].isallow_tocall == "1" && detailsUSer) {
         let phoneNumber = "";
         if (Platform.OS === "android") {
           phoneNumber = `tel:${data[index].number}`;

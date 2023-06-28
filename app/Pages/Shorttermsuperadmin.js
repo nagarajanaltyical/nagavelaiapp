@@ -456,7 +456,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
     data.job_title = finalJob == "OTHERS" ? data.Other_title : finalJob;
     //  data.pic = jobpost;
     data.logo = jobpost1;
-    data.number = phonenumber;
+    // data.number = phonenumber;
     data.user_id = userID;
     data.is_short = "True";
     data.pic = "";
@@ -467,7 +467,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
     console.log(data);
     async function submitdatas() {
       try {
-        await fetch("http://192.168.1.15:5000/api/shorttime_job", {
+        await fetch("http://103.174.10.108:5002/api/shorttime_job", {
           method: "POST",
           mode: "cors", // no-cors, *cors, same-origin
           cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

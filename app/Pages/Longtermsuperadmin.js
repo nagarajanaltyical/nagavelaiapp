@@ -34,42 +34,40 @@ import LottieViewloadingmodal from "../components/Loadinmodal";
 const schema = yup.object().shape({
   job_title: yup
     .string()
-    .required("Job title cant be empty")
+    //    .required("Job title cant be empty")
     .typeError("Job title  cannot be null"),
   workspace: yup
     .string()
-    .required("Workspace is required")
+    //  .required("Workspace is required")
     .typeError("Workspace cannot be null"),
   // location: yup.string().required("location of the job is required"),
   country: yup
     .string()
-    .required("Country cant be empty")
+    //.required("Country cant be empty")
     .typeError("Country  cannot be null"),
   state: yup
     .string()
-    .required("State cant be empty")
+    //.required("State cant be empty")
     .typeError("State  cannot be null"),
   District: yup
     .string()
-    .required("District cant be empty")
+    //.required("District cant be empty")
     .typeError("District  cannot be null"),
-  Duration: yup
-    .string()
-    .typeError("Duration cannot be null")
-    .required("Duration is required"),
+  Duration: yup.string().typeError("Duration cannot be null"),
+  //.required("Duration is required"),
   per: yup
     .string()
-    .required("Salary details can't be empty")
+    //.required("Salary details can't be empty")
 
     .typeError("Job title  cannot be null"),
   company: yup
     .string()
-    .required("company can't be empty")
+    // .required("company can't be empty")
 
     .typeError("company name cannot be null"),
   position: yup
     .string()
-    .required("account managed can't be empty")
+    // .required("account managed can't be empty")
 
     .typeError("Account manged by cannot be null"),
   Openings: yup
@@ -210,13 +208,13 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
         ? await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
-            aspect: [4, 3],
+
             quality: 1,
           })
         : await ImagePicker.launchCameraAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
-            aspect: [4, 3],
+
             quality: 1,
           });
     result;
@@ -283,10 +281,10 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
   const [workspaceopen, setworkspaceopen] = useState(false);
   const [workspacevalue, setworkspacevalue] = useState(false);
   const [workspace, setworkspace] = useState([
-    { label: "Work from office", value: "Work from office" },
-    { label: "Permanent Remote / WFH", value: "Permanent Remote / WFH" },
+    { label: "Work From Office", value: "Work From Office" },
+    { label: "Remote", value: "Remote" },
     { label: "Hybrid", value: "Hybrid" },
-    { label: "Temporary", value: "Temporary" },
+    { label: "Onsite", value: "Onsite" },
   ]);
   //jobtype
   const [jobtypeopen, setjobtypeopen] = useState(false);
@@ -531,14 +529,13 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
       return com.value == companyValue;
     }
 
-    console.log(data);
     const finalJob = result[0].label;
 
     data.job_title = finalJob == "OTHERS" ? data.Other_title : finalJob;
     data.jobpic = "";
-
+    data.Duration = "";
     data.logo = jobpost1;
-
+    data.exp_date = date;
     data.is_short = "False";
     data.isallow_tocall = isclicked;
     data.user_id = userID;
@@ -547,10 +544,12 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
     data.role = data.position1;
     data.email = "";
     delete data.position1;
+    delete data.Other_title;
+    console.log(data);
     //delete console.log(data);
     async function submitdata() {
       try {
-        await fetch("http://192.168.1.15:5000/api/long_job_post", {
+        await fetch("http://103.174.10.108:5002/api/long_job_post", {
           method: "POST",
           mode: "cors", // no-cors, *cors, same-origin
           cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -721,7 +720,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
                   loading={loading}
                   listMode="SCROLLVIEW"
                   activityIndicatorColor="#5188E3"
-                  searchable={true}
+                  // searchable={true}
                   searchPlaceholder="Set duration here..."
                   onOpen={onCompanyOpen}
                   onChangeValue={onChange}
@@ -744,7 +743,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
           )}
         </View>
         <Controller
-          name="workspace"
+          name="jobtype"
           defaultValue=""
           control={control}
           render={({ field: { onChange, value } }) => (
@@ -1041,7 +1040,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
         </View>
 
         <Controller
-          name="workspace"
+          name="experience"
           defaultValue=""
           control={control}
           render={({ field: { onChange, value } }) => (
@@ -1086,7 +1085,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
             {errors.jobtype.message}
           </Text>
         )}
-        <View>
+        {/* <View>
           <Controller
             name="Duration"
             defaultValue=""
@@ -1132,7 +1131,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
               {errors.Duration.message}
             </Text>
           )}
-        </View>
+        </View> */}
         <View>
           <Controller
             name="Openings"
