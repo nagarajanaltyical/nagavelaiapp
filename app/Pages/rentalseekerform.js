@@ -24,11 +24,14 @@ import DropDownPicker from "react-native-dropdown-picker";
 import providerValidationSchema from "../components/jobProviderValidation";
 // import { isValidPhoneNumber } from "react-phone-number-input";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import * as MediaLibrary from "expo-media-library";
+
 import * as ImagePicker from "expo-image-picker";
 import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext, LocalizationContext } from "../../App";
 import LottieViewloadingmodal from "../components/Loadinmodal";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 export default function RentalSeeker({ navigation }) {
   const { t, language, setlanguage } = useContext(LocalizationContext);
   const [ActivityIndicators, setActivityIndicators] = useState(false);
@@ -36,8 +39,10 @@ export default function RentalSeeker({ navigation }) {
   const Redux_dispatch = useDispatch();
   const states = useSelector((state) => state);
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
-  const [status1, requestPermission1] =
-    ImagePicker.useMediaLibraryPermissions();
+  const [status1, requestPermission1] = MediaLibrary.usePermissions();
+  if (status1 === null) {
+    requestPermission1();
+  }
   //to store the image
   //to set the image of the user
   const [profilemodal, setprofilemodal] = useState(false);
@@ -76,25 +81,30 @@ export default function RentalSeeker({ navigation }) {
   async function takeAndUploadPhotoAsync1(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            base64: true,
+    // let result =
+    //   paras === "files"
+    //     ? await ImagePicker.launchImageLibraryAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //         base64: true,
 
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 0.5,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            base64: true,
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 0.5,
+    //       })
+    //     : await ImagePicker.launchCameraAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //         base64: true,
 
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 0.5,
-          });
-
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 0.5,
+    //       });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
     // ImagePicker saves the taken photo to disk and returns a local URI to it
     console.log(result);
     if (!result.canceled) {
@@ -429,7 +439,7 @@ export default function RentalSeeker({ navigation }) {
   const [jobprovider, setjobprovider] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#EEFBFF" }}>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#EEFBFF" }}>
       <StatusBar style="auto" />
 
       <View style={styles.title}>
@@ -975,7 +985,7 @@ export default function RentalSeeker({ navigation }) {
           )}
         </Formik>
       </ScrollView>
-    </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 const styles = StyleSheet.create({

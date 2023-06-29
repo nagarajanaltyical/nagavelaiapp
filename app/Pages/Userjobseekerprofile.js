@@ -39,6 +39,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import PhoneInput from "react-native-phone-number-input";
 import { parsePhoneNumber } from "react-native-phone-number-input";
 import Top from "../components/Topcontainer";
+import * as MediaLibrary from "expo-media-library";
+
 // import { isValidPhoneNumber } from "react-phone-number-input";
 import { LinearGradient } from "expo-linear-gradient";
 import OtpScreen from "./Otpscreen";
@@ -51,6 +53,7 @@ import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { useDispatch, useSelector } from "react-redux";
 import LottieViewloadingmodal from "../components/Loadinmodal";
 import { color } from "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function Userjobseekerprofile({ navigation, route }) {
   const { t, language, setlanguage } = useContext(LocalizationContext);
@@ -206,26 +209,34 @@ export default function Userjobseekerprofile({ navigation, route }) {
   };
   const [profilepic, setprofilepic] = useState("");
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
-  const [status1, requestPermission1] =
-    ImagePicker.useMediaLibraryPermissions();
-  console.log(status);
+
+  const [status1, requestPermission1] = MediaLibrary.usePermissions();
+  if (status1 === null) {
+    requestPermission1();
+  }
   async function takeAndUploadPhotoAsync(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
+    // let result =
+    //   paras === "files"
+    //     ? await ImagePicker.launchImageLibraryAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 1,
+    //       })
+    //     : await ImagePicker.launchCameraAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 1,
+    //       });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
     result;
     // ImagePicker saves the taken photo to disk and returns a local URI to it
     if (!result.canceled) {
@@ -400,7 +411,7 @@ export default function Userjobseekerprofile({ navigation, route }) {
   const [jobprovider, setjobprovider] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#eefbff" }}>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#eefbff" }}>
       <StatusBar style="auto" />
 
       <View style={styles.title}>
@@ -1024,7 +1035,7 @@ export default function Userjobseekerprofile({ navigation, route }) {
           )}
         </Formik>
       </ScrollView>
-    </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 const styles = StyleSheet.create({

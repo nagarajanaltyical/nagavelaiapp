@@ -19,6 +19,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
+import * as MediaLibrary from "expo-media-library";
 
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
@@ -54,6 +55,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import LottieViewloadingmodal from "../components/Loadinmodal";
 import { color } from "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 //forschema
 const schema = yup.object().shape({
@@ -115,8 +117,10 @@ export default function PersonalJobProvider({ navigation }) {
   };
   //Ask Permission
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
-  const [status1, requestPermission1] =
-    ImagePicker.useMediaLibraryPermissions();
+  const [status1, requestPermission1] = MediaLibrary.usePermissions();
+  if (status1 === null) {
+    requestPermission1();
+  }
   console.log(status);
 
   //to get the image
@@ -124,24 +128,12 @@ export default function PersonalJobProvider({ navigation }) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
 
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            base64: true,
-
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 0.5,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            base64: true,
-
-            allowsEditing: false,
-            aspect: [4, 3],
-            quality: 0.5,
-          });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
     result;
     // ImagePicker saves the taken photo to disk and returns a local URI to it
 
@@ -415,7 +407,7 @@ export default function PersonalJobProvider({ navigation }) {
   const [jobprovider, setjobprovider] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#EEFBFF" }}>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#EEFBFF" }}>
       <StatusBar style="auto" />
 
       <View style={styles.title}>
@@ -861,7 +853,7 @@ export default function PersonalJobProvider({ navigation }) {
           )}
         </Formik>
       </ScrollView>
-    </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 const styles = StyleSheet.create({

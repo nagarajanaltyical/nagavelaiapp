@@ -13,6 +13,8 @@ import {
   TouchableHighlight,
 } from "react-native";
 import { useEffect } from "react";
+import * as MediaLibrary from "expo-media-library";
+
 import * as ImagePicker from "expo-image-picker";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -27,7 +29,10 @@ import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
-import { ScrollView } from "react-native-gesture-handler";
+import {
+  GestureHandlerRootView,
+  ScrollView,
+} from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import LottieViewloading from "../components/Loading";
 import LottieViewloadingmodal from "../components/Loadinmodal";
@@ -307,27 +312,35 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
   const [ActivityIndicators, setActivityIndicators] = useState(false);
   const [image, setImage] = useState(null);
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
-  const [status1, requestPermission1] =
-    ImagePicker.useMediaLibraryPermissions();
+  const [status1, requestPermission1] = MediaLibrary.usePermissions();
+  if (status1 === null) {
+    requestPermission1();
+  }
   console.log(status);
   //upload IMage syntax
   async function takeAndUploadPhotoAsync(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    // let result =
+    //   paras === "files"
+    //     ? await ImagePicker.launchImageLibraryAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 1,
+    //       })
+    //     : await ImagePicker.launchCameraAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 1,
+    //       });
     result;
     // ImagePicker saves the taken photo to disk and returns a local URI to it
     if (!result.canceled) {
@@ -429,7 +442,7 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
     submitdata();
   };
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       {/* <View
         style={{
           justifyContent: "center",
@@ -1155,7 +1168,7 @@ const ShortTermRental = ({ navigation: { goBack } }) => {
           </LinearGradient>
         </View>
       </ScrollView>
-    </View>
+    </GestureHandlerRootView>
   );
 };
 

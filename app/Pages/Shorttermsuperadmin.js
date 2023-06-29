@@ -12,6 +12,8 @@ import {
   TouchableHighlight,
 } from "react-native";
 import { useEffect } from "react";
+import * as MediaLibrary from "expo-media-library";
+
 import { useSelector } from "react-redux";
 import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -25,7 +27,10 @@ import * as yup from "yup";
 import { FontAwesome } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
-import { ScrollView } from "react-native-gesture-handler";
+import {
+  GestureHandlerRootView,
+  ScrollView,
+} from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import LottieViewloadingmodal from "../components/Loadinmodal";
 
@@ -364,8 +369,10 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
 
   const [ActivityIndicators1, setActivityIndicators1] = useState(false);
   const [status2, requestPermission2] = ImagePicker.useCameraPermissions();
-  const [status3, requestPermission3] =
-    ImagePicker.useMediaLibraryPermissions();
+  const [status3, requestPermission3] = MediaLibrary.usePermissions();
+  if (status3 === null) {
+    requestPermission1();
+  }
   console.log(status);
   const [image1, setImage1] = useState(null);
   //upload IMage syntax
@@ -373,20 +380,12 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
 
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
     console.log(result.canceled);
     // ImagePicker saves the taken photo to disk and returns a local URI to it
     if (!result.canceled) {
@@ -502,7 +501,9 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
   //   resolver: yupResolver(schema),
   // });
   return (
-    <View style={{ backgroundColor: "#eefbff", height: "100%" }}>
+    <GestureHandlerRootView
+      style={{ backgroundColor: "#eefbff", height: "100%" }}
+    >
       {/* <View
         style={{
           justifyContent: "center",
@@ -1343,7 +1344,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
                 </View>
               ) : (
                 <>
-                  <TouchableHighlight
+                  {/* <TouchableHighlight
                     style={{
                       ...styles.openButton,
                       width: 150,
@@ -1372,7 +1373,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
                         {t("Take_Pic")}
                       </Text>
                     </View>
-                  </TouchableHighlight>
+                  </TouchableHighlight> */}
                   <TouchableHighlight
                     style={{
                       ...styles.openButton,
@@ -1478,7 +1479,7 @@ const ShortTermadminForms = ({ navigation: { goBack } }) => {
           </Text>
         </LinearGradient>
       </TouchableOpacity>
-    </View>
+    </GestureHandlerRootView>
   );
 };
 

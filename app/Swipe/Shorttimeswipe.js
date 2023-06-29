@@ -1572,6 +1572,7 @@ export default function ShorttimeSwiperCard({ route }) {
                     marginHorizontal: 9,
                     width: "95%",
                     marginTop: "5%",
+                    // backgroundColor: "red",
                     // alignContent: "center",
                     flexDirection: "row",
                     justifyContent: "space-evenly",

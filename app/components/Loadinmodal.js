@@ -14,7 +14,6 @@ export default function LottieViewloadingmodal(paras) {
           fontSize: 10,
           fontWeight: "800",
           width: "100%",
-          marginLeft: 50,
           fontFamily: "monospace",
         }}
       >

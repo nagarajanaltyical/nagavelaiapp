@@ -5,6 +5,8 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
+import * as MediaLibrary from "expo-media-library";
+
 import {
   ActivityIndicator,
   Image,
@@ -136,27 +138,21 @@ export default function JobposterDetails({ route }) {
   //request Permsiion
   //Ask Permission
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
-  const [status1, requestPermission1] =
-    ImagePicker.useMediaLibraryPermissions();
+  const [status1, requestPermission1] = MediaLibrary.usePermissions();
+  if (status1 === null) {
+    requestPermission1();
+  }
 
   //to upload Image
   async function takeAndUploadPhotoAsync(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
     result;
     // ImagePicker saves the taken photo to disk and returns a local URI to it
 

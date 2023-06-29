@@ -14,6 +14,8 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Checkbox from "expo-checkbox";
 import { useEffect } from "react";
+import * as MediaLibrary from "expo-media-library";
+
 // import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useIsFocused } from "@react-navigation/native";
@@ -28,7 +30,10 @@ import { LocalizationContext } from "../../App";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
-import { ScrollView } from "react-native-gesture-handler";
+import {
+  GestureHandlerRootView,
+  ScrollView,
+} from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import LottieViewloadingmodal from "../components/Loadinmodal";
 const schema = yup.object().shape({
@@ -108,28 +113,21 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
 
   //Ask Permission
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
-  const [status1, requestPermission1] =
-    ImagePicker.useMediaLibraryPermissions();
-  console.log(status);
+  const [status1, requestPermission1] = MediaLibrary.usePermissions();
+  if (status1 === null) {
+    requestPermission1();
+  }
 
   //upload IMage syntax
   async function takeAndUploadPhotoAsync(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
     result;
     // ImagePicker saves the taken photo to disk and returns a local URI to it
 
@@ -203,20 +201,12 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
   async function takeAndUploadPhotoAsync1(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-
-            quality: 1,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-
-            quality: 1,
-          });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
     result;
     // ImagePicker saves the taken photo to disk and returns a local URI to it
 
@@ -578,7 +568,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
   //to find the
 
   return (
-    <View
+    <GestureHandlerRootView
       style={{
         backgroundColor: "#eefbff",
         height: "100%",
@@ -1829,7 +1819,7 @@ const LongTermsuperadmin = ({ navigation: { goBack } }) => {
           </Text>
         </LinearGradient>
       </TouchableOpacity>
-    </View>
+    </GestureHandlerRootView>
   );
 };
 

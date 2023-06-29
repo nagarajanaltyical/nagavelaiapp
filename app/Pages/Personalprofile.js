@@ -17,13 +17,17 @@ import React from "react";
 import { useContext } from "react";
 import * as DocumentPicker from "expo-document-picker";
 import { useIsFocused } from "@react-navigation/native";
+import * as MediaLibrary from "expo-media-library";
 
 import { useCallback } from "react";
 import { useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import { ScrollView } from "react-native-gesture-handler";
+import {
+  GestureHandlerRootView,
+  ScrollView,
+} from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
@@ -472,28 +476,21 @@ export default function PersonProfilepage({ route, navigation }) {
   }
 
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
-  const [status1, requestPermission1] =
-    ImagePicker.useMediaLibraryPermissions();
-  console.log(status);
+  const [status1, requestPermission1] = MediaLibrary.usePermissions();
+  if (status1 === null) {
+    requestPermission1();
+  }
 
   async function takeAndUploadPhotoAsync1(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
     console.log("imm the claaa");
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
 
     // ImagePicker saves the taken photo to disk and returns a local URI to it
     // if (!result.canceled) {
@@ -608,7 +605,7 @@ export default function PersonProfilepage({ route, navigation }) {
     <LottieViewloading />;
   }
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <View
         style={{
           alignItems: "center",
@@ -691,7 +688,7 @@ export default function PersonProfilepage({ route, navigation }) {
             <View
               style={{
                 margin: 20,
-                backgroundColor: "white",
+                backgroundColor: "#fff",
                 borderRadius: 25,
                 width: "80%",
                 borderColor: "#d9d9d9",
@@ -707,10 +704,8 @@ export default function PersonProfilepage({ route, navigation }) {
               }}
             >
               {profileActivityIndicators ? (
-                <View>
-                  <Text>
-                    <LottieViewloadingmodal />
-                  </Text>
+                <View style={{ backgroundColor: "red" }}>
+                  <LottieViewloadingmodal />
                   {/* <ActivityIndicator size="large" /> */}
                 </View>
               ) : (
@@ -751,7 +746,10 @@ export default function PersonProfilepage({ route, navigation }) {
                       backgroundColor: "#1E5966",
                       marginTop: 20,
                     }}
-                    onPress={() => takeAndUploadPhotoAsync1("files")}
+                    onPress={() => {
+                      requestPermission1;
+                      takeAndUploadPhotoAsync1("files");
+                    }}
                   >
                     <View
                       style={{
@@ -1797,7 +1795,7 @@ export default function PersonProfilepage({ route, navigation }) {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </GestureHandlerRootView>
   );
 }
 const styles = StyleSheet.create({

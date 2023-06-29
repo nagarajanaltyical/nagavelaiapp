@@ -3,6 +3,8 @@ import {
   FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import * as MediaLibrary from "expo-media-library";
+
 import * as DocumentPicker from "expo-document-picker";
 import { Formik } from "formik";
 import React, { useCallback, useContext, useEffect, useState } from "react";
@@ -29,6 +31,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext, LocalizationContext } from "../../App";
 import LottieViewloadingmodal from "../components/Loadinmodal";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 export default function RentalJobProvider({ navigation }) {
   const { t, language, setlanguage } = useContext(LocalizationContext);
   const [ActivityIndicators, setActivityIndicators] = useState(false);
@@ -45,9 +48,11 @@ export default function RentalJobProvider({ navigation }) {
   const [profile, setprofile] = useState(null);
   const [profilepic, setprofilepic] = useState("");
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
-  const [status1, requestPermission1] =
-    ImagePicker.useMediaLibraryPermissions();
-  // to addd the
+  const [status1, requestPermission1] = MediaLibrary.usePermissions();
+  if (status1 === null) {
+    requestPermission1();
+  }
+  // to addd theconst [status, requestPermission] =
   useEffect(() => {
     getdata();
   }, []);
@@ -78,24 +83,30 @@ export default function RentalJobProvider({ navigation }) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
 
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            base64: true,
+    // let result =
+    //   paras === "files"
+    //     ? await ImagePicker.launchImageLibraryAsync({
+    //         // mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //         base64: true,
 
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 0.5,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            base64: true,
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 0.5,
+    //       })
+    //     : await ImagePicker.launchCameraAsync({
+    //         // mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //         base64: true,
 
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 0.5,
-          });
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 0.5,
+    //       });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
 
     // ImagePicker saves the taken photo to disk and returns a local URI to it
     console.log(result);
@@ -364,7 +375,7 @@ export default function RentalJobProvider({ navigation }) {
   const [jobprovider, setjobprovider] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#eefbff" }}>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#eefbff" }}>
       <StatusBar style="auto" />
 
       <View style={styles.title}>
@@ -779,7 +790,7 @@ export default function RentalJobProvider({ navigation }) {
           )}
         </Formik>
       </ScrollView>
-    </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 const styles = StyleSheet.create({

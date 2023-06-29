@@ -808,7 +808,7 @@ export default function Profileform({ navigation, route }) {
                           </View>
                         ) : (
                           <>
-                            <TouchableHighlight
+                            {/* <TouchableHighlight
                               style={{
                                 ...styles.openButton,
                                 width: 150,
@@ -832,7 +832,7 @@ export default function Profileform({ navigation, route }) {
                                 />
                                 <Text style={styles.textStyle}>{t("pic")}</Text>
                               </View>
-                            </TouchableHighlight>
+                            </TouchableHighlight> */}
 
                             <TouchableHighlight
                               style={{
@@ -850,11 +850,11 @@ export default function Profileform({ navigation, route }) {
                                   justifyContent: "center",
                                 }}
                               >
-                                <FontAwesome
+                                {/* <FontAwesome
                                   name="files-o"
                                   size={24}
                                   color="white"
-                                />
+                                /> */}
                                 <Text style={styles.textStyle}>{t("fi")}</Text>
                               </View>
                             </TouchableHighlight>

@@ -22,6 +22,8 @@ import {
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
+import * as MediaLibrary from "expo-media-library";
+
 import * as DocumentPicker from "expo-document-picker";
 import { Entypo } from "@expo/vector-icons";
 import { Formik } from "formik";
@@ -89,10 +91,14 @@ export default function CompanyJobProvider({ navigation }) {
   //Get the Permission
 
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
-  const [status1, requestPermission1] =
-    ImagePicker.useMediaLibraryPermissions();
-  console.log(status);
+  // const [status1, requestPermission1] =
+  //   ImagePicker.useMediaLibraryPermissions();
+  const [status1, requestPermission1] = MediaLibrary.usePermissions();
 
+  console.log(status);
+  if (status1 === null) {
+    requestPermission1();
+  }
   // to addd the
 
   //add image to backend
@@ -101,24 +107,12 @@ export default function CompanyJobProvider({ navigation }) {
   async function takeAndUploadPhotoAsync1(paras) {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
-    let result =
-      paras === "files"
-        ? await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            base64: true,
-
-            aspect: [4, 3],
-            quality: 1,
-          })
-        : await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            // allowsEditing: true,
-            base64: true,
-
-            aspect: [4, 3],
-            quality: 1,
-          });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
     // result;
     // ImagePicker saves the taken photo to disk and returns a local URI to it
     if (!result.canceled) {
