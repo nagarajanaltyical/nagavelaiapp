@@ -112,8 +112,15 @@ const LongTermCategory = ({
   Dis,
   name,
   props,
+  company_name,
+  company_name1,
+  exp,
+  s_admin,
   Openings,
   education,
+  logo,
+  position,
+  company,
   workspace,
   jobtype,
   days_ago,
@@ -315,7 +322,7 @@ const LongTermCategory = ({
                       fontWeight: "400",
                     }}
                   >
-                    1-2 Years
+                    {exp}
                   </Text>
                 </View>
               </View>
@@ -400,7 +407,23 @@ const LongTermCategory = ({
                     resizeMode: "cover",
                   }}
                 >
-                  {!(pic == "") ? (
+                  {s_admin == "True" ? (
+                    <Image
+                      source={{ uri: logo }}
+                      style={{
+                        backgroundColor: "#EEFBFF",
+                        width: 45,
+                        height: 45,
+                        //   marginTop: 3,
+
+                        borderRadius: 50,
+
+                        resizeMode: "cover",
+                        // borderColor: "#f6ab03",
+                        // borderWidth: 1,
+                      }}
+                    ></Image>
+                  ) : !(pic == "") ? (
                     <Image
                       source={{
                         uri: pic,
@@ -452,7 +475,18 @@ const LongTermCategory = ({
                       fontWeight: "500",
                     }}
                   >
-                    {name}
+                    {/* {s_admin == "False" ? company : name} */}
+                    {company_name == null
+                      ? name
+                      : s_admin == "True"
+                      ? company_name1
+                      : company_name}
+                    {/* {company == null
+                      ? name
+                      : s_admin == "False"
+                      ? company
+                      : company}{" "}
+                    old CODE */}
                   </Text>
                   <Text
                     style={{
@@ -462,7 +496,16 @@ const LongTermCategory = ({
                       textTransform: "capitalize",
                     }}
                   >
-                    Owner
+                    {company_name == null
+                      ? "owner"
+                      : s_admin == "True"
+                      ? position
+                      : name}
+                    {/* {company == null
+                      ? "owner"
+                      : s_admin == "False"
+                      ? position
+                      : position} OLD cODE */}
                   </Text>
                 </View>
               </View>
@@ -878,6 +921,13 @@ const Items = ({
   loc,
   page,
   Dis,
+  logo,
+  exp,
+  company,
+  company_name,
+  company_name1,
+  position,
+  s_admin,
   name,
   short,
   longs,
@@ -1596,6 +1646,13 @@ const Items = ({
         pic={pic}
         name={name}
         short={short}
+        exp={exp}
+        company_name={company_name}
+        company_name1={company_name1}
+        position={position}
+        company={company}
+        logo={logo}
+        s_admin={s_admin}
         Openings={Openings}
         education={education}
         days_ago={days_ago}
@@ -1650,7 +1707,7 @@ const Heart = ({ navigation, route }) => {
   const [nodata, setnodata] = useState(false);
   async function fetchdata() {
     try {
-      await fetch(`http://103.174.10.108:5002/api/s_l_like_job/${user_id}`, {
+      await fetch(`http://192.168.1.16:5000/api/s_l_like_job/${user_id}`, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -1848,11 +1905,18 @@ const Heart = ({ navigation, route }) => {
                     name={item.username}
                     loc={item.location}
                     page={route.name}
+                    company_name={item.companyname}
+                    company_name1={item.companyname1}
                     Dis={item.distance}
+                    position={item.position}
+                    company={item.company}
+                    exp={item.experience}
                     workspace={item.workspace}
                     jobtype={item.jobtype}
                     Openings={item.Openings}
                     education={item.Education}
+                    logo={item.logo}
+                    s_admin={item.s_admin}
                     days_ago={getthedays(item.posteddatetime)}
                     short={item.is_short}
                     longs={item.long_id}

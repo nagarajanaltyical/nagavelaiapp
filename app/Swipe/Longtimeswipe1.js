@@ -1596,7 +1596,7 @@ export default function LongtimeSwiperCard1({ route }) {
                         {data[index].Duration2}
                       </Text>
                     </LinearGradient> */}
-                  <View style={{}}>
+                  {/* <View style={{}}>
                     <TouchableOpacity
                       onPress={() => {
                         // navigation.navigate("Userprofile");
@@ -1633,7 +1633,7 @@ export default function LongtimeSwiperCard1({ route }) {
                         </Text>
                       </LinearGradient>
                     </TouchableOpacity>
-                  </View>
+                  </View> */}
                 </View>
                 <View
                   style={{

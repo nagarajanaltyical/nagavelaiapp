@@ -624,16 +624,16 @@ function Longtermmainlist({ navigation, route }) {
       }
     }
   }, [isFocused]);
-  React.useEffect(() => {
-    navigation.addListener("focus", () => {
-      if (state2.filter_click) {
-        console.log("hhhiihih");
-        fetchdata1();
-      } else {
-        fetchdata();
-      }
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   navigation.addListener("focus", () => {
+  //     if (state2.filter_click) {
+  //       console.log("hhhiihih");
+  //       fetchdata1();
+  //     } else {
+  //       fetchdata();
+  //     }
+  //   });
+  // }, []);
   const [nodata, setnodata] = useState(false);
 
   const Onfetch = async () => {
@@ -673,6 +673,7 @@ function Longtermmainlist({ navigation, route }) {
           } else {
             setdata([...data, ...newdata]);
             dispatch2({ type: "Page_Increase", payload: pagevalue });
+            dispatch2({ type: "ADD_DATA", payload: data });
             OnEnd(false);
           }
           // setdata(newdata);

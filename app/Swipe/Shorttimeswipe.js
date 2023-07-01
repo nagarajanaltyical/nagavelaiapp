@@ -971,6 +971,7 @@ export default function ShorttimeSwiperCard({ route }) {
                   marginLeft: "13%",
                 }}
               > */}
+
                 <TouchableOpacity
                   onPress={() => checktheuserChat()}
                   style={{ paddingHorizontal: "4%" }}
@@ -1578,6 +1579,114 @@ export default function ShorttimeSwiperCard({ route }) {
                     justifyContent: "space-evenly",
                   }}
                 >
+                  {/* <LinearGradient
+                      colors={["#6BC3FF", "#1da1f2"]}
+                      style={{
+                        position: "absolute",
+                        backgroundColor: "black",
+                        padding: 3,
+                        textAlign: "center",
+                        borderRadius: 10,
+                      }}
+                    >
+                      <Text style={{ color: "white", fontWeight: "400" }}>
+                        {data[index].Duration}
+                        {data[index].Duration2}
+                      </Text>
+                    </LinearGradient> */}
+                  {console.log(data[index].s_admin)}
+
+                  {/* {data[index].s_admin == "False" ? (
+                    <> */}
+                  {/* <View style={{}}>
+                        <TouchableOpacity
+                          onPress={() => handleCallclick(data[index])}
+                          disabled={data[index].isallow_tocall == "0"}
+                        >
+                          <LinearGradient
+                            colors={[
+                              "#16323B",
+                              "#1F4C5B",
+                              "#1E5966",
+                              "#16323B",
+                            ]}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 1 }}
+                            useAngle={45}
+                            style={{
+                              height: 38,
+                              width: 160,
+                              borderRadius: 10,
+                              opacity:
+                                data[index].isallow_tocall == "0" ? 0.5 : 1,
+                              justifyContent: "center",
+                              alignItems: "center",
+                              flexDirection: "row",
+                            }}
+                          >
+                            <FontAwesome name="phone" size={22} color="#fff" />
+                            <Text
+                              style={{
+                                color: "#fff",
+                                fontSize: language == "English" ? 16 : 13,
+                                fontWeight: "500",
+                                marginHorizontal: 10,
+                                justifyContent: "center",
+                              }}
+                            >
+                              {t("Call_Now")}
+                            </Text>
+                          </LinearGradient>
+                        </TouchableOpacity>
+                      </View> */}
+                  {/* <View style={{}}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            // navigation.navigate("Userprofile");
+                            checktheusercondtiton(data[index]);
+                          }}
+                          disabled={data[index].apply == "True"}
+                          // handleLikeButtonPress(data[index]);
+                        >
+                          <LinearGradient
+                            colors={[
+                              "#16323B",
+                              "#1F4C5B",
+                              "#1E5966",
+                              "#16323B",
+                            ]}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 1 }}
+                            useAngle={45}
+                            style={{
+                              height: 38,
+                              width: 160,
+                              borderRadius: 10,
+
+                              opacity: data[index].apply == "True" ? 0.5 : 1,
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Text
+                              style={{
+                                color: "#fff",
+                                fontSize: language == "English" ? 16 : 13,
+                                fontWeight: "500",
+                              }}
+                            >
+                              {data[index].apply == "True"
+                                ? t("Applied")
+                                : t("Apply_Now")}
+                            </Text>
+                          </LinearGradient>
+                        </TouchableOpacity>
+                      </View> */}
+                  {/* </>
+                  ) : (
+                    ""
+                  )} */}
+
                   <View style={{}}>
                     <TouchableOpacity
                       onPress={() => handleCallclick(data[index])}
@@ -1612,63 +1721,6 @@ export default function ShorttimeSwiperCard({ route }) {
                         </Text>
                       </LinearGradient>
                     </TouchableOpacity>
-                  </View>
-                  {/* <LinearGradient
-                      colors={["#6BC3FF", "#1da1f2"]}
-                      style={{
-                        position: "absolute",
-                        backgroundColor: "black",
-                        padding: 3,
-                        textAlign: "center",
-                        borderRadius: 10,
-                      }}
-                    >
-                      <Text style={{ color: "white", fontWeight: "400" }}>
-                        {data[index].Duration}
-                        {data[index].Duration2}
-                      </Text>
-                    </LinearGradient> */}
-                  <View style={{}}>
-                    {data[index].s_admin == "True" ? (
-                      <TouchableOpacity
-                        onPress={() => {
-                          // navigation.navigate("Userprofile");
-                          checktheusercondtiton(data[index]);
-                        }}
-                        disabled={data[index].apply == "True"}
-                        // handleLikeButtonPress(data[index]);
-                      >
-                        <LinearGradient
-                          colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 1 }}
-                          useAngle={45}
-                          style={{
-                            height: 38,
-                            width: 160,
-                            borderRadius: 10,
-
-                            opacity: data[index].apply == "True" ? 0.5 : 1,
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Text
-                            style={{
-                              color: "#fff",
-                              fontSize: language == "English" ? 16 : 13,
-                              fontWeight: "500",
-                            }}
-                          >
-                            {data[index].apply == "True"
-                              ? t("Applied")
-                              : t("Apply_Now")}
-                          </Text>
-                        </LinearGradient>
-                      </TouchableOpacity>
-                    ) : (
-                      ""
-                    )}
                   </View>
                 </View>
 

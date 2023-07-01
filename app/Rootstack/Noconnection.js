@@ -18,7 +18,6 @@ export default function LottieViewfor() {
         // OR find more Lottie files @ https://lottiefiles.com/featured
         // Just click the one you like, place that file in the 'assets' folder to the left, and replace the above 'require' statement
       />
-      <View style={styles.buttonContainer}></View>
     </View>
   );
 }
@@ -55,8 +54,10 @@ export default function LottieViewfor() {
 // }
 const styles = StyleSheet.create({
   animationContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: "red",
     alignItems: "center",
+    width: "100%",
+    height: "100%",
     justifyContent: "center",
     flex: 1,
   },

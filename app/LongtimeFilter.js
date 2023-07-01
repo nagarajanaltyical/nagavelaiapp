@@ -9,6 +9,7 @@ export const Inital_State2 = {
   experience: "$",
   companyname: "$",
   page: 0,
+  data: [],
   filter_click: false,
 };
 
@@ -18,6 +19,12 @@ export const LongTimeFilter = (state, action) => {
       return {
         ...state,
         states: action.payload,
+      };
+    }
+    case "ADD_DATA": {
+      return {
+        ...state,
+        data: action.payload,
       };
     }
     case "SET_DISTRICT_long": {

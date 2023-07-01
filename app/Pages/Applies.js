@@ -46,6 +46,7 @@ const LongTermCategory = ({
   Dis,
   name,
   props,
+  companyname,
   Openings,
   education,
   workspace,
@@ -363,7 +364,7 @@ const LongTermCategory = ({
                 <Text
                   style={{ color: "#56909D", fontSize: 15, fontWeight: "500" }}
                 >
-                  {name}
+                  {companyname == null ? name : companyname}
                 </Text>
                 <Text
                   style={{
@@ -373,7 +374,7 @@ const LongTermCategory = ({
                     textTransform: "capitalize",
                   }}
                 >
-                  Owner
+                  {companyname == null ? "Owner" : name}
                 </Text>
               </View>
             </View>
@@ -1484,6 +1485,7 @@ const Items = ({
   shortID,
   workspace,
   days_ago,
+  companyname,
   education,
   jobtype,
   Openings,
@@ -1773,48 +1775,28 @@ const Items = ({
   console.log(Id);
   return (
     <>
-      {short == "True" ? (
-        <ShortTermCategory
-          title={title}
-          sal={sal}
-          per={per}
-          time={time}
-          loc={loc}
-          page={page}
-          Dis={Dis}
-          name={name}
-          short={short}
-          days_ago={days_ago}
-          longs={longs}
-          shortID={shortID}
-          Openings={Openings}
-          Id={Id}
-          pic={pic}
-          navigation={navigation}
-        />
-      ) : (
-        <LongTermCategory
-          title={title}
-          sal={sal}
-          per={per}
-          time={time}
-          loc={loc}
-          page={page}
-          Dis={Dis}
-          pic={pic}
-          name={name}
-          short={short}
-          Openings={Openings}
-          education={education}
-          days_ago={days_ago}
-          workspace={workspace}
-          jobtype={jobtype}
-          longs={longs}
-          shortID={shortID}
-          Id={Id}
-          navigation={navigation}
-        />
-      )}
+      <LongTermCategory
+        title={title}
+        sal={sal}
+        per={per}
+        time={time}
+        loc={loc}
+        page={page}
+        Dis={Dis}
+        pic={pic}
+        name={name}
+        companyname={companyname}
+        short={short}
+        Openings={Openings}
+        education={education}
+        days_ago={days_ago}
+        workspace={workspace}
+        jobtype={jobtype}
+        longs={longs}
+        shortID={shortID}
+        Id={Id}
+        navigation={navigation}
+      />
     </>
   );
 };
@@ -1856,7 +1838,7 @@ function Saved({ navigation, route }) {
   const [nodata, setnodata] = useState(false);
   async function fetchdata() {
     try {
-      await fetch(`http://103.174.10.108:5002/api/s_apply_details/${user_id}`, {
+      await fetch(`http://192.168.1.16:5000/api/s_apply_details/${user_id}`, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -1870,7 +1852,7 @@ function Saved({ navigation, route }) {
         .then((result) => {
           setRefreshing(false);
           var newdata = result["s_job_apply_details"];
-
+          console.log(newdata);
           if (newdata.length == 0) {
             setnodata(true);
             setloading(false);
@@ -2083,6 +2065,8 @@ function Saved({ navigation, route }) {
                     sal={item.Salary}
                     per={item.per}
                     time={item.Duration}
+                    companyname={item.companyname}
+                    postiton={item.designation}
                     work={item.time}
                     name={item.username}
                     loc={item.location}

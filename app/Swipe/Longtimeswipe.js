@@ -699,16 +699,21 @@ export default function LongtimeSwiperCard({ route }) {
                   marginLeft: "13%",
                 }}
               > */}
-                <TouchableOpacity
-                  onPress={() => Onclcikchat()}
-                  style={{ paddingHorizontal: "4%" }}
-                >
-                  <Ionicons
-                    name="ios-chatbox-ellipses-outline"
-                    size={22}
-                    color="#56909d"
-                  />
-                </TouchableOpacity>
+                {data[index].s_admin == "False" ? (
+                  <TouchableOpacity
+                    onPress={() => Onclcikchat()}
+                    style={{ paddingHorizontal: "4%" }}
+                  >
+                    <Ionicons
+                      name="ios-chatbox-ellipses-outline"
+                      size={22}
+                      color="#56909d"
+                    />
+                  </TouchableOpacity>
+                ) : (
+                  ""
+                )}
+
                 <View style={{ paddingHorizontal: "4%" }}>
                   <TouchableOpacity
                     onPress={() =>
@@ -1557,78 +1562,51 @@ export default function LongtimeSwiperCard({ route }) {
                     justifyContent: "space-evenly",
                   }}
                 >
-                  <View style={{}}>
-                    {data[index].s_admin == null ? (
-                      <TouchableOpacity
-                        onPress={() => handleCallclick(data[index])}
-                        disabled={data[index].isallow_tocall == "0"}
-                      >
-                        <LinearGradient
-                          colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 1 }}
-                          useAngle={45}
-                          style={{
-                            height: 38,
-                            width: 160,
-                            borderRadius: 10,
-                            opacity:
-                              data[index].isallow_tocall == "0" ? 0.5 : 1,
-                            justifyContent: "center",
-                            alignItems: "center",
-                            flexDirection: "row",
-                          }}
+                  {console.log(data[index].s_admin)}
+                  {data[index].s_admin == "False" ? (
+                    <>
+                      <View style={{}}>
+                        <TouchableOpacity
+                          onPress={() => handleCallclick(data[index])}
+                          disabled={data[index].isallow_tocall == "0"}
                         >
-                          <FontAwesome name="phone" size={22} color="#fff" />
-                          <Text
+                          <LinearGradient
+                            colors={[
+                              "#16323B",
+                              "#1F4C5B",
+                              "#1E5966",
+                              "#16323B",
+                            ]}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 1 }}
+                            useAngle={45}
                             style={{
-                              color: "#fff",
-                              fontSize: language == "English" ? 16 : 13,
-                              fontWeight: "500",
-                              marginHorizontal: 10,
+                              height: 38,
+                              width: 160,
+                              borderRadius: 10,
+                              opacity:
+                                data[index].isallow_tocall == "0" ? 0.5 : 1,
                               justifyContent: "center",
+                              alignItems: "center",
+                              flexDirection: "row",
                             }}
                           >
-                            {t("Call_Now")}
-                          </Text>
-                        </LinearGradient>
-                      </TouchableOpacity>
-                    ) : (
-                      <TouchableOpacity
-                        onPress={() => Linking.openURL(data[index].web_link)}
-                      >
-                        <LinearGradient
-                          colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 1 }}
-                          useAngle={45}
-                          style={{
-                            height: 38,
-                            width: 160,
-                            borderRadius: 10,
-                            opacity: 1,
-
-                            justifyContent: "center",
-                            alignItems: "center",
-                            flexDirection: "row",
-                          }}
-                        >
-                          <Text
-                            style={{
-                              color: "#fff",
-                              fontSize: language == "English" ? 16 : 13,
-                              fontWeight: "500",
-                              marginHorizontal: 10,
-                              justifyContent: "center",
-                            }}
-                          >
-                            Visit Link
-                          </Text>
-                        </LinearGradient>
-                      </TouchableOpacity>
-                    )}
-                  </View>
-                  {/* <LinearGradient
+                            <FontAwesome name="phone" size={22} color="#fff" />
+                            <Text
+                              style={{
+                                color: "#fff",
+                                fontSize: language == "English" ? 16 : 13,
+                                fontWeight: "500",
+                                marginHorizontal: 10,
+                                justifyContent: "center",
+                              }}
+                            >
+                              {t("Call_Now")}
+                            </Text>
+                          </LinearGradient>
+                        </TouchableOpacity>
+                      </View>
+                      {/* <LinearGradient
                       colors={["#6BC3FF", "#1da1f2"]}
                       style={{
                         position: "absolute",
@@ -1643,48 +1621,88 @@ export default function LongtimeSwiperCard({ route }) {
                         {data[index].Duration2}
                       </Text>
                     </LinearGradient> */}
-                  <View style={{}}>
-                    {data[index].s_admin == null ? (
-                      <TouchableOpacity
-                        onPress={() => {
-                          // navigation.navigate("Userprofile");
-                          checktheusercondtiton(data[index]);
-                        }}
-                        disabled={data[index].apply == "True"}
-                        // handleLikeButtonPress(data[index]);
-                      >
-                        <LinearGradient
-                          colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 1 }}
-                          useAngle={45}
-                          style={{
-                            height: 38,
-                            width: 160,
-                            borderRadius: 10,
-
-                            opacity: data[index].apply == "True" ? 0.5 : 1,
-                            justifyContent: "center",
-                            alignItems: "center",
+                      <View style={{}}>
+                        {/* {data[index].s_admin == null ? ( */}
+                        <TouchableOpacity
+                          onPress={() => {
+                            // navigation.navigate("Userprofile");
+                            checktheusercondtiton(data[index]);
                           }}
+                          disabled={data[index].apply == "True"}
+                          // handleLikeButtonPress(data[index]);
                         >
-                          <Text
+                          <LinearGradient
+                            colors={[
+                              "#16323B",
+                              "#1F4C5B",
+                              "#1E5966",
+                              "#16323B",
+                            ]}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 1 }}
+                            useAngle={45}
                             style={{
-                              color: "#fff",
-                              fontSize: language == "English" ? 16 : 13,
-                              fontWeight: "500",
+                              height: 38,
+                              width: 160,
+                              borderRadius: 10,
+
+                              opacity: data[index].apply == "True" ? 0.5 : 1,
+                              justifyContent: "center",
+                              alignItems: "center",
                             }}
                           >
-                            {data[index].apply == "True"
-                              ? t("Applied")
-                              : t("Apply_Now")}
-                          </Text>
-                        </LinearGradient>
-                      </TouchableOpacity>
-                    ) : (
+                            <Text
+                              style={{
+                                color: "#fff",
+                                fontSize: language == "English" ? 16 : 13,
+                                fontWeight: "500",
+                              }}
+                            >
+                              {data[index].apply == "True"
+                                ? t("Applied")
+                                : t("Apply_Now")}
+                            </Text>
+                          </LinearGradient>
+                        </TouchableOpacity>
+                        {/* ) : (
                       ""
-                    )}
-                  </View>
+                    )} */}
+                      </View>
+                    </>
+                  ) : (
+                    <TouchableOpacity
+                      onPress={() => Linking.openURL(data[index].web_link)}
+                    >
+                      <LinearGradient
+                        colors={["#16323B", "#1F4C5B", "#1E5966", "#16323B"]}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                        useAngle={45}
+                        style={{
+                          height: 38,
+                          width: 160,
+                          borderRadius: 10,
+                          opacity: 1,
+
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "row",
+                        }}
+                      >
+                        <Text
+                          style={{
+                            color: "#fff",
+                            fontSize: language == "English" ? 16 : 13,
+                            fontWeight: "500",
+                            marginHorizontal: 10,
+                            justifyContent: "center",
+                          }}
+                        >
+                          Visit Link
+                        </Text>
+                      </LinearGradient>
+                    </TouchableOpacity>
+                  )}
                 </View>
                 <View
                   style={{

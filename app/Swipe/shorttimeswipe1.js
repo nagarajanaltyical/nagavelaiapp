@@ -1584,7 +1584,6 @@ export default function ShorttimeSwiperCard1({ route }) {
                         {data[index].Duration2}
                       </Text>
                     </LinearGradient> */}
-                  <View style={{}}></View>
                 </View>
 
                 <View
