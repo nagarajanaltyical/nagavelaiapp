@@ -1723,7 +1723,7 @@ export default function LongtimeSwiperCard({ route }) {
                     {t("Location")}
                   </Text>
                   <TouchableWithoutFeedback onPress={toast}>
-                    {/* <Image
+                    <Image
                       style={{
                         height: 100,
                         width: "100%",
@@ -1733,7 +1733,7 @@ export default function LongtimeSwiperCard({ route }) {
                         resizeMode: "cover",
                       }}
                       source={require("../images/map.png")}
-                    /> */}
+                    />
                     {/* <MapView
                       style={{
                         height: 100,
