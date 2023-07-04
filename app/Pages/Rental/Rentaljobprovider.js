@@ -15,7 +15,7 @@ import {
   TextInput,
   Pressable,
 } from "react-native";
-import MapView from "react-native-maps";
+// import MapView from "react-native-maps";
 
 import * as MailComposer from "expo-mail-composer";
 
@@ -1265,7 +1265,7 @@ export default function RentalproviderSwiperCard({ route }) {
                   </Text>
 
                   <TouchableWithoutFeedback onPress={toast}>
-                    {/* <Image
+                    <Image
                       style={{
                         height: 100,
                         width: "100%",
@@ -1274,8 +1274,8 @@ export default function RentalproviderSwiperCard({ route }) {
                         resizeMode: "cover",
                       }}
                       source={require("../../images/map.png")}
-                    /> */}
-                    <MapView
+                    />
+                    {/* <MapView
                       style={{
                         height: 100,
                         width: "100%",
@@ -1283,7 +1283,7 @@ export default function RentalproviderSwiperCard({ route }) {
                         resizeMode: "cover",
                         backgroundColor: "#eefbff",
                       }}
-                    ></MapView>
+                    ></MapView> */}
                   </TouchableWithoutFeedback>
                   {/* <Image
                       style={{

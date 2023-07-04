@@ -17,7 +17,7 @@ import {
   Pressable,
   useWindowDimensions,
 } from "react-native";
-import MapView from "react-native-maps";
+// import MapView from "react-native-maps";
 
 import { EvilIcons, Octicons } from "@expo/vector-icons";
 import Happy from "./Happy";
@@ -1787,7 +1787,7 @@ export default function ShorttimeSwiperCard({ route }) {
                     {t("Location")}
                   </Text>
                   <TouchableWithoutFeedback onPress={toast}>
-                    <MapView
+                    {/* <MapView
                       style={{
                         height: 100,
                         width: "100%",
@@ -1795,8 +1795,8 @@ export default function ShorttimeSwiperCard({ route }) {
                         resizeMode: "cover",
                         backgroundColor: "#eefbff",
                       }}
-                    ></MapView>
-                    {/* <Image
+                    ></MapView> */}
+                    <Image
                       style={{
                         height: 100,
                         width: "100%",
@@ -1806,7 +1806,7 @@ export default function ShorttimeSwiperCard({ route }) {
                         backgroundColor: "#eefbff",
                       }}
                       source={require("../images/map.png")}
-                    /> */}
+                    />
                   </TouchableWithoutFeedback>
 
                   {/* <Image

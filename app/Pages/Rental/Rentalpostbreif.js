@@ -17,7 +17,7 @@ import {
   Pressable,
   ToastAndroid,
 } from "react-native";
-import MapView from "react-native-maps";
+// import MapView from "react-native-maps";
 
 import { EvilIcons } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
@@ -1253,7 +1253,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                     Location
                   </Text>
                   <TouchableOpacity onPress={toast}>
-                    {/* <Image
+                    <Image
                       style={{
                         height: 100,
                         width: "100%",
@@ -1262,8 +1262,8 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                         resizeMode: "cover",
                       }}
                       source={require("../../images/map.png")}
-                    /> */}
-                    <MapView
+                    />
+                    {/* <MapView
                       style={{
                         height: 100,
                         width: "100%",
@@ -1271,7 +1271,7 @@ export default function RentalproviderbriefSwiperCard({ route }) {
                         resizeMode: "cover",
                         backgroundColor: "#eefbff",
                       }}
-                    ></MapView>
+                    ></MapView> */}
                   </TouchableOpacity>
                   {/* <Image
                       style={{

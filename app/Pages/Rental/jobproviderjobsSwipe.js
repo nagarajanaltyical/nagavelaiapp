@@ -12,7 +12,7 @@ import {
   ToastAndroid,
   View,
 } from "react-native";
-import MapView from "react-native-maps";
+// import MapView from "react-native-maps";
 
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
@@ -1294,7 +1294,7 @@ export default function JobProvidercards({ route }) {
                     Location
                   </Text>
                   <TouchableWithoutFeedback onPress={toast}>
-                    {/* <Image
+                    <Image
                       style={{
                         height: 100,
                         width: "100%",
@@ -1303,8 +1303,8 @@ export default function JobProvidercards({ route }) {
                         resizeMode: "cover",
                       }}
                       source={require("../../images/map.png")}
-                    /> */}
-                    <MapView
+                    />
+                    {/* <MapView
                       style={{
                         height: 100,
                         width: "100%",
@@ -1312,7 +1312,7 @@ export default function JobProvidercards({ route }) {
                         resizeMode: "cover",
                         backgroundColor: "#eefbff",
                       }}
-                    ></MapView>
+                    ></MapView> */}
                   </TouchableWithoutFeedback>
                   {/* <Image
                       style={{
